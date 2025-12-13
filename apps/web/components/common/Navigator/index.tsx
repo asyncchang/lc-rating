@@ -67,15 +67,6 @@ const Navigator = React.memo(() => {
           <NavigationMenuItem>
             <SettingsPanel show={show} onOpenChange={setShow} />
           </NavigationMenuItem>
-
-          <NavigationMenuItem>
-            <Button
-              variant="ghost"
-              className="cursor-pointer text-center text-base text-red-500 font-light"
-            >
-              <Link href={ROUTERS.v2.href}>{ROUTERS.v2.title}</Link>
-            </Button>
-          </NavigationMenuItem>
         </NavigationMenuList>
       </div>
       <div className="font-bold md:flex gap-1 hidden">

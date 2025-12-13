@@ -43,5 +43,4 @@ export const ROUTERS = {
       []
     ),
   },
-  v2: { title: "👉舊版", href: `/v0` },
 };
