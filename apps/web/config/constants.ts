@@ -12,29 +12,29 @@ export const STORAGE_VERSION = 0;
 
 export const BILIBILI_0X3F_SPACE = {
   url: "https://space.bilibili.com/206214/",
-  title: "灵茶山艾府(0x3F)@B站",
+  title: "靈茶山艾府(0x3F)@B站",
 };
 
 export const STUDYPLANS = {
   binary_search: "二分查找",
-  bitwise_operations: "位运算",
-  data_structure: "数据结构",
-  dynamic_programming: "动态规划",
-  graph: "图论算法",
-  greedy: "贪心",
-  grid: "网格图",
-  math: "数学",
-  monotonic_stack: "单调栈",
-  sliding_window: "滑动窗口",
+  bitwise_operations: "位運算",
+  data_structure: "數據結構",
+  dynamic_programming: "動態規劃",
+  graph: "圖論算法",
+  greedy: "貪心",
+  grid: "網格圖",
+  math: "數學",
+  monotonic_stack: "單調棧",
+  sliding_window: "滑動窗口",
   string: "字符串",
-  trees: "树和二叉树",
+  trees: "樹和二叉樹",
 };
 
 export const ROUTERS = {
-  contest: { title: "竞赛", href: `/contest` },
-  problemset: { title: "题库", href: `/problemset` },
+  contest: { title: "競賽", href: `/contest` },
+  problemset: { title: "題庫", href: `/problemset` },
   studyPlans: {
-    title: "题单",
+    title: "題單",
     children: Object.entries(STUDYPLANS).reduce(
       (acc: { title: string; href: string }[], [key, title]) => [
         ...acc,
@@ -43,5 +43,5 @@ export const ROUTERS = {
       []
     ),
   },
-  v2: { title: "👉旧版", href: `/v0` },
+  v2: { title: "👉舊版", href: `/v0` },
 };

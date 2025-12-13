@@ -61,7 +61,7 @@ const SectionContainer = React.memo(
     return (
       <Card
         id={`${section.title}`}
-        // 导航栏高度是 60px
+        // 導航欄高度是 60px
         className={cardClasses}
       >
         <CardHeader>
@@ -96,4 +96,3 @@ const SectionContainer = React.memo(
 SectionContainer.displayName = "SectionContainer";
 
 export { SectionContainer };
-

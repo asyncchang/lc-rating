@@ -27,7 +27,7 @@ type Options<T> = {
 } & Serialization<T> &
   Encryption;
 
-// 全局存储 StorageStore 实例
+// 全域儲存 StorageStore 實例
 const globalStores: Record<StorageType, Record<string, StorageStore<any>>> = {
   local: {},
   session: {},

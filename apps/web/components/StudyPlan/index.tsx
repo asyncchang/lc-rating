@@ -53,7 +53,7 @@ function StudyPlan({ plan }: StudyPlanProps) {
     <SidebarProvider>
       {toc && <TableOfContent toc={toc} />}
       <div className="flex flex-col">
-        {/* 导航栏高度是60px */}
+        {/* 導航欄高度是60px */}
         <SidebarTrigger className="fixed top-[var(--navbar-height)]" />
         <div className="flex flex-row flex-wrap gap-8 px-8">
           {studyPlan?.children.map((section) => (

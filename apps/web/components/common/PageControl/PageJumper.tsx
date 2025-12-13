@@ -54,7 +54,7 @@ const PageJumper = React.memo(
           onClick={jump}
           disabled={parsedPage < 1 || parsedPage > pageCount}
         >
-          <span>跳转</span>
+          <span>跳轉</span>
         </Button>
       </div>
     );

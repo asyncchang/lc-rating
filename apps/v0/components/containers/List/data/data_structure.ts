@@ -1,7 +1,7 @@
 import ProblemCategory from "@components/ProblemCatetory";
 
 export default{
-    "title": "分享丨【算法题单】常用数据结构（前缀和/栈/队列/堆/字典树/并查集/树状数组/线段树）",
+    "title": "分享丨【算法題單】常用數據結構（前綴和/堆疊/佇列/堆積/字典樹/並查集/樹狀陣列/線段樹）",
     "summary": "",
     "src": "",
     "original_src": "https://leetcode.cn/circle/discuss/mOr1u6",
@@ -34,8 +34,8 @@ export default{
                     "leafChild": [],
                     "nonLeafChild": [
                         {
-                            "title": "§0.1 枚举右，维护左",
-                            "summary": "对于 **双变量问题**，例如两数之和 $a_i+a_j=t$，可以枚举右边的 $a_j$，转换成 **单变量问题**，也就是在 $a_j$ 左边查找是否有 $a_i = t-a_j$，这可以用哈希表维护。<br>我把这个技巧叫做 **枚举右，维护左**。<br><a href=\"https://leetcode.cn/problems/two-sum/solution/dong-hua-cong-liang-shu-zhi-he-zhong-wo-0yvmj/\">讲解</a><br>下面这些题目，如果可以，请用**一次遍历**实现。<br>",
+                            "title": "§0.1 枚舉右，維護左",
+                            "summary": "對於 **雙變量問題**，例如兩數之和 $a_i+a_j=t$，可以枚舉右邊的 $a_j$，轉換成 **單變量問題**，也就是在 $a_j$ 左邊查找是否有 $a_i = t-a_j$，這可以用雜湊表維護。<br>我把這個技巧叫做 **枚舉右，維護左**。<br><a href=\"https://leetcode.cn/problems/two-sum/solution/dong-hua-cong-liang-shu-zhi-he-zhong-wo-0yvmj/\">講解</a><br>下面這些題目，如果可以，請用**一次遍歷**實現。<br>",
                             "src": "",
                             "original_src": "",
                             "sort": 0,
@@ -45,7 +45,7 @@ export default{
                             "leafChild": [],
                             "nonLeafChild": [
                                 {
-                                    "title": "§0.1.1 基础",
+                                    "title": "§0.1.1 基礎",
                                     "summary": "",
                                     "src": "",
                                     "original_src": "",
@@ -55,7 +55,7 @@ export default{
                                     "score": 0,
                                     "leafChild": [
                                         {
-                                            "title": "1. 两数之和",
+                                            "title": "1. 兩數之和",
                                             "summary": "",
                                             "src": "/two-sum/",
                                             "original_src": "https://leetcode.cn/problems/two-sum/",
@@ -69,7 +69,7 @@ export default{
                                             "last_update": ""
                                         },
                                         {
-                                            "title": "2441. 与对应负数同时存在的最大正整数",
+                                            "title": "2441. 與對應負數同時存在的最大正整數",
                                             "summary": "",
                                             "src": "/largest-positive-integer-that-exists-with-its-negative/",
                                             "original_src": "https://leetcode.cn/problems/largest-positive-integer-that-exists-with-its-negative/",
@@ -83,7 +83,7 @@ export default{
                                             "last_update": ""
                                         },
                                         {
-                                            "title": "1512. 好数对的数目",
+                                            "title": "1512. 好數對的數目",
                                             "summary": "",
                                             "src": "/number-of-good-pairs/",
                                             "original_src": "https://leetcode.cn/problems/number-of-good-pairs/",
@@ -111,7 +111,7 @@ export default{
                                             "last_update": ""
                                         },
                                         {
-                                            "title": "1128. 等价多米诺骨牌对的数量",
+                                            "title": "1128. 等價多米諾骨牌對的數量",
                                             "summary": "",
                                             "src": "/number-of-equivalent-domino-pairs/description/",
                                             "original_src": "https://leetcode.cn/problems/number-of-equivalent-domino-pairs/description/",
@@ -125,7 +125,7 @@ export default{
                                             "last_update": ""
                                         },
                                         {
-                                            "title": "121. 买卖股票的最佳时机",
+                                            "title": "121. 買賣股票的最佳時機",
                                             "summary": "",
                                             "src": "/best-time-to-buy-and-sell-stock/",
                                             "original_src": "https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/",
@@ -153,7 +153,7 @@ export default{
                                             "last_update": ""
                                         },
                                         {
-                                            "title": "219. 存在重复元素 II",
+                                            "title": "219. 存在重複元素 II",
                                             "summary": "",
                                             "src": "/contains-duplicate-ii/",
                                             "original_src": "https://leetcode.cn/problems/contains-duplicate-ii/",
@@ -181,7 +181,7 @@ export default{
                                             "last_update": ""
                                         },
                                         {
-                                            "title": "2815. 数组中的最大数对和",
+                                            "title": "2815. 陣列中的最大數對和",
                                             "summary": "",
                                             "src": "/max-pair-sum-in-an-array/",
                                             "original_src": "https://leetcode.cn/problems/max-pair-sum-in-an-array/",
@@ -195,7 +195,7 @@ export default{
                                             "last_update": ""
                                         },
                                         {
-                                            "title": "2342. 数位和相等数对的最大和",
+                                            "title": "2342. 數位和相等數對的最大和",
                                             "summary": "",
                                             "src": "/max-sum-of-a-pair-with-equal-sum-of-digits/",
                                             "original_src": "https://leetcode.cn/problems/max-sum-of-a-pair-with-equal-sum-of-digits/",
@@ -209,7 +209,7 @@ export default{
                                             "last_update": ""
                                         },
                                         {
-                                            "title": "1679. K 和数对的最大数目",
+                                            "title": "1679. K 和數對的最大數目",
                                             "summary": "",
                                             "src": "/max-number-of-k-sum-pairs/",
                                             "original_src": "https://leetcode.cn/problems/max-number-of-k-sum-pairs/",
@@ -223,7 +223,7 @@ export default{
                                             "last_update": ""
                                         },
                                         {
-                                            "title": "面试题 16.24. 数对和",
+                                            "title": "面试题 16.24. 數對和",
                                             "summary": "",
                                             "src": "/pairs-with-sum-lcci/",
                                             "original_src": "https://leetcode.cn/problems/pairs-with-sum-lcci/",
@@ -237,7 +237,7 @@ export default{
                                             "last_update": ""
                                         },
                                         {
-                                            "title": "3623. 统计梯形的数目 I",
+                                            "title": "3623. 統計梯形的數目 I",
                                             "summary": "",
                                             "src": "/count-number-of-trapezoids-i/",
                                             "original_src": "https://leetcode.cn/problems/count-number-of-trapezoids-i/",
@@ -251,7 +251,7 @@ export default{
                                             "last_update": ""
                                         },
                                         {
-                                            "title": "3371. 识别数组中的最大异常值",
+                                            "title": "3371. 識別陣列中的最大異常值",
                                             "summary": "",
                                             "src": "/identify-the-largest-outlier-in-an-array/",
                                             "original_src": "https://leetcode.cn/problems/identify-the-largest-outlier-in-an-array/",
@@ -265,7 +265,7 @@ export default{
                                             "last_update": ""
                                         },
                                         {
-                                            "title": "624. 数组列表中的最大距离",
+                                            "title": "624. 陣列列表中的最大距離",
                                             "summary": "",
                                             "src": "/maximum-distance-in-arrays/",
                                             "original_src": "https://leetcode.cn/problems/maximum-distance-in-arrays/",
@@ -279,7 +279,7 @@ export default{
                                             "last_update": ""
                                         },
                                         {
-                                            "title": "2364. 统计坏数对的数目",
+                                            "title": "2364. 統計壞數對的數目",
                                             "summary": "",
                                             "src": "/count-number-of-bad-pairs/",
                                             "original_src": "https://leetcode.cn/problems/count-number-of-bad-pairs/",
@@ -307,7 +307,7 @@ export default{
                                             "last_update": ""
                                         },
                                         {
-                                            "title": "1814. 统计一个数组中好对子的数目",
+                                            "title": "1814. 統計一個陣列中好對子的數目",
                                             "summary": "",
                                             "src": "/count-nice-pairs-in-an-array/",
                                             "original_src": "https://leetcode.cn/problems/count-nice-pairs-in-an-array/",
@@ -354,7 +354,7 @@ export default{
                                     "last_update": ""
                                 },
                                 {
-                                    "title": "§0.1.2 进阶",
+                                    "title": "§0.1.2 進階",
                                     "summary": "**思维扩展**：<br>",
                                     "src": "",
                                     "original_src": "",
@@ -364,7 +364,7 @@ export default{
                                     "score": 0,
                                     "leafChild": [
                                         {
-                                            "title": "1010. 总持续时间可被 60 整除的歌曲",
+                                            "title": "1010. 總持續時間可被 60 整除的歌曲",
                                             "summary": "",
                                             "src": "/pairs-of-songs-with-total-durations-divisible-by-60/",
                                             "original_src": "https://leetcode.cn/problems/pairs-of-songs-with-total-durations-divisible-by-60/",
@@ -406,7 +406,7 @@ export default{
                                             "last_update": ""
                                         },
                                         {
-                                            "title": "2506. 统计相似字符串对的数目",
+                                            "title": "2506. 統計相似字符串對的數目",
                                             "summary": "",
                                             "src": "/count-pairs-of-similar-strings/",
                                             "original_src": "https://leetcode.cn/problems/count-pairs-of-similar-strings/",
@@ -434,7 +434,7 @@ export default{
                                             "last_update": ""
                                         },
                                         {
-                                            "title": "1497. 检查数组对是否可以被 k 整除",
+                                            "title": "1497. 檢查陣列對是否可以被 k 整除",
                                             "summary": "",
                                             "src": "/check-if-array-pairs-are-divisible-by-k/",
                                             "original_src": "https://leetcode.cn/problems/check-if-array-pairs-are-divisible-by-k/",
@@ -448,7 +448,7 @@ export default{
                                             "last_update": ""
                                         },
                                         {
-                                            "title": "1031. 两个无重叠子数组的最大和",
+                                            "title": "1031. 兩個無重疊子陣列的最大和",
                                             "summary": "",
                                             "src": "/maximum-sum-of-two-non-overlapping-subarrays/",
                                             "original_src": "https://leetcode.cn/problems/maximum-sum-of-two-non-overlapping-subarrays/",
@@ -476,7 +476,7 @@ export default{
                                             "last_update": ""
                                         },
                                         {
-                                            "title": "1995. 统计特殊四元组",
+                                            "title": "1995. 統計特殊四元組",
                                             "summary": "",
                                             "src": "/count-special-quadruplets/",
                                             "original_src": "https://leetcode.cn/problems/count-special-quadruplets/",
@@ -490,7 +490,7 @@ export default{
                                             "last_update": ""
                                         },
                                         {
-                                            "title": "3404. 统计特殊子序列的数目",
+                                            "title": "3404. 統計特殊子序列的數目",
                                             "summary": "",
                                             "src": "/count-special-subsequences/",
                                             "original_src": "https://leetcode.cn/problems/count-special-subsequences/",
@@ -504,7 +504,7 @@ export default{
                                             "last_update": ""
                                         },
                                         {
-                                            "title": "3267. 统计近似相等数对 II",
+                                            "title": "3267. 統計近似相等數對 II",
                                             "summary": "",
                                             "src": "/count-almost-equal-pairs-ii/",
                                             "original_src": "https://leetcode.cn/problems/count-almost-equal-pairs-ii/",
@@ -518,7 +518,7 @@ export default{
                                             "last_update": ""
                                         },
                                         {
-                                            "title": "3480. 删除一个冲突对后最大子数组数目",
+                                            "title": "3480. 刪除一個衝突對後最大子陣列數目",
                                             "summary": "",
                                             "src": "/maximize-subarrays-after-removing-one-conflicting-pair/",
                                             "original_src": "https://leetcode.cn/problems/maximize-subarrays-after-removing-one-conflicting-pair/",
@@ -546,7 +546,7 @@ export default{
                                             "last_update": ""
                                         },
                                         {
-                                            "title": "2964. 可被整除的三元组数量",
+                                            "title": "2964. 可被整除的三元組數量",
                                             "summary": "",
                                             "src": "/number-of-divisible-triplet-sums/",
                                             "original_src": "https://leetcode.cn/problems/number-of-divisible-triplet-sums/",
@@ -602,7 +602,7 @@ export default{
                                             "last_update": ""
                                         },
                                         {
-                                            "title": "3713. 最长的平衡子串 I",
+                                            "title": "3713. 最長的平衡子串 I",
                                             "summary": "",
                                             "src": "/longest-balanced-substring-i/",
                                             "original_src": "https://leetcode.cn/problems/longest-balanced-substring-i/",
@@ -625,8 +625,8 @@ export default{
                             "last_update": ""
                         },
                         {
-                            "title": "§0.2 枚举中间",
-                            "summary": "对于有三个或者四个变量的问题，枚举中间的变量往往更好算。<br>为什么？比如问题有三个下标，需要满足 $0\\le i<j<k<n$，对比一下：<br>- 枚举 $i$，后续计算中还需保证 $j < k$。<br>- 枚举 $j$，那么 $i$ 和 $k$ 自动被 $j$ 隔开，互相独立，后续计算中无需关心 $i$ 和 $k$ 的位置关系。<br>所以枚举中间的变量更简单。<br>",
+                            "title": "§0.2 枚舉中間",
+                            "summary": "對於有三個或者四個變量的問題，枚舉中間的變量往往更好算。<br>為什麼？比如問題有三個下標，需要滿足 $0\\le i<j<k<n$，對比一下：<br>- 枚舉 $i$，後續計算中還需保證 $j < k$。<br>- 枚舉 $j$，那麼 $i$ 和 $k$ 自動被 $j$ 隔開，互相獨立，後續計算中無需關心 $i$ 和 $k$ 的位置關係。<br>所以枚舉中間的變量更簡單。<br>",
                             "src": "",
                             "original_src": "",
                             "sort": 0,
@@ -649,7 +649,7 @@ export default{
                                     "last_update": ""
                                 },
                                 {
-                                    "title": "3583. 统计特殊三元组",
+                                    "title": "3583. 統計特殊三元組",
                                     "summary": "",
                                     "src": "/count-special-triplets/",
                                     "original_src": "https://leetcode.cn/problems/count-special-triplets/",
@@ -663,7 +663,7 @@ export default{
                                     "last_update": ""
                                 },
                                 {
-                                    "title": "1930. 长度为 3 的不同回文子序列",
+                                    "title": "1930. 長度為 3 的不同回文子序列",
                                     "summary": "",
                                     "src": "/unique-length-3-palindromic-subsequences/",
                                     "original_src": "https://leetcode.cn/problems/unique-length-3-palindromic-subsequences/",
@@ -705,7 +705,7 @@ export default{
                                     "last_update": ""
                                 },
                                 {
-                                    "title": "447. 回旋镖的数量",
+                                    "title": "447. 回旋鏢的數量",
                                     "summary": "",
                                     "src": "/number-of-boomerangs/",
                                     "original_src": "https://leetcode.cn/problems/number-of-boomerangs/",
@@ -733,7 +733,7 @@ export default{
                                     "last_update": ""
                                 },
                                 {
-                                    "title": "3067. 在带权树网络中统计可连接服务器对数目",
+                                    "title": "3067. 在帶權樹網絡中統計可連接服務器對數目",
                                     "summary": "",
                                     "src": "/count-pairs-of-connectable-servers-in-a-weighted-tree-network/",
                                     "original_src": "https://leetcode.cn/problems/count-pairs-of-connectable-servers-in-a-weighted-tree-network/",
@@ -747,7 +747,7 @@ export default{
                                     "last_update": ""
                                 },
                                 {
-                                    "title": "1534. 统计好三元组",
+                                    "title": "1534. 統計好三元組",
                                     "summary": "",
                                     "src": "/count-good-triplets/",
                                     "original_src": "https://leetcode.cn/problems/count-good-triplets/",
@@ -789,7 +789,7 @@ export default{
                                     "last_update": ""
                                 },
                                 {
-                                    "title": "2867. 统计树中的合法路径数目",
+                                    "title": "2867. 統計樹中的合法路徑數目",
                                     "summary": "",
                                     "src": "/count-valid-paths-in-a-tree/",
                                     "original_src": "https://leetcode.cn/problems/count-valid-paths-in-a-tree/",
@@ -803,7 +803,7 @@ export default{
                                     "last_update": ""
                                 },
                                 {
-                                    "title": "2552. 统计上升四元组",
+                                    "title": "2552. 統計上升四元組",
                                     "summary": "",
                                     "src": "/count-increasing-quadruplets/",
                                     "original_src": "https://leetcode.cn/problems/count-increasing-quadruplets/",
@@ -850,8 +850,8 @@ export default{
                             "last_update": ""
                         },
                         {
-                            "title": "§0.3 遍历对角线",
-                            "summary": "**注**：有关**前后缀分解**的内容，见 <a href=\"/lc-rating/v0/list/dynamic_programming\">动态规划题单</a> 的「专题：前后缀分解」。<br>",
+                            "title": "§0.3 遍歷對角線",
+                            "summary": "**注**：有關**前後綴分解**的内容，见 <a href=\"/lc-rating/v0/list/dynamic_programming\">動態規劃題單</a> 的「专题：前后缀分解」。<br>",
                             "src": "",
                             "original_src": "",
                             "sort": 0,
@@ -860,7 +860,7 @@ export default{
                             "score": 0,
                             "leafChild": [
                                 {
-                                    "title": "3446. 按对角线进行矩阵排序",
+                                    "title": "3446. 按對角線進行矩陣排序",
                                     "summary": "",
                                     "src": "/sort-matrix-by-diagonals/",
                                     "original_src": "https://leetcode.cn/problems/sort-matrix-by-diagonals/",
@@ -874,7 +874,7 @@ export default{
                                     "last_update": ""
                                 },
                                 {
-                                    "title": "2711. 对角线上不同值的数量差",
+                                    "title": "2711. 對角線上不同值的數量差",
                                     "summary": "",
                                     "src": "/difference-of-number-of-distinct-values-on-diagonals/",
                                     "original_src": "https://leetcode.cn/problems/difference-of-number-of-distinct-values-on-diagonals/",
@@ -930,7 +930,7 @@ export default{
                                     "last_update": ""
                                 },
                                 {
-                                    "title": "562. 矩阵中最长的连续1线段",
+                                    "title": "562. 矩陣中最長的連續1線段",
                                     "summary": "",
                                     "src": "/longest-line-of-consecutive-one-in-matrix/",
                                     "original_src": "https://leetcode.cn/problems/longest-line-of-consecutive-one-in-matrix/",
@@ -953,7 +953,7 @@ export default{
                     "last_update": ""
                 },
                 {
-                    "title": "一、前缀和",
+                    "title": "一、前綴和",
                     "summary": "",
                     "src": "",
                     "original_src": "",
@@ -964,8 +964,8 @@ export default{
                     "leafChild": [],
                     "nonLeafChild": [
                         {
-                            "title": "§1.1 基础",
-                            "summary": "<a href=\"https://leetcode.cn/problems/range-sum-query-immutable/solution/qian-zhui-he-ji-qi-kuo-zhan-fu-ti-dan-py-vaar/\">讲解</a><br>**左闭右开公式**：子数组 $[\\textit{left},\\textit{right})$ 的元素和为 $\\textit{sum}[\\textit{right}] - \\textit{sum}[\\textit{left}]$。把下标区间定义成左闭右开，就不需要加一减一了。<br>**思维扩展**：<br>",
+                            "title": "§1.1 基礎",
+                            "summary": "<a href=\"https://leetcode.cn/problems/range-sum-query-immutable/solution/qian-zhui-he-ji-qi-kuo-zhan-fu-ti-dan-py-vaar/\">講解</a><br>**左閉右開公式**：子陣列 $[\\textit{left},\\textit{right})$ 的元素和為 $\\textit{sum}[\\textit{right}] - \\textit{sum}[\\textit{left}]$。把下标区间定义成左闭右开，就不需要加一减一了。<br>**思维扩展**：<br>",
                             "src": "",
                             "original_src": "",
                             "sort": 0,
@@ -974,7 +974,7 @@ export default{
                             "score": 0,
                             "leafChild": [
                                 {
-                                    "title": "303. 区域和检索 - 数组不可变",
+                                    "title": "303. 區域和檢索 - 陣列不可變",
                                     "summary": "",
                                     "src": "/range-sum-query-immutable/",
                                     "original_src": "https://leetcode.cn/problems/range-sum-query-immutable/",
@@ -988,7 +988,7 @@ export default{
                                     "last_update": ""
                                 },
                                 {
-                                    "title": "3427. 变长子数组求和",
+                                    "title": "3427. 變長子陣列求和",
                                     "summary": "",
                                     "src": "/sum-of-variable-length-subarrays/",
                                     "original_src": "https://leetcode.cn/problems/sum-of-variable-length-subarrays/",
@@ -1002,7 +1002,7 @@ export default{
                                     "last_update": ""
                                 },
                                 {
-                                    "title": "2559. 统计范围内的元音字符串数",
+                                    "title": "2559. 統計範圍內的元音字符串數",
                                     "summary": "",
                                     "src": "/count-vowel-strings-in-ranges/",
                                     "original_src": "https://leetcode.cn/problems/count-vowel-strings-in-ranges/",
@@ -1016,7 +1016,7 @@ export default{
                                     "last_update": ""
                                 },
                                 {
-                                    "title": "1310. 子数组异或查询",
+                                    "title": "1310. 子陣列異或查詢",
                                     "summary": "",
                                     "src": "/xor-queries-of-a-subarray/",
                                     "original_src": "https://leetcode.cn/problems/xor-queries-of-a-subarray/",
@@ -1072,7 +1072,7 @@ export default{
                                     "last_update": ""
                                 },
                                 {
-                                    "title": "3652. 按策略买卖股票的最佳时机",
+                                    "title": "3652. 按策略買賣股票的最佳時機",
                                     "summary": "",
                                     "src": "/best-time-to-buy-and-sell-stock-using-strategy/",
                                     "original_src": "https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-using-strategy/",
@@ -1114,7 +1114,7 @@ export default{
                                     "last_update": ""
                                 },
                                 {
-                                    "title": "3540. 访问所有房屋的最短时间",
+                                    "title": "3540. 訪問所有房屋的最短時間",
                                     "summary": "",
                                     "src": "/minimum-time-to-visit-all-houses/",
                                     "original_src": "https://leetcode.cn/problems/minimum-time-to-visit-all-houses/",
@@ -1128,7 +1128,7 @@ export default{
                                     "last_update": ""
                                 },
                                 {
-                                    "title": "1523. 在区间范围内统计奇数数目",
+                                    "title": "1523. 在區間範圍內統計奇數數目",
                                     "summary": "",
                                     "src": "/count-odd-numbers-in-an-interval-range/",
                                     "original_src": "https://leetcode.cn/problems/count-odd-numbers-in-an-interval-range/",
@@ -1147,8 +1147,8 @@ export default{
                             "last_update": ""
                         },
                         {
-                            "title": "§1.2 前缀和与哈希表",
-                            "summary": "通常要用到「枚举右，维护左」的技巧。<br><a href=\"https://leetcode.cn/problems/subarray-sum-equals-k/solution/qian-zhui-he-ha-xi-biao-cong-liang-ci-bi-4mwr/\">讲解</a><br>**前缀和与有序集合**：<br>**思维扩展**：<br>",
+                            "title": "§1.2 前綴和與雜湊表",
+                            "summary": "通常要用到「枚舉右，維護左」的技巧。<br><a href=\"https://leetcode.cn/problems/subarray-sum-equals-k/solution/qian-zhui-he-ha-xi-biao-cong-liang-ci-bi-4mwr/\">讲解</a><br>**前缀和与有序集合**：<br>**思维扩展**：<br>",
                             "src": "",
                             "original_src": "",
                             "sort": 0,
@@ -1157,7 +1157,7 @@ export default{
                             "score": 0,
                             "leafChild": [
                                 {
-                                    "title": "560. 和为 K 的子数组",
+                                    "title": "560. 和為 K 的子陣列",
                                     "summary": "",
                                     "src": "/subarray-sum-equals-k/",
                                     "original_src": "https://leetcode.cn/problems/subarray-sum-equals-k/",
@@ -1185,7 +1185,7 @@ export default{
                                     "last_update": ""
                                 },
                                 {
-                                    "title": "1524. 和为奇数的子数组数目",
+                                    "title": "1524. 和為奇數的子陣列數目",
                                     "summary": "",
                                     "src": "/number-of-sub-arrays-with-odd-sum/",
                                     "original_src": "https://leetcode.cn/problems/number-of-sub-arrays-with-odd-sum/",
@@ -1283,7 +1283,7 @@ export default{
                                     "last_update": ""
                                 },
                                 {
-                                    "title": "1477. 找两个和为目标值且不重叠的子数组",
+                                    "title": "1477. 找兩個和為目標值且不重疊的子陣列",
                                     "summary": "",
                                     "src": "/find-two-non-overlapping-sub-arrays-each-with-target-sum/",
                                     "original_src": "https://leetcode.cn/problems/find-two-non-overlapping-sub-arrays-each-with-target-sum/",
@@ -1297,7 +1297,7 @@ export default{
                                     "last_update": ""
                                 },
                                 {
-                                    "title": "1546. 和为目标值且不重叠的非空子数组的最大数目",
+                                    "title": "1546. 和為目標值且不重疊的非空子陣列的最大數目",
                                     "summary": "",
                                     "src": "/maximum-number-of-non-overlapping-subarrays-with-sum-equals-target/",
                                     "original_src": "https://leetcode.cn/problems/maximum-number-of-non-overlapping-subarrays-with-sum-equals-target/",
@@ -1311,7 +1311,7 @@ export default{
                                     "last_update": ""
                                 },
                                 {
-                                    "title": "1124. 表现良好的最长时间段",
+                                    "title": "1124. 表現良好的最長時間段",
                                     "summary": "",
                                     "src": "/longest-well-performing-interval/",
                                     "original_src": "https://leetcode.cn/problems/longest-well-performing-interval/",
@@ -1409,7 +1409,7 @@ export default{
                                     "last_update": ""
                                 },
                                 {
-                                    "title": "1074. 元素和为目标值的子矩阵数量",
+                                    "title": "1074. 元素和為目标值的子矩阵数量",
                                     "summary": "",
                                     "src": "/number-of-submatrices-that-sum-to-target/",
                                     "original_src": "https://leetcode.cn/problems/number-of-submatrices-that-sum-to-target/",
@@ -1652,7 +1652,7 @@ export default{
                             "last_update": ""
                         },
                         {
-                            "title": "§1.3 距离和",
+                            "title": "§1.3 距離和",
                             "summary": "<a href=\"https://leetcode.cn/problems/minimum-operations-to-make-all-array-elements-equal/solution/yi-tu-miao-dong-pai-xu-qian-zhui-he-er-f-nf55/\">图解</a><br>",
                             "src": "",
                             "original_src": "",
@@ -1765,7 +1765,7 @@ export default{
                             "last_update": ""
                         },
                         {
-                            "title": "§1.4 状态压缩前缀和",
+                            "title": "§1.4 狀態壓縮前綴和",
                             "summary": "推荐先阅读：<a href=\"https://leetcode.cn/circle/discuss/CaOJ45/\">从集合论到位运算，常见位运算技巧分类总结！</a><br>",
                             "src": "",
                             "original_src": "",
@@ -1850,7 +1850,7 @@ export default{
                             "last_update": ""
                         },
                         {
-                            "title": "§1.5 进阶",
+                            "title": "§1.5 進階",
                             "summary": "**思维扩展**：<br>",
                             "src": "",
                             "original_src": "",
@@ -2131,7 +2131,7 @@ export default{
                             "last_update": ""
                         },
                         {
-                            "title": "§1.6 二维前缀和",
+                            "title": "§1.6 二維前綴和",
                             "summary": "<a href=\"https://leetcode.cn/problems/range-sum-query-2d-immutable/solution/tu-jie-yi-zhang-tu-miao-dong-er-wei-qian-84qp/\">【图解】一张图秒懂二维前缀和！</a><br>二维前缀最小值：<br>",
                             "src": "",
                             "original_src": "",
@@ -2259,8 +2259,8 @@ export default{
                     "leafChild": [],
                     "nonLeafChild": [
                         {
-                            "title": "§2.1 一维差分",
-                            "summary": "差分与前缀和的关系，类似**导数**与**积分**的关系。<br>数组 $a$ 的差分的前缀和就是数组 $a$（不变）。<br><a href=\"https://leetcode.cn/problems/car-pooling/solution/suan-fa-xiao-ke-tang-chai-fen-shu-zu-fu-9d4ra/\">原理讲解</a><br>",
+                            "title": "§2.1 一維差分",
+                            "summary": "差分與前綴和的關係，類似**導數**與**積分**的關係。<br>陣列 $a$ 的差分的前綴和就是陣列 $a$（不變）。<br><a href=\"https://leetcode.cn/problems/car-pooling/solution/suan-fa-xiao-ke-tang-chai-fen-shu-zu-fu-9d4ra/\">原理讲解</a><br>",
                             "src": "",
                             "original_src": "",
                             "sort": 0,
@@ -2270,7 +2270,7 @@ export default{
                             "leafChild": [],
                             "nonLeafChild": [
                                 {
-                                    "title": "§2.1.1 基础",
+                                    "title": "§2.1.1 基礎",
                                     "summary": "",
                                     "src": "",
                                     "original_src": "",
@@ -2411,7 +2411,7 @@ export default{
                                     "last_update": ""
                                 },
                                 {
-                                    "title": "§2.1.2 进阶",
+                                    "title": "§2.1.2 進階",
                                     "summary": "**思维扩展**：<br>",
                                     "src": "",
                                     "original_src": "",
@@ -2864,7 +2864,7 @@ export default{
                             "last_update": ""
                         },
                         {
-                            "title": "§2.2 二维差分",
+                            "title": "§2.2 二維差分",
                             "summary": "<a href=\"https://leetcode.cn/problems/stamping-the-grid/solution/wu-nao-zuo-fa-er-wei-qian-zhui-he-er-wei-zwiu/\">【图解】从一维差分到二维差分</a><br>",
                             "src": "",
                             "original_src": "",
@@ -2939,7 +2939,7 @@ export default{
                     "last_update": ""
                 },
                 {
-                    "title": "三、栈",
+                    "title": "三、堆疊",
                     "summary": "",
                     "src": "",
                     "original_src": "",
@@ -2950,7 +2950,7 @@ export default{
                     "leafChild": [],
                     "nonLeafChild": [
                         {
-                            "title": "§3.1 基础",
+                            "title": "§3.1 基礎",
                             "summary": "",
                             "src": "",
                             "original_src": "",
@@ -3077,7 +3077,7 @@ export default{
                             "last_update": ""
                         },
                         {
-                            "title": "§3.2 进阶",
+                            "title": "§3.2 進階",
                             "summary": "",
                             "src": "",
                             "original_src": "",
@@ -3101,7 +3101,7 @@ export default{
                                     "last_update": ""
                                 },
                                 {
-                                    "title": "155. 最小栈",
+                                    "title": "155. 最小堆疊",
                                     "summary": "",
                                     "src": "/min-stack/",
                                     "original_src": "https://leetcode.cn/problems/min-stack/",
@@ -3232,7 +3232,7 @@ export default{
                             "last_update": ""
                         },
                         {
-                            "title": "§3.3 邻项消除",
+                            "title": "§3.3 鄰項消除",
                             "summary": "",
                             "src": "",
                             "original_src": "",
@@ -3415,8 +3415,8 @@ export default{
                             "last_update": ""
                         },
                         {
-                            "title": "§3.4 合法括号字符串（RBS）",
-                            "summary": "注：部分题目可以不用栈，而是用一个数字记录嵌套深度。<br>",
+                            "title": "§3.4 合法括號字符串（RBS）",
+                            "summary": "注：部分題目可以不用堆疊，而是用一個數字記錄嵌套深度。<br>",
                             "src": "",
                             "original_src": "",
                             "sort": 0,
@@ -3425,7 +3425,7 @@ export default{
                             "score": 0,
                             "leafChild": [
                                 {
-                                    "title": "20. 有效的括号",
+                                    "title": "20. 有效的括號",
                                     "summary": "",
                                     "src": "/valid-parentheses/",
                                     "original_src": "https://leetcode.cn/problems/valid-parentheses/",
@@ -3439,7 +3439,7 @@ export default{
                                     "last_update": ""
                                 },
                                 {
-                                    "title": "921. 使括号有效的最少添加",
+                                    "title": "921. 使括號有效的最少添加",
                                     "summary": "",
                                     "src": "/minimum-add-to-make-parentheses-valid/",
                                     "original_src": "https://leetcode.cn/problems/minimum-add-to-make-parentheses-valid/",
@@ -3565,7 +3565,7 @@ export default{
                                     "last_update": ""
                                 },
                                 {
-                                    "title": "1541. 平衡括号字符串的最少插入次数",
+                                    "title": "1541. 平衡括號字符串的最少插入次数",
                                     "summary": "",
                                     "src": "/minimum-insertions-to-balance-a-parentheses-string/",
                                     "original_src": "https://leetcode.cn/problems/minimum-insertions-to-balance-a-parentheses-string/",
@@ -3612,7 +3612,7 @@ export default{
                             "last_update": ""
                         },
                         {
-                            "title": "§3.5 表达式解析",
+                            "title": "§3.5 表達式解析",
                             "summary": "",
                             "src": "",
                             "original_src": "",
@@ -3907,7 +3907,7 @@ export default{
                             "last_update": ""
                         },
                         {
-                            "title": "§3.6 对顶栈",
+                            "title": "§3.6 對頂堆疊",
                             "summary": "",
                             "src": "",
                             "original_src": "",
@@ -3936,8 +3936,8 @@ export default{
                             "last_update": ""
                         },
                         {
-                            "title": "§3.7 单调栈",
-                            "summary": "见 <a href=\"/lc-rating/v0/list/monotonic_stack\">单调栈题单</a>。<br>",
+                            "title": "§3.7 單調堆疊",
+                            "summary": "見 <a href=\"/lc-rating/v0/list/monotonic_stack\">單調堆疊題單</a>。<br>",
                             "src": "",
                             "original_src": "",
                             "sort": 0,
@@ -3954,8 +3954,8 @@ export default{
                     "last_update": ""
                 },
                 {
-                    "title": "四、队列",
-                    "summary": "队列常用在 BFS 中，见 <a href=\"/lc-rating/v0/list/grid\">网格图题单</a> 和 <a href=\"/lc-rating/v0/list/graph\">图论题单</a>。与此相比，栈常用在 DFS 中，但无需我们手动维护。<br>",
+                    "title": "四、佇列",
+                    "summary": "佇列常用在 BFS 中，見 <a href=\"/lc-rating/v0/list/grid\">網格圖題單</a> 和 <a href=\"/lc-rating/v0/list/graph\">圖論題單</a>。與此相比，堆疊常用在 DFS 中，但無需我們手動維護。<br>",
                     "src": "",
                     "original_src": "",
                     "sort": 0,
@@ -3965,7 +3965,7 @@ export default{
                     "leafChild": [],
                     "nonLeafChild": [
                         {
-                            "title": "§4.1 基础",
+                            "title": "§4.1 基礎",
                             "summary": "",
                             "src": "",
                             "original_src": "",
@@ -3975,7 +3975,7 @@ export default{
                             "score": 0,
                             "leafChild": [
                                 {
-                                    "title": "933. 最近的请求次数",
+                                    "title": "933. 最近的請求次數",
                                     "summary": "",
                                     "src": "/number-of-recent-calls/",
                                     "original_src": "https://leetcode.cn/problems/number-of-recent-calls/",
@@ -4092,7 +4092,7 @@ export default{
                             "last_update": ""
                         },
                         {
-                            "title": "§4.2 设计",
+                            "title": "§4.2 設計",
                             "summary": "",
                             "src": "",
                             "original_src": "",
@@ -4191,7 +4191,7 @@ export default{
                             "last_update": ""
                         },
                         {
-                            "title": "§4.3 双端队列",
+                            "title": "§4.3 雙端佇列",
                             "summary": "",
                             "src": "",
                             "original_src": "",
@@ -4234,8 +4234,8 @@ export default{
                             "last_update": ""
                         },
                         {
-                            "title": "§4.4 单调队列",
-                            "summary": "个人觉得叫**单调双端队列**更准确。<br>**单调队列 = 滑动窗口 + 单调栈**。必须先掌握滑动窗口和单调栈这两个知识点，再学单调队列。<br>**问**：入队、出队、更新答案，这三步的顺序如何思考？<br>**答**：有两种情况。如果更新答案时，用到的数据包含当前元素，那么就需要先入队，再更新答案；如果用到的数据不包含当前元素，那么就需要先更新答案，再入队。至于出队，一般写在前面，每遍历到一个新的元素，就看看队首元素是否失效（不满足要求），失效则弹出队首。<br><a href=\"https://www.bilibili.com/video/BV1bM411X72E/\">原理讲解</a><br>模板：<br>```py [sol-Python3]<br>",
+                            "title": "§4.4 單調佇列",
+                            "summary": "個人覺得叫**單調雙端佇列**更準確。<br>**單調佇列 = 滑動窗口 + 單調堆疊**。必須先掌握滑動窗口和單調堆疊這兩個知識點，再學單調佇列。<br>**问**：入队、出队、更新答案，这三步的顺序如何思考？<br>**答**：有两种情况。如果更新答案时，用到的数据包含当前元素，那么就需要先入队，再更新答案；如果用到的数据不包含当前元素，那么就需要先更新答案，再入队。至于出队，一般写在前面，每遍历到一个新的元素，就看看队首元素是否失效（不满足要求），失效则弹出队首。<br><a href=\"https://www.bilibili.com/video/BV1bM411X72E/\">原理讲解</a><br>模板：<br>```py [sol-Python3]<br>",
                             "src": "",
                             "original_src": "",
                             "sort": 0,
@@ -4280,7 +4280,7 @@ export default{
             "score": 0,
             "leafChild": [
                 {
-                    "title": "239. 滑动窗口最大值",
+                    "title": "239. 滑動窗口最大值",
                     "summary": "",
                     "src": "/sliding-window-maximum/",
                     "original_src": "https://leetcode.cn/problems/sliding-window-maximum/",
@@ -4308,7 +4308,7 @@ export default{
                     "last_update": ""
                 },
                 {
-                    "title": "1438. 绝对差不超过限制的最长连续子数组",
+                    "title": "1438. 絕對差不超過限制的最長連續子陣列",
                     "summary": "",
                     "src": "/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/",
                     "original_src": "https://leetcode.cn/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/",
@@ -4394,7 +4394,7 @@ export default{
             ],
             "nonLeafChild": [
                 {
-                    "title": "五、堆（优先队列）",
+                    "title": "五、堆積（優先佇列）",
                     "summary": "",
                     "src": "",
                     "original_src": "",
@@ -4405,7 +4405,7 @@ export default{
                     "leafChild": [],
                     "nonLeafChild": [
                         {
-                            "title": "§5.1 基础",
+                            "title": "§5.1 基礎",
                             "summary": "<a href=\"https://leetcode.cn/problems/take-gifts-from-the-richest-pile/solutions/2501655/yuan-di-dui-hua-o1-kong-jian-fu-ti-dan-p-fzdh/\">为什么堆化的时间复杂度是 O(n)？</a><br>",
                             "src": "",
                             "original_src": "",
@@ -4513,7 +4513,7 @@ export default{
                                     "last_update": ""
                                 },
                                 {
-                                    "title": "703. 数据流中的第 K 大元素",
+                                    "title": "703. 數據流中的第 K 大元素",
                                     "summary": "",
                                     "src": "/kth-largest-element-in-a-stream/",
                                     "original_src": "https://leetcode.cn/problems/kth-largest-element-in-a-stream/",
@@ -4728,7 +4728,7 @@ export default{
                             "last_update": ""
                         },
                         {
-                            "title": "§5.2 进阶",
+                            "title": "§5.2 進階",
                             "summary": "**有序集合**：<br>",
                             "src": "",
                             "original_src": "",
@@ -4738,7 +4738,7 @@ export default{
                             "score": 0,
                             "leafChild": [
                                 {
-                                    "title": "23. 合并 K 个升序链表",
+                                    "title": "23. 合併 K 個升序鏈表",
                                     "summary": "",
                                     "src": "/merge-k-sorted-lists/",
                                     "original_src": "https://leetcode.cn/problems/merge-k-sorted-lists/",
@@ -5234,7 +5234,7 @@ export default{
                         },
                         {
                             "title": "§5.3 第 K 小/大",
-                            "summary": "部分题目也可以用二分解决。<br>",
+                            "summary": "部分題目也可以用二分解決。<br>",
                             "src": "",
                             "original_src": "",
                             "sort": 0,
@@ -5271,7 +5271,7 @@ export default{
                                     "last_update": ""
                                 },
                                 {
-                                    "title": "23. 合并 K 个升序链表",
+                                    "title": "23. 合併 K 個升序鏈表",
                                     "summary": "",
                                     "src": "/merge-k-sorted-lists/",
                                     "original_src": "https://leetcode.cn/problems/merge-k-sorted-lists/",
@@ -5744,7 +5744,7 @@ export default{
                     "last_update": ""
                 },
                 {
-                    "title": "218. 天际线问题",
+                    "title": "218. 天際線問題",
                     "summary": "",
                     "src": "/the-skyline-problem/",
                     "original_src": "https://leetcode.cn/problems/the-skyline-problem/",
@@ -5840,7 +5840,7 @@ export default{
                             "last_update": ""
                         },
                         {
-                            "title": "295. 数据流的中位数",
+                            "title": "295. 數據流的中位數",
                             "summary": "",
                             "src": "/find-median-from-data-stream/",
                             "original_src": "https://leetcode.cn/problems/find-median-from-data-stream/",
@@ -5971,7 +5971,7 @@ export default{
                     "last_update": ""
                 },
                 {
-                    "title": "六、字典树（trie）",
+                    "title": "六、字典樹（trie）",
                     "summary": "",
                     "src": "",
                     "original_src": "",
@@ -5982,7 +5982,7 @@ export default{
                     "leafChild": [],
                     "nonLeafChild": [
                         {
-                            "title": "§6.1 基础",
+                            "title": "§6.1 基礎",
                             "summary": "<a href=\"https://leetcode.cn/problems/implement-trie-prefix-tree/solutions/2993894/cong-er-cha-shu-dao-er-shi-liu-cha-shu-p-xsj4/\">模板</a><br>",
                             "src": "",
                             "original_src": "",
@@ -5992,7 +5992,7 @@ export default{
                             "score": 0,
                             "leafChild": [
                                 {
-                                    "title": "208. 实现 Trie (前缀树)",
+                                    "title": "208. 實現 Trie (前綴樹)",
                                     "summary": "",
                                     "src": "/implement-trie-prefix-tree/",
                                     "original_src": "https://leetcode.cn/problems/implement-trie-prefix-tree/",
@@ -6165,7 +6165,7 @@ export default{
                             "last_update": ""
                         },
                         {
-                            "title": "§6.2 进阶",
+                            "title": "§6.2 進階",
                             "summary": "**思维扩展**：<br>",
                             "src": "",
                             "original_src": "",
@@ -6634,7 +6634,7 @@ export default{
                     "last_update": ""
                 },
                 {
-                    "title": "七、并查集",
+                    "title": "七、並查集",
                     "summary": "模板：<br>```py [sol-Python3]<br>",
                     "src": "",
                     "original_src": "",
@@ -6701,7 +6701,7 @@ export default{
                             "last_update": ""
                         },
                         {
-                            "title": "990. 等式方程的可满足性",
+                            "title": "990. 等式方程的可滿足性",
                             "summary": "",
                             "src": "/satisfiability-of-equality-equations/",
                             "original_src": "https://leetcode.cn/problems/satisfiability-of-equality-equations/",
@@ -6790,7 +6790,7 @@ export default{
                     "last_update": ""
                 },
                 {
-                    "title": "§7.2 进阶",
+                    "title": "§7.2 進階",
                     "summary": "另见 <a href=\"/lc-rating/v0/list/graph\">图论题单</a> 中的最小生成树。<br>",
                     "src": "",
                     "original_src": "",
@@ -7066,7 +7066,7 @@ export default{
                             "last_update": ""
                         },
                         {
-                            "title": "3600. 升级后最大生成树稳定性",
+                            "title": "3600. 升級後最大生成樹穩定性",
                             "summary": "",
                             "src": "/maximize-spanning-tree-stability-with-upgrades/",
                             "original_src": "https://leetcode.cn/problems/maximize-spanning-tree-stability-with-upgrades/",
@@ -7211,7 +7211,7 @@ export default{
                     "last_update": ""
                 },
                 {
-                    "title": "§7.3 GCD 并查集",
+                    "title": "§7.3 GCD 並查集",
                     "summary": "",
                     "src": "",
                     "original_src": "",
@@ -7296,7 +7296,7 @@ export default{
                     "last_update": ""
                 },
                 {
-                    "title": "§7.4 数组上的并查集",
+                    "title": "§7.4 陣列上的並查集",
                     "summary": "",
                     "src": "",
                     "original_src": "",
@@ -7409,7 +7409,7 @@ export default{
                     "last_update": ""
                 },
                 {
-                    "title": "§7.5 区间并查集",
+                    "title": "§7.5 區間並查集",
                     "summary": "",
                     "src": "",
                     "original_src": "",
@@ -7480,7 +7480,7 @@ export default{
                     "last_update": ""
                 },
                 {
-                    "title": "§7.6 带权并查集（边权并查集）",
+                    "title": "§7.6 帶權並查集（邊權並查集）",
                     "summary": "模板：<br>```py [sol-Python3]<br>",
                     "src": "",
                     "original_src": "",
@@ -7552,8 +7552,8 @@ export default{
             ],
             "nonLeafChild": [
                 {
-                    "title": "八、树状数组和线段树",
-                    "summary": "能用树状数组解决的题目，也能用线段树解决（反过来不一定）。但树状数组实现简单，代码短。<br>为方便大家练习，我把适合用树状数组解决的题目分到树状数组中，其余分到线段树中。<br>",
+                    "title": "八、樹狀陣列和線段樹",
+                    "summary": "能用樹狀陣列解決的題目，也能用線段樹解決（反過來不一定）。但樹狀陣列實現簡單，代碼短。<br>為方便大家練習，我把適合用樹狀陣列解決的題目分到樹狀陣列中，其餘分到線段樹中。<br>",
                     "src": "",
                     "original_src": "",
                     "sort": 0,
@@ -7563,8 +7563,8 @@ export default{
                     "leafChild": [],
                     "nonLeafChild": [
                         {
-                            "title": "§8.1 树状数组",
-                            "summary": "讲解：<a href=\"https://leetcode.cn/problems/range-sum-query-mutable/solution/dai-ni-fa-ming-shu-zhuang-shu-zu-fu-shu-lyfll/\">带你发明树状数组！附数学证明</a><br>模板：<br>```py [sol-Python3]<br>",
+                            "title": "§8.1 樹狀陣列",
+                            "summary": "講解：<a href=\"https://leetcode.cn/problems/range-sum-query-mutable/solution/dai-ni-fa-ming-shu-zhuang-shu-zu-fu-shu-lyfll/\">帶你發明樹狀陣列！附數學證明</a><br>模板：<br>```py [sol-Python3]<br>",
                             "src": "",
                             "original_src": "",
                             "sort": 0,
@@ -7595,7 +7595,7 @@ export default{
             "score": 0,
             "leafChild": [
                 {
-                    "title": "307. 区域和检索 - 数组可修改",
+                    "title": "307. 區域和檢索 - 陣列可修改",
                     "summary": "",
                     "src": "/range-sum-query-mutable/",
                     "original_src": "https://leetcode.cn/problems/range-sum-query-mutable/",
@@ -7693,7 +7693,7 @@ export default{
                     "last_update": ""
                 },
                 {
-                    "title": "2250. 统计包含每个点的矩形数目",
+                    "title": "2250. 統計包含每個點的矩形數目",
                     "summary": "",
                     "src": "/count-number-of-rectangles-containing-each-point/",
                     "original_src": "https://leetcode.cn/problems/count-number-of-rectangles-containing-each-point/",
@@ -7707,7 +7707,7 @@ export default{
                     "last_update": ""
                 },
                 {
-                    "title": "2179. 统计数组中好三元组数目",
+                    "title": "2179. 統計陣列中好三元組數目",
                     "summary": "",
                     "src": "/count-good-triplets-in-an-array/",
                     "original_src": "https://leetcode.cn/problems/count-good-triplets-in-an-array/",
@@ -7721,7 +7721,7 @@ export default{
                     "last_update": ""
                 },
                 {
-                    "title": "1395. 统计作战单位数",
+                    "title": "1395. 統計作戰單位數",
                     "summary": "",
                     "src": "/count-number-of-teams/",
                     "original_src": "https://leetcode.cn/problems/count-number-of-teams/",
@@ -7987,7 +7987,7 @@ export default{
                     "last_update": ""
                 },
                 {
-                    "title": "308. 二维区域和检索 - 可变",
+                    "title": "308. 二維區域和檢索 - 可變",
                     "summary": "",
                     "src": "/range-sum-query-2d-mutable/",
                     "original_src": "https://leetcode.cn/problems/range-sum-query-2d-mutable/",
@@ -8003,8 +8003,8 @@ export default{
             ],
             "nonLeafChild": [
                 {
-                    "title": "§8.2 逆序对",
-                    "summary": "除了可以用树状数组解决，部分题目也可以在**归并排序**的同时计算。<br>",
+                    "title": "§8.2 逆序對",
+                    "summary": "除了可以用樹狀陣列解決，部分題目也可以在**歸併排序**的同時計算。<br>",
                     "src": "",
                     "original_src": "",
                     "sort": 0,
@@ -8027,7 +8027,7 @@ export default{
                             "last_update": ""
                         },
                         {
-                            "title": "315. 计算右侧小于当前元素的个数",
+                            "title": "315. 計算右側小於當前元素的個數",
                             "summary": "",
                             "src": "/count-of-smaller-numbers-after-self/",
                             "original_src": "https://leetcode.cn/problems/count-of-smaller-numbers-after-self/",
@@ -8041,7 +8041,7 @@ export default{
                             "last_update": ""
                         },
                         {
-                            "title": "493. 翻转对",
+                            "title": "493. 翻轉對",
                             "summary": "",
                             "src": "/reverse-pairs/",
                             "original_src": "https://leetcode.cn/problems/reverse-pairs/",
@@ -8055,7 +8055,7 @@ export default{
                             "last_update": ""
                         },
                         {
-                            "title": "327. 区间和的个数",
+                            "title": "327. 區間和的個數",
                             "summary": "",
                             "src": "/count-of-range-sum/",
                             "original_src": "https://leetcode.cn/problems/count-of-range-sum/",
@@ -8130,8 +8130,8 @@ export default{
                     "last_update": ""
                 },
                 {
-                    "title": "§8.3 线段树（无区间更新）",
-                    "summary": "线段树本质是二叉树，在学习之前，建议先做做 <a href=\"https://leetcode.cn/problems/maximum-depth-of-binary-tree/\">104. 二叉树的最大深度</a> 和 <a href=\"https://leetcode.cn/problems/minimum-depth-of-binary-tree/\">111. 二叉树的最小深度</a>（自底向上写法），当作热身。<br><a href=\"https://www.bilibili.com/video/BV15gRaYZE5o/\">线段树：为什么要这样设计？</a> 理解线段树发明的动机。<br>把任意区间用 $\\mathcal{O}(\\log n)$ 个区间表示，线段树的每个节点记录对应区间的信息。<br>- **询问**：把询问区间拆分成 $\\mathcal{O}(\\log n)$ 个区间，对应着线段树的 $\\mathcal{O}(\\log n)$ 个节点，把这 $\\mathcal{O}(\\log n)$ 个节点的信息合并，即为答案。<br>- **单点更新**：有 $\\mathcal{O}(\\log n)$ 个区间包含被修改的位置，需要更新 $\\mathcal{O}(\\log n)$ 个节点的信息。<br>基础模板代码如下。为方便入门理解，我没有做复杂封装。通用模板代码可以参考 AtCoder Library 的 <a href=\"https://github.com/atcoder/ac-library/blob/master/atcoder/segtree.hpp\">segtree.hpp</a>。<br>```py [sol-Python3]<br>",
+                    "title": "§8.3 線段樹（無區間更新）",
+                    "summary": "線段樹本質是二元樹，在學習之前，建議先做做 <a href=\"https://leetcode.cn/problems/maximum-depth-of-binary-tree/\">104. 二元樹的最大深度</a> 和 <a href=\"https://leetcode.cn/problems/minimum-depth-of-binary-tree/\">111. 二元樹的最小深度</a>（自底向上寫法），當作熱身。<br><a href=\"https://www.bilibili.com/video/BV15gRaYZE5o/\">線段樹：為什麼要這樣設計？</a> 理解線段樹發明的動機。<br>把任意區間用 $\\mathcal{O}(\\log n)$ 個區間表示，線段樹的每個節點記錄對應區間的信息。<br>- **詢問**：把詢問區間拆分成 $\\mathcal{O}(\\log n)$ 個區間，對應著線段樹的 $\\mathcal{O}(\\log n)$ 個節點，把這 $\\mathcal{O}(\\log n)$ 個節點的信息合併，即為答案。<br>- **單點更新**：有 $\\mathcal{O}(\\log n)$ 個區間包含被修改的位置，需要更新 $\\mathcal{O}(\\log n)$ 個節點的信息。<br>基礎模板代碼如下。為方便入門理解，我沒有做複雜封裝。通用模板代碼可以參考 AtCoder Library 的 <a href=\"https://github.com/atcoder/ac-library/blob/master/atcoder/segtree.hpp\">segtree.hpp</a>。<br>```py [sol-Python3]<br>",
                     "src": "",
                     "original_src": "",
                     "sort": 0,
@@ -8370,8 +8370,8 @@ export default{
             ],
             "nonLeafChild": [
                 {
-                    "title": "§8.4 Lazy 线段树（有区间更新）",
-                    "summary": "把任意区间用 $\\mathcal{O}(\\log n)$ 个区间表示，线段树的每个节点记录对应区间的信息。<br>- **询问**：把询问区间拆分成 $\\mathcal{O}(\\log n)$ 个区间，对应着线段树的 $\\mathcal{O}(\\log n)$ 个节点，把这 $\\mathcal{O}(\\log n)$ 个节点的信息合并，即为答案。<br>- **区间更新**：仍然是拆分成 $\\mathcal{O}(\\log n)$ 个区间，对应着线段树的 $\\mathcal{O}(\\log n)$ 个节点。但对于其中的非叶节点，不把更新的内容往下传递给子节点，而是记录「发生了更新，内容为 xxx」，把更新的内容记录下来。直到后续的询问或更新操作，需要访问或修改更下面的子节点信息时，才把更新的内容往下传。<br>基础模板代码如下。为方便入门理解，我没有做复杂封装。通用模板代码可以参考 AtCoder Library 的 <a href=\"https://github.com/atcoder/ac-library/blob/master/atcoder/lazysegtree.hpp\">lazysegtree.hpp</a>。<br>```py [sol-Python3]<br>",
+                    "title": "§8.4 Lazy 線段樹（有區間更新）",
+                    "summary": "把任意區間用 $\\mathcal{O}(\\log n)$ 個區間表示，線段樹的每個節點記錄對應區間的信息。<br>- **詢問**：把詢問區間拆分成 $\\mathcal{O}(\\log n)$ 個區間，對應著線段樹的 $\\mathcal{O}(\\log n)$ 個節點，把這 $\\mathcal{O}(\\log n)$ 個節點的信息合併，即為答案。<br>- **區間更新**：仍然是拆分成 $\\mathcal{O}(\\log n)$ 個區間，對應著線段樹的 $\\mathcal{O}(\\log n)$ 個節點。但對於其中的非葉節點，不把更新的內容往下傳遞給子節點，而是記錄「發生了更新，內容為 xxx」，把更新的內容記錄下來。直到後續的詢問或更新操作，需要訪問或修改更下面的子節點信息時，才把更新的內容往下傳。<br>基礎模板代碼如下。為方便入門理解，我沒有做複雜封裝。通用模板代碼可以參考 AtCoder Library 的 <a href=\"https://github.com/atcoder/ac-library/blob/master/atcoder/lazysegtree.hpp\">lazysegtree.hpp</a>。<br>```py [sol-Python3]<br>",
                     "src": "",
                     "original_src": "",
                     "sort": 0,
@@ -8554,8 +8554,8 @@ export default{
             ],
             "nonLeafChild": [
                 {
-                    "title": "§8.5 动态开点线段树",
-                    "summary": "部分题目也可以用**珂朵莉树**解决。<br>",
+                    "title": "§8.5 動態開點線段樹",
+                    "summary": "部分題目也可以用**珂朵莉樹**解決。<br>",
                     "src": "",
                     "original_src": "",
                     "sort": 0,
@@ -8682,7 +8682,7 @@ export default{
                 },
                 {
                     "title": "时间复杂度 O(1)",
-                    "summary": "<a href=\"https://oi-wiki.org/ds/sparse-table/\">ST 表</a> 支持区间最值查询（Range Minimum/Maximum Query，RMQ），但不支持修改。<br>优点是代码短，且查询的时间复杂度是 $\\mathcal{O}(1)$。所以作为补充内容，附在此处。<br>```py [sol-Python3]<br>class SparseTable:<br>def __init__(self, nums: List[int], op: Callable[[int, int], int]):<br>n = len(nums)<br>w = n.bit_length()<br>st = [[0] * n for _ in range(w)]<br>st[0] = nums[:]<br>for i in range(1, w):<br>for j in range(n - (1 << i) + 1):<br>st[i][j] = op(st[i - 1][j], st[i - 1][j + (1 << (i - 1))])<br>self.st = st<br>self.op = op<br>def query(self, l: int, r: int) -> int:<br>k = (r - l).bit_length() - 1<br>return self.op(self.st[k][l], self.st[k][r - (1 << k)])<br>",
+                    "summary": "<a href=\"https://oi-wiki.org/ds/sparse-table/\">ST 表</a> 支持區間最值查詢（Range Minimum/Maximum Query，RMQ），但不支持修改。<br>優點是代碼短，且查詢的時間複雜度是 $\\mathcal{O}(1)$。所以作為補充內容，附在此處。<br>```py [sol-Python3]<br>class SparseTable:<br>def __init__(self, nums: List[int], op: Callable[[int, int], int]):<br>n = len(nums)<br>w = n.bit_length()<br>st = [[0] * n for _ in range(w)]<br>st[0] = nums[:]<br>for i in range(1, w):<br>for j in range(n - (1 << i) + 1):<br>st[i][j] = op(st[i - 1][j], st[i - 1][j + (1 << (i - 1))])<br>self.st = st<br>self.op = op<br>def query(self, l: int, r: int) -> int:<br>k = (r - l).bit_length() - 1<br>return self.op(self.st[k][l], self.st[k][r - (1 << k)])<br>",
                     "src": "",
                     "original_src": "",
                     "sort": 0,
@@ -8739,7 +8739,7 @@ export default{
             ],
             "nonLeafChild": [
                 {
-                    "title": "九、伸展树（Splay 树）",
+                    "title": "九、伸展樹（Splay 樹）",
                     "summary": "",
                     "src": "",
                     "original_src": "",
@@ -8782,7 +8782,7 @@ export default{
                     "last_update": ""
                 },
                 {
-                    "title": "十、根号算法",
+                    "title": "十、根號算法",
                     "summary": "",
                     "src": "",
                     "original_src": "",
@@ -8793,7 +8793,7 @@ export default{
                     "leafChild": [],
                     "nonLeafChild": [
                         {
-                            "title": "§8.1 根号分解（Sqrt Decomposition）",
+                            "title": "§8.1 根號分解（Sqrt Decomposition）",
                             "summary": "",
                             "src": "",
                             "original_src": "",
@@ -8864,7 +8864,7 @@ export default{
                             "last_update": ""
                         },
                         {
-                            "title": "§8.2 莫队算法",
+                            "title": "§8.2 莫隊算法",
                             "summary": "属于离线算法的一种。<br>",
                             "src": "",
                             "original_src": "",
@@ -8940,8 +8940,8 @@ export default{
                     "last_update": ""
                 },
                 {
-                    "title": "专题：离线算法",
-                    "summary": "通过改变回答询问的顺序，使问题更容易处理。<br>> 相应的，**在线算法**就是按照 $\\textit{queries}$ 的顺序一个一个处理。<br>",
+                    "title": "專題：離線算法",
+                    "summary": "通過改變回答詢問的順序，使問題更容易處理。<br>> 相應的，**在線算法**就是按照 $\\textit{queries}$ 的順序一個一個處理。<br>",
                     "src": "",
                     "original_src": "",
                     "sort": 0,
@@ -9137,8 +9137,8 @@ export default{
                     "last_update": ""
                 },
                 {
-                    "title": "专题：比较复杂的题目",
-                    "summary": "部分题目是模拟题。<br>",
+                    "title": "專題：比較複雜的題目",
+                    "summary": "部分題目是模擬題。<br>",
                     "src": "",
                     "original_src": "",
                     "sort": 0,
@@ -9346,7 +9346,7 @@ export default{
                         },
                         {
                             "title": "Part B",
-                            "summary": "另见本题单的「§3.5 表达式解析」。<br>",
+                            "summary": "另見本題單的「§3.5 表達式解析」。<br>",
                             "src": "",
                             "original_src": "",
                             "sort": 0,
@@ -9504,8 +9504,8 @@ export default{
                     "last_update": ""
                 },
                 {
-                    "title": "算法题单",
-                    "summary": "<a href=\"https://leetcode.cn/circle/discuss/RvFUtj/\">如何科学刷题？</a><br>1. <a href=\"/lc-rating/v0/list/sliding_window\">滑动窗口与双指针（定长/不定长/单序列/双序列/三指针/分组循环）</a><br>2. <a href=\"/lc-rating/v0/list/binary_search\">二分算法（二分答案/最小化最大值/最大化最小值/第K小）</a><br>3. <a href=\"/lc-rating/v0/list/monotonic_stack\">单调栈（基础/矩形面积/贡献法/最小字典序）</a><br>4. <a href=\"/lc-rating/v0/list/grid\">网格图（DFS/BFS/综合应用）</a><br>5. <a href=\"/lc-rating/v0/list/bitwise_operations\">位运算（基础/性质/拆位/试填/恒等式/思维）</a><br>6. <a href=\"/lc-rating/v0/list/graph\">图论算法（DFS/BFS/拓扑排序/基环树/最短路/最小生成树/网络流）</a><br>7. <a href=\"/lc-rating/v0/list/dynamic_programming\">动态规划（入门/背包/划分/状态机/区间/状压/数位/数据结构优化/树形/博弈/概率期望）</a><br>8. <a href=\"/lc-rating/v0/list/data_structure\">常用数据结构（前缀和/差分/栈/队列/堆/字典树/并查集/树状数组/线段树）</a><br>9. <a href=\"/lc-rating/v0/list/math\">数学算法（数论/组合/概率期望/博弈/计算几何/随机算法）</a><br>10. <a href=\"/lc-rating/v0/list/greedy\">贪心与思维（基本贪心策略/反悔/区间/字典序/数学/思维/脑筋急转弯/构造）</a><br>11. <a href=\"/lc-rating/v0/list/trees\">链表、树与回溯（前后指针/快慢指针/DFS/BFS/直径/LCA）</a><br>12. <a href=\"/lc-rating/v0/list/string\">字符串（KMP/Z函数/Manacher/字符串哈希/AC自动机/后缀数组/子序列自动机）</a><br><a href=\"https://github.com/EndlessCheng/codeforces-go/blob/master/leetcode/SOLUTIONS.md\">我的题解精选（已分类）</a><br>欢迎关注 <a href=\"https://space.bilibili.com/206214\">B站@灵茶山艾府</a><br>如果你发现有题目可以补充进来，欢迎评论反馈。<br>",
+                    "title": "算法題單",
+                    "summary": "<a href=\"https://leetcode.cn/circle/discuss/RvFUtj/\">如何科學刷題？</a><br>1. <a href=\"/lc-rating/v0/list/sliding_window\">滑動窗口與雙指針（定長/不定長/單序列/雙序列/三指針/分組循環）</a><br>2. <a href=\"/lc-rating/v0/list/binary_search\">二分算法（二分答案/最小化最大值/最大化最小值/第K小）</a><br>3. <a href=\"/lc-rating/v0/list/monotonic_stack\">單調堆疊（基礎/矩形面積/貢獻法/最小字典序）</a><br>4. <a href=\"/lc-rating/v0/list/grid\">網格圖（DFS/BFS/綜合應用）</a><br>5. <a href=\"/lc-rating/v0/list/bitwise_operations\">位運算（基礎/性質/拆位/試填/恒等式/思維）</a><br>6. <a href=\"/lc-rating/v0/list/graph\">圖論算法（DFS/BFS/拓撲排序/基環樹/最短路/最小生成樹/網絡流）</a><br>7. <a href=\"/lc-rating/v0/list/dynamic_programming\">動態規劃（入門/背包/劃分/狀態機/區間/狀壓/數位/數據結構優化/樹形/博弈/概率期望）</a><br>8. <a href=\"/lc-rating/v0/list/data_structure\">常用數據結構（前綴和/差分/堆疊/佇列/堆積/字典樹/並查集/樹狀陣列/線段樹）</a><br>9. <a href=\"/lc-rating/v0/list/math\">數學算法（數論/組合/概率期望/博弈/計算幾何/隨機算法）</a><br>10. <a href=\"/lc-rating/v0/list/greedy\">貪心與思維（基本貪心策略/反悔/區間/字典序/數學/思維/腦筋急轉彎/構造）</a><br>11. <a href=\"/lc-rating/v0/list/trees\">鏈表、樹與回溯（前後指針/快慢指針/DFS/BFS/直徑/LCA）</a><br>12. <a href=\"/lc-rating/v0/list/string\">字符串（KMP/Z函數/Manacher/字符串雜湊/AC自動機/後綴陣列/子序列自動機）</a><br><a href=\"https://github.com/EndlessCheng/codeforces-go/blob/master/leetcode/SOLUTIONS.md\">我的題解精選（已分類）</a><br>歡迎關注 <a href=\"https://space.bilibili.com/206214\">B站@靈茶山艾府</a><br>如果你發現有題目可以補充進來，歡迎評論反饋。<br>",
                     "src": "",
                     "original_src": "",
                     "sort": 0,

@@ -24,7 +24,7 @@ const SettingsPanel = ({ show, onHide }: SettingsPanelProps) => {
       className="settings-modal"
     >
       <Modal.Header closeButton>
-        <Modal.Title>站点设置</Modal.Title>
+        <Modal.Title>站點設置</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
@@ -40,7 +40,7 @@ const SettingsPanel = ({ show, onHide }: SettingsPanelProps) => {
 
             <Col md={9} lg={10} className="content-col">
               <div className="p-4 bg-white rounded shadow-sm h-100">
-                {ActiveComponent ? ActiveComponent : "页面配置错误"}
+                {ActiveComponent ? ActiveComponent : "頁面配置錯誤"}
               </div>
             </Col>
           </Row>
@@ -49,7 +49,7 @@ const SettingsPanel = ({ show, onHide }: SettingsPanelProps) => {
 
       <Modal.Footer>
         <Button variant="secondary" onClick={onHide}>
-          关闭
+          關閉
         </Button>
       </Modal.Footer>
     </Modal>

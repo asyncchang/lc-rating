@@ -23,7 +23,7 @@ const Navigator = React.memo(() => {
 
   return (
     <NavigationMenu className="px-4 py-3 ring-1 ring-gray-900/10 backdrop-blur-sm dark:shadow-2xl dark:bg-gray-700/15 dark:text-gray-200 dark:ring-black/10 fixed w-full z-10 top-0 max-w-full flex justify-between items-center h-[var(--navbar-height)] md:h-[var(--navbar-height)]">
-      <div className="font-bold text-lg hidden md:block">力扣竞赛题目</div>
+      <div className="font-bold text-lg hidden md:block">力扣競賽題目</div>
       <div>
         <NavigationMenuList>
           <NavigationMenuItem>
@@ -79,11 +79,11 @@ const Navigator = React.memo(() => {
         </NavigationMenuList>
       </div>
       <div className="font-bold md:flex gap-1 hidden">
-        <div>本页面所有题解来自</div>
+        <div>本頁面所有題解來自</div>
         <Link href={BILIBILI_0X3F_SPACE.url} className="underline text-red-700">
           {BILIBILI_0X3F_SPACE.title}
         </Link>
-        <div>感谢！</div>
+        <div>感謝！</div>
       </div>
       <div className="flex gap-4">
         <Button
@@ -106,4 +106,3 @@ const Navigator = React.memo(() => {
 
 Navigator.displayName = "Navigator";
 export { Navigator };
-

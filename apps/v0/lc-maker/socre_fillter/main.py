@@ -5,13 +5,13 @@ from math import ceil
 
 def get_database():
  
-   # 提供 mongodb atlas url 以使用 pymongo 将 python 连接到 mongodb
+   # 提供 mongodb atlas url 以使用 pymongo 將 python 連接到 mongodb
    CONNECTION_STRING = "mongodb://root:o039fjf1Ef@127.0.0.1:27017"
  
-   # 使用 MongoClient 创建连接。您可以导入 MongoClient 或者使用 pymongo.MongoClient
+   # 使用 MongoClient 創建連接。您可以導入 MongoClient 或者使用 pymongo.MongoClient
    client = MongoClient(CONNECTION_STRING)
  
-   # 为我们的示例创建数据库（我们将在整个教程中使用相同的数据库
+   # 為我們的示例創建數據庫（我們將在整個教程中使用相同的數據庫
    return client["lc"]
 
 class ScoreGetter:

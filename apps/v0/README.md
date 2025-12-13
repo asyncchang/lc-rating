@@ -6,15 +6,15 @@
   <img alt="GitHub Workflow Status (with event)" src="https://img.shields.io/github/actions/workflow/status/huxulm/lc-rating/workflow.yml">
 </p>
 
-## 介绍
-本项目基于[灵茶山艾府](https://leetcode.cn/u/endlesscheng/)的文章[如何科学刷题？](https://leetcode.cn/circle/discuss/RvFUtj/)而构建的一个刷题用网站。 主要使用 **[React](https://react.dev/)** + **[NextJS](https://nextjs.org/)** 构建。
+## 介紹
+本專案基於[靈茶山艾府](https://leetcode.cn/u/endlesscheng/)的文章[如何科學刷題？](https://leetcode.cn/circle/discuss/RvFUtj/)而建構的一個刷題用網站。 主要使用 **[React](https://react.dev/)** + **[NextJS](https://nextjs.org/)** 建構。
 
 ## 特性和使用方法
-本项目有4种使用方法:
-1. 力扣竞赛题目列表，含分数展示，可以让想自己mock contest的用户快速直达并了解题目的难度
-2. 难度训练，对不同难度的题目进行了划分，让用户更好的了解自己的水准。算法新手和老手想在力扣周赛上分的都可以使用此功能。此外还添加了进度标注，并可以对进度进行同步。 同时用户可以在设置中选择自己想刷的tag，也可以隐藏tag, 以及选择自己的进度。
-3. 题解搜索, 支持根据题目、题解标题、算法模板名称、标签等过滤，纯本地化+缓存优化，速度飞快。题解链接（来源：[@灵茶山艾府](https://space.bilibili.com/206214)）
-4. 整合了灵茶山艾府列出的题单，标注了分数同时也添加了进度标注。用于突击训练特定知识点，掌握常用算法套路。
+本專案有4種使用方法:
+1. 力扣競賽題目列表，含分數展示，可以讓想自己mock contest的使用者快速直達並了解題目的難度
+2. 難度訓練，對不同難度的題目進行了劃分，讓使用者更好的了解自己的水準。演算法新手和老手想在力扣周賽上分的都可以使用此功能。此外還添加了進度標註，並可以對進度進行同步。 同時使用者可以在設定中選擇自己想刷的tag，也可以隱藏tag, 以及選擇自己的進度。
+3. 題解搜尋, 支援根據題目、題解標題、演算法模板名稱、標籤等過濾，純本地化+快取優化，速度飛快。題解連結（來源：[@靈茶山艾府](https://space.bilibili.com/206214)）
+4. 整合了靈茶山艾府列出的題單，標註了分數同時也添加了進度標註。用於突擊訓練特定知識點，掌握常用演算法套路。
 
 ## Screenshot
 <div style="text-align: center;dispaly: grid;gap: 2rem;">
@@ -22,7 +22,6 @@
   <img style="max-width: 400px;" src="./screenshot1.png"></img>
 </div>
 
-## 数据来源
-- 基础 - 【[leetcode.cn](https://leetcode.cn/)】
-- 题目难度 - 【[leetcode_problem_rating](https://raw.githubusercontent.com/zerotrac/leetcode_problem_rating/main/data.json)】
-
+## 資料來源
+- 基礎 - 【[leetcode.cn](https://leetcode.cn/)】
+- 題目難度 - 【[leetcode_problem_rating](https://raw.githubusercontent.com/zerotrac/leetcode_problem_rating/main/data.json)】

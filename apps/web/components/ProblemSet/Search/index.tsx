@@ -98,7 +98,7 @@ const Search = React.memo(({ data, onSearch }: SearchProps) => {
           ) : (
             <Button variant="outline" size="sm">
               <ChevronsUpDown className="h-4 w-4" />
-              <span>展开</span>
+              <span>展開</span>
             </Button>
           )}
         </CollapsibleTrigger>
@@ -128,7 +128,7 @@ const Search = React.memo(({ data, onSearch }: SearchProps) => {
           variant="default"
           className="cursor-pointer"
         >
-          确认
+          確認
         </Button>
         <Button
           onClick={handleReset}

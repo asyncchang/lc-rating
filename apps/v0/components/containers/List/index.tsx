@@ -70,12 +70,12 @@ export default function ({ data }: { data: ProblemCategory }) {
     {
       id: "move-to-todo",
       content: <MoveToTodoButton />,
-      tooltip: "下一题",
+      tooltip: "下一題",
     },
     {
       id: "move-to-random-todo",
       content: <MoveToTodoButton random />,
-      tooltip: "随机下一题",
+      tooltip: "隨機下一題",
     },
   ];
 
@@ -89,7 +89,7 @@ export default function ({ data }: { data: ProblemCategory }) {
             setSetting({ ...setting, showEn: !setting.showEn });
           }}
           type="switch"
-          label="英文链接"
+          label="英文鏈接"
         />
       ),
     },
@@ -102,7 +102,7 @@ export default function ({ data }: { data: ProblemCategory }) {
             setSetting({ ...setting, showRating: !setting.showRating });
           }}
           type="switch"
-          label="难度分"
+          label="難度分"
         />
       ),
     },
@@ -115,7 +115,7 @@ export default function ({ data }: { data: ProblemCategory }) {
             setSetting({ ...setting, showPremium: !setting.showPremium });
           }}
           type="switch"
-          label="会员题"
+          label="會員題"
         />
       ),
     },
@@ -146,7 +146,7 @@ export default function ({ data }: { data: ProblemCategory }) {
         data-bs-target="#toc"
       >
         <ProblemCategory
-          title={`<p class="fs-6 fw-bold fst-italic">来源:<a target="_blank" class="ms-2 fs-6 link" href="${data.original_src}">${data.original_src}</a> <span class="ms-3 fw-semibold fst-italic">最近更新: ${data["last_update"]}</span></p>`}
+          title={`<p class="fs-6 fw-bold fst-italic">來源:<a target="_blank" class="ms-2 fs-6 link" href="${data.original_src}">${data.original_src}</a> <span class="ms-3 fw-semibold fst-italic">最近更新: ${data["last_update"]}</span></p>`}
           data={[data]}
           showEn={setting.showEn}
           showRating={setting.showRating}

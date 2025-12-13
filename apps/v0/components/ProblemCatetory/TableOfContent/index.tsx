@@ -10,7 +10,7 @@ export interface TOC {
 export const TableOfContent: React.FC<{ toc: TOC }> = ({ toc }) => {
   return (
     <li className={toc.className || "toc-list"}>
-      { toc.title != "介绍" ? <a className="text-warning-emphasis" href={`${toc.id}`}>
+      { toc.title != "介紹" ? <a className="text-warning-emphasis" href={`${toc.id}`}>
         {toc.title} [{toc.count}]
       </a> : <></>}   
       {toc.children?.length > 0 && (

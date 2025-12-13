@@ -55,13 +55,13 @@ function PaginatedTable({ data }: PaginatedTableProps) {
     () => [
       columnHelper.display({
         id: "index",
-        header: "编号",
+        header: "編號",
         cell: ({ row }) => (
           <span className="d-flex">{row.original.idx + 1}</span>
         ),
       }),
       columnHelper.accessor("questTitle", {
-        header: "题目",
+        header: "題目",
         cell: ({ row }) => (
           <a className="fw-medium" href={row.original.questLink}>
             {row.original.questTitle}
@@ -69,11 +69,11 @@ function PaginatedTable({ data }: PaginatedTableProps) {
         ),
       }),
       columnHelper.accessor("tags", {
-        header: "标签",
+        header: "標籤",
         cell: ({ row }) => renderTags(row.original.tags),
       }),
       columnHelper.accessor("solnTitle", {
-        header: "题解",
+        header: "題解",
         cell: ({ row }) => (
           <a className="fw-medium" href={row.original.solnLink}>
             {row.original.solnTitle}
@@ -113,22 +113,22 @@ function PaginatedTable({ data }: PaginatedTableProps) {
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
-            上一页
+            上一頁
           </Button>
           <span>
-            第 {table.getState().pagination.pageIndex + 1} 页 / 共{" "}
-            {table.getPageCount()} 页
+            第 {table.getState().pagination.pageIndex + 1} 頁 / 共{" "}
+            {table.getPageCount()} 頁
           </span>
           <Button
             variant="primary"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
-            下一页
+            下一頁
           </Button>
         </span>
         <span className="d-flex align-items-center gap-2">
-          <span>跳转至第</span>
+          <span>跳轉至第</span>
           <input
             value={curPage}
             min={1}
@@ -138,14 +138,14 @@ function PaginatedTable({ data }: PaginatedTableProps) {
               setCurPage(Number(e.target.value));
             }}
           />
-          <span>页</span>
+          <span>頁</span>
           <Button
             variant="primary"
             onClick={() => {
               table.setPageIndex(curPage - 1);
             }}
           >
-            确认
+            確認
           </Button>
         </span>
         <select
@@ -156,7 +156,7 @@ function PaginatedTable({ data }: PaginatedTableProps) {
         >
           {[10, 20, 30, 50, 100].map((size) => (
             <option key={size} value={size}>
-              每页 {size} 条
+              每頁 {size} 條
             </option>
           ))}
         </select>
@@ -302,10 +302,10 @@ export default function Search() {
           <Col md={5} sm={12} lg={5} className="position-relative">
             <input
               className="form-control"
-              placeholder="题号、标目、题解标题（模糊匹配）"
+              placeholder="題號、標目、題解標題（模糊匹配）"
               onChange={onSearchTextChange}
             ></input>
-            <span className="qtot">总数：{filtSolns.length}</span>
+            <span className="qtot">總數：{filtSolns.length}</span>
           </Col>
           <Col md={2} sm={12} lg={2}>
             <ButtonGroup className="w-100">
@@ -314,7 +314,7 @@ export default function Search() {
                 variant="outline-secondary"
                 size="sm"
                 onClick={onChangeLang}
-              >{`${lang === "en" ? "中文" : "英文"}标签`}</Button>
+              >{`${lang === "en" ? "中文" : "英文"}標籤`}</Button>
               <Button
                 className="fw-medium"
                 variant="outline-secondary"

@@ -32,9 +32,9 @@ function OptionsForm({ formData, onChange, onSubmit }: OptionsFormProps) {
     const errors: string[] = [];
     sortedFormData.forEach((item, i) => {
       if (item.key === "") {
-        errors[i] = "Key不能为空";
+        errors[i] = "Key不能為空";
       } else if (existingKeys.has(item.key)) {
-        errors[i] = "Key不能重复";
+        errors[i] = "Key不能重複";
       } else {
         existingKeys.add(item.key);
       }
@@ -81,7 +81,7 @@ function OptionsForm({ formData, onChange, onSubmit }: OptionsFormProps) {
             <Col>
               <Form.Group controlId={`key-${item.key}`}>
                 <Form.Control
-                  placeholder="主键 Key"
+                  placeholder="主鍵 Key"
                   value={item.key}
                   onChange={(e) => handleFieldChange(e, i, "key")}
                   isInvalid={errors[i] !== undefined}
@@ -97,7 +97,7 @@ function OptionsForm({ formData, onChange, onSubmit }: OptionsFormProps) {
 
             <Col>
               <Form.Control
-                placeholder="标签 Label"
+                placeholder="標籤 Label"
                 value={item.label}
                 onChange={(e) => handleFieldChange(e, i, "label")}
               />
@@ -107,7 +107,7 @@ function OptionsForm({ formData, onChange, onSubmit }: OptionsFormProps) {
               <Stack direction="horizontal" gap={2}>
                 <Form.Control
                   type="color"
-                  title="颜色 Color"
+                  title="顏色 Color"
                   value={item.color}
                   className="w-50"
                   onChange={(e) => handleFieldChange(e, i, "color")}
@@ -118,7 +118,7 @@ function OptionsForm({ formData, onChange, onSubmit }: OptionsFormProps) {
                   hidden={i < Object.keys(defaultOptions).length}
                   disabled={i < Object.keys(defaultOptions).length}
                 >
-                  删除
+                  刪除
                 </Button>
               </Stack>
             </Col>
@@ -130,7 +130,7 @@ function OptionsForm({ formData, onChange, onSubmit }: OptionsFormProps) {
             添加新行
           </Button>
           <Button variant="primary" type="submit" onClick={handleSubmit}>
-            保存
+            儲存
           </Button>
         </Stack>
       </Stack>

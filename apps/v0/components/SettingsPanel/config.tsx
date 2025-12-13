@@ -13,13 +13,13 @@ export type SettingTabType = {
 export const setting_tabs: SettingTabType[] = [
   {
     key: "SyncProgress",
-    title: "同步题目进度",
+    title: "同步題目進度",
     icon: <LuArrowUpDown />,
     component: <SyncProgress />,
   },
   {
     key: "CustomizeOptions",
-    title: "自定义进度选项",
+    title: "自定義進度選項",
     icon: <BiSolidCustomize />,
     component: <CustomizeOptions />,
   },

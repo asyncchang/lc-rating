@@ -47,7 +47,7 @@ function ProblemCell({ question: que, solution: soln }: ProblemCellProps) {
               className={clsx(`rating-color-${idx}`, "ff-st")}
               style={{ fontSize: "1.2rem" }}
             >
-              <strong>难度: </strong> {rating.toFixed(2)}
+              <strong>難度: </strong> {rating.toFixed(2)}
             </Popover.Body>
           </Popover>
         }

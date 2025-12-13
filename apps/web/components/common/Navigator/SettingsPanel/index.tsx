@@ -26,11 +26,11 @@ export function SettingsPanel({ show, onOpenChange }: SettingsPanelProps) {
   return (
     <Dialog open={show} onOpenChange={onOpenChange}>
       <DialogTrigger asChild>
-        <Button variant="outline">站点设置</Button>
+        <Button variant="outline">站點設置</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-3xl w-full sm:w-24/30 md:w-20/30 lg:15/30">
         <DialogHeader>
-          <DialogTitle>站点设置</DialogTitle>
+          <DialogTitle>站點設置</DialogTitle>
         </DialogHeader>
         <div className="flex flex-col lg:flex-row gap-2">
           <div className="">
@@ -43,14 +43,14 @@ export function SettingsPanel({ show, onOpenChange }: SettingsPanelProps) {
 
           <div className="w-full">
             <div className="p-1 rounded shadow-sm min-h-[300px]">
-              {ActiveComponent ? ActiveComponent : "页面配置错误"}
+              {ActiveComponent ? ActiveComponent : "頁面配置錯誤"}
             </div>
           </div>
         </div>
 
         <DialogFooter>
           <Button type="submit" onClick={() => onOpenChange(false)}>
-            关闭
+            關閉
           </Button>
         </DialogFooter>
       </DialogContent>

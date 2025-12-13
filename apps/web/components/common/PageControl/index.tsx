@@ -53,7 +53,7 @@ const PageControl = React.memo(
       <div className="flex gap-4 flex-col md:flex-row items-center justify-between">
         <div className="flex flex-row justify-center items-center space-x-2">
           <span className="text-sm text-muted-foreground text-nowrap">
-            每页显示
+            每頁顯示
           </span>
           <PageResizer
             options={[20, 30, 50, 100, 200, 500, 1000]}
@@ -72,12 +72,12 @@ const PageControl = React.memo(
                 className="gap-1 px-2.5 sm:pl-2.5"
               >
                 <ChevronLeftIcon />
-                <span className="hidden sm:block">上一页</span>
+                <span className="hidden sm:block">上一頁</span>
               </Button>
             </PaginationItem>
 
             <PaginationItem>
-              <div>第 {`${pageIndex + 1} / ${pageCount}`} 页</div>
+              <div>第 {`${pageIndex + 1} / ${pageCount}`} 頁</div>
             </PaginationItem>
 
             <PaginationItem>
@@ -89,7 +89,7 @@ const PageControl = React.memo(
                 size="default"
                 className="gap-1 px-2.5 sm:pl-2.5"
               >
-                <span className="hidden sm:block">下一页</span>
+                <span className="hidden sm:block">下一頁</span>
                 <ChevronRightIcon />
               </Button>
             </PaginationItem>

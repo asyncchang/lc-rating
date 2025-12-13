@@ -80,7 +80,7 @@ const WordFilter = React.memo(
       <div className="w-full flex flex-col justify-center items-left gap-1">
         <Input
           type="text"
-          placeholder="竞赛、题目、题解搜索"
+          placeholder="競賽、題目、題解搜尋"
           value={value}
           onChange={handleChange}
         />
@@ -92,7 +92,7 @@ const WordFilter = React.memo(
             }}
             className=""
           />
-          <Label>模糊搜索</Label>
+          <Label>模糊搜尋</Label>
         </div>
       </div>
     );

@@ -23,17 +23,17 @@ export const defaultOptions = {
   },
   TOO_HARD: {
     key: "TOO_HARD",
-    label: "太难了，不会",
+    label: "太難了，不會",
     color: "#dc3545",
   },
   REVIEW_NEEDED: {
     key: "REVIEW_NEEDED",
-    label: "回头复习下",
+    label: "回頭複習下",
     color: "#fd7e14",
   },
   AC: {
     key: "AC",
-    label: "过了",
+    label: "過了",
     color: "#28a745",
   },
 } as const;
@@ -66,7 +66,7 @@ export function useProgressOptions() {
         console.error(`Invalid progress key: ${key}`);
         return {
           key,
-          label: `"${key}" 未定义`,
+          label: `"${key}" 未定義`,
           color: "#dc3545",
         };
       }

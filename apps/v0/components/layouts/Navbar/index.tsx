@@ -10,7 +10,7 @@ import { Button, Container, Dropdown, Nav, Navbar } from "react-bootstrap";
 
 const questList = [
   {
-    title: "滑动窗口",
+    title: "滑動窗口",
     link: "/list/slide_window",
   },
   {
@@ -18,41 +18,41 @@ const questList = [
     link: "/list/binary_search",
   },
   {
-    title: "单调栈",
+    title: "單調棧",
     link: "/list/monotonic_stack",
   },
   {
-    title: "网格图",
+    title: "網格圖",
     link: "/list/grid",
   },
 
   {
-    title: "位运算",
+    title: "位運算",
     link: "/list/bitwise_operations",
   },
   {
-    title: "图论算法",
+    title: "圖論算法",
     link: "/list/graph",
   },
   {
-    title: "动态规划",
+    title: "動態規劃",
     link: "/list/dynamic_programming",
   },
   {
-    title: "数据结构",
+    title: "數據結構",
     link: "/list/data_structure",
   },
 
   {
-    title: "数学",
+    title: "數學",
     link: "/list/math",
   },
   {
-    title: "贪心",
+    title: "貪心",
     link: "/list/greedy",
   },
   {
-    title: "树和二叉树",
+    title: "樹和二叉樹",
     link: "/list/trees",
   },
   {
@@ -76,7 +76,7 @@ export default function () {
   return (
     <Navbar sticky="top" className="p-0">
       <Container className="">
-        <Navbar.Brand>力扣竞赛题目</Navbar.Brand>
+        <Navbar.Brand>力扣競賽題目</Navbar.Brand>
         <div className="d-flex flex-fill d-md-none d-lg-none justify-content-end pe-2">
           <span
             className="btn d-flex rounded-circle p-1"
@@ -107,7 +107,7 @@ export default function () {
               }}
             >
               <Button id="nav-cl" className="fw-bold fs-6 p-1">
-                竞赛列表
+                競賽列表
               </Button>
             </Link>
 
@@ -119,7 +119,7 @@ export default function () {
               }}
             >
               <Button id="nav-tr" className="fw-bold fs-6 p-1">
-                难度练习
+                難度練習
               </Button>
             </Link>
 
@@ -147,7 +147,7 @@ export default function () {
                 className="fw-bold fs-6 p-1"
                 onClick={handleOpenModal}
               >
-                站点设置
+                站點設置
               </Button>
             </Link>
             <SettingsPanel show={showModal} onHide={handleCloseModal} />
@@ -157,7 +157,7 @@ export default function () {
               show={showDropdown}
               onToggle={(showDropdown) => setShowDropdown(showDropdown)}
             >
-              <Dropdown.Toggle id="nav-pl">📑题单</Dropdown.Toggle>
+              <Dropdown.Toggle id="nav-pl">📑題單</Dropdown.Toggle>
 
               <Dropdown.Menu>
                 <div
@@ -202,15 +202,15 @@ export default function () {
             </Link>
           </Nav>
           <span className="navbar-brand fs-6 fw-semibold">
-            题解来自{" "}
+            題解來自{" "}
             <Link
               href="https://space.bilibili.com/206214/"
               target="_blank"
               className="link fw-bold text-danger"
             >
-              bilibili@灵茶山艾府
+              bilibili@靈茶山艾府
             </Link>{" "}
-            感谢！
+            感謝！
           </span>
           <span
             className="btn d-flex rounded-circle p-1 d-none d-lg-block d-xl-block d-sm-none"

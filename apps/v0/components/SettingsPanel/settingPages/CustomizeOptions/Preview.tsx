@@ -9,7 +9,7 @@ interface PreviewProps {
 function Preview({ options }: PreviewProps) {
   return (
     <div className="p-3 border rounded">
-      <FormLabel className="fw-bold">预览</FormLabel>
+      <FormLabel className="fw-bold">預覽</FormLabel>
       {options.map((option, i) => (
         <Form.Select
           key={i}

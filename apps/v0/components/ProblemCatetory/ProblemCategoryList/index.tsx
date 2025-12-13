@@ -109,7 +109,7 @@ function ProblemCategoryList({
                     href={"https://leetcode.cn/problems" + item.src}
                     target="_blank"
                   >
-                    {item.title + (item.isPremium ? " (会员题)" : "")}
+                    {item.title + (item.isPremium ? " (會員題)" : "")}
                   </a>
                   {showEn && (
                     <a

@@ -1,9 +1,9 @@
 # 字符串
 ## 模板一 KMP
 在字符串中查找子串
-> 例题 [3036. 匹配模式数组的子数组数目 II](https://leetcode.cn/problems/number-of-subarrays-that-match-a-pattern-ii/)
+> 例題 [3036. 匹配模式數組的子數組數目 II](https://leetcode.cn/problems/number-of-subarrays-that-match-a-pattern-ii/)
  
-> 例题 [3008. 找出数组中的美丽下标 II](https://leetcode.cn/problems/find-beautiful-indices-in-the-given-array-ii/)
+> 例題 [3008. 找出數組中的美麗下標 II](https://leetcode.cn/problems/find-beautiful-indices-in-the-given-array-ii/)
 ```python
 def kmp(self, s: str, pat: str) -> List[int]:
     m = len(pat)
@@ -29,8 +29,8 @@ def kmp(self, s: str, pat: str) -> List[int]:
             c = pi[c - 1]
     return res
 ```
-## 模板二 扩展KMP（Z 函数）
-$$z[i]$$ 表示 $$s$$ 和 $$s[i:n]$$ 的最长公共前缀长度
+## 模板二 擴展KMP（Z 函數）
+$$z[i]$$ 表示 $$s$$ 和 $$s[i:n]$$ 的最長公共前綴長度
 ```python
 def z_function(s):
     n = len(s)

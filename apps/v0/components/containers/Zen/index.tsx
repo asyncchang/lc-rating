@@ -225,42 +225,42 @@ const FilterSettings: React.FunctionComponent<FilterSettingsProps> = ({
         size="xl"
       >
         <Modal.Header closeButton>
-          <Modal.Title>设置</Modal.Title>
+          <Modal.Title>設置</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <h5 className="pt-1 pb-1">
-            列显示
+            列顯示
             <Form className="d-flex mt-2 gap-3">
               <Form.Check
                 checked={Boolean(curSetting.columnVisibility.tags)}
                 onChange={() => onVisibilityChange("tags")}
                 type="switch"
-                label="算法标签"
+                label="算法標籤"
                 id="toggle-tags"
               />
               <Form.Check
                 checked={Boolean(curSetting.columnVisibility.en)}
                 onChange={() => onVisibilityChange("en")}
                 type="switch"
-                label="英文链接"
+                label="英文鏈接"
                 id="toggle-en"
               />
               <Form.Check
                 checked={Boolean(curSetting.columnVisibility.ratings)}
                 onChange={() => onVisibilityChange("ratings")}
                 type="switch"
-                label="难度分"
+                label="難度分"
                 id="toggle-ratings"
               />
             </Form>
           </h5>
           <hr />
           <h5>
-            标签 <Button onClick={onTagsReset}>重置</Button>
+            標籤 <Button onClick={onTagsReset}>重置</Button>
           </h5>
           {RenderTags(tags)}
           <hr />
-          <h5 className="pt-1 pb-1">进度选择</h5>
+          <h5 className="pt-1 pb-1">進度選擇</h5>
           <div className="w-25">
             <Form.Select
               value={curSetting.selectedProgress}
@@ -282,10 +282,10 @@ const FilterSettings: React.FunctionComponent<FilterSettingsProps> = ({
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={onCancel}>
-            关闭
+            關閉
           </Button>
           <Button variant="primary" onClick={onConfirm}>
-            应用设置
+            應用設置
           </Button>
         </Modal.Footer>
       </Modal>
@@ -454,7 +454,7 @@ const ZenTableComp = React.memo(
       () => [
         {
           accessorFn: (row) => row.cont_title_slug,
-          id: "场次",
+          id: "場次",
           enableColumnFilter: false,
           cell: (info) => {
             const item = info.row.original;
@@ -522,13 +522,13 @@ const ZenTableComp = React.memo(
             );
           },
           enableColumnFilter: false,
-          header: () => <span>题号</span>,
+          header: () => <span>題號</span>,
           // footer: (props) => props.column.id,
         },
         {
           accessorKey: "rating",
           id: "ratings",
-          header: () => "难度分",
+          header: () => "難度分",
           size: 80,
           enableColumnFilter: false,
           cell: (info) => (
@@ -545,7 +545,7 @@ const ZenTableComp = React.memo(
             let tags = queryTags(row._hash.toString());
             return tags ? tags[1] : "-";
           },
-          header: "算法标签",
+          header: "算法標籤",
           id: "tags",
           footer: (props) => props.column.id,
           enableColumnFilter: false,
@@ -553,7 +553,7 @@ const ZenTableComp = React.memo(
         },
         {
           accessorKey: "progress",
-          header: "进度",
+          header: "進度",
           enableColumnFilter: false,
           enableSorting: false,
           cell: (info) => {

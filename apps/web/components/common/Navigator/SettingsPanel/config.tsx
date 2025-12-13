@@ -13,19 +13,19 @@ export type SettingTabType = {
 export const settingTabs: SettingTabType[] = [
   {
     key: "SyncProgress",
-    title: "同步站点数据",
+    title: "同步站點數據",
     icon: <RefreshCw />,
     component: <SyncStorage />,
   },
   {
     key: "CustomizeOptions",
-    title: "自定义进度选项",
+    title: "自定義進度選項",
     icon: <List />,
     component: <CustomizeOptions />,
   },
   {
     key: "Preference",
-    title: "页面偏好设置",
+    title: "頁面偏好設置",
     icon: <Settings />,
     component: <Preference />,
   },

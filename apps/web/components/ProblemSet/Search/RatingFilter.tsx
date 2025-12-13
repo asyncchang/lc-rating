@@ -47,7 +47,7 @@ const RatingFilter = React.memo(
       );
       onChange(name, results);
 
-      // 防抖调用确认
+      // 防抖调用確認
       if (onDebouncedConfirm) {
         if (debounceTimerRef.current) {
           clearTimeout(debounceTimerRef.current);
@@ -58,7 +58,7 @@ const RatingFilter = React.memo(
       }
     }, [data, range, onChange, name, onDebouncedConfirm]);
 
-    // 清理定时器
+    // 清理定時器
     useEffect(() => {
       return () => {
         if (debounceTimerRef.current) {

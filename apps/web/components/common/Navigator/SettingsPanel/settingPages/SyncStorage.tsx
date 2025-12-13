@@ -24,7 +24,7 @@ export default function SyncStorage() {
 
   const handleCopy = () => {
     navigator.clipboard.writeText(progressStr);
-    toast(<span className="text-green-500">复制成功</span>, {
+    toast(<span className="text-green-500">複製成功</span>, {
       icon: <ThumbsUp className="text-green-500 size-full" />,
     });
   };
@@ -38,7 +38,7 @@ export default function SyncStorage() {
       });
     } catch (error) {
       console.error("Error setting progress:", error);
-      toast(<span className="text-red-500">保存失败</span>, {
+      toast(<span className="text-red-500">保存失敗</span>, {
         icon: <HeartCrack className="text-red-500 size-full" />,
       });
     }
@@ -72,7 +72,7 @@ export default function SyncStorage() {
             name="progressData"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>输入站点数据:</FormLabel>
+                <FormLabel>輸入站點數據:</FormLabel>
                 <FormControl>
                   <Textarea
                     {...field}
@@ -85,7 +85,7 @@ export default function SyncStorage() {
           />
 
           <Button type="submit" className="w-full">
-            导入站点数据
+            導入站點數據
           </Button>
         </form>
       </Form>

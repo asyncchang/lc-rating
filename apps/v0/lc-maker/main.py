@@ -16,12 +16,12 @@ def load_list_as_dict():
         return json.load(r)
     
 def deleteAllFavs(lc: LeetCodeApi):
-    # 删除个人所有收藏夹
+    # 刪除個人所有收藏夾
     for fav in lc.getMyFav()["favoriteMyFavorites"]["favorites"]:
         print(lc.delFav(fav["idHash"]))
 
 '''
-创建题单 需要先提供 list.json
+創建題單 需要先提供 list.json
 '''
 def createList(lc: LeetCodeApi):
     pb = load_list_as_dict()
@@ -38,14 +38,14 @@ def createList(lc: LeetCodeApi):
                 else:
                     print(lc.addQuestionToFav(id, hash))
             except:
-                print("error: ", slug)
+                print("錯誤: ", slug)
                 pass
-            if cnt % 50 == 0: # 防机器人识别
+            if cnt % 50 == 0: # 防機器人識別
                 time.sleep(5)    
 
 
 '''
-打印我的题单列表 （markdown 格式）
+打印我的題單列表 （markdown 格式）
 '''
 def printList():
     links = [ (fav['name'], 'https://leetcode.cn/problem-list/%s' % fav['idHash']) for fav in lc.getMyFav()["favoriteMyFavorites"]["favorites"] ]

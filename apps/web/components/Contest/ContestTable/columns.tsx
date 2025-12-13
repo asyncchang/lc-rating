@@ -1,6 +1,6 @@
 import { I18NLink } from "@/components/common/I18NLink";
 import { RatingCircle, ratingInfo } from "@/components/common/RatingCircle";
-import { Input } from "@/components/ui/input"; // 确保导入Input组件
+import { Input } from "@/components/ui/input"; // 確保導入Input組件
 import {
   createColumnHelper,
   IdentifiedColumnDef,

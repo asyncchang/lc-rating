@@ -87,7 +87,7 @@ def refactor_helper(content: List[str], rating: Dict) -> Node:
     node = Node("", "", "", "", 0, False, "", 0, [], [], False, "")
     for cont in content:
         if cont.startswith("#"):
-            # 这里假设了标题是#开头，且结尾没有#，否则title会出现问题
+            # 這裡假設了標題是#開頭，且結尾沒有#，否則title會出現問題
             node.title = cont.split("#")[-1].strip()
         elif cont.startswith("- ["):
             markdown_match = re.match(r"-\s*\[(.*?)\]\((.*?)\)\s*(?:（(.*?)）)?", cont)
@@ -103,7 +103,7 @@ def refactor_helper(content: List[str], rating: Dict) -> Node:
             else:
                 src = None
             solution = None
-            isPremium = additional != None and "会员题" in additional
+            isPremium = additional != None and "會員題" in additional
             second_markdown_match = re.match(r"\[(.*)\]\((.*)\)", cont[cont.find(")")+2:])
             if second_markdown_match:
                 solution = second_markdown_match.group(2)
@@ -127,7 +127,7 @@ def refactor_discussion_rec(contents_queue: deque, rating: Dict) -> Node:
     contents = extract_content(contents_queue)
     curr_dep = depth_helper(contents[0])
     root = refactor_helper(contents, rating)
-    if root.title == "关联题单" or root.title == "分类题单":
+    if root.title == "關聯題單" or root.title == "分類題單":
         return None
     if not content_queue or depth_helper(content_queue[0]) <= curr_dep:
         return root
@@ -177,7 +177,7 @@ if __name__ == "__main__":
     # get and analysis discussion content according to uuid
     for uuid, file_path in tqdm(uuids_title):
         title, content, last_update = get_discussion(uuid, lc)
-        # format last_update into yyyy-mm-dd hh:mm:ss
+        # 格式化 last_update 為 yyyy-mm-dd hh:mm:ss
         temp_split = last_update.split("T")
         last_update = temp_split[0] + " " + temp_split[1].split(".")[0]
         content = content.replace("\r\n", "\n").strip()

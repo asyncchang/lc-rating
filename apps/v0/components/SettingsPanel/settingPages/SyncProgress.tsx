@@ -56,7 +56,7 @@ export default function SyncProgress() {
 
   return (
     <div>
-      <Button onClick={onFetchClick}>下载题目进度</Button>
+      <Button onClick={onFetchClick}>下載題目進度</Button>
       {syncStatus === "fetched" && (
         <div className="mt-3 position-relative">
           <Form.Control
@@ -86,16 +86,16 @@ export default function SyncProgress() {
         />
       </Form.Group>
       <Button onClick={onSaveClick} className="mt-2">
-        上传题目进度
+        上傳題目進度
       </Button>
       {syncStatus === "set" && (
         <Alert variant="success" className="mt-2">
-          题目进度上传成功
+          題目進度上傳成功
         </Alert>
       )}
       {syncStatus === "error" && (
         <Alert variant="danger" className="mt-2">
-          题目进度上传失败
+          題目進度上傳失敗
         </Alert>
       )}
     </div>

@@ -116,7 +116,7 @@ export const DataTable = genericMemo(function <TData extends TableCol>({
           ) : (
             <TableRow>
               <TableCell colSpan={columns.length} className="h-24 text-center">
-                暂无数据
+                暫無數據
               </TableCell>
             </TableRow>
           )}
