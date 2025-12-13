@@ -211,7 +211,8 @@
               "score": 1764,
               "isPremium": false
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§0.1.2 進階",
@@ -344,7 +345,8 @@
               "score": 2764,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§0.2 列舉中間",
@@ -486,7 +488,8 @@
               "score": 2553,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§0.3 遍歷對角線",
@@ -547,9 +550,11 @@
               "score": 2800,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         }
-      ]
+      ],
+      "isLeaf": false
     },
     {
       "title": "一、字首和",
@@ -660,7 +665,8 @@
               "score": 1557,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§1.2 字首和與雜湊表",
@@ -946,7 +952,8 @@
               "score": 2445,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§1.3 距離和",
@@ -1016,7 +1023,8 @@
               "score": 2673,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§1.4 狀態壓縮字首和",
@@ -1068,7 +1076,8 @@
               "score": 2677,
               "isPremium": false
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§1.5 進階",
@@ -1237,7 +1246,8 @@
               "score": 2780,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§1.6 二維字首和",
@@ -1298,9 +1308,11 @@
               "score": 1735,
               "isPremium": false
             }
-          ]
+          ],
+          "isLeaf": true
         }
-      ]
+      ],
+      "isLeaf": false
     },
     {
       "title": "二、差分",
@@ -1397,7 +1409,8 @@
                   "score": 1591,
                   "isPremium": true
                 }
-              ]
+              ],
+              "isLeaf": true
             },
             {
               "title": "§2.1.2 進階",
@@ -1628,9 +1641,11 @@
                   "score": 2709,
                   "isPremium": true
                 }
-              ]
+              ],
+              "isLeaf": true
             }
-          ]
+          ],
+          "isLeaf": false
         },
         {
           "title": "§2.2 二維差分",
@@ -1673,9 +1688,11 @@
               "score": 2364,
               "isPremium": false
             }
-          ]
+          ],
+          "isLeaf": true
         }
-      ]
+      ],
+      "isLeaf": false
     },
     {
       "title": "三、棧",
@@ -1758,7 +1775,8 @@
               "score": 1578,
               "isPremium": false
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§3.2 進階",
@@ -1854,7 +1872,8 @@
               "score": 2381,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§3.3 鄰項消除",
@@ -1968,7 +1987,8 @@
               "score": 2092,
               "isPremium": false
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§3.4 合法括號字串（RBS）",
@@ -2092,7 +2112,8 @@
               "score": 2038,
               "isPremium": false
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§3.5 表示式解析",
@@ -2278,7 +2299,8 @@
               "score": 2863,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§3.6 對頂棧",
@@ -2293,14 +2315,17 @@
               "score": 1912,
               "isPremium": false
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§3.7 單調棧",
           "src": null,
-          "summary": "見 [單調棧題單](https://leetcode.cn/circle/discuss/9oZFK9/)。"
+          "summary": "見 [單調棧題單](https://leetcode.cn/circle/discuss/9oZFK9/)。",
+          "isLeaf": true
         }
-      ]
+      ],
+      "isLeaf": false
     },
     {
       "title": "四、佇列",
@@ -2383,7 +2408,8 @@
               "score": 1686,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§4.2 設計",
@@ -2443,7 +2469,8 @@
               "score": 1851,
               "isPremium": false
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§4.3 雙端佇列",
@@ -2467,7 +2494,8 @@
               "score": 2648,
               "isPremium": false
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§4.4 單調佇列",
@@ -2546,9 +2574,11 @@
               "score": 2456,
               "isPremium": false
             }
-          ]
+          ],
+          "isLeaf": true
         }
-      ]
+      ],
+      "isLeaf": false
     },
     {
       "title": "五、堆（優先佇列）",
@@ -2757,7 +2787,8 @@
               "score": 1818,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§5.2 進階",
@@ -3051,7 +3082,8 @@
               "score": 2589,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§5.3 第 K 小/大",
@@ -3130,7 +3162,8 @@
               "score": 2648,
               "isPremium": false
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§5.4 重排元素",
@@ -3199,7 +3232,8 @@
               "score": 1905,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§5.5 反悔堆",
@@ -3287,7 +3321,8 @@
               "score": 3111,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§5.6 懶刪除堆",
@@ -3402,7 +3437,8 @@
               "score": 2608,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§5.7 對頂堆（滑動視窗第 K 小/大）",
@@ -3470,7 +3506,7 @@
               "src": "https://leetcode.cn/problems/divide-an-array-into-subarrays-with-minimum-cost-ii/",
               "solution": null,
               "score": 2540,
-                           "isPremium": false
+              "isPremium": false
             },
             {
               "id": "3321",
@@ -3508,9 +3544,11 @@
               "score": 2598,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         }
-      ]
+      ],
+      "isLeaf": false
     },
     {
       "title": "六、字典樹（trie）",
@@ -3629,7 +3667,8 @@
               "score": 1725,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§6.2 進階",
@@ -3770,7 +3809,8 @@
               "score": 2534,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§6.3 字典樹最佳化 DP",
@@ -3821,7 +3861,8 @@
               "score": 2696,
               "isPremium": false
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§6.4 0-1 字典樹（異或字典樹）",
@@ -3891,9 +3932,11 @@
               "score": 2503,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         }
-      ]
+      ],
+      "isLeaf": false
     },
     {
       "title": "七、並查集",
@@ -3976,7 +4019,8 @@
               "score": 1725,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§7.2 進階",
@@ -4243,7 +4287,8 @@
               "score": 2765,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§7.3 GCD 並查集",
@@ -4294,7 +4339,8 @@
               "score": 2532,
               "isPremium": false
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§7.4 陣列上的並查集",
@@ -4363,7 +4409,8 @@
               "score": 2824,
               "isPremium": false
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§7.5 區間並查集",
@@ -4405,7 +4452,8 @@
               "score": 2286,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§7.6 帶權並查集（邊權並查集）",
@@ -4439,9 +4487,11 @@
               "score": 2135,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         }
-      ]
+      ],
+      "isLeaf": false
     },
     {
       "title": "八、樹狀陣列和線段樹",
@@ -4714,7 +4764,8 @@
               "score": 2020,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§8.2 逆序對",
@@ -4793,7 +4844,8 @@
               "score": 2030,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§8.3 線段樹（無區間更新）",
@@ -4890,7 +4942,8 @@
               "score": 2941,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§8.4 Lazy 線段樹（有區間更新）",
@@ -4996,7 +5049,8 @@
               "score": 2286,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§8.5 動態開點線段樹",
@@ -5075,7 +5129,8 @@
               "score": 2646,
               "isPremium": false
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§8.6 可持久化線段樹",
@@ -5090,7 +5145,8 @@
               "score": 2497,
               "isPremium": false
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§8.7 ST 表（Sparse Table）",
@@ -5115,9 +5171,11 @@
               "score": 2941,
               "isPremium": false
             }
-          ]
+          ],
+          "isLeaf": true
         }
-      ]
+      ],
+      "isLeaf": false
     },
     {
       "title": "九、伸展樹（Splay 樹）",
@@ -5145,9 +5203,11 @@
               "score": 2222,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         }
-      ]
+      ],
+      "isLeaf": false
     },
     {
       "title": "十、根號演算法",
@@ -5193,7 +5253,8 @@
               "score": 2454,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§8.2 莫隊演算法",
@@ -5218,7 +5279,8 @@
               "score": 2646,
               "isPremium": false
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§8.3 其他",
@@ -5233,9 +5295,11 @@
               "score": 2557,
               "isPremium": false
             }
-          ]
+          ],
+          "isLeaf": true
         }
-      ]
+      ],
+      "isLeaf": false
     },
     {
       "title": "專題：離線演算法",
@@ -5363,9 +5427,11 @@
               "score": 2723,
               "isPremium": false
             }
-          ]
+          ],
+          "isLeaf": true
         }
-      ]
+      ],
+      "isLeaf": false
     },
     {
       "title": "專題：比較複雜的題目",
@@ -5493,7 +5559,8 @@
               "score": 2849,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "Part B",
@@ -5589,19 +5656,23 @@
               "score": 2863,
               "isPremium": false
             }
-          ]
+          ],
+          "isLeaf": true
         }
-      ]
+      ],
+      "isLeaf": false
     },
     {
       "title": "關聯題單",
       "src": "https://leetcode.cn/circle/discuss/mOr1u6/",
-      "summary": "*   關於**連結串列**和**二叉樹**的題目，見 [連結串列、樹與回溯](https://leetcode.cn/circle/discuss/K0n2gO/)。\n*   關於**字串**演算法，見 [字串題單](https://leetcode.cn/circle/discuss/SJFwQI/)。"
+      "summary": "*   關於**連結串列**和**二叉樹**的題目，見 [連結串列、樹與回溯](https://leetcode.cn/circle/discuss/K0n2gO/)。\n*   關於**字串**演算法，見 [字串題單](https://leetcode.cn/circle/discuss/SJFwQI/)。",
+      "isLeaf": true
     },
     {
       "title": "演算法題單",
       "src": "https://leetcode.cn/circle/discuss/mOr1u6/",
-      "summary": "[如何科學刷題？](https://leetcode.cn/circle/discuss/RvFUtj/)\n\n1.  [滑動視窗與雙指標（定長/不定長/單序列/雙序列/三指標/分組迴圈）](https://leetcode.cn/circle/discuss/0viNMK/)\n2.  [二分演算法（二分答案/最小化最大值/最大化最小值/第K小）](https://leetcode.cn/circle/discuss/SqopEo/)\n3.  [單調棧（基礎/矩形面積/貢獻法/最小字典序）](https://leetcode.cn/circle/discuss/9oZFK9/)\n4.  [網格圖（DFS/BFS/綜合應用）](https://leetcode.cn/circle/discuss/YiXPXW/)\n5.  [位運算（基礎/性質/拆位/試填/恆等式/思維）](https://leetcode.cn/circle/discuss/dHn9Vk/)\n6.  [圖論演算法（DFS/BFS/拓撲排序/基環樹/最短路/最小生成樹/網路流）](https://leetcode.cn/circle/discuss/01LUak/)\n7.  [動態規劃（入門/揹包/劃分/狀態機/區間/狀壓/數位/資料結構最佳化/樹形/博弈/機率期望）](https://leetcode.cn/circle/discuss/tXLS3i/)\n8.  [常用資料結構（字首和/差分/棧/佇列/堆/字典樹/並查集/樹狀陣列/線段樹）](https://leetcode.cn/circle/discuss/mOr1u6/)\n9.  [數學演算法（數論/組合/機率期望/博弈/計算幾何/隨機演算法）](https://leetcode.cn/circle/discuss/IYT3ss/)\n10.  [貪心與思維（基本貪心策略/反悔/區間/字典序/數學/思維/腦筋急轉彎/構造）](https://leetcode.cn/circle/discuss/g6KTKL/)\n11.  [連結串列、樹與回溯（前後指標/快慢指標/DFS/BFS/直徑/LCA）](https://leetcode.cn/circle/discuss/K0n2gO/)\n12.  [字串（KMP/Z函式/Manacher/字串雜湊/AC自動機/字尾陣列/子序列自動機）](https://leetcode.cn/circle/discuss/SJFwQI/)\n\n[我的題解精選（已分類）](/link/?target=https%3A%2F%2Fgithub.com%2FEndlessCheng%2Fcodeforces-go%2Fblob%2Fmaster%2Fleetcode%2FSOLUTIONS.md)\n\n歡迎關注 [B站@靈茶山艾府](/link/?target=https%3A%2F%2Fspace.bilibili.com%2F206214)\n\n如果你發現有題目可以補充進來，歡迎評論反饋。"
+      "summary": "[如何科學刷題？](https://leetcode.cn/circle/discuss/RvFUtj/)\n\n1.  [滑動視窗與雙指標（定長/不定長/單序列/雙序列/三指標/分組迴圈）](https://leetcode.cn/circle/discuss/0viNMK/)\n2.  [二分演算法（二分答案/最小化最大值/最大化最小值/第K小）](https://leetcode.cn/circle/discuss/SqopEo/)\n3.  [單調棧（基礎/矩形面積/貢獻法/最小字典序）](https://leetcode.cn/circle/discuss/9oZFK9/)\n4.  [網格圖（DFS/BFS/綜合應用）](https://leetcode.cn/circle/discuss/YiXPXW/)\n5.  [位運算（基礎/性質/拆位/試填/恆等式/思維）](https://leetcode.cn/circle/discuss/dHn9Vk/)\n6.  [圖論演算法（DFS/BFS/拓撲排序/基環樹/最短路/最小生成樹/網路流）](https://leetcode.cn/circle/discuss/01LUak/)\n7.  [動態規劃（入門/揹包/劃分/狀態機/區間/狀壓/數位/資料結構最佳化/樹形/博弈/機率期望）](https://leetcode.cn/circle/discuss/tXLS3i/)\n8.  [常用資料結構（字首和/差分/棧/佇列/堆/字典樹/並查集/樹狀陣列/線段樹）](https://leetcode.cn/circle/discuss/mOr1u6/)\n9.  [數學演算法（數論/組合/機率期望/博弈/計算幾何/隨機演算法）](https://leetcode.cn/circle/discuss/IYT3ss/)\n10.  [貪心與思維（基本貪心策略/反悔/區間/字典序/數學/思維/腦筋急轉彎/構造）](https://leetcode.cn/circle/discuss/g6KTKL/)\n11.  [連結串列、樹與回溯（前後指標/快慢指標/DFS/BFS/直徑/LCA）](https://leetcode.cn/circle/discuss/K0n2gO/)\n12.  [字串（KMP/Z函式/Manacher/字串雜湊/AC自動機/字尾陣列/子序列自動機）](https://leetcode.cn/circle/discuss/SJFwQI/)\n\n[我的題解精選（已分類）](/link/?target=https%3A%2F%2Fgithub.com%2FEndlessCheng%2Fcodeforces-go%2Fblob%2Fmaster%2Fleetcode%2FSOLUTIONS.md)\n\n歡迎關注 [B站@靈茶山艾府](/link/?target=https%3A%2F%2Fspace.bilibili.com%2F206214)\n\n如果你發現有題目可以補充進來，歡迎評論反饋。",
+      "isLeaf": true
     }
   ]
 }

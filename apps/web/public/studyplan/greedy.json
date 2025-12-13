@@ -1,7 +1,7 @@
 {
   "title": "分享丨【演算法題單】貪心演算法（基本貪心策略/反悔/區間/字典序/數學/思維/構造）",
   "src": "https://leetcode.cn/circle/discuss/g6KTKL/",
-  "summary": "有時候，很難一眼看出一道題是貪心還是 DP。\n\n為方便大家練習，我把比較套路的貪心題目放在前面，更靈活的思維題和構造題放在後面。每個小節的題目均按照從易到難的順序排列。\n\n**如果做題時沒有思路，推薦看看本文第五章的「思考清單」。**",
+  "summary": "為方便大家練習，我把比較套路的貪心題目放在前面，更靈活的思維題和構造題放在後面。每個小節的題目均按照從易到難的順序排列。\n\n**如果做題時沒有思路，推薦看看本文第五章的「思考清單」。**",
   "children": [
     {
       "title": "一、貪心策略",
@@ -447,7 +447,8 @@
               "isPremium": false
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         },
         {
           "title": "§1.2 單序列配對",
@@ -509,7 +510,8 @@
               "isPremium": false
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         },
         {
           "title": "§1.3 雙序列配對",
@@ -616,7 +618,8 @@
               "isPremium": true
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         },
         {
           "title": "§1.4 從最左/最右開始貪心",
@@ -849,7 +852,8 @@
               "isPremium": true
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         },
         {
           "title": "§1.5 劃分型貪心",
@@ -938,7 +942,8 @@
               "isPremium": true
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         },
         {
           "title": "§1.6 先列舉，再貪心",
@@ -1000,7 +1005,8 @@
               "isPremium": false
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         },
         {
           "title": "§1.7 交換論證法",
@@ -1062,7 +1068,8 @@
               "isPremium": false
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         },
         {
           "title": "§1.8 相鄰不同",
@@ -1178,7 +1185,8 @@
               "isPremium": true
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         },
         {
           "title": "§1.9 反悔貪心",
@@ -1267,9 +1275,11 @@
               "isPremium": true
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         }
-      ]
+      ],
+      "isLeaf": false
     },
     {
       "title": "二、區間貪心",
@@ -1319,7 +1329,8 @@
               "isPremium": false
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         },
         {
           "title": "§2.2 區間分組",
@@ -1345,7 +1356,8 @@
               "isPremium": true
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         },
         {
           "title": "§2.3 區間選點",
@@ -1389,7 +1401,8 @@
               "isPremium": false
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         },
         {
           "title": "§2.4 區間覆蓋",
@@ -1424,7 +1437,8 @@
               "isPremium": false
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         },
         {
           "title": "§2.5 合併區間",
@@ -1558,7 +1572,8 @@
               "isPremium": true
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         },
         {
           "title": "§2.6 其他區間貪心",
@@ -1602,9 +1617,11 @@
               "isPremium": false
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         }
-      ]
+      ],
+      "isLeaf": false
     },
     {
       "title": "三、字串貪心",
@@ -1897,7 +1914,8 @@
               "isPremium": true
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         },
         {
           "title": "§3.2 迴文串貪心",
@@ -2076,9 +2094,11 @@
               "isPremium": true
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         }
-      ]
+      ],
+      "isLeaf": false
     },
     {
       "title": "四、數學貪心",
@@ -2164,7 +2184,8 @@
               "isPremium": false
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         },
         {
           "title": "§4.2 乘積貪心",
@@ -2199,7 +2220,8 @@
               "isPremium": false
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         },
         {
           "title": "§4.3 排序不等式",
@@ -2270,7 +2292,8 @@
               "isPremium": true
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         },
         {
           "title": "§4.4 均值不等式",
@@ -2323,7 +2346,8 @@
               "isPremium": false
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         },
         {
           "title": "§4.5 中位數貪心",
@@ -2448,7 +2472,8 @@
               "isPremium": true
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         },
         {
           "title": "§4.6 歸納法",
@@ -2483,7 +2508,8 @@
               "isPremium": false
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         },
         {
           "title": "§4.7 其他數學貪心",
@@ -2527,9 +2553,11 @@
               "isPremium": true
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         }
-      ]
+      ],
+      "isLeaf": false
     },
     {
       "title": "五、思維題",
@@ -2669,7 +2697,8 @@
               "isPremium": true
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         },
         {
           "title": "§5.2 腦筋急轉彎",
@@ -3091,7 +3120,8 @@
               "isPremium": true
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         },
         {
           "title": "§5.3 逆向思維",
@@ -3261,7 +3291,8 @@
               "isPremium": true
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         },
         {
           "title": "§5.4 等價轉換",
@@ -3368,9 +3399,11 @@
               "isPremium": true
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         }
-      ]
+      ],
+      "isLeaf": false
     },
     {
       "title": "六、構造題",
@@ -3429,7 +3462,7 @@
               "isPremium": false
             },
             {
-                           "id": "3513",
+              "id": "3513",
               "title": "不同 XOR 三元組的數目 I",
               "slug": "number-of-unique-xor-triplets-i",
               "src": "https://leetcode.cn/problems/number-of-unique-xor-triplets-i/",
@@ -3591,9 +3624,11 @@
               "isPremium": false
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         }
-      ]
+      ],
+      "isLeaf": false
     },
     {
       "title": "七、互動題",
@@ -3781,7 +3816,8 @@
           "isPremium": true
         }
       ],
-      "children": []
+      "children": [],
+      "isLeaf": true
     },
     {
       "title": "八、其他",
@@ -4005,8 +4041,8 @@
           "isPremium": true
         }
       ],
-      "children": []
+      "children": [],
+      "isLeaf": true
     }
-  ],
-  "summary": "為方便大家練習，我把比較套路的貪心題目放在前面，更靈活的思維題和構造題放在後面。每個小節的題目均按照從易到難的順序排列。\n\n**如果做題時沒有思路，推薦看看本文第五章的「思考清單」。**"
+  ]
 }

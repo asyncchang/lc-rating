@@ -197,7 +197,8 @@
           "score": null,
           "isPremium": false
         }
-      ]
+      ],
+      "isLeaf": true
     },
     {
       "title": "二、異或（XOR）的性質",
@@ -358,15 +359,13 @@
           "isPremium": true
         }
       ],
-      "children": []
+      "children": [],
+      "isLeaf": true
     },
     {
       "title": "三、與或（AND/OR）的性質",
       "src": null,
-      "summary": "AND 的數越多，結果越小。\n\nOR 的數越多，結果越大。\n\n### AND/OR LogTrick\n\n[LogTrick 入門教程](/link/?target=https%3A%2F%2Fzhuanlan.zhihu.com%2Fp%2F1933215367158830792)，包含原地寫法，以及額外維護一個列表的寫法。\n\n如果你不熟悉原地去重演算法，可以看 [26\\. 刪除有序陣列中的重複項](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/)，[我的題解](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/solutions/2807162/gen-zhao-wo-guo-yi-bian-shi-li-2ni-jiu-m-rvyk/)。\n\n模板：\n\n```cpp
-#include <bits/stdc++.h>
-using namespace std;
-// 對於每個右端點 i，計算所有子陣列的或值，列印這些或值的分佈範圍（子陣列左端點範圍）\n// 時間複雜度 O(nlogU)，其中 U = max(nums)\nvoid logTrick(const vector<int>& nums) {\n    vector<pair<int, int>> or_left; // (子陣列或值，最小左端點)\n    for (int i = 0; i < (int)nums.size(); i++) {\n        int x = nums[i];\n        for (auto& p : or_left) p.first |= x; // **根據題目修改**\n        or_left.push_back({x, i}); // x 單獨一個數作為子陣列\n\n        // 原地去重（相同或值只保留最左邊的）\n        int idx = 1;\n        for (int j = 1; j < (int)or_left.size(); j++) {\n            if (or_left[j].first != or_left[j - 1].first) {\n                or_left[idx++] = or_left[j];\n            }\n        }\n        or_left.resize(idx);\n\n        cout << i << ' ' << x << "\n";\n        for (int k = 0; k < (int)or_left.size(); k++) {\n            int right = (k + 1 < (int)or_left.size() ? or_left[k + 1].second - 1 : i);\n            // 對於左端點在 [left, right]，右端點為 i 的子陣列，OR 值都是 or_val\n            cout << or_left[k].second << ' ' << right << ' ' << or_left[k].first << "\n";\n        }\n    }\n}\n```\n\n注：下面的部分題目，可以用**滑動視窗+棧**做到更優的 O(n) 時間複雜度，見 [原理講解（方法二）](https://leetcode.cn/problems/find-subarray-with-bitwise-or-closest-to-k/solutions/2798206/li-yong-and-de-xing-zhi-pythonjavacgo-by-gg4d/)。\n\n### GCD LogTrick\n\n*   [2447\\. 最大公因數等於 K 的子陣列數目](https://leetcode.cn/problems/number-of-subarrays-with-gcd-equal-to-k/) 非暴力做法\n*   [2654\\. 使陣列所有元素變成 1 的最少操作次數](https://leetcode.cn/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/) 非暴力做法\n*   [3605\\. 陣列的最小穩定性因子](https://leetcode.cn/problems/minimum-stability-factor-of-array/) 2410\n*   [3574\\. 最大子陣列 GCD 分數](https://leetcode.cn/problems/maximize-subarray-gcd-score/) 非暴力做法\n*   [2941\\. 子陣列的最大 GCD-Sum](https://leetcode.cn/problems/maximum-gcd-sum-of-a-subarray/)（會員題）",
+      "summary": "AND 的數越多，結果越小。\n\nOR 的數越多，結果越大。\n\n### AND/OR LogTrick\n\n[LogTrick 入門教程](/link/?target=https%3A%2F%2Fzhuanlan.zhihu.com%2Fp%2F1933215367158830792)，包含原地寫法，以及額外維護一個列表的寫法。\n\n如果你不熟悉原地去重演算法，可以看 [26\\. 刪除有序陣列中的重複項](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/)，[我的題解](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/solutions/2807162/gen-zhao-wo-guo-yi-bian-shi-li-2ni-jiu-m-rvyk/)。\n\n模板：\n\n```cpp\n// 對於每個右端點 i，計算所有子陣列的或值，列印這些或值的分佈範圍（子陣列左端點範圍）\n// 時間複雜度 O(nlogU)，其中 U = max(nums)\nvoid logTrick(const vector<int>& nums) {\n    vector<pair<int, int>> or_left; // (子陣列或值，最小左端點)\n    for (int i = 0; i < (int)nums.size(); i++) {\n        int x = nums[i];\n        for (auto& p : or_left) p.first |= x; // **根據題目修改**\n        or_left.push_back({x, i}); // x 單獨一個數作為子陣列\n\n        // 原地去重（相同或值只保留最左邊的）\n        int idx = 1;\n        for (int j = 1; j < (int)or_left.size(); j++) {\n            if (or_left[j].first != or_left[j - 1].first) {\n                or_left[idx++] = or_left[j];\n            }\n        }\n        or_left.resize(idx);\n\n        cout << i << ' ' << x << \"\n\";\n        for (int k = 0; k < (int)or_left.size(); k++) {\n            int right = (k + 1 < (int)or_left.size() ? or_left[k + 1].second - 1 : i);\n            // 對於左端點在 [left, right]，右端點為 i 的子陣列，OR 值都是 or_val\n            cout << or_left[k].second << ' ' << right << ' ' << or_left[k].first << \"\n\";\n        }\n    }\n}\n```\n\n注：下面的部分題目，可以用**滑動視窗+棧**做到更優的 O(n) 時間複雜度，見 [原理講解（方法二）](https://leetcode.cn/problems/find-subarray-with-bitwise-or-closest-to-k/solutions/2798206/li-yong-and-de-xing-zhi-pythonjavacgo-by-gg4d/)。\n\n### GCD LogTrick\n\n*   [2447\\. 最大公因數等於 K 的子陣列數目](https://leetcode.cn/problems/number-of-subarrays-with-gcd-equal-to-k/) 非暴力做法\n*   [2654\\. 使陣列所有元素變成 1 的最少操作次數](https://leetcode.cn/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/) 非暴力做法\n*   [3605\\. 陣列的最小穩定性因子](https://leetcode.cn/problems/minimum-stability-factor-of-array/) 2410\n*   [3574\\. 最大子陣列 GCD 分數](https://leetcode.cn/problems/maximize-subarray-gcd-score/) 非暴力做法\n*   [2941\\. 子陣列的最大 GCD-Sum](https://leetcode.cn/problems/maximum-gcd-sum-of-a-subarray/)（會員題）",
       "problems": [
         {
           "id": "2980",
@@ -513,7 +512,8 @@ using namespace std;
           "isPremium": false
         }
       ],
-      "children": []
+      "children": [],
+      "isLeaf": true
     },
     {
       "title": "四、拆位 / 貢獻法",
@@ -593,7 +593,8 @@ using namespace std;
           "isPremium": false
         }
       ],
-      "children": []
+      "children": [],
+      "isLeaf": true
     },
     {
       "title": "五、試填法",
@@ -664,7 +665,8 @@ using namespace std;
           "isPremium": true
         }
       ],
-      "children": []
+      "children": [],
+      "isLeaf": true
     },
     {
       "title": "六、恆等式",
@@ -690,15 +692,13 @@ using namespace std;
           "isPremium": false
         }
       ],
-      "children": []
+      "children": [],
+      "isLeaf": true
     },
     {
       "title": "七、線性基",
       "src": null,
-      "summary": "[講解](/link/?target=https%3A%2F%2Fwww.bilibili.com%2Fvideo%2FBV1pm8vzAEXx%2F)\n\n模板（最大異或和）：\n\n```cpp
-#include <bits/stdc++.h>
-using namespace std;
-struct XorBasis {\n    vector<long long> b;\n    explicit XorBasis(int n) : b(n, 0) {}\n\n    void insert(long long x) {\n        for (int i = (int)b.size() - 1; i >= 0; i--) {\n            if ((x >> i) & 1) {\n                if (b[i] == 0) { // x 和之前的基線性無關\n                    b[i] = x; // 新增一個基，最高位為 i\n                    return;\n                }\n                x ^= b[i]; // 保證每個基的二進位制長度互不相同\n            }\n        }\n    }\n\n    long long max_xor() const {\n        long long res = 0;\n        for (int i = (int)b.size() - 1; i >= 0; i--) {\n            res = max(res, res ^ b[i]);\n        }\n        return res;\n    }\n};\n```",
+      "summary": "[講解](/link/?target=https%3A%2F%2Fwww.bilibili.com%2Fvideo%2FBV1pm8vzAEXx%2F)\n\n模板（最大異或和）：\n\n```cpp\nstruct XorBasis {\n    vector<long long> b;\n    explicit XorBasis(int n) : b(n, 0) {}\n\n    void insert(long long x) {\n        for (int i = (int)b.size() - 1; i >= 0; i--) {\n            if ((x >> i) & 1) {\n                if (b[i] == 0) { // x 和之前的基線性無關\n                    b[i] = x; // 新增一個基，最高位為 i\n                    return;\n                }\n                x ^= b[i]; // 保證每個基的二進位制長度互不相同\n            }\n        }\n    }\n\n    long long max_xor() const {\n        long long res = 0;\n        for (int i = (int)b.size() - 1; i >= 0; i--) {\n            res = max(res, res ^ b[i]);\n        }\n        return res;\n    }\n};\n```",
       "problems": [
         {
           "id": "3681",
@@ -719,7 +719,8 @@ struct XorBasis {\n    vector<long long> b;\n    explicit XorBasis(int n) : b(n,
           "isPremium": false
         }
       ],
-      "children": []
+      "children": [],
+      "isLeaf": true
     },
     {
       "title": "八、思維題",
@@ -853,7 +854,8 @@ struct XorBasis {\n    vector<long long> b;\n    explicit XorBasis(int n) : b(n,
           "isPremium": true
         }
       ],
-      "children": []
+      "children": [],
+      "isLeaf": true
     },
     {
       "title": "九、其他",
@@ -1050,7 +1052,8 @@ struct XorBasis {\n    vector<long long> b;\n    explicit XorBasis(int n) : b(n,
           "isPremium": true
         }
       ],
-      "children": []
+      "children": [],
+      "isLeaf": true
     }
   ]
 }

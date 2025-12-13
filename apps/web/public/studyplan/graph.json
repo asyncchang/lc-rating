@@ -12,10 +12,7 @@
         {
           "title": "§1.1 深度優先搜尋（DFS）",
           "src": null,
-          "summary": "找連通塊、判斷是否有環（如 207 題）等。部分題目做法不止一種。\n\n模板（計算每個連通塊的大小）：\n\n```cpp
-#include <bits/stdc++.h>
-using namespace std;
-// 計算每個連通塊的大小\nvector<int> component_sizes(int n, const vector<vector<int>>& edges) {\n    vector<vector<int>> g(n);\n    for (auto &e : edges) {\n        int x = e[0], y = e[1];\n        g[x].push_back(y);\n        g[y].push_back(x); // 無向圖\n    }\n\n    vector<int> vis(n, 0), ans;\n    function<int(int)> dfs = [&](int x) {\n        vis[x] = 1; // 避免重複訪問節點\n        int size = 1;\n        for (int y : g[x]) {\n            if (!vis[y]) size += dfs(y);\n        }\n        return size;\n    };\n\n    for (int i = 0; i < n; i++) {\n        if (!vis[i]) ans.push_back(dfs(i));\n    }\n    return ans;\n}\n```",
+          "summary": "找連通塊、判斷是否有環（如 207 題）等。部分題目做法不止一種。\n\n模板（計算每個連通塊的大小）：\n\n```cpp\n// 計算每個連通塊的大小\nvector<int> component_sizes(int n, const vector<vector<int>>& edges) {\n    vector<vector<int>> g(n);\n    for (auto &e : edges) {\n        int x = e[0], y = e[1];\n        g[x].push_back(y);\n        g[y].push_back(x); // 無向圖\n    }\n\n    vector<int> vis(n, 0), ans;\n    function<int(int)> dfs = [&](int x) {\n        vis[x] = 1; // 避免重複訪問節點\n        int size = 1;\n        for (int y : g[x]) {\n            if (!vis[y]) size += dfs(y);\n        }\n        return size;\n    };\n\n    for (int i = 0; i < n; i++) {\n        if (!vis[i]) ans.push_back(dfs(i));\n    }\n    return ans;\n}\n```",
           "problems": [
             {
               "id": "547",
@@ -233,15 +230,13 @@ using namespace std;
               "score": 0,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§1.2 廣度優先搜尋（BFS）",
           "src": null,
-          "summary": "求最短路等。要求邊權都是 1（或者說都是同一個正數）。\n\n模板（單源最短路）：\n\n```cpp
-#include <bits/stdc++.h>
-using namespace std;
-// 計算從 start 到各個節點的最短路長度；不可達節點距離為 -1\nvector<int> bfs(int n, const vector<vector<int>>& edges, int start) {\n    vector<vector<int>> g(n);\n    for (auto &e : edges) {\n        int x = e[0], y = e[1];\n        g[x].push_back(y);\n        g[y].push_back(x); // 無向圖\n    }\n\n    vector<int> dis(n, -1);\n    queue<int> q;\n    dis[start] = 0;\n    q.push(start);\n    while (!q.empty()) {\n        int x = q.front(); q.pop();\n        for (int y : g[x]) {\n            if (dis[y] < 0) {\n                dis[y] = dis[x] + 1;\n                q.push(y);\n            }\n        }\n    }\n    return dis;\n}\n```",
+          "summary": "求最短路等。要求邊權都是 1（或者說都是同一個正數）。\n\n模板（單源最短路）：\n\n```cpp\n// 計算從 start 到各個節點的最短路長度；不可達節點距離為 -1\nvector<int> bfs(int n, const vector<vector<int>>& edges, int start) {\n    vector<vector<int>> g(n);\n    for (auto &e : edges) {\n        int x = e[0], y = e[1];\n        g[x].push_back(y);\n        g[y].push_back(x); // 無向圖\n    }\n\n    vector<int> dis(n, -1);\n    queue<int> q;\n    dis[start] = 0;\n    q.push(start);\n    while (!q.empty()) {\n        int x = q.front(); q.pop();\n        for (int y : g[x]) {\n            if (dis[y] < 0) {\n                dis[y] = dis[x] + 1;\n                q.push(y);\n            }\n        }\n    }\n    return dis;\n}\n```",
           "problems": [
             {
               "id": "3243",
@@ -306,7 +301,8 @@ using namespace std;
               "score": 1964,
               "isPremium": false
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§1.3 圖論建模 + BFS 最短路",
@@ -430,9 +426,11 @@ using namespace std;
               "score": 0,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         }
-      ]
+      ],
+      "isLeaf": false
     },
     {
       "title": "二、拓撲排序",
@@ -443,10 +441,7 @@ using namespace std;
         {
           "title": "§2.1 拓撲排序",
           "src": null,
-          "summary": "模板：\n\n```cpp
-#include <bits/stdc++.h>
-using namespace std;
-// 返回有向無環圖（DAG）的一個拓撲序；有環則返回空陣列\nvector<int> topologicalSort(int n, const vector<vector<int>>& edges) {\n    vector<vector<int>> g(n);\n    vector<int> in_deg(n);\n    for (auto &e : edges) {\n        int x = e[0], y = e[1];\n        g[x].push_back(y);\n        in_deg[y] += 1; // 統計 y 的先修課數量\n    }\n\n    queue<int> q;\n    for (int i = 0; i < n; i++) if (in_deg[i] == 0) q.push(i);\n\n    vector<int> topo_order;\n    while (!q.empty()) {\n        int x = q.front(); q.pop();\n        topo_order.push_back(x);\n        for (int y : g[x]) {\n            if (--in_deg[y] == 0) q.push(y); // y 的先修課全部上完\n        }\n    }\n\n    if ((int)topo_order.size() < n) return {}; // 圖中有環\n    return topo_order;\n}\n```\n\n學習拓撲排序前，請先完成 [1557. 可以到達所有點的最少點數目](https://leetcode.cn/problems/minimum-number-of-vertices-to-reach-all-nodes/)，有助於理解拓撲排序。",
+          "summary": "模板：\n\n```cpp\n// 返回有向無環圖（DAG）的一個拓撲序；有環則返回空陣列\nvector<int> topologicalSort(int n, const vector<vector<int>>& edges) {\n    vector<vector<int>> g(n);\n    vector<int> in_deg(n);\n    for (auto &e : edges) {\n        int x = e[0], y = e[1];\n        g[x].push_back(y);\n        in_deg[y] += 1; // 統計 y 的先修課數量\n    }\n\n    queue<int> q;\n    for (int i = 0; i < n; i++) if (in_deg[i] == 0) q.push(i);\n\n    vector<int> topo_order;\n    while (!q.empty()) {\n        int x = q.front(); q.pop();\n        topo_order.push_back(x);\n        for (int y : g[x]) {\n            if (--in_deg[y] == 0) q.push(y); // y 的先修課全部上完\n        }\n    }\n\n    if ((int)topo_order.size() < n) return {}; // 圖中有環\n    return topo_order;\n}\n```\n\n學習拓撲排序前，請先完成 [1557. 可以到達所有點的最少點數目](https://leetcode.cn/problems/minimum-number-of-vertices-to-reach-all-nodes/)，有助於理解拓撲排序。",
           "problems": [
             {
               "id": "210",
@@ -556,7 +551,8 @@ using namespace std;
               "score": 0,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§2.2 在拓撲序上 DP",
@@ -608,7 +604,8 @@ using namespace std;
               "score": 0,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§2.3 基環樹",
@@ -696,9 +693,11 @@ using namespace std;
               "score": 0,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         }
-      ]
+      ],
+      "isLeaf": false
     },
     {
       "title": "三、最短路",
@@ -709,10 +708,7 @@ using namespace std;
         {
           "title": "§3.1 單源最短路：Dijkstra 演算法",
           "src": null,
-          "summary": "[Dijkstra 演算法介紹](https://leetcode.cn/problems/network-delay-time/solution/liang-chong-dijkstra-xie-fa-fu-ti-dan-py-ooe8/)\n\n模板：\n\n```cpp
-#include <bits/stdc++.h>
-using namespace std;
-// 返回從起點 start 到每個點的最短路長度 dis，如果節點 x 不可達，則 dis[x] = INF\n// 要求：沒有負數邊權\nvector<long long> shortestPathDijkstra(int n, const vector<vector<int>>& edges, int start) {\n    vector<vector<pair<int, int>>> g(n);\n    for (auto &e : edges) {\n        int x = e[0], y = e[1], wt = e[2];\n        g[x].push_back({y, wt});\n        // g[y].push_back({x, wt}); // 無向圖加上這行\n    }\n\n    const long long INF = (1LL << 60);\n    vector<long long> dis(n, INF);\n    dis[start] = 0;\n    priority_queue<pair<long long, int>, vector<pair<long long, int>>, greater<>> pq;\n    pq.push({0, start});\n\n    while (!pq.empty()) {\n        auto [dis_x, x] = pq.top();\n        pq.pop();\n        if (dis_x > dis[x]) continue; // x 之前出堆過\n        for (auto [y, wt] : g[x]) {\n            long long new_dis_y = dis_x + wt;\n            if (new_dis_y < dis[y]) {\n                dis[y] = new_dis_y; // 更新 x 的鄰居的最短路\n                pq.push({new_dis_y, y});\n            }\n        }\n    }\n    return dis;\n}\n```",
+          "summary": "[Dijkstra 演算法介紹](https://leetcode.cn/problems/network-delay-time/solution/liang-chong-dijkstra-xie-fa-fu-ti-dan-py-ooe8/)\n\n模板：\n\n```cpp\n// 返回從起點 start 到每個點的最短路長度 dis，如果節點 x 不可達，則 dis[x] = INF\n// 要求：沒有負數邊權\nvector<long long> shortestPathDijkstra(int n, const vector<vector<int>>& edges, int start) {\n    vector<vector<pair<int, int>>> g(n);\n    for (auto &e : edges) {\n        int x = e[0], y = e[1], wt = e[2];\n        g[x].push_back({y, wt});\n        // g[y].push_back({x, wt}); // 無向圖加上這行\n    }\n\n    const long long INF = (1LL << 60);\n    vector<long long> dis(n, INF);\n    dis[start] = 0;\n    priority_queue<pair<long long, int>, vector<pair<long long, int>>, greater<>> pq;\n    pq.push({0, start});\n\n    while (!pq.empty()) {\n        auto [dis_x, x] = pq.top();\n        pq.pop();\n        if (dis_x > dis[x]) continue; // x 之前出堆過\n        for (auto [y, wt] : g[x]) {\n            long long new_dis_y = dis_x + wt;\n            if (new_dis_y < dis[y]) {\n                dis[y] = new_dis_y; // 更新 x 的鄰居的最短路\n                pq.push({new_dis_y, y});\n            }\n        }\n    }\n    return dis;\n}\n```",
           "problems": [
             {
               "id": "743",
@@ -966,15 +962,13 @@ using namespace std;
               "score": 0,
               "isPremium": true
             }
-          ]
+          ],
+          "isLeaf": true
         },
         {
           "title": "§3.2 全源最短路：Floyd 演算法",
           "src": null,
-          "summary": "Floyd 演算法本質是三維 DP。\n\n[帶你發明 Floyd 演算法：從記憶化搜尋到遞推](https://leetcode.cn/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/solution/dai-ni-fa-ming-floyd-suan-fa-cong-ji-yi-m8s51/)\n\n模板：\n\n```cpp
-#include <bits/stdc++.h>
-using namespace std;
-// 返回一個二維陣列，其中 (i,j) 表示從 i 到 j 的最短路長度；不可達為 INF\n// 允許負數邊權；若存在 i 使得 f[i][i] < 0，則圖中有負環\nvector<vector<long long>> shortestPathFloyd(int n, const vector<vector<int>>& edges) {\n    const long long INF = (1LL << 60);\n    vector<vector<long long>> f(n, vector<long long>(n, INF));\n    for (int i = 0; i < n; i++) f[i][i] = 0;\n\n    for (auto &e : edges) {\n        int x = e[0], y = e[1], wt = e[2];\n        f[x][y] = min(f[x][y], (long long)wt); // 如果有重邊，取邊權最小值\n        f[y][x] = min(f[y][x], (long long)wt); // 無向圖\n    }\n\n    for (int k = 0; k < n; k++) {\n        for (int i = 0; i < n; i++) {\n            if (f[i][k] == INF) continue; // 針對稀疏圖的最佳化\n            for (int j = 0; j < n; j++) {\n                f[i][j] = min(f[i][j], f[i][k] + f[k][j]);\n            }\n        }\n    }\n    return f;\n}\n```",
+          "summary": "Floyd 演算法本質是三維 DP。\n\n[帶你發明 Floyd 演算法：從記憶化搜尋到遞推](https://leetcode.cn/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/solution/dai-ni-fa-ming-floyd-suan-fa-cong-ji-yi-m8s51/)\n\n模板：\n\n```cpp\n// 返回一個二維陣列，其中 (i,j) 表示從 i 到 j 的最短路長度；不可達為 INF\n// 允許負數邊權；若存在 i 使得 f[i][i] < 0，則圖中有負環\nvector<vector<long long>> shortestPathFloyd(int n, const vector<vector<int>>& edges) {\n    const long long INF = (1LL << 60);\n    vector<vector<long long>> f(n, vector<long long>(n, INF));\n    for (int i = 0; i < n; i++) f[i][i] = 0;\n\n    for (auto &e : edges) {\n        int x = e[0], y = e[1], wt = e[2];\n        f[x][y] = min(f[x][y], (long long)wt); // 如果有重邊，取邊權最小值\n        f[y][x] = min(f[y][x], (long long)wt); // 無向圖\n    }\n\n    for (int k = 0; k < n; k++) {\n        for (int i = 0; i < n; i++) {\n            if (f[i][k] == INF) continue; // 針對稀疏圖的最佳化\n            for (int j = 0; j < n; j++) {\n                f[i][j] = min(f[i][j], f[i][k] + f[k][j]);\n            }\n        }\n    }\n    return f;\n}\n```",
           "problems": [
             {
               "id": "2642",
@@ -1021,17 +1015,16 @@ using namespace std;
               "score": 2696,
               "isPremium": false
             }
-          ]
+          ],
+          "isLeaf": true
         }
-      ]
+      ],
+      "isLeaf": false
     },
     {
       "title": "四、最小生成樹",
       "src": null,
-      "summary": "涉及到 Kruskal 演算法和 Prim 演算法。前者一般用於稀疏圖，後者一般用於稠密圖。\n\n> 注：如果要求最大生成樹，把邊權從大到小排序。\n\nKruskal 演算法模板（用到了並查集，完整模板見 [資料結構題單](https://leetcode.cn/circle/discuss/mOr1u6/)）：\n\n```cpp
-#include <bits/stdc++.h>
-using namespace std;
-struct UnionFindMST {\n    vector<int> fa;\n    int cc;\n    explicit UnionFindMST(int n) : fa(n), cc(n) { iota(fa.begin(), fa.end(), 0); }\n    int find(int x) { return fa[x] == x ? x : fa[x] = find(fa[x]); }\n    bool merge(int x, int y) {\n        x = find(x); y = find(y);\n        if (x == y) return false;\n        fa[x] = y; // 合併集合\n        cc -= 1;   // 成功合併，連通塊個數減一\n        return true;\n    }\n};\n\n// 計算圖的最小生成樹的邊權之和；如果圖不連通，返回 INF\nlong long mstKruskal(int n, vector<array<int, 3>> edges) {\n    sort(edges.begin(), edges.end(), [](auto &a, auto &b) { return a[2] < b[2]; });\n    UnionFindMST uf(n);\n    long long sum_wt = 0;\n    for (auto &e : edges) {\n        int x = e[0], y = e[1], wt = e[2];\n        if (uf.merge(x, y)) sum_wt += wt;\n    }\n    if (uf.cc > 1) return (1LL << 60); // 圖不連通\n    return sum_wt;\n}\n```",
+      "summary": "涉及到 Kruskal 演算法和 Prim 演算法。前者一般用於稀疏圖，後者一般用於稠密圖。\n\n> 注：如果要求最大生成樹，把邊權從大到小排序。\n\nKruskal 演算法模板（用到了並查集，完整模板見 [資料結構題單](https://leetcode.cn/circle/discuss/mOr1u6/)）：\n\n```cpp\nstruct UnionFindMST {\n    vector<int> fa;\n    int cc;\n    explicit UnionFindMST(int n) : fa(n), cc(n) { iota(fa.begin(), fa.end(), 0); }\n    int find(int x) { return fa[x] == x ? x : fa[x] = find(fa[x]); }\n    bool merge(int x, int y) {\n        x = find(x); y = find(y);\n        if (x == y) return false;\n        fa[x] = y; // 合併集合\n        cc -= 1;   // 成功合併，連通塊個數減一\n        return true;\n    }\n};\n\n// 計算圖的最小生成樹的邊權之和；如果圖不連通，返回 INF\nlong long mstKruskal(int n, vector<array<int, 3>> edges) {\n    sort(edges.begin(), edges.end(), [](auto &a, auto &b) { return a[2] < b[2]; });\n    UnionFindMST uf(n);\n    long long sum_wt = 0;\n    for (auto &e : edges) {\n        int x = e[0], y = e[1], wt = e[2];\n        if (uf.merge(x, y)) sum_wt += wt;\n    }\n    if (uf.cc > 1) return (1LL << 60); // 圖不連通\n    return sum_wt;\n}\n```",
       "problems": [
         {
           "id": "1584",
@@ -1079,7 +1072,8 @@ struct UnionFindMST {\n    vector<int> fa;\n    int cc;\n    explicit UnionFindM
           "isPremium": true
         }
       ],
-      "children": []
+      "children": [],
+      "isLeaf": true
     },
     {
       "title": "五、尤拉路徑/歐拉回路",
@@ -1114,7 +1108,8 @@ struct UnionFindMST {\n    vector<int> fa;\n    int cc;\n    explicit UnionFindM
           "isPremium": false
         }
       ],
-      "children": []
+      "children": [],
+      "isLeaf": true
     },
     {
       "title": "六、強連通分量/雙連通分量",
@@ -1158,39 +1153,13 @@ struct UnionFindMST {\n    vector<int> fa;\n    int cc;\n    explicit UnionFindM
           "isPremium": true
         }
       ],
-      "children": []
+      "children": [],
+      "isLeaf": true
     },
     {
       "title": "七、二分圖染色",
       "src": null,
-      "summary": "模板（交替染色法）：\n\n```cpp
-#include <bits/stdc++.h>
-using namespace std;
-// 返回圖的二染色；如果不是二分圖則返回空陣列
-vector<int> colorBipartite(int n, const vector<vector<int>>& edges) {
-    vector<vector<int>> g(n);
-    for (auto &e : edges) {
-        int x = e[0], y = e[1];
-        g[x].push_back(y);
-        g[y].push_back(x);
-    }
-
-    vector<int> colors(n, 0);
-    function<bool(int, int)> dfs = [&](int x, int c) {
-        colors[x] = c; // 節點 x 染成顏色 c
-        for (int y : g[x]) {
-            if (colors[y] == c) return false; // 不是二分圖
-            if (colors[y] == 0 && !dfs(y, 3 - c)) return false; // 1 和 2 交替染色
-        }
-        return true;
-    };
-
-    for (int i = 0; i < n; i++) {
-        if (colors[i] == 0 && !dfs(i, 1)) return {}; // i 所在連通塊不是二分圖
-    }
-    return colors;
-}
-```",
+      "summary": "模板（交替染色法）：\n\n```cpp\n// 返回圖的二染色；如果不是二分圖則返回空陣列\nvector<int> colorBipartite(int n, const vector<vector<int>>& edges) {\n    vector<vector<int>> g(n);\n    for (auto &e : edges) {\n        int x = e[0], y = e[1];\n        g[x].push_back(y);\n        g[y].push_back(x);\n    }\n\n    vector<int> colors(n, 0);\n    function<bool(int, int)> dfs = [&](int x, int c) {\n        colors[x] = c; // 節點 x 染成顏色 c\n        for (int y : g[x]) {\n            if (colors[y] == c) return false; // 不是二分圖\n            if (colors[y] == 0 && !dfs(y, 3 - c)) return false; // 1 和 2 交替染色\n        }\n        return true;\n    };\n\n    for (int i = 0; i < n; i++) {\n        if (colors[i] == 0 && !dfs(i, 1)) return {}; // i 所在連通塊不是二分圖\n    }\n    return colors;\n}\n```",
       "problems": [
         {
           "id": "785",
@@ -1220,7 +1189,8 @@ vector<int> colorBipartite(int n, const vector<vector<int>>& edges) {
           "isPremium": false
         }
       ],
-      "children": []
+      "children": [],
+      "isLeaf": true
     },
     {
       "title": "八、網路流",
@@ -1372,7 +1342,8 @@ vector<int> colorBipartite(int n, const vector<vector<int>>& edges) {
           "isPremium": true
         }
       ],
-      "children": []
+      "children": [],
+      "isLeaf": true
     },
     {
       "title": "九、其他",
@@ -1542,14 +1513,16 @@ vector<int> colorBipartite(int n, const vector<vector<int>>& edges) {
           "isPremium": true
         }
       ],
-      "children": []
+      "children": [],
+      "isLeaf": true
     },
     {
       "title": "十、樹上演算法",
       "src": null,
       "summary": "見 [連結串列、樹、回溯](https://leetcode.cn/circle/discuss/K0n2gO/) 題單的第三章節。",
       "problems": [],
-      "children": []
+      "children": [],
+      "isLeaf": true
     }
   ]
 }

@@ -59,7 +59,8 @@
               "isPremium": false
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         },
         {
           "title": "§1.2 進階",
@@ -247,9 +248,11 @@
               "isPremium": true
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         }
-      ]
+      ],
+      "isLeaf": false
     },
     {
       "title": "二、二分答案",
@@ -396,9 +399,11 @@
                   "isPremium": false
                 }
               ],
-              "children": []
+              "children": [],
+              "isLeaf": true
             }
-          ]
+          ],
+          "isLeaf": false
         },
         {
           "title": "§2.2 求最大",
@@ -568,7 +573,8 @@
               "isPremium": true
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         },
         {
           "title": "§2.3 二分間接值",
@@ -594,7 +600,8 @@
               "isPremium": false
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         },
         {
           "title": "§2.4 最小化最大值",
@@ -746,7 +753,8 @@
               "isPremium": true
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         },
         {
           "title": "§2.5 最大化最小值",
@@ -862,7 +870,8 @@
               "isPremium": true
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         },
         {
           "title": "§2.6 第 K 小/大",
@@ -1023,9 +1032,11 @@
               "isPremium": true
             }
           ],
-          "children": []
+          "children": [],
+          "isLeaf": true
         }
-      ]
+      ],
+      "isLeaf": false
     },
     {
       "title": "三、三分法",
@@ -1042,7 +1053,8 @@
           "isPremium": false
         }
       ],
-      "children": []
+      "children": [],
+      "isLeaf": true
     },
     {
       "title": "四、其他",
@@ -1275,7 +1287,8 @@
           "isPremium": true
         }
       ],
-      "children": []
+      "children": [],
+      "isLeaf": true
     }
   ]
 }

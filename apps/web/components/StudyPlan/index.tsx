@@ -36,7 +36,7 @@ function StudyPlan({ plan }: StudyPlanProps) {
 
   const toc = useMemo(() => {
     if (!studyPlan) return null;
-    const res = studyPlan && studyPlan.children.map(generateToc, 1);
+    const res = studyPlan && studyPlan.children.map((child) => generateToc(child, 1));
     return (
       studyPlan && {
         title: plan,
@@ -47,7 +47,7 @@ function StudyPlan({ plan }: StudyPlanProps) {
     );
   }, [studyPlan, plan]);
 
-  console.log("StudyPlan render", { studyPlan, toc });
+  console.log("StudyPlan render", { studyPlan, toc, isPending, error });
 
   return (
     <SidebarProvider>

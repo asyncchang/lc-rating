@@ -35,19 +35,24 @@ const SectionContainer = React.memo(
     useEffect(() => {
       if (innerHtml.current) {
         innerHtml.current.querySelectorAll("a").forEach((link) => {
-          link.style = "";
+          link.removeAttribute("style");
           link.setAttribute("target", "_blank");
           link.className = "underline text-blue-500";
         });
         innerHtml.current.querySelectorAll("img").forEach((img) => {
-          img.style = "";
+          img.removeAttribute("style");
           img.className = "w-2/3 md:w-1/2";
         });
       }
     }, [innerHtml]);
 
     const createMarkup = (md: string) => {
-      return { __html: marked.parse(md) };
+      const parsed = marked.parse(md);
+      if (typeof parsed === 'string') {
+        return { __html: parsed };
+      }
+      console.error("marked.parse returned non-string:", parsed);
+      return { __html: "" };
     };
 
     const cardClasses = cn("scroll-mt-[70px]", {
