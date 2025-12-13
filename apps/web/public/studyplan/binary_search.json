@@ -6,7 +6,7 @@
     {
       "title": "一、二分查詢",
       "src": null,
-      "summary": "講解：[二分查詢 紅藍染色法【基礎演算法精講 04】](/link/?target=https%3A%2F%2Fwww.bilibili.com%2Fvideo%2FBV1AP41137w7%2F)\n\n設 nums 為遞增（非遞減）陣列，長為 n。\n\n| **需求** | **寫法** | **如果不存在** |\n| --- | --- | --- |\n| ≥x 的第一個元素的下標 | `lower_bound(nums.begin(), nums.end(), x) - nums.begin()` | 結果為 n |\n| >x 的第一個元素的下標 | `lower_bound(nums.begin(), nums.end(), x + 1) - nums.begin()` | 結果為 n |\n| <x 的最後一個元素的下標 | `lower_bound(nums.begin(), nums.end(), x) - nums.begin() - 1` | 結果為 −1 |\n| ≤x 的最後一個元素的下標 | `lower_bound(nums.begin(), nums.end(), x + 1) - nums.begin() - 1` | 結果為 −1 |\n\n| **需求** | **寫法** |\n| --- | --- |\n| <x 的元素個數 | `lower_bound(nums.begin(), nums.end(), x) - nums.begin()` |\n| ≤x 的元素個數 | `lower_bound(nums.begin(), nums.end(), x + 1) - nums.begin()` |\n| ≥x 的元素個數 | `n - (lower_bound(nums.begin(), nums.end(), x) - nums.begin())` |\n| >x 的元素個數 | `n - (lower_bound(nums.begin(), nums.end(), x + 1) - nums.begin())` |\n\n注意 <x 和 ≥x 互為補集，二者之和為 n。≤x 和 >x 同理。",
+      "summary": "講解：[二分查詢 紅藍染色法【基礎演算法精講 04】](/link/?target=https%3A%2F%2Fwww.bilibili.com%2Fvideo%2FBV1AP41137w7%2F)\n\n設 nums 為遞增（非遞減）陣列，長為 n。\n\n**查詢元素下標**\n\n| 需求 | 寫法 | 不存在時 |\n| --- | --- | --- |\n| ≥x 首個 | `lower_bound(x)` | n |\n| >x 首個 | `lower_bound(x+1)` | n |\n| <x 末個 | `lower_bound(x)-1` | −1 |\n| ≤x 末個 | `lower_bound(x+1)-1` | −1 |\n\n**統計元素個數**\n\n| 需求 | 寫法 |\n| --- | --- |\n| <x 個數 | `lower_bound(x)` |\n| ≤x 個數 | `lower_bound(x+1)` |\n| ≥x 個數 | `n - lower_bound(x)` |\n| >x 個數 | `n - lower_bound(x+1)` |\n\n註：`lower_bound(x)` 代表 `lower_bound(nums.begin(), nums.end(), x) - nums.begin()`\n\n注意 <x 和 ≥x 互為補集，二者之和為 n。≤x 和 >x 同理。",
       "children": [
         {
           "title": "§1.1 基礎",
