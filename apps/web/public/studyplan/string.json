@@ -1,26 +1,26 @@
 {
-    "title": "分享丨【算法题单】字符串（KMP/Z函数/Manacher/字符串哈希/AC自动机/后缀数组/子序列自动机）",
+    "title": "分享丨【演算法題單】字串（KMP/Z函式/Manacher/字串雜湊/AC自動機/字尾陣列/子序列自動機）",
     "src": "https://leetcode.cn/circle/discuss/SJFwQI/",
     "last_update": "2025-11-07T23:47:26.098808+00:00",
-    "summary": "本题单系统梳理字符串算法核心内容，涵盖 KMP（前缀的后缀）、Z 函数（后缀的前缀）、Manacher（回文串）、字符串哈希、最小表示法、字典树、AC 自动机、后缀数组/自动机、子序列自动机等十大模块。每部分均提供原理说明、模板代码、典型例题及难度标注，适合系统学习与刷题进阶。关联题单包括数据结构、滑动窗口、数学、贪心等，助力高效刷题。",
+    "summary": "本題單系統梳理字串演算法核心內容，涵蓋 KMP（字首的字尾）、Z 函式（字尾的字首）、Manacher（迴文串）、字串雜湊、最小表示法、字典樹、AC 自動機、字尾陣列/自動機、子序列自動機等十大模組。每部分均提供原理說明、模板程式碼、典型例題及難度標註，適合系統學習與刷題進階。關聯題單包括資料結構、滑動視窗、數學、貪心等，助力高效刷題。",
     "children": [
         {
-            "title": "介绍",
-            "summary": "本题单系统梳理字符串算法核心内容，涵盖 KMP（前缀的后缀）、Z 函数（后缀的前缀）、Manacher（回文串）、字符串哈希、最小表示法、字典树、AC 自动机、后缀数组/自动机、子序列自动机等十大模块。每部分均提供原理说明、模板代码、典型例题及难度标注，适合系统学习与刷题进阶。关联题单包括数据结构、滑动窗口、数学、贪心等，助力高效刷题。",
+            "title": "介紹",
+            "summary": "本題單系統梳理字串演算法核心內容，涵蓋 KMP（字首的字尾）、Z 函式（字尾的字首）、Manacher（迴文串）、字串雜湊、最小表示法、字典樹、AC 自動機、字尾陣列/自動機、子序列自動機等十大模組。每部分均提供原理說明、模板程式碼、典型例題及難度標註，適合系統學習與刷題進階。關聯題單包括資料結構、滑動視窗、數學、貪心等，助力高效刷題。",
             "isLeaf": false,
             "children": [
                 {
-                    "title": "一、KMP（前缀的后缀）",
-                    "summary": "KMP 算法通过预处理模式串的 π 数组（最长 border 长度），实现文本串中模式串的线性时间匹配。适用于子串匹配、旋转字符串、重复子串等场景。模板题为 28. 找出字符串中第一个匹配项的下标。",
+                    "title": "一、KMP（字首的字尾）",
+                    "summary": "KMP 演算法透過預處理模式串的 π 陣列（最長 border 長度），實現文字串中模式串的線性時間匹配。適用於子串匹配、旋轉字串、重複子串等場景。模板題為 28. 找出字串中第一個匹配項的下標。",
                     "isLeaf": false,
                     "children": [
                         {
-                            "title": "§1.1 基础",
+                            "title": "§1.1 基礎",
                             "summary": "",
                             "problems": [
                                 {
                                     "id": 28,
-                                    "title": "28. 找出字符串中第一个匹配项的下标",
+                                    "title": "28. 找出字串中第一個匹配項的下標",
                                     "slug": "/find-the-index-of-the-first-occurrence-in-a-string/",
                                     "src": "https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/",
                                     "solution": null,
@@ -29,7 +29,7 @@
                                 },
                                 {
                                     "id": 796,
-                                    "title": "796. 旋转字符串",
+                                    "title": "796. 旋轉字串",
                                     "slug": "/rotate-string/",
                                     "src": "https://leetcode.cn/problems/rotate-string/",
                                     "solution": null,
@@ -38,7 +38,7 @@
                                 },
                                 {
                                     "id": 1392,
-                                    "title": "1392. 最长快乐前缀",
+                                    "title": "1392. 最長快樂字首",
                                     "slug": "/longest-happy-prefix/",
                                     "src": "https://leetcode.cn/problems/longest-happy-prefix/",
                                     "solution": null,
@@ -47,7 +47,7 @@
                                 },
                                 {
                                     "id": 3036,
-                                    "title": "3036. 匹配模式数组的子数组数目 II",
+                                    "title": "3036. 匹配模式陣列的子陣列數目 II",
                                     "slug": "/number-of-subarrays-that-match-a-pattern-ii/",
                                     "src": "https://leetcode.cn/problems/number-of-subarrays-that-match-a-pattern-ii/",
                                     "solution": null,
@@ -56,7 +56,7 @@
                                 },
                                 {
                                     "id": 1764,
-                                    "title": "1764. 通过连接另一个数组的子数组得到一个数组",
+                                    "title": "1764. 透過連線另一個陣列的子陣列得到一個陣列",
                                     "slug": "/form-array-by-concatenating-subarrays-of-another-array/",
                                     "src": "https://leetcode.cn/problems/form-array-by-concatenating-subarrays-of-another-array/",
                                     "solution": null,
@@ -65,7 +65,7 @@
                                 },
                                 {
                                     "id": 1668,
-                                    "title": "1668. 最大重复子字符串",
+                                    "title": "1668. 最大重複子字串",
                                     "slug": "/maximum-repeating-substring/",
                                     "src": "https://leetcode.cn/problems/maximum-repeating-substring/",
                                     "solution": null,
@@ -74,7 +74,7 @@
                                 },
                                 {
                                     "id": 459,
-                                    "title": "459. 重复的子字符串",
+                                    "title": "459. 重複的子字串",
                                     "slug": "/repeated-substring-pattern/",
                                     "src": "https://leetcode.cn/problems/repeated-substring-pattern/",
                                     "solution": null,
@@ -83,7 +83,7 @@
                                 },
                                 {
                                     "id": 2800,
-                                    "title": "2800. 包含三个字符串的最短字符串",
+                                    "title": "2800. 包含三個字串的最短字串",
                                     "slug": "/shortest-string-that-contains-three-strings/",
                                     "src": "https://leetcode.cn/problems/shortest-string-that-contains-three-strings/",
                                     "solution": null,
@@ -92,7 +92,7 @@
                                 },
                                 {
                                     "id": 3008,
-                                    "title": "3008. 找出数组中的美丽下标 II",
+                                    "title": "3008. 找出陣列中的美麗下標 II",
                                     "slug": "/find-beautiful-indices-in-the-given-array-ii/",
                                     "src": "https://leetcode.cn/problems/find-beautiful-indices-in-the-given-array-ii/",
                                     "solution": null,
@@ -101,7 +101,7 @@
                                 },
                                 {
                                     "id": 214,
-                                    "title": "214. 最短回文串",
+                                    "title": "214. 最短迴文串",
                                     "slug": "/shortest-palindrome/",
                                     "src": "https://leetcode.cn/problems/shortest-palindrome/",
                                     "solution": null,
@@ -110,7 +110,7 @@
                                 },
                                 {
                                     "id": 3529,
-                                    "title": "3529. 统计水平子串和垂直子串重叠格子的数目",
+                                    "title": "3529. 統計水平子串和垂直子串重疊格子的數目",
                                     "slug": "/count-cells-in-overlapping-horizontal-and-vertical-substrings/",
                                     "src": "https://leetcode.cn/problems/count-cells-in-overlapping-horizontal-and-vertical-substrings/",
                                     "solution": null,
@@ -119,7 +119,7 @@
                                 },
                                 {
                                     "id": 686,
-                                    "title": "686. 重复叠加字符串匹配",
+                                    "title": "686. 重複疊加字串匹配",
                                     "slug": "/repeated-string-match/",
                                     "src": "https://leetcode.cn/problems/repeated-string-match/",
                                     "solution": null,
@@ -128,7 +128,7 @@
                                 },
                                 {
                                     "id": 3455,
-                                    "title": "3455. 最短匹配子字符串",
+                                    "title": "3455. 最短匹配子字串",
                                     "slug": "/shortest-matching-substring/",
                                     "src": "https://leetcode.cn/problems/shortest-matching-substring/",
                                     "solution": null,
@@ -137,7 +137,7 @@
                                 },
                                 {
                                     "id": 1397,
-                                    "title": "1397. 找到所有好字符串",
+                                    "title": "1397. 找到所有好字串",
                                     "slug": "/find-all-good-strings/",
                                     "src": "https://leetcode.cn/problems/find-all-good-strings/",
                                     "solution": null,
@@ -146,7 +146,7 @@
                                 },
                                 {
                                     "id": 3037,
-                                    "title": "3037. 在无限流中寻找模式 II",
+                                    "title": "3037. 在無限流中尋找模式 II",
                                     "slug": "/find-pattern-in-infinite-stream-ii/",
                                     "src": "https://leetcode.cn/problems/find-pattern-in-infinite-stream-ii/",
                                     "solution": null,
@@ -155,7 +155,7 @@
                                 },
                                 {
                                     "id": 3571,
-                                    "title": "3571. 最短超级串 II",
+                                    "title": "3571. 最短超級串 II",
                                     "slug": "/find-the-shortest-superstring-ii/",
                                     "src": "https://leetcode.cn/problems/find-the-shortest-superstring-ii/",
                                     "solution": null,
@@ -168,17 +168,17 @@
                     ]
                 },
                 {
-                    "title": "二、Z 函数（后缀的前缀）",
-                    "summary": "Z 函数计算后缀与原串的最长公共前缀（LCP），可用于子串匹配。构造 pattern+s，若 z[m+i] ≥ m，则匹配成功。可替代 KMP，适用于 28、2223 等题。",
+                    "title": "二、Z 函式（字尾的字首）",
+                    "summary": "Z 函式計算字尾與原串的最長公共字首（LCP），可用於子串匹配。構造 pattern+s，若 z[m+i] ≥ m，則匹配成功。可替代 KMP，適用於 28、2223 等題。",
                     "isLeaf": false,
                     "children": [
                         {
-                            "title": "§2.1 基础",
+                            "title": "§2.1 基礎",
                             "summary": "",
                             "problems": [
                                 {
                                     "id": 2223,
-                                    "title": "2223. 构造字符串的总得分和",
+                                    "title": "2223. 構造字串的總得分和",
                                     "slug": "/sum-of-scores-of-built-strings/",
                                     "src": "https://leetcode.cn/problems/sum-of-scores-of-built-strings/",
                                     "solution": null,
@@ -187,7 +187,7 @@
                                 },
                                 {
                                     "id": 3031,
-                                    "title": "3031. 将单词恢复初始状态所需的最短时间 II",
+                                    "title": "3031. 將單詞恢復初始狀態所需的最短時間 II",
                                     "slug": "/minimum-time-to-revert-word-to-initial-state-ii/",
                                     "src": "https://leetcode.cn/problems/minimum-time-to-revert-word-to-initial-state-ii/",
                                     "solution": null,
@@ -196,7 +196,7 @@
                                 },
                                 {
                                     "id": 3045,
-                                    "title": "3045. 统计前后缀下标对 II",
+                                    "title": "3045. 統計前字尾下標對 II",
                                     "slug": "/count-prefix-and-suffix-pairs-ii/",
                                     "src": "https://leetcode.cn/problems/count-prefix-and-suffix-pairs-ii/",
                                     "solution": null,
@@ -205,7 +205,7 @@
                                 },
                                 {
                                     "id": 3303,
-                                    "title": "3303. 第一个几乎相等子字符串的下标",
+                                    "title": "3303. 第一個幾乎相等子字串的下標",
                                     "slug": "/find-the-occurrence-of-first-almost-equal-substring/",
                                     "src": "https://leetcode.cn/problems/find-the-occurrence-of-first-almost-equal-substring/",
                                     "solution": null,
@@ -214,7 +214,7 @@
                                 },
                                 {
                                     "id": 3292,
-                                    "title": "3292. 形成目标字符串需要的最少字符串数 II",
+                                    "title": "3292. 形成目標字串需要的最少字串數 II",
                                     "slug": "/minimum-number-of-valid-strings-to-form-target-ii/",
                                     "src": "https://leetcode.cn/problems/minimum-number-of-valid-strings-to-form-target-ii/",
                                     "solution": null,
@@ -223,7 +223,7 @@
                                 },
                                 {
                                     "id": 3474,
-                                    "title": "3474. 字典序最小的生成字符串",
+                                    "title": "3474. 字典序最小的生成字串",
                                     "slug": "/lexicographically-smallest-generated-string/",
                                     "src": "https://leetcode.cn/problems/lexicographically-smallest-generated-string/",
                                     "solution": null,
@@ -234,12 +234,12 @@
                             "isLeaf": true
                         },
                         {
-                            "title": "§2.2 LCP 数组",
+                            "title": "§2.2 LCP 陣列",
                             "summary": "",
                             "problems": [
                                 {
                                     "id": 2430,
-                                    "title": "2430. 对字母串可执行的最大删除数",
+                                    "title": "2430. 對字母串可執行的最大刪除數",
                                     "slug": "/maximum-deletions-on-a-string/",
                                     "src": "https://leetcode.cn/problems/maximum-deletions-on-a-string/",
                                     "solution": null,
@@ -248,7 +248,7 @@
                                 },
                                 {
                                     "id": 3388,
-                                    "title": "3388. 统计数组中的美丽分割",
+                                    "title": "3388. 統計陣列中的美麗分割",
                                     "slug": "/count-beautiful-splits-in-an-array/",
                                     "src": "https://leetcode.cn/problems/count-beautiful-splits-in-an-array/",
                                     "solution": null,
@@ -257,7 +257,7 @@
                                 },
                                 {
                                     "id": 1977,
-                                    "title": "1977. 划分数字的方案数",
+                                    "title": "1977. 劃分數字的方案數",
                                     "slug": "/number-of-ways-to-separate-numbers/",
                                     "src": "https://leetcode.cn/problems/number-of-ways-to-separate-numbers/",
                                     "solution": null,
@@ -270,17 +270,17 @@
                     ]
                 },
                 {
-                    "title": "三、Manacher 算法（回文串）",
-                    "summary": "Manacher 算法在线性时间内求出所有回文中心的最长回文串。可用于判断子串是否为回文、求最长回文子串、最短回文串构造等。模板题为 5. 最长回文子串。",
+                    "title": "三、Manacher 演算法（迴文串）",
+                    "summary": "Manacher 演算法線上性時間內求出所有迴文中心的最長迴文串。可用於判斷子串是否為迴文、求最長迴文子串、最短迴文串構造等。模板題為 5. 最長迴文子串。",
                     "isLeaf": false,
                     "children": [
                         {
-                            "title": "§3.1 基础",
+                            "title": "§3.1 基礎",
                             "summary": "",
                             "problems": [
                                 {
                                     "id": 5,
-                                    "title": "5. 最长回文子串",
+                                    "title": "5. 最長迴文子串",
                                     "slug": "/longest-palindromic-substring/",
                                     "src": "https://leetcode.cn/problems/longest-palindromic-substring/",
                                     "solution": null,
@@ -289,7 +289,7 @@
                                 },
                                 {
                                     "id": 647,
-                                    "title": "647. 回文子串",
+                                    "title": "647. 迴文子串",
                                     "slug": "/palindromic-substrings/",
                                     "src": "https://leetcode.cn/problems/palindromic-substrings/",
                                     "solution": null,
@@ -298,7 +298,7 @@
                                 },
                                 {
                                     "id": 214,
-                                    "title": "214. 最短回文串",
+                                    "title": "214. 最短迴文串",
                                     "slug": "/shortest-palindrome/",
                                     "src": "https://leetcode.cn/problems/shortest-palindrome/",
                                     "solution": null,
@@ -307,7 +307,7 @@
                                 },
                                 {
                                     "id": 3327,
-                                    "title": "3327. 判断 DFS 字符串是否是回文串",
+                                    "title": "3327. 判斷 DFS 字串是否是迴文串",
                                     "slug": "/check-if-dfs-strings-are-palindromes/",
                                     "src": "https://leetcode.cn/problems/check-if-dfs-strings-are-palindromes/",
                                     "solution": null,
@@ -325,7 +325,7 @@
                                 },
                                 {
                                     "id": 1960,
-                                    "title": "1960. 两个回文子字符串长度的最大乘积",
+                                    "title": "1960. 兩個迴文子字串長度的最大乘積",
                                     "slug": "/maximum-product-of-the-length-of-two-palindromic-substrings/",
                                     "src": "https://leetcode.cn/problems/maximum-product-of-the-length-of-two-palindromic-substrings/",
                                     "solution": null,
@@ -334,7 +334,7 @@
                                 },
                                 {
                                     "id": 3504,
-                                    "title": "3504. 子字符串连接后的最长回文串 II",
+                                    "title": "3504. 子字串連線後的最長迴文串 II",
                                     "slug": "/longest-palindrome-after-substring-concatenation-ii/",
                                     "src": "https://leetcode.cn/problems/longest-palindrome-after-substring-concatenation-ii/",
                                     "solution": null,
@@ -345,12 +345,12 @@
                             "isLeaf": true
                         },
                         {
-                            "title": "§3.2 中心扩展法",
+                            "title": "§3.2 中心擴充套件法",
                             "summary": "",
                             "problems": [
                                 {
                                     "id": 5,
-                                    "title": "5. 最长回文子串",
+                                    "title": "5. 最長迴文子串",
                                     "slug": "/longest-palindromic-substring/",
                                     "src": "https://leetcode.cn/problems/longest-palindromic-substring/",
                                     "solution": null,
@@ -359,7 +359,7 @@
                                 },
                                 {
                                     "id": 2472,
-                                    "title": "2472. 不重叠回文子字符串的最大数目",
+                                    "title": "2472. 不重疊迴文子字串的最大數目",
                                     "slug": "/maximum-number-of-non-overlapping-palindrome-substrings/",
                                     "src": "https://leetcode.cn/problems/maximum-number-of-non-overlapping-palindrome-substrings/",
                                     "solution": null,
@@ -368,7 +368,7 @@
                                 },
                                 {
                                     "id": 3504,
-                                    "title": "3504. 子字符串连接后的最长回文串 II",
+                                    "title": "3504. 子字串連線後的最長迴文串 II",
                                     "slug": "/longest-palindrome-after-substring-concatenation-ii/",
                                     "src": "https://leetcode.cn/problems/longest-palindrome-after-substring-concatenation-ii/",
                                     "solution": null,
@@ -377,7 +377,7 @@
                                 },
                                 {
                                     "id": 3615,
-                                    "title": "3615. 图中的最长回文路径",
+                                    "title": "3615. 圖中的最長迴文路徑",
                                     "slug": "/longest-palindromic-path-in-graph/",
                                     "src": "https://leetcode.cn/problems/longest-palindromic-path-in-graph/",
                                     "solution": null,
@@ -386,7 +386,7 @@
                                 },
                                 {
                                     "id": 3579,
-                                    "title": "3579. 字符串转换需要的最小操作数",
+                                    "title": "3579. 字串轉換需要的最小運算元",
                                     "slug": "/minimum-steps-to-convert-string-with-operations/",
                                     "src": "https://leetcode.cn/problems/minimum-steps-to-convert-string-with-operations/",
                                     "solution": null,
@@ -399,17 +399,17 @@
                     ]
                 },
                 {
-                    "title": "四、字符串哈希",
-                    "summary": "使用多项式哈希（单模/双模）快速比较子串。适用于子串匹配、重复子串、最长公共子串等。推荐先做 2156. 查找给定哈希值的子串。可二分比较字典序。",
+                    "title": "四、字串雜湊",
+                    "summary": "使用多項式雜湊（單模/雙模）快速比較子串。適用於子串匹配、重複子串、最長公共子串等。推薦先做 2156. 查詢給定雜湊值的子串。可二分比較字典序。",
                     "isLeaf": false,
                     "children": [
                         {
-                            "title": "§4.1 基础",
+                            "title": "§4.1 基礎",
                             "summary": "",
                             "problems": [
                                 {
                                     "id": 28,
-                                    "title": "28. 找出字符串中第一个匹配项的下标",
+                                    "title": "28. 找出字串中第一個匹配項的下標",
                                     "slug": "/find-the-index-of-the-first-occurrence-in-a-string/",
                                     "src": "https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/",
                                     "solution": null,
@@ -418,7 +418,7 @@
                                 },
                                 {
                                     "id": 187,
-                                    "title": "187. 重复的 DNA 序列",
+                                    "title": "187. 重複的 DNA 序列",
                                     "slug": "/repeated-dna-sequences/",
                                     "src": "https://leetcode.cn/problems/repeated-dna-sequences/",
                                     "solution": null,
@@ -427,7 +427,7 @@
                                 },
                                 {
                                     "id": 1316,
-                                    "title": "1316. 不同的循环子字符串",
+                                    "title": "1316. 不同的迴圈子字串",
                                     "slug": "/distinct-echo-substrings/",
                                     "src": "https://leetcode.cn/problems/distinct-echo-substrings/",
                                     "solution": null,
@@ -436,7 +436,7 @@
                                 },
                                 {
                                     "id": 1297,
-                                    "title": "1297. 子串的最大出现次数",
+                                    "title": "1297. 子串的最大出現次數",
                                     "slug": "/maximum-number-of-occurrences-of-a-substring/",
                                     "src": "https://leetcode.cn/problems/maximum-number-of-occurrences-of-a-substring/",
                                     "solution": null,
@@ -445,7 +445,7 @@
                                 },
                                 {
                                     "id": 2261,
-                                    "title": "2261. 含最多 K 个可整除元素的子数组",
+                                    "title": "2261. 含最多 K 個可整除元素的子陣列",
                                     "slug": "/k-divisible-elements-subarrays/",
                                     "src": "https://leetcode.cn/problems/k-divisible-elements-subarrays/",
                                     "solution": null,
@@ -454,7 +454,7 @@
                                 },
                                 {
                                     "id": 3722,
-                                    "title": "3722. 反转后字典序最小的字符串",
+                                    "title": "3722. 反轉後字典序最小的字串",
                                     "slug": "/lexicographically-smallest-string-after-reverse/",
                                     "src": "https://leetcode.cn/problems/lexicographically-smallest-string-after-reverse/",
                                     "solution": null,
@@ -463,7 +463,7 @@
                                 },
                                 {
                                     "id": 3213,
-                                    "title": "3213. 最小代价构造字符串",
+                                    "title": "3213. 最小代價構造字串",
                                     "slug": "/construct-string-with-minimum-cost/",
                                     "src": "https://leetcode.cn/problems/construct-string-with-minimum-cost/",
                                     "solution": null,
@@ -472,7 +472,7 @@
                                 },
                                 {
                                     "id": 1367,
-                                    "title": "1367. 二叉树中的链表",
+                                    "title": "1367. 二叉樹中的連結串列",
                                     "slug": "/linked-list-in-binary-tree/",
                                     "src": "https://leetcode.cn/problems/linked-list-in-binary-tree/",
                                     "solution": null,
@@ -481,7 +481,7 @@
                                 },
                                 {
                                     "id": 1044,
-                                    "title": "1044. 最长重复子串",
+                                    "title": "1044. 最長重複子串",
                                     "slug": "/longest-duplicate-substring/",
                                     "src": "https://leetcode.cn/problems/longest-duplicate-substring/",
                                     "solution": null,
@@ -490,7 +490,7 @@
                                 },
                                 {
                                     "id": 718,
-                                    "title": "718. 最长重复子数组",
+                                    "title": "718. 最長重複子陣列",
                                     "slug": "/maximum-length-of-repeated-subarray/",
                                     "src": "https://leetcode.cn/problems/maximum-length-of-repeated-subarray/",
                                     "solution": null,
@@ -499,7 +499,7 @@
                                 },
                                 {
                                     "id": 1923,
-                                    "title": "1923. 最长公共子路径",
+                                    "title": "1923. 最長公共子路徑",
                                     "slug": "/longest-common-subpath/",
                                     "src": "https://leetcode.cn/problems/longest-common-subpath/",
                                     "solution": null,
@@ -508,7 +508,7 @@
                                 },
                                 {
                                     "id": 3292,
-                                    "title": "3292. 形成目标字符串需要的最少字符串数 II",
+                                    "title": "3292. 形成目標字串需要的最少字串數 II",
                                     "slug": "/minimum-number-of-valid-strings-to-form-target-ii/",
                                     "src": "https://leetcode.cn/problems/minimum-number-of-valid-strings-to-form-target-ii/",
                                     "solution": null,
@@ -517,7 +517,7 @@
                                 },
                                 {
                                     "id": 2168,
-                                    "title": "2168. 每个数字的频率都相同的独特子字符串的数量",
+                                    "title": "2168. 每個數字的頻率都相同的獨特子字串的數量",
                                     "slug": "/unique-substrings-with-equal-digit-frequency/",
                                     "src": "https://leetcode.cn/problems/unique-substrings-with-equal-digit-frequency/",
                                     "solution": null,
@@ -526,7 +526,7 @@
                                 },
                                 {
                                     "id": 1554,
-                                    "title": "1554. 只有一个不同字符的字符串",
+                                    "title": "1554. 只有一個不同字元的字串",
                                     "slug": "/strings-differ-by-one-character/",
                                     "src": "https://leetcode.cn/problems/strings-differ-by-one-character/",
                                     "solution": null,
@@ -535,7 +535,7 @@
                                 },
                                 {
                                     "id": 1062,
-                                    "title": "1062. 最长重复子串",
+                                    "title": "1062. 最長重複子串",
                                     "slug": "/longest-repeating-substring/",
                                     "src": "https://leetcode.cn/problems/longest-repeating-substring/",
                                     "solution": null,
@@ -549,16 +549,16 @@
                 },
                 {
                     "title": "五、最小表示法",
-                    "summary": "求字符串循环同构串中字典序最小者。通过双指针维护候选起点，每次排除 k+1 个位置，总复杂度 O(n)。模板题为 899. 有序队列（k=1）。",
+                    "summary": "求字串迴圈同構串中字典序最小者。透過雙指標維護候選起點，每次排除 k+1 個位置，總複雜度 O(n)。模板題為 899. 有序佇列（k=1）。",
                     "isLeaf": false,
                     "children": [
                         {
-                            "title": "§5.1 基础",
+                            "title": "§5.1 基礎",
                             "summary": "",
                             "problems": [
                                 {
                                     "id": 899,
-                                    "title": "899. 有序队列",
+                                    "title": "899. 有序佇列",
                                     "slug": "/orderly-queue/",
                                     "src": "https://leetcode.cn/problems/orderly-queue/",
                                     "solution": null,
@@ -567,7 +567,7 @@
                                 },
                                 {
                                     "id": 3403,
-                                    "title": "3403. 从盒子中找出字典序最大的字符串 I",
+                                    "title": "3403. 從盒子中找出字典序最大的字串 I",
                                     "slug": "/find-the-lexicographically-largest-string-from-the-box-i/",
                                     "src": "https://leetcode.cn/problems/find-the-lexicographically-largest-string-from-the-box-i/",
                                     "solution": null,
@@ -576,7 +576,7 @@
                                 },
                                 {
                                     "id": 1625,
-                                    "title": "1625. 执行操作后字典序最小的字符串",
+                                    "title": "1625. 執行操作後字典序最小的字串",
                                     "slug": "/lexicographically-smallest-string-after-applying-operations/",
                                     "src": "https://leetcode.cn/problems/lexicographically-smallest-string-after-applying-operations/",
                                     "solution": null,
@@ -585,7 +585,7 @@
                                 },
                                 {
                                     "id": 3406,
-                                    "title": "3406. 从盒子中找出字典序最大的字符串 II",
+                                    "title": "3406. 從盒子中找出字典序最大的字串 II",
                                     "slug": "/find-the-lexicographically-largest-string-from-the-box-ii/",
                                     "src": "https://leetcode.cn/problems/find-the-lexicographically-largest-string-from-the-box-ii/",
                                     "solution": null,
@@ -594,7 +594,7 @@
                                 },
                                 {
                                     "id": 1708,
-                                    "title": "1708. 长度为 K 的最大子数组",
+                                    "title": "1708. 長度為 K 的最大子陣列",
                                     "slug": "/largest-subarray-length-k/",
                                     "src": "https://leetcode.cn/problems/largest-subarray-length-k/",
                                     "solution": null,
@@ -607,22 +607,22 @@
                     ]
                 },
                 {
-                    "title": "六、字典树",
-                    "summary": "见【数据结构题单】第六章。用于前缀匹配、字符串插入/查询、Trie + DFS 等。",
+                    "title": "六、字典樹",
+                    "summary": "見【資料結構題單】第六章。用於字首匹配、字串插入/查詢、Trie + DFS 等。",
                     "isLeaf": true
                 },
                 {
-                    "title": "七、AC 自动机",
-                    "summary": "AC 自动机 = 字典树 + KMP。用于多模式串匹配。可替代字符串哈希，适用于 1032、1408 等题。",
+                    "title": "七、AC 自動機",
+                    "summary": "AC 自動機 = 字典樹 + KMP。用於多模式串匹配。可替代字串雜湊，適用於 1032、1408 等題。",
                     "isLeaf": false,
                     "children": [
                         {
-                            "title": "§7.1 基础",
+                            "title": "§7.1 基礎",
                             "summary": "",
                             "problems": [
                                 {
                                     "id": 1032,
-                                    "title": "1032. 字符流",
+                                    "title": "1032. 字元流",
                                     "slug": "/stream-of-characters/",
                                     "src": "https://leetcode.cn/problems/stream-of-characters/",
                                     "solution": null,
@@ -631,7 +631,7 @@
                                 },
                                 {
                                     "id": 1001,
-                                    "title": "面试题 17.17. 多次搜索",
+                                    "title": "面試題 17.17. 多次搜尋",
                                     "slug": "/multi-search-lcci/",
                                     "src": "https://leetcode.cn/problems/multi-search-lcci/",
                                     "solution": null,
@@ -640,7 +640,7 @@
                                 },
                                 {
                                     "id": 1408,
-                                    "title": "1408. 数组中的字符串匹配",
+                                    "title": "1408. 陣列中的字串匹配",
                                     "slug": "/string-matching-in-an-array/",
                                     "src": "https://leetcode.cn/problems/string-matching-in-an-array/",
                                     "solution": null,
@@ -649,7 +649,7 @@
                                 },
                                 {
                                     "id": 3213,
-                                    "title": "3213. 最小代价构造字符串",
+                                    "title": "3213. 最小代價構造字串",
                                     "slug": "/construct-string-with-minimum-cost/",
                                     "src": "https://leetcode.cn/problems/construct-string-with-minimum-cost/",
                                     "solution": null,
@@ -658,7 +658,7 @@
                                 },
                                 {
                                     "id": 2781,
-                                    "title": "2781. 最长合法子字符串的长度",
+                                    "title": "2781. 最長合法子字串的長度",
                                     "slug": "/length-of-the-longest-valid-substring/",
                                     "src": "https://leetcode.cn/problems/length-of-the-longest-valid-substring/",
                                     "solution": null,
@@ -667,7 +667,7 @@
                                 },
                                 {
                                     "id": 3292,
-                                    "title": "3292. 形成目标字符串需要的最少字符串数 II",
+                                    "title": "3292. 形成目標字串需要的最少字串數 II",
                                     "slug": "/minimum-number-of-valid-strings-to-form-target-ii/",
                                     "src": "https://leetcode.cn/problems/minimum-number-of-valid-strings-to-form-target-ii/",
                                     "solution": null,
@@ -680,17 +680,17 @@
                     ]
                 },
                 {
-                    "title": "八、后缀数组/后缀自动机",
-                    "summary": "后缀数组可求字典序最大/最小子串、最长公共子串等。后缀自动机支持子串计数、本质不同子串数等。适用于 1163、1754、1044 等题。",
+                    "title": "八、字尾陣列/字尾自動機",
+                    "summary": "字尾陣列可求字典序最大/最小子串、最長公共子串等。字尾自動機支援子串計數、本質不同子串數等。適用於 1163、1754、1044 等題。",
                     "isLeaf": false,
                     "children": [
                         {
-                            "title": "§8.1 基础",
+                            "title": "§8.1 基礎",
                             "summary": "",
                             "problems": [
                                 {
                                     "id": 1163,
-                                    "title": "1163. 按字典序排在最后的子串",
+                                    "title": "1163. 按字典序排在最後的子串",
                                     "slug": "/last-substring-in-lexicographical-order/",
                                     "src": "https://leetcode.cn/problems/last-substring-in-lexicographical-order/",
                                     "solution": null,
@@ -699,7 +699,7 @@
                                 },
                                 {
                                     "id": 1754,
-                                    "title": "1754. 构造字典序最大的合并字符串",
+                                    "title": "1754. 構造字典序最大的合併字串",
                                     "slug": "/largest-merge-of-two-strings/",
                                     "src": "https://leetcode.cn/problems/largest-merge-of-two-strings/",
                                     "solution": null,
@@ -708,7 +708,7 @@
                                 },
                                 {
                                     "id": 2904,
-                                    "title": "2904. 最短且字典序最小的美丽子字符串",
+                                    "title": "2904. 最短且字典序最小的美麗子字串",
                                     "slug": "/shortest-and-lexicographically-smallest-beautiful-string/",
                                     "src": "https://leetcode.cn/problems/shortest-and-lexicographically-smallest-beautiful-string/",
                                     "solution": null,
@@ -717,7 +717,7 @@
                                 },
                                 {
                                     "id": 3722,
-                                    "title": "3722. 反转后字典序最小的字符串",
+                                    "title": "3722. 反轉後字典序最小的字串",
                                     "slug": "/lexicographically-smallest-string-after-reverse/",
                                     "src": "https://leetcode.cn/problems/lexicographically-smallest-string-after-reverse/",
                                     "solution": null,
@@ -726,7 +726,7 @@
                                 },
                                 {
                                     "id": 3213,
-                                    "title": "3213. 最小代价构造字符串",
+                                    "title": "3213. 最小代價構造字串",
                                     "slug": "/construct-string-with-minimum-cost/",
                                     "src": "https://leetcode.cn/problems/construct-string-with-minimum-cost/",
                                     "solution": null,
@@ -735,7 +735,7 @@
                                 },
                                 {
                                     "id": 1044,
-                                    "title": "1044. 最长重复子串",
+                                    "title": "1044. 最長重複子串",
                                     "slug": "/longest-duplicate-substring/",
                                     "src": "https://leetcode.cn/problems/longest-duplicate-substring/",
                                     "solution": null,
@@ -744,7 +744,7 @@
                                 },
                                 {
                                     "id": 718,
-                                    "title": "718. 最长重复子数组",
+                                    "title": "718. 最長重複子陣列",
                                     "slug": "/maximum-length-of-repeated-subarray/",
                                     "src": "https://leetcode.cn/problems/maximum-length-of-repeated-subarray/",
                                     "solution": null,
@@ -753,7 +753,7 @@
                                 },
                                 {
                                     "id": 1923,
-                                    "title": "1923. 最长公共子路径",
+                                    "title": "1923. 最長公共子路徑",
                                     "slug": "/longest-common-subpath/",
                                     "src": "https://leetcode.cn/problems/longest-common-subpath/",
                                     "solution": null,
@@ -762,7 +762,7 @@
                                 },
                                 {
                                     "id": 1408,
-                                    "title": "1408. 数组中的字符串匹配",
+                                    "title": "1408. 陣列中的字串匹配",
                                     "slug": "/string-matching-in-an-array/",
                                     "src": "https://leetcode.cn/problems/string-matching-in-an-array/",
                                     "solution": null,
@@ -771,7 +771,7 @@
                                 },
                                 {
                                     "id": 3729,
-                                    "title": "3729. 统计有序数组中可被 K 整除的子数组数量",
+                                    "title": "3729. 統計有序陣列中可被 K 整除的子陣列數量",
                                     "slug": "/count-distinct-subarrays-divisible-by-k-in-sorted-array/",
                                     "src": "https://leetcode.cn/problems/count-distinct-subarrays-divisible-by-k-in-sorted-array/",
                                     "solution": null,
@@ -780,7 +780,7 @@
                                 },
                                 {
                                     "id": 3076,
-                                    "title": "3076. 数组中的最短非公共子字符串",
+                                    "title": "3076. 陣列中的最短非公共子字串",
                                     "slug": "/shortest-uncommon-substring-in-an-array/",
                                     "src": "https://leetcode.cn/problems/shortest-uncommon-substring-in-an-array/",
                                     "solution": null,
@@ -789,7 +789,7 @@
                                 },
                                 {
                                     "id": 3504,
-                                    "title": "3504. 子字符串连接后的最长回文串 II",
+                                    "title": "3504. 子字串連線後的最長迴文串 II",
                                     "slug": "/longest-palindrome-after-substring-concatenation-ii/",
                                     "src": "https://leetcode.cn/problems/longest-palindrome-after-substring-concatenation-ii/",
                                     "solution": null,
@@ -798,7 +798,7 @@
                                 },
                                 {
                                     "id": 1316,
-                                    "title": "1316. 不同的循环子字符串",
+                                    "title": "1316. 不同的迴圈子字串",
                                     "slug": "/distinct-echo-substrings/",
                                     "src": "https://leetcode.cn/problems/distinct-echo-substrings/",
                                     "solution": null,
@@ -807,7 +807,7 @@
                                 },
                                 {
                                     "id": 3388,
-                                    "title": "3388. 统计数组中的美丽分割",
+                                    "title": "3388. 統計陣列中的美麗分割",
                                     "slug": "/count-beautiful-splits-in-an-array/",
                                     "src": "https://leetcode.cn/problems/count-beautiful-splits-in-an-array/",
                                     "solution": null,
@@ -816,7 +816,7 @@
                                 },
                                 {
                                     "id": 2564,
-                                    "title": "2564. 子字符串异或查询",
+                                    "title": "2564. 子字串異或查詢",
                                     "slug": "/substring-xor-queries/",
                                     "src": "https://leetcode.cn/problems/substring-xor-queries/",
                                     "solution": null,
@@ -825,7 +825,7 @@
                                 },
                                 {
                                     "id": 1062,
-                                    "title": "1062. 最长重复子串",
+                                    "title": "1062. 最長重複子串",
                                     "slug": "/longest-repeating-substring/",
                                     "src": "https://leetcode.cn/problems/longest-repeating-substring/",
                                     "solution": null,
@@ -834,7 +834,7 @@
                                 },
                                 {
                                     "id": 3135,
-                                    "title": "3135. 通过添加或删除结尾字符来同化字符串",
+                                    "title": "3135. 透過新增或刪除結尾字元來同化字串",
                                     "slug": "/equalize-strings-by-adding-or-removing-characters-at-ends/",
                                     "src": "https://leetcode.cn/problems/equalize-strings-by-adding-or-removing-characters-at-ends/",
                                     "solution": null,
@@ -847,17 +847,17 @@
                     ]
                 },
                 {
-                    "title": "九、子序列自动机",
-                    "summary": "预处理每个位置后最近的字符下标，用于快速判断子序列匹配。适用于 792、514、2014 等题。",
+                    "title": "九、子序列自動機",
+                    "summary": "預處理每個位置後最近的字元下標，用於快速判斷子序列匹配。適用於 792、514、2014 等題。",
                     "isLeaf": false,
                     "children": [
                         {
-                            "title": "§9.1 基础",
+                            "title": "§9.1 基礎",
                             "summary": "",
                             "problems": [
                                 {
                                     "id": 792,
-                                    "title": "792. 匹配子序列的单词数",
+                                    "title": "792. 匹配子序列的單詞數",
                                     "slug": "/number-of-matching-subsequences/",
                                     "src": "https://leetcode.cn/problems/number-of-matching-subsequences/",
                                     "solution": null,
@@ -875,7 +875,7 @@
                                 },
                                 {
                                     "id": 2014,
-                                    "title": "2014. 重复 K 次的最长子序列",
+                                    "title": "2014. 重複 K 次的最長子序列",
                                     "slug": "/longest-subsequence-repeated-k-times/",
                                     "src": "https://leetcode.cn/problems/longest-subsequence-repeated-k-times/",
                                     "solution": null,
@@ -884,7 +884,7 @@
                                 },
                                 {
                                     "id": 1055,
-                                    "title": "1055. 形成字符串的最短路径",
+                                    "title": "1055. 形成字串的最短路徑",
                                     "slug": "/shortest-way-to-form-string/",
                                     "src": "https://leetcode.cn/problems/shortest-way-to-form-string/",
                                     "solution": null,
@@ -893,7 +893,7 @@
                                 },
                                 {
                                     "id": 727,
-                                    "title": "727. 最小窗口子序列",
+                                    "title": "727. 最小視窗子序列",
                                     "slug": "/minimum-window-subsequence/",
                                     "src": "https://leetcode.cn/problems/minimum-window-subsequence/",
                                     "solution": null,
@@ -907,16 +907,16 @@
                 },
                 {
                     "title": "十、其他",
-                    "summary": "包含 LCP 性质、重复计数、前缀处理等进阶题。",
+                    "summary": "包含 LCP 性質、重複計數、字首處理等進階題。",
                     "isLeaf": false,
                     "children": [
                         {
-                            "title": "§10.1 进阶",
+                            "title": "§10.1 進階",
                             "summary": "",
                             "problems": [
                                 {
                                     "id": 3485,
-                                    "title": "3485. 删除元素后 K 个字符串的最长公共前缀",
+                                    "title": "3485. 刪除元素後 K 個字串的最長公共字首",
                                     "slug": "/longest-common-prefix-of-k-strings-after-removal/",
                                     "src": "https://leetcode.cn/problems/longest-common-prefix-of-k-strings-after-removal/",
                                     "solution": null,
@@ -925,7 +925,7 @@
                                 },
                                 {
                                     "id": 466,
-                                    "title": "466. 统计重复个数",
+                                    "title": "466. 統計重複個數",
                                     "slug": "/count-the-repetitions/",
                                     "src": "https://leetcode.cn/problems/count-the-repetitions/",
                                     "solution": null,
@@ -934,7 +934,7 @@
                                 },
                                 {
                                     "id": 3491,
-                                    "title": "3491. 电话号码前缀",
+                                    "title": "3491. 電話號碼字首",
                                     "slug": "/phone-number-prefix/",
                                     "src": "https://leetcode.cn/problems/phone-number-prefix/",
                                     "solution": null,
@@ -949,124 +949,124 @@
             ]
         },
         {
-            "title": "关联题单",
-            "summary": "推荐关联题单：数据结构题单（字典树）、滑动窗口与双指针（子序列判断）、数学题单（多项式）、贪心题单（字符串贪心）。",
+            "title": "關聯題單",
+            "summary": "推薦關聯題單：資料結構題單（字典樹）、滑動視窗與雙指標（子序列判斷）、數學題單（多項式）、貪心題單（字串貪心）。",
             "isLeaf": false,
             "children": [
                 {
-                    "title": "数据结构题单",
-                    "summary": "包含字典树（Trie）章节，与本题单第六章呼应。",
+                    "title": "資料結構題單",
+                    "summary": "包含字典樹（Trie）章節，與本題單第六章呼應。",
                     "src": "https://leetcode.cn/circle/discuss/mOr1u6/",
                     "isLeaf": true
                 },
                 {
-                    "title": "滑动窗口与双指针题单",
-                    "summary": "包含「判断子序列」专题，与子序列自动机相关。",
+                    "title": "滑動視窗與雙指標題單",
+                    "summary": "包含「判斷子序列」專題，與子序列自動機相關。",
                     "src": "https://leetcode.cn/circle/discuss/0viNMK/",
                     "isLeaf": true
                 },
                 {
-                    "title": "数学题单",
-                    "summary": "包含「多项式」章节，与字符串哈希相关。",
+                    "title": "數學題單",
+                    "summary": "包含「多項式」章節，與字串雜湊相關。",
                     "src": "https://leetcode.cn/circle/discuss/IYT3ss/",
                     "isLeaf": true
                 },
                 {
-                    "title": "贪心题单",
-                    "summary": "包含「字符串贪心」章节，与最小表示法、字典序优化相关。",
+                    "title": "貪心題單",
+                    "summary": "包含「字串貪心」章節，與最小表示法、字典序最佳化相關。",
                     "src": "https://leetcode.cn/circle/discuss/g6KTKL/",
                     "isLeaf": true
                 }
             ]
         },
         {
-            "title": "算法题单",
-            "summary": "本题单为 LeetCode 官方题单，共12个，涵盖滑动窗口、二分、单调栈、图论、动态规划、数据结构、数学、贪心、链表、字符串等。",
+            "title": "演算法題單",
+            "summary": "本題單為 LeetCode 官方題單，共12個，涵蓋滑動視窗、二分、單調棧、圖論、動態規劃、資料結構、數學、貪心、連結串列、字串等。",
             "isLeaf": false,
             "children": [
                 {
-                    "title": "1. 滑动窗口与双指针",
-                    "summary": "包含定长/不定长/单/双/三指针/分组循环等。",
+                    "title": "1. 滑動視窗與雙指標",
+                    "summary": "包含定長/不定長/單/雙/三指標/分組迴圈等。",
                     "src": "https://leetcode.cn/circle/discuss/0viNMK/",
                     "isLeaf": true
                 },
                 {
-                    "title": "2. 二分算法",
+                    "title": "2. 二分演算法",
                     "summary": "包含二分答案、最小化最大值、最大化最小值、第K小等。",
                     "src": "https://leetcode.cn/circle/discuss/SqopEo/",
                     "isLeaf": true
                 },
                 {
-                    "title": "3. 单调栈",
-                    "summary": "包含基础、矩形面积、贡献法、最小字典序等。",
+                    "title": "3. 單調棧",
+                    "summary": "包含基礎、矩形面積、貢獻法、最小字典序等。",
                     "src": "https://leetcode.cn/circle/discuss/9oZFK9/",
                     "isLeaf": true
                 },
                 {
-                    "title": "4. 网格图",
-                    "summary": "包含 DFS/BFS/综合应用。",
+                    "title": "4. 網格圖",
+                    "summary": "包含 DFS/BFS/綜合應用。",
                     "src": "https://leetcode.cn/circle/discuss/YiXPXW/",
                     "isLeaf": true
                 },
                 {
-                    "title": "5. 位运算",
-                    "summary": "包含基础、性质、拆位、试填、恒等式、思维等。",
+                    "title": "5. 位運算",
+                    "summary": "包含基礎、性質、拆位、試填、恆等式、思維等。",
                     "src": "https://leetcode.cn/circle/discuss/dHn9Vk/",
                     "isLeaf": true
                 },
                 {
-                    "title": "6. 图论算法",
-                    "summary": "包含 DFS/BFS/拓扑排序/基环树/最短路/最小生成树/网络流等。",
+                    "title": "6. 圖論演算法",
+                    "summary": "包含 DFS/BFS/拓撲排序/基環樹/最短路/最小生成樹/網路流等。",
                     "src": "https://leetcode.cn/circle/discuss/01LUak/",
                     "isLeaf": true
                 },
                 {
-                    "title": "7. 动态规划",
-                    "summary": "包含入门/背包/划分/状态机/区间/状压/数位/数据结构优化/树形/博弈/概率期望等。",
+                    "title": "7. 動態規劃",
+                    "summary": "包含入門/揹包/劃分/狀態機/區間/狀壓/數位/資料結構最佳化/樹形/博弈/機率期望等。",
                     "src": "https://leetcode.cn/circle/discuss/tXLS3i/",
                     "isLeaf": true
                 },
                 {
-                    "title": "8. 常用数据结构",
-                    "summary": "包含前缀和/差分/栈/队列/堆/字典树/并查集/树状数组/线段树等。",
+                    "title": "8. 常用資料結構",
+                    "summary": "包含字首和/差分/棧/佇列/堆/字典樹/並查集/樹狀陣列/線段樹等。",
                     "src": "https://leetcode.cn/circle/discuss/mOr1u6/",
                     "isLeaf": true
                 },
                 {
-                    "title": "9. 数学算法",
-                    "summary": "包含数论/组合/概率期望/博弈/计算几何/随机算法等。",
+                    "title": "9. 數學演算法",
+                    "summary": "包含數論/組合/機率期望/博弈/計算幾何/隨機演算法等。",
                     "src": "https://leetcode.cn/circle/discuss/IYT3ss/",
                     "isLeaf": true
                 },
                 {
-                    "title": "10. 贪心与思维",
-                    "summary": "包含基本贪心策略/反悔/区间/字典序/数学/思维/脑筋急转弯/构造等。",
+                    "title": "10. 貪心與思維",
+                    "summary": "包含基本貪心策略/反悔/區間/字典序/數學/思維/腦筋急轉彎/構造等。",
                     "src": "https://leetcode.cn/circle/discuss/g6KTKL/",
                     "isLeaf": true
                 },
                 {
-                    "title": "11. 链表、二叉树与回溯",
-                    "summary": "包含前后指针/快慢指针/DFS/BFS/直径/LCA/一般树等。",
+                    "title": "11. 連結串列、二叉樹與回溯",
+                    "summary": "包含前後指標/快慢指標/DFS/BFS/直徑/LCA/一般樹等。",
                     "src": "https://leetcode.cn/circle/discuss/K0n2gO/",
                     "isLeaf": true
                 },
                 {
-                    "title": "12. 字符串",
-                    "summary": "本题单，涵盖 KMP/Z函数/Manacher/字符串哈希/AC自动机/后缀数组/子序列自动机等。",
+                    "title": "12. 字串",
+                    "summary": "本題單，涵蓋 KMP/Z函式/Manacher/字串雜湊/AC自動機/字尾陣列/子序列自動機等。",
                     "src": "https://leetcode.cn/circle/discuss/SJFwQI/",
                     "isLeaf": true
                 }
             ]
         },
         {
-            "title": "我的题解精选",
-            "summary": "GitHub 仓库，包含分类题解，支持快速查找。",
+            "title": "我的題解精選",
+            "summary": "GitHub 倉庫，包含分類題解，支援快速查詢。",
             "src": "https://github.com/EndlessCheng/codeforces-go/blob/master/leetcode/SOLUTIONS.md",
             "isLeaf": true
         },
         {
-            "title": "B站@灵茶山艾府",
-            "summary": "关注作者，获取算法讲解视频。",
+            "title": "B站@靈茶山艾府",
+            "summary": "關注作者，獲取演算法講解影片。",
             "src": "https://space.bilibili.com/206214",
             "isLeaf": true
         }

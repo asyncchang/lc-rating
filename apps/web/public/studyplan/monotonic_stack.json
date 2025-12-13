@@ -1,21 +1,21 @@
 {
-    "title": "分享丨【算法题单】单调栈（矩形面积/贡献法/最小字典序）",
+    "title": "分享丨【演算法題單】單調棧（矩形面積/貢獻法/最小字典序）",
     "src": "https://leetcode.cn/circle/discuss/9oZFK9/",
     "last_update": "2025-11-07T23:47:26.098808+00:00",
-    "summary": "![单调栈题单单调栈入门单调栈题目单调栈教程单调栈视频leetcode单调栈 灵茶山艾府 灵神 灵神题单](https://pic.leetcode.cn/1711714526-rMdiIh-t3-c.png)\n\n> 他向远方望去，无法看到高山背后的矮山，只看到一座座更高的山峰。\n\n推荐先做做 [数据结构题单](https://leetcode.cn/circle/discuss/mOr1u6/) 中的「枚举右，维护左」以及第三章「栈」的基础题目后，再来刷本题单。",
+    "summary": "![單調棧題單單調棧入門單調棧題目單調棧教程單調棧影片leetcode單調棧 靈茶山艾府 靈神 靈神題單](https://pic.leetcode.cn/1711714526-rMdiIh-t3-c.png)\n\n> 他向遠方望去，無法看到高山背後的矮山，只看到一座座更高的山峰。\n\n推薦先做做 [資料結構題單](https://leetcode.cn/circle/discuss/mOr1u6/) 中的「列舉右，維護左」以及第三章「棧」的基礎題目後，再來刷本題單。",
     "children": [
         {
-            "title": "一、单调栈",
+            "title": "一、單調棧",
             "summary": "",
             "children": [
                 {
-                    "title": "§1.1 基础",
-                    "summary": "原理讲解：<a href=\"https://www.bilibili.com/video/BV1VN411J7S7/\">单调栈【基础算法精讲 26】</a><br><br>模板：<br><pre><code class=\"language-py\">def nearestGreater(nums: List[int]) -> Tuple[List[int], List[int]]:\n    n = len(nums)\n    # left[i] 是 nums[i] 左侧最近的严格大于 nums[i] 的数的下标，若不存在则为 -1\n    left = [-1] * n\n    st = []\n    for i, x in enumerate(nums):\n        while st and nums[st[-1]] <= x:  # 如果求严格小于，改成 >=\n            st.pop()\n        if st:\n            left[i] = st[-1]\n        st.append(i)\n\n    # right[i] 是 nums[i] 右侧最近的严格大于 nums[i] 的数的下标，若不存在则为 n\n    right = [n] * n\n    st = []\n    for i in range(n - 1, -1, -1):\n        x = nums[i]\n        while st and nums[st[-1]] <= x:\n            st.pop()\n        if st:\n            right[i] = st[-1]\n        st.append(i)\n\n    return left, right</code></pre>",
+                    "title": "§1.1 基礎",
+                    "summary": "原理講解：<a href=\"https://www.bilibili.com/video/BV1VN411J7S7/\">單調棧【基礎演算法精講 26】</a><br><br>模板：<br><pre><code class=\"language-cpp\">// 返回每個位置左/右側最近的嚴格大於 nums[i] 的下標；不存在則左為 -1、右為 n\npair<vector<int>, vector<int>> nearestGreater(const vector<int>& nums) {\n    int n = (int)nums.size();\n    vector<int> left(n, -1);\n    vector<int> st;\n    for (int i = 0; i < n; i++) {\n        int x = nums[i];\n        while (!st.empty() && nums[st.back()] <= x) { // 如果求嚴格小於，改成 >=\n            st.pop_back();\n        }\n        if (!st.empty()) left[i] = st.back();\n        st.push_back(i);\n    }\n\n    vector<int> right(n, n);\n    st.clear();\n    for (int i = n - 1; i >= 0; i--) {\n        int x = nums[i];\n        while (!st.empty() && nums[st.back()] <= x) {\n            st.pop_back();\n        }\n        if (!st.empty()) right[i] = st.back();\n        st.push_back(i);\n    }\n    return {left, right};\n}</code></pre>",
                     "isLeaf": true,
                     "problems": [
                         {
                             "id": 739,
-                            "title": "739. 每日温度",
+                            "title": "739. 每日溫度",
                             "slug": "/daily-temperatures/",
                             "src": "https://leetcode.cn/problems/daily-temperatures/",
                             "solution": null,
@@ -24,7 +24,7 @@
                         },
                         {
                             "id": 1475,
-                            "title": "1475. 商品折扣后的最终价格",
+                            "title": "1475. 商品折扣後的最終價格",
                             "slug": "/final-prices-with-a-special-discount-in-a-shop/",
                             "src": "https://leetcode.cn/problems/final-prices-with-a-special-discount-in-a-shop/",
                             "solution": null,
@@ -33,7 +33,7 @@
                         },
                         {
                             "id": 496,
-                            "title": "496. 下一个更大元素 I",
+                            "title": "496. 下一個更大元素 I",
                             "slug": "/next-greater-element-i/",
                             "src": "https://leetcode.cn/problems/next-greater-element-i/",
                             "solution": null,
@@ -42,7 +42,7 @@
                         },
                         {
                             "id": 503,
-                            "title": "503. 下一个更大元素 II",
+                            "title": "503. 下一個更大元素 II",
                             "slug": "/next-greater-element-ii/",
                             "src": "https://leetcode.cn/problems/next-greater-element-ii/",
                             "solution": null,
@@ -51,7 +51,7 @@
                         },
                         {
                             "id": 901,
-                            "title": "901. 股票价格跨度",
+                            "title": "901. 股票價格跨度",
                             "slug": "/online-stock-span/",
                             "src": "https://leetcode.cn/problems/online-stock-span/",
                             "solution": null,
@@ -60,7 +60,7 @@
                         },
                         {
                             "id": 853,
-                            "title": "853. 车队",
+                            "title": "853. 車隊",
                             "slug": "/car-fleet/",
                             "src": "https://leetcode.cn/problems/car-fleet/",
                             "solution": null,
@@ -70,13 +70,13 @@
                     ]
                 },
                 {
-                    "title": "§1.2 进阶（选做）",
-                    "summary": "<strong>思维扩展</strong>：<ul><li><a href=\"https://leetcode.cn/problems/maximum-width-ramp/\">962. 最大宽度坡</a> 1608</li><li><a href=\"https://leetcode.cn/problems/minimum-operations-to-convert-all-elements-to-zero/\">3542. 将所有元素变为 0 的最少操作次数</a> 1890</li><li><a href=\"https://leetcode.cn/problems/longest-well-performing-interval/\">1124. 表现良好的最长时间段</a> 1908</li></ul>",
+                    "title": "§1.2 進階（選做）",
+                    "summary": "<strong>思維擴充套件</strong>：<ul><li><a href=\"https://leetcode.cn/problems/maximum-width-ramp/\">962. 最大寬度坡</a> 1608</li><li><a href=\"https://leetcode.cn/problems/minimum-operations-to-convert-all-elements-to-zero/\">3542. 將所有元素變為 0 的最少操作次數</a> 1890</li><li><a href=\"https://leetcode.cn/problems/longest-well-performing-interval/\">1124. 表現良好的最長時間段</a> 1908</li></ul>",
                     "isLeaf": true,
                     "problems": [
                         {
                             "id": 1019,
-                            "title": "1019. 链表中的下一个更大节点",
+                            "title": "1019. 連結串列中的下一個更大節點",
                             "slug": "/next-greater-node-in-linked-list/",
                             "src": "https://leetcode.cn/problems/next-greater-node-in-linked-list/",
                             "solution": null,
@@ -85,7 +85,7 @@
                         },
                         {
                             "id": 768,
-                            "title": "768. 最多能完成排序的块 II",
+                            "title": "768. 最多能完成排序的塊 II",
                             "slug": "/max-chunks-to-make-sorted-ii/",
                             "src": "https://leetcode.cn/problems/max-chunks-to-make-sorted-ii/",
                             "solution": null,
@@ -94,7 +94,7 @@
                         },
                         {
                             "id": 654,
-                            "title": "654. 最大二叉树",
+                            "title": "654. 最大二叉樹",
                             "slug": "/maximum-binary-tree/",
                             "src": "https://leetcode.cn/problems/maximum-binary-tree/",
                             "solution": null,
@@ -112,7 +112,7 @@
                         },
                         {
                             "id": 3113,
-                            "title": "3113. 边界元素是最大值的子数组数目",
+                            "title": "3113. 邊界元素是最大值的子陣列數目",
                             "slug": "/find-the-number-of-subarrays-where-boundary-elements-are-maximum/",
                             "src": "https://leetcode.cn/problems/find-the-number-of-subarrays-where-boundary-elements-are-maximum/",
                             "solution": null,
@@ -121,7 +121,7 @@
                         },
                         {
                             "id": 2866,
-                            "title": "2866. 美丽塔 II",
+                            "title": "2866. 美麗塔 II",
                             "slug": "/beautiful-towers-ii/",
                             "src": "https://leetcode.cn/problems/beautiful-towers-ii/",
                             "solution": null,
@@ -130,7 +130,7 @@
                         },
                         {
                             "id": 1944,
-                            "title": "1944. 队列中可以看到的人数",
+                            "title": "1944. 佇列中可以看到的人數",
                             "slug": "/number-of-visible-people-in-a-queue/",
                             "src": "https://leetcode.cn/problems/number-of-visible-people-in-a-queue/",
                             "solution": null,
@@ -139,7 +139,7 @@
                         },
                         {
                             "id": 2454,
-                            "title": "2454. 下一个更大元素 IV",
+                            "title": "2454. 下一個更大元素 IV",
                             "slug": "/next-greater-element-iv/",
                             "src": "https://leetcode.cn/problems/next-greater-element-iv/",
                             "solution": null,
@@ -148,7 +148,7 @@
                         },
                         {
                             "id": 1130,
-                            "title": "1130. 叶值的最小代价生成树",
+                            "title": "1130. 葉值的最小代價生成樹",
                             "slug": "/minimum-cost-tree-from-leaf-values/",
                             "src": "https://leetcode.cn/problems/minimum-cost-tree-from-leaf-values/",
                             "solution": null,
@@ -157,7 +157,7 @@
                         },
                         {
                             "id": 2289,
-                            "title": "2289. 使数组按非递减顺序排列",
+                            "title": "2289. 使陣列按非遞減順序排列",
                             "slug": "/steps-to-make-array-non-decreasing/",
                             "src": "https://leetcode.cn/problems/steps-to-make-array-non-decreasing/",
                             "solution": null,
@@ -166,7 +166,7 @@
                         },
                         {
                             "id": 1776,
-                            "title": "1776. 车队 II",
+                            "title": "1776. 車隊 II",
                             "slug": "/car-fleet-ii/",
                             "src": "https://leetcode.cn/problems/car-fleet-ii/",
                             "solution": null,
@@ -175,7 +175,7 @@
                         },
                         {
                             "id": 2736,
-                            "title": "2736. 最大和查询",
+                            "title": "2736. 最大和查詢",
                             "slug": "/maximum-sum-queries/",
                             "src": "https://leetcode.cn/problems/maximum-sum-queries/",
                             "solution": null,
@@ -184,7 +184,7 @@
                         },
                         {
                             "id": 3420,
-                            "title": "3420. 统计 K 次操作以内得到非递减子数组的数目",
+                            "title": "3420. 統計 K 次操作以內得到非遞減子陣列的數目",
                             "slug": "/count-non-decreasing-subarrays-after-k-operations/",
                             "src": "https://leetcode.cn/problems/count-non-decreasing-subarrays-after-k-operations/",
                             "solution": null,
@@ -193,7 +193,7 @@
                         },
                         {
                             "id": 3221,
-                            "title": "3221. 最大数组跳跃得分 II",
+                            "title": "3221. 最大陣列跳躍得分 II",
                             "slug": "/maximum-array-hopping-score-ii/",
                             "src": "https://leetcode.cn/problems/maximum-array-hopping-score-ii/",
                             "solution": null,
@@ -202,7 +202,7 @@
                         },
                         {
                             "id": 1966,
-                            "title": "1966. 未排序数组中的可被二分搜索的数",
+                            "title": "1966. 未排序陣列中的可被二分搜尋的數",
                             "slug": "/binary-searchable-numbers-in-an-unsorted-array/",
                             "src": "https://leetcode.cn/problems/binary-searchable-numbers-in-an-unsorted-array/",
                             "solution": null,
@@ -211,7 +211,7 @@
                         },
                         {
                             "id": 2832,
-                            "title": "2832. 每个元素为最大值的最大范围",
+                            "title": "2832. 每個元素為最大值的最大範圍",
                             "slug": "/maximal-range-that-each-element-is-maximum-in-it/",
                             "src": "https://leetcode.cn/problems/maximal-range-that-each-element-is-maximum-in-it/",
                             "solution": null,
@@ -220,7 +220,7 @@
                         },
                         {
                             "id": 2282,
-                            "title": "2282. 在一个网格中可以看到的人数",
+                            "title": "2282. 在一個網格中可以看到的人數",
                             "slug": "/number-of-people-that-can-be-seen-in-a-grid/",
                             "src": "https://leetcode.cn/problems/number-of-people-that-can-be-seen-in-a-grid/",
                             "solution": null,
@@ -229,7 +229,7 @@
                         },
                         {
                             "id": 3555,
-                            "title": "3555. 排序每个滑动窗口中最小的子数组",
+                            "title": "3555. 排序每個滑動視窗中最小的子陣列",
                             "slug": "/smallest-subarray-to-sort-in-every-sliding-window/",
                             "src": "https://leetcode.cn/problems/smallest-subarray-to-sort-in-every-sliding-window/",
                             "solution": null,
@@ -251,7 +251,7 @@
                     "problems": [
                         {
                             "id": 84,
-                            "title": "84. 柱状图中最大的矩形",
+                            "title": "84. 柱狀圖中最大的矩形",
                             "slug": "/largest-rectangle-in-histogram/",
                             "src": "https://leetcode.cn/problems/largest-rectangle-in-histogram/",
                             "solution": null,
@@ -260,7 +260,7 @@
                         },
                         {
                             "id": 1793,
-                            "title": "1793. 好子数组的最大分数",
+                            "title": "1793. 好子陣列的最大分數",
                             "slug": "/maximum-score-of-a-good-subarray/",
                             "src": "https://leetcode.cn/problems/maximum-score-of-a-good-subarray/",
                             "solution": null,
@@ -296,7 +296,7 @@
                         },
                         {
                             "id": 1504,
-                            "title": "1504. 统计全 1 子矩形",
+                            "title": "1504. 統計全 1 子矩形",
                             "slug": "/count-submatrices-with-all-ones/",
                             "src": "https://leetcode.cn/problems/count-submatrices-with-all-ones/",
                             "solution": null,
@@ -305,7 +305,7 @@
                         },
                         {
                             "id": 1277,
-                            "title": "1277. 统计全为 1 的正方形子矩阵",
+                            "title": "1277. 統計全為 1 的正方形子矩陣",
                             "slug": "/count-square-submatrices-with-all-ones/",
                             "src": "https://leetcode.cn/problems/count-square-submatrices-with-all-ones/",
                             "solution": null,
@@ -326,8 +326,8 @@
             ]
         },
         {
-            "title": "三、贡献法",
-            "summary": "<strong>思维扩展</strong>：<ul><li><a href=\"https://leetcode.cn/problems/subarray-with-elements-greater-than-varying-threshold/\">2334. 元素值大于变化阈值的子数组</a> 2381</li><li><a href=\"https://leetcode.cn/problems/count-subarrays-where-max-element-appears-at-least-k-times/solutions/2560940/hua-dong-chuang-kou-fu-ti-dan-pythonjava-xvwg/\">2962. 统计最大元素出现至少 K 次的子数组·我的题解</a> 中的思考题（解答见评论）</li></ul>",
+            "title": "三、貢獻法",
+            "summary": "<strong>思維擴充套件</strong>：<ul><li><a href=\"https://leetcode.cn/problems/subarray-with-elements-greater-than-varying-threshold/\">2334. 元素值大於變化閾值的子陣列</a> 2381</li><li><a href=\"https://leetcode.cn/problems/count-subarrays-where-max-element-appears-at-least-k-times/solutions/2560940/hua-dong-chuang-kou-fu-ti-dan-pythonjava-xvwg/\">2962. 統計最大元素出現至少 K 次的子陣列·我的題解</a> 中的思考題（解答見評論）</li></ul>",
             "children": [
                 {
                     "title": "",
@@ -336,7 +336,7 @@
                     "problems": [
                         {
                             "id": 907,
-                            "title": "907. 子数组的最小值之和",
+                            "title": "907. 子陣列的最小值之和",
                             "slug": "/sum-of-subarray-minimums/",
                             "src": "https://leetcode.cn/problems/sum-of-subarray-minimums/",
                             "solution": null,
@@ -345,7 +345,7 @@
                         },
                         {
                             "id": 2104,
-                            "title": "2104. 子数组范围和（最大值-最小值）",
+                            "title": "2104. 子陣列範圍和（最大值-最小值）",
                             "slug": "/sum-of-subarray-ranges/",
                             "src": "https://leetcode.cn/problems/sum-of-subarray-ranges/",
                             "solution": null,
@@ -354,7 +354,7 @@
                         },
                         {
                             "id": 1856,
-                            "title": "1856. 子数组最小乘积的最大值",
+                            "title": "1856. 子陣列最小乘積的最大值",
                             "slug": "/maximum-subarray-min-product/",
                             "src": "https://leetcode.cn/problems/maximum-subarray-min-product/",
                             "solution": null,
@@ -372,7 +372,7 @@
                         },
                         {
                             "id": 2281,
-                            "title": "2281. 巫师的总力量和（最小值×和）",
+                            "title": "2281. 巫師的總力量和（最小值×和）",
                             "slug": "/sum-of-total-strength-of-wizards/",
                             "src": "https://leetcode.cn/problems/sum-of-total-strength-of-wizards/",
                             "solution": null,
@@ -381,7 +381,7 @@
                         },
                         {
                             "id": 3430,
-                            "title": "3430. 最多 K 个元素的子数组的最值之和",
+                            "title": "3430. 最多 K 個元素的子陣列的最值之和",
                             "slug": "/maximum-and-minimum-sums-of-at-most-size-k-subarrays/",
                             "src": "https://leetcode.cn/problems/maximum-and-minimum-sums-of-at-most-size-k-subarrays/",
                             "solution": null,
@@ -390,7 +390,7 @@
                         },
                         {
                             "id": 3359,
-                            "title": "3359. 查找最大元素不超过 K 的有序子矩阵",
+                            "title": "3359. 查詢最大元素不超過 K 的有序子矩陣",
                             "slug": "/find-sorted-submatrices-with-maximum-element-at-most-k/",
                             "src": "https://leetcode.cn/problems/find-sorted-submatrices-with-maximum-element-at-most-k/",
                             "solution": null,
@@ -407,7 +407,7 @@
             "problems": [
                 {
                     "id": 402,
-                    "title": "402. 移掉 K 位数字",
+                    "title": "402. 移掉 K 位數字",
                     "slug": "/remove-k-digits/",
                     "src": "https://leetcode.cn/problems/remove-k-digits/",
                     "solution": null,
@@ -416,7 +416,7 @@
                 },
                 {
                     "id": 1673,
-                    "title": "1673. 找出最具竞争力的子序列",
+                    "title": "1673. 找出最具競爭力的子序列",
                     "slug": "/find-the-most-competitive-subsequence/",
                     "src": "https://leetcode.cn/problems/find-the-most-competitive-subsequence/",
                     "solution": null,
@@ -425,7 +425,7 @@
                 },
                 {
                     "id": 316,
-                    "title": "316. 去除重复字母",
+                    "title": "316. 去除重複字母",
                     "slug": "/remove-duplicate-letters/",
                     "src": "https://leetcode.cn/problems/remove-duplicate-letters/",
                     "solution": null,
@@ -434,7 +434,7 @@
                 },
                 {
                     "id": 1081,
-                    "title": "1081. 不同字符的最小子序列",
+                    "title": "1081. 不同字元的最小子序列",
                     "slug": "/smallest-subsequence-of-distinct-characters/",
                     "src": "https://leetcode.cn/problems/smallest-subsequence-of-distinct-characters/",
                     "solution": null,
@@ -443,7 +443,7 @@
                 },
                 {
                     "id": 321,
-                    "title": "321. 拼接最大数",
+                    "title": "321. 拼接最大數",
                     "slug": "/create-maximum-number/",
                     "src": "https://leetcode.cn/problems/create-maximum-number/",
                     "solution": null,
@@ -462,8 +462,8 @@
             ]
         },
         {
-            "title": "关联题单",
-            "summary": "<ul><li><strong>单调栈优化 DP</strong>：见 <a href=\"https://leetcode.cn/circle/discuss/tXLS3i/\">动态规划题单</a> 中的「§11.2 单调栈优化 DP」。</li><li><strong>单调队列</strong>：见 <a href=\"https://leetcode.cn/circle/discuss/mOr1u6/\">数据结构题单</a> 中的「§4.3 单调队列」。</li></ul><br><a href=\"https://leetcode.cn/circle/discuss/RvFUtj/\">如何科学刷题？</a><br><ol><li><a href=\"https://leetcode.cn/circle/discuss/0viNMK/\">滑动窗口与双指针（定长/不定长/单序列/双序列/三指针/分组循环）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/SqopEo/\">二分算法（二分答案/最小化最大值/最大化最小值/第K小）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/9oZFK9/\">单调栈（基础/矩形面积/贡献法/最小字典序）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/YiXPXW/\">网格图（DFS/BFS/综合应用）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/dHn9Vk/\">位运算（基础/性质/拆位/试填/恒等式/思维）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/01LUak/\">图论算法（DFS/BFS/拓扑排序/基环树/最短路/最小生成树/网络流）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/tXLS3i/\">动态规划（入门/背包/划分/状态机/区间/状压/数位/数据结构优化/树形/博弈/概率期望）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/mOr1u6/\">常用数据结构（前缀和/差分/栈/队列/堆/字典树/并查集/树状数组/线段树）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/IYT3ss/\">数学算法（数论/组合/概率期望/博弈/计算几何/随机算法）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/g6KTKL/\">贪心与思维（基本贪心策略/反悔/区间/字典序/数学/思维/脑筋急转弯/构造）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/K0n2gO/\">链表、二叉树与回溯（前后指针/快慢指针/DFS/BFS/直径/LCA/一般树）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/SJFwQI/\">字符串（KMP/Z函数/Manacher/字符串哈希/AC自动机/后缀数组/子序列自动机）</a></li></ol><br><a href=\"https://github.com/EndlessCheng/codeforces-go/blob/master/leetcode/SOLUTIONS.md\">我的题解精选（已分类）</a><br><br>欢迎关注 <a href=\"https://space.bilibili.com/206214\">B站@灵茶山艾府</a><br><br>如果你发现有题目可以补充进来，欢迎评论反馈。"
+            "title": "關聯題單",
+            "summary": "<ul><li><strong>單調棧最佳化 DP</strong>：見 <a href=\"https://leetcode.cn/circle/discuss/tXLS3i/\">動態規劃題單</a> 中的「§11.2 單調棧最佳化 DP」。</li><li><strong>單調佇列</strong>：見 <a href=\"https://leetcode.cn/circle/discuss/mOr1u6/\">資料結構題單</a> 中的「§4.3 單調佇列」。</li></ul><br><a href=\"https://leetcode.cn/circle/discuss/RvFUtj/\">如何科學刷題？</a><br><ol><li><a href=\"https://leetcode.cn/circle/discuss/0viNMK/\">滑動視窗與雙指標（定長/不定長/單序列/雙序列/三指標/分組迴圈）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/SqopEo/\">二分演算法（二分答案/最小化最大值/最大化最小值/第K小）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/9oZFK9/\">單調棧（基礎/矩形面積/貢獻法/最小字典序）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/YiXPXW/\">網格圖（DFS/BFS/綜合應用）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/dHn9Vk/\">位運算（基礎/性質/拆位/試填/恆等式/思維）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/01LUak/\">圖論演算法（DFS/BFS/拓撲排序/基環樹/最短路/最小生成樹/網路流）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/tXLS3i/\">動態規劃（入門/揹包/劃分/狀態機/區間/狀壓/數位/資料結構最佳化/樹形/博弈/機率期望）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/mOr1u6/\">常用資料結構（字首和/差分/棧/佇列/堆/字典樹/並查集/樹狀陣列/線段樹）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/IYT3ss/\">數學演算法（數論/組合/機率期望/博弈/計算幾何/隨機演算法）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/g6KTKL/\">貪心與思維（基本貪心策略/反悔/區間/字典序/數學/思維/腦筋急轉彎/構造）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/K0n2gO/\">連結串列、二叉樹與回溯（前後指標/快慢指標/DFS/BFS/直徑/LCA/一般樹）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/SJFwQI/\">字串（KMP/Z函式/Manacher/字串雜湊/AC自動機/字尾陣列/子序列自動機）</a></li></ol><br><a href=\"https://github.com/EndlessCheng/codeforces-go/blob/master/leetcode/SOLUTIONS.md\">我的題解精選（已分類）</a><br><br>歡迎關注 <a href=\"https://space.bilibili.com/206214\">B站@靈茶山艾府</a><br><br>如果你發現有題目可以補充進來，歡迎評論反饋。"
         }
     ]
 }
