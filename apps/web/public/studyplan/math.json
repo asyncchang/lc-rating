@@ -453,7 +453,7 @@
         {
           "title": "§1.6 最大公約數（GCD）",
           "src": null,
-          "summary": "部分語言的標準庫沒有 GCD 和 LCM，需要手寫。推薦寫迭代，比遞迴快一點。\n\nJava\n\nGo\n\n```java\nclass Solution {\n    private long gcd(long a, long b) {\n        while (a != 0) {\n            long tmp = a;\n            a = b % a;\n            b = tmp;\n        }\n        return b;\n    }\n\n    // 推薦先除後乘，儘量避免溢位\n    private long lcm(long a, long b) {\n        return a / gcd(a, b) * b;\n    }\n}\n```",
+          "summary": "部分語言的標準庫沒有 GCD 和 LCM，需要手寫。推薦寫迭代，比遞迴快一點。\n\n```cpp\nlong long gcd(long long a, long long b) {\n    while (a != 0) {\n        long long tmp = a;\n        a = b % a;\n        b = tmp;\n    }\n    return b;\n}\n\n// 推薦先除後乘，儘量避免溢位\nlong long lcm(long long a, long long b) {\n    return a / gcd(a, b) * b;\n}\n```",
           "problems": [
             {
               "id": "1979",
