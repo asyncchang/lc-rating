@@ -5,12 +5,12 @@
     "children": [
         {
             "title": "介紹",
-            "summary": "<img src=\"https://pic.leetcode.cn/1724834645-OYGBxU-grid004.png\" alt=\"網格圖題單 DFS BFS 網格圖題目 圖論 靈茶山艾府\" style=\"width: 100%;\"><br>> 小小貪吃蛇，移動花樣多。<br>> 平移加旋轉，為把迷宮破。<br>> 程式碼復程式碼，bug 何其多。<br>> 六步化一步，AC 定我奪。<br>> —— [1210. 穿過迷宮的最少移動次數](https://leetcode.cn/problems/minimum-moves-to-reach-target-with-rotations/)<br>",
+            "summary": "<img src=\"https://pic.leetcode.cn/1724834645-OYGBxU-grid004.png\" alt=\"網格圖題單\" style=\"width: 100%;\">\n\n**本題單涵蓋**：\n- 網格圖 DFS：連通塊、島嶼問題\n- 網格圖 BFS：最短路徑、距離計算\n- 網格圖 0-1 BFS：特殊邊權處理\n- 網格圖 Dijkstra：見圖論題單\n- 綜合應用：狀態壓縮、複雜建模\n\n> *小小貪吃蛇，移動花樣多；平移加旋轉，為把迷宮破* —— [1210. 穿過迷宮的最少移動次數](https://leetcode.cn/problems/minimum-moves-to-reach-target-with-rotations/)",
             "isLeaf": false,
             "children": [
                 {
                     "title": "一、網格圖 DFS",
-                    "summary": "適用於需要計算連通塊個數、大小的題目。<br>部分題目做法不止一種，也可以用 BFS 或並查集解決。<br><br>二叉樹 DFS 與網格圖 DFS 的區別：<br><table><thead><tr><th></th><th><strong>二叉樹</strong></th><th><strong>網格圖</strong></th></tr></thead><tbody><tr><td><strong>遞迴入口</strong></td><td>根節點</td><td>網格圖的某個格子</td></tr><tr><td><strong>遞迴方向</strong></td><td>左兒子和右兒子</td><td>一般為左右上下的相鄰格子</td></tr><tr><td><strong>遞迴邊界</strong></td><td>空節點（或者葉節點）</td><td>出界、遇到障礙或者已訪問</td></tr></tbody></table>",
+                    "summary": "**適用場景**：計算連通塊個數、大小等\n\n**二叉樹 DFS vs 網格圖 DFS**：\n\n| 要素 | 二叉樹 | 網格圖 |\n|------|--------|--------|\n| 遞迴入口 | 根節點 | 某個格子 |\n| 遞迴方向 | 左右子節點 | 上下左右相鄰格子 |\n| 遞迴邊界 | 空節點/葉節點 | 出界/障礙/已訪問 |\n\n**注意**：部分題目可用 BFS 或並查集解決",
                     "isLeaf": false,
                     "children": [
                         {
@@ -249,7 +249,7 @@
                 },
                 {
                     "title": "二、網格圖 BFS",
-                    "summary": "適用於需要計算最短距離（最短路）的題目。<br>DFS 是不撞南牆不回頭；BFS 是先訪問近的，再訪問遠的。",
+                    "summary": "**適用場景**：計算最短距離、最短路徑\n\n**DFS vs BFS**：\n- DFS：不撞南牆不回頭，深度優先\n- BFS：先訪問近的、再訪問遠的，層序遍歷",
                     "isLeaf": false,
                     "children": [
                         {
@@ -462,7 +462,7 @@
                 },
                 {
                     "title": "三、網格圖 0-1 BFS",
-                    "summary": "邊權只有 0 和 1 的題目，也可以用 BFS 做。",
+                    "summary": "**特點**：邊權只有 0 和 1 的特殊圖\n\n**演算法**：0-1 BFS（使用雙端佇列最佳化）",
                     "isLeaf": false,
                     "children": [
                         {

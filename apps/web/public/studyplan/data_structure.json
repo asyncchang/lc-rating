@@ -1,17 +1,17 @@
 {
   "title": "分享丨【演算法題單】常用資料結構（字首和/棧/佇列/堆/字典樹/並查集/樹狀陣列/線段樹）",
   "src": "https://leetcode.cn/circle/discuss/mOr1u6/",
-  "summary": "![資料結構題單 資料結構入門 資料結構新手教程 資料結構題目 力扣資料結構 leetcode資料結構 靈茶山艾府 靈神](https://pic.leetcode.cn/1713836847-cDYwhf-Programming.jfif)",
+  "summary": "![資料結構題單](https://pic.leetcode.cn/1713836847-cDYwhf-Programming.jfif)\n\n**本題單涵蓋**：\n- 列舉技巧：列舉右維護左、列舉中間\n- 字首和/差分：一維/二維、區間操作\n- 棧與佇列：單調棧、單調佇列、優先佇列\n- 雜湊表：計數、去重、查詢\n- 字典樹：字首檢索、字串統計\n- 並查集：連通性、動態連通\n- 樹狀陣列：單點修改、區間查詢\n- 線段樹：區間修改、區間查詢",
   "children": [
     {
       "title": "零、常用列舉技巧",
       "src": null,
-      "summary": "本節介紹三種核心列舉策略：列舉右維護左、列舉中間、遍歷對角線，適用於雙變數、三/四變數及矩陣類問題。",
+      "summary": "**核心列舉策略**：\n- 列舉右維護左：雙變數問題轉單變數\n- 列舉中間：三/四變數問題\n- 遍歷對角線：矩陣類問題",
       "children": [
         {
           "title": "§0.1 列舉右，維護左",
           "src": null,
-          "summary": "對於 **雙變數問題**，例如兩數之和 ai​+aj​=t，可以列舉右邊的 aj​，轉換成 **單變數問題**，也就是在 aj​ 左邊查詢是否有 ai​=t−aj​，這可以用雜湊表維護。\n\n我把這個技巧叫做 **列舉右，維護左**。\n\n[講解](https://leetcode.cn/problems/two-sum/solution/dong-hua-cong-liang-shu-zhi-he-zhong-wo-0yvmj/)\n\n下面這些題目，如果可以，請用**一次遍歷**實現。",
+          "summary": "**核心思想**：\n- 雙變數問題 → 單變數問題\n- 列舉右邊的 aj，在左邊查詢 ai = t - aj\n- 使用雜湊表維護已遍歷的元素\n\n**影片講解**：[兩數之和動畫講解](https://leetcode.cn/problems/two-sum/solution/dong-hua-cong-liang-shu-zhi-he-zhong-wo-0yvmj/)\n\n**要求**：儘量使用一次遍歷實現",
           "problems": [
             {
               "id": "1",
@@ -5671,7 +5671,7 @@
     {
       "title": "演算法題單",
       "src": "https://leetcode.cn/circle/discuss/mOr1u6/",
-      "summary": "[如何科學刷題？](https://leetcode.cn/circle/discuss/RvFUtj/)\n\n1.  [滑動視窗與雙指標（定長/不定長/單序列/雙序列/三指標/分組迴圈）](https://leetcode.cn/circle/discuss/0viNMK/)\n2.  [二分演算法（二分答案/最小化最大值/最大化最小值/第K小）](https://leetcode.cn/circle/discuss/SqopEo/)\n3.  [單調棧（基礎/矩形面積/貢獻法/最小字典序）](https://leetcode.cn/circle/discuss/9oZFK9/)\n4.  [網格圖（DFS/BFS/綜合應用）](https://leetcode.cn/circle/discuss/YiXPXW/)\n5.  [位運算（基礎/性質/拆位/試填/恆等式/思維）](https://leetcode.cn/circle/discuss/dHn9Vk/)\n6.  [圖論演算法（DFS/BFS/拓撲排序/基環樹/最短路/最小生成樹/網路流）](https://leetcode.cn/circle/discuss/01LUak/)\n7.  [動態規劃（入門/揹包/劃分/狀態機/區間/狀壓/數位/資料結構最佳化/樹形/博弈/機率期望）](https://leetcode.cn/circle/discuss/tXLS3i/)\n8.  [常用資料結構（字首和/差分/棧/佇列/堆/字典樹/並查集/樹狀陣列/線段樹）](https://leetcode.cn/circle/discuss/mOr1u6/)\n9.  [數學演算法（數論/組合/機率期望/博弈/計算幾何/隨機演算法）](https://leetcode.cn/circle/discuss/IYT3ss/)\n10.  [貪心與思維（基本貪心策略/反悔/區間/字典序/數學/思維/腦筋急轉彎/構造）](https://leetcode.cn/circle/discuss/g6KTKL/)\n11.  [連結串列、樹與回溯（前後指標/快慢指標/DFS/BFS/直徑/LCA）](https://leetcode.cn/circle/discuss/K0n2gO/)\n12.  [字串（KMP/Z函式/Manacher/字串雜湊/AC自動機/字尾陣列/子序列自動機）](https://leetcode.cn/circle/discuss/SJFwQI/)\n\n[我的題解精選（已分類）](/link/?target=https%3A%2F%2Fgithub.com%2FEndlessCheng%2Fcodeforces-go%2Fblob%2Fmaster%2Fleetcode%2FSOLUTIONS.md)\n\n歡迎關注 [B站@靈茶山艾府](/link/?target=https%3A%2F%2Fspace.bilibili.com%2F206214)\n\n如果你發現有題目可以補充進來，歡迎評論反饋。",
+      "summary": "[如何科學刷題？](https://leetcode.cn/circle/discuss/RvFUtj/)\n\n1.  [滑動視窗與雙指標（定長/不定長/單序列/雙序列/三指標/分組迴圈）](https://leetcode.cn/circle/discuss/0viNMK/)\n2.  [二分演算法（二分答案/最小化最大值/最大化最小值/第K小）](https://leetcode.cn/circle/discuss/SqopEo/)\n3.  [單調棧（基礎/矩形面積/貢獻法/最小字典序）](https://leetcode.cn/circle/discuss/9oZFK9/)\n4.  [網格圖（DFS/BFS/綜合應用）](https://leetcode.cn/circle/discuss/YiXPXW/)\n5.  [位運算（基礎/性質/拆位/試填/恆等式/思維）](https://leetcode.cn/circle/discuss/dHn9Vk/)\n6.  [圖論演算法（DFS/BFS/拓撲排序/基環樹/最短路/最小生成樹/網路流）](https://leetcode.cn/circle/discuss/01LUak/)\n7.  [動態規劃（入門/背包/劃分/狀態機/區間/狀壓/數位/資料結構最佳化/樹形/博弈/機率期望）](https://leetcode.cn/circle/discuss/tXLS3i/)\n8.  [常用資料結構（字首和/差分/棧/佇列/堆/字典樹/並查集/樹狀陣列/線段樹）](https://leetcode.cn/circle/discuss/mOr1u6/)\n9.  [數學演算法（數論/組合/機率期望/博弈/計算幾何/隨機演算法）](https://leetcode.cn/circle/discuss/IYT3ss/)\n10.  [貪心與思維（基本貪心策略/反悔/區間/字典序/數學/思維/腦筋急轉彎/構造）](https://leetcode.cn/circle/discuss/g6KTKL/)\n11.  [連結串列、樹與回溯（前後指標/快慢指標/DFS/BFS/直徑/LCA）](https://leetcode.cn/circle/discuss/K0n2gO/)\n12.  [字串（KMP/Z函式/Manacher/字串雜湊/AC自動機/字尾陣列/子序列自動機）](https://leetcode.cn/circle/discuss/SJFwQI/)\n\n[我的題解精選（已分類）](/link/?target=https%3A%2F%2Fgithub.com%2FEndlessCheng%2Fcodeforces-go%2Fblob%2Fmaster%2Fleetcode%2FSOLUTIONS.md)\n\n歡迎關注 [B站@靈茶山艾府](/link/?target=https%3A%2F%2Fspace.bilibili.com%2F206214)\n\n如果你發現有題目可以補充進來，歡迎評論反饋。",
       "isLeaf": true
     }
   ]

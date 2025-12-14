@@ -1,7 +1,7 @@
 {
   "title": "【演算法題單】圖論演算法（DFS/BFS/拓撲排序/基環樹/最短路/最小生成樹/網路流）",
   "src": "https://leetcode.cn/circle/discuss/01LUak/",
-  "summary": "本題單系統梳理圖論核心演算法，涵蓋圖的遍歷（DFS/BFS）、拓撲排序、最短路（Dijkstra/Floyd）、最小生成樹（Kruskal/Prim）、尤拉路徑、強連通分量、二分圖染色、網路流（最大流/最小割/二分圖匹配）等主題，並附有高質量模板、典型例題與思維擴充套件。適用於從入門到進階的圖論學習與刷題規劃。",
+  "summary": "**本題單涵蓋**：\n- 圖的遍歷：DFS/BFS 基礎與應用\n- 拓撲排序與基環樹\n- 最短路：Dijkstra/Floyd 演算法\n- 最小生成樹：Kruskal/Prim 演算法\n- 進階主題：尤拉路徑、強連通分量、二分圖、網路流\n\n每個主題附有模板程式碼、典型例題與難度標註",
   "children": [
     {
       "title": "一、圖的遍歷",
@@ -12,7 +12,7 @@
         {
           "title": "§1.1 深度優先搜尋（DFS）",
           "src": null,
-          "summary": "找連通塊、判斷是否有環（如 207 題）等。部分題目做法不止一種。\n\n模板（計算每個連通塊的大小）：\n\n```cpp\n// 計算每個連通塊的大小\nvector<int> component_sizes(int n, const vector<vector<int>>& edges) {\n    vector<vector<int>> g(n);\n    for (auto &e : edges) {\n        int x = e[0], y = e[1];\n        g[x].push_back(y);\n        g[y].push_back(x); // 無向圖\n    }\n\n    vector<int> vis(n, 0), ans;\n    function<int(int)> dfs = [&](int x) {\n        vis[x] = 1; // 避免重複訪問節點\n        int size = 1;\n        for (int y : g[x]) {\n            if (!vis[y]) size += dfs(y);\n        }\n        return size;\n    };\n\n    for (int i = 0; i < n; i++) {\n        if (!vis[i]) ans.push_back(dfs(i));\n    }\n    return ans;\n}\n```",
+          "summary": "**應用場景**：\n- 找連通塊（計算個數與大小）\n- 判斷是否有環（如 207. 課程表）\n- 路徑存在性判斷\n\n**模板程式碼**（計算連通塊大小）：見原文\n\n**注意**：部分題目可用 BFS 或並查集解決",
           "problems": [
             {
               "id": "547",
@@ -236,7 +236,7 @@
         {
           "title": "§1.2 廣度優先搜尋（BFS）",
           "src": null,
-          "summary": "求最短路等。要求邊權都是 1（或者說都是同一個正數）。\n\n模板（單源最短路）：\n\n```cpp\n// 計算從 start 到各個節點的最短路長度；不可達節點距離為 -1\nvector<int> bfs(int n, const vector<vector<int>>& edges, int start) {\n    vector<vector<int>> g(n);\n    for (auto &e : edges) {\n        int x = e[0], y = e[1];\n        g[x].push_back(y);\n        g[y].push_back(x); // 無向圖\n    }\n\n    vector<int> dis(n, -1);\n    queue<int> q;\n    dis[start] = 0;\n    q.push(start);\n    while (!q.empty()) {\n        int x = q.front(); q.pop();\n        for (int y : g[x]) {\n            if (dis[y] < 0) {\n                dis[y] = dis[x] + 1;\n                q.push(y);\n            }\n        }\n    }\n    return dis;\n}\n```",
+          "summary": "**適用場景**：\n- 求最短路徑（邊權都是 1 或相同正數）\n- 層序遍歷、最短步數問題\n\n**模板程式碼**（單源最短路）：見原文\n\n**時間複雜度**：O(V + E)",
           "problems": [
             {
               "id": "3243",
@@ -307,7 +307,7 @@
         {
           "title": "§1.3 圖論建模 + BFS 最短路",
           "src": null,
-          "summary": "把狀態抽象成圖上的點，用 BFS 遍歷這張圖，計算從初始狀態到目標狀態的最短路長度。\n\n可以鍛鍊狀態設計能力。",
+          "summary": "**核心技巧**：\n- 將狀態抽象為圖上的節點\n- 用 BFS 求初始狀態到目標狀態的最短路\n- 訓練狀態設計與建模能力\n\n**適合練習**：狀態壓縮、多維 BFS",
           "problems": [
             {
               "id": "433",
@@ -435,7 +435,7 @@
     {
       "title": "二、拓撲排序",
       "src": null,
-      "summary": "![圖論題單 圖論演算法 圖論題目 LeetCode 力扣圖論 靈茶山艾府](https://pic.leetcode.cn/1738131168-tWFNGZ-006-toposort.png)\n\n把拓撲排序想象成一個黑盒，給它一堆雜亂的先修課約束，它會給你一個井井有條的課程學習安排。\n\n這一種在圖上的「排序」，可以把雜亂的點排成一排。前提條件是圖中無環，從而保證每條邊都是從排在前面的點，指向排在後面的點。即對於任意有向邊 x→y，x 一定在 y 之前。",
+      "summary": "![拓撲排序圖示](https://pic.leetcode.cn/1738131168-tWFNGZ-006-toposort.png)\n\n**核心概念**：\n- 將 DAG（有向無環圖）的節點排成線性序列\n- 保證所有邊 x→y 中，x 都在 y 之前\n- 應用：課程排序、依賴關係處理\n\n**前提條件**：圖中無環",
       "problems": [],
       "children": [
         {

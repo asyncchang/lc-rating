@@ -2,7 +2,7 @@
   "title": "分享丨【演算法題單】單調棧（矩形面積/貢獻法/最小字典序）",
   "src": "https://leetcode.cn/circle/discuss/9oZFK9/",
   "last_update": "2025-11-07T23:47:26.098808+00:00",
-  "summary": "![單調棧題單單調棧入門單調棧題目單調棧教程單調棧影片leetcode單調棧 靈茶山艾府 靈神 靈神題單](https://pic.leetcode.cn/1711714526-rMdiIh-t3-c.png)\n\n> 他向遠方望去，無法看到高山背後的矮山，只看到一座座更高的山峰。\n\n推薦先做做 [資料結構題單](https://leetcode.cn/circle/discuss/mOr1u6/) 中的「列舉右，維護左」以及第三章「棧」的基礎題目後，再來刷本題單。",
+  "summary": "![單調棧題單](https://pic.leetcode.cn/1711714526-rMdiIh-t3-c.png)\n\n> *他向遠方望去，無法看到高山背後的矮山，只看到一座座更高的山峰*\n\n**前置知識**：建議先完成 [資料結構題單](https://leetcode.cn/circle/discuss/mOr1u6/) 中的「列舉右，維護左」及「棧」的基礎題\n\n**本題單涵蓋**：\n- 單調棧基礎：查詢左/右側更大/更小元素\n- 矩形面積：柱狀圖、最大矩形\n- 貢獻法：計算每個元素的貢獻\n- 最小字典序：構造問題",
   "children": [
     {
       "title": "一、單調棧",
@@ -10,7 +10,7 @@
       "children": [
         {
           "title": "§1.1 基礎",
-          "summary": "原理講解：[單調棧【基礎演算法精講 26】](/link/?target=https%3A%2F%2Fwww.bilibili.com%2Fvideo%2FBV1VN411J7S7%2F)\n\n模板：\n\n```cpp\n// 返回每個位置左/右側最近的嚴格大於 nums[i] 的下標；不存在則左為 -1、右為 n\npair<vector<int>, vector<int>> nearestGreater(const vector<int>& nums) {\n    int n = (int)nums.size();\n    vector<int> left(n, -1);\n    vector<int> st;\n    for (int i = 0; i < n; i++) {\n        int x = nums[i];\n        while (!st.empty() && nums[st.back()] <= x) { // 如果求嚴格小於，改成 >=\n            st.pop_back();\n        }\n        if (!st.empty()) left[i] = st.back();\n        st.push_back(i);\n    }\n\n    vector<int> right(n, n);\n    st.clear();\n    for (int i = n - 1; i >= 0; i--) {\n        int x = nums[i];\n        while (!st.empty() && nums[st.back()] <= x) {\n            st.pop_back();\n        }\n        if (!st.empty()) right[i] = st.back();\n        st.push_back(i);\n    }\n    return {left, right};\n}\n```",
+          "summary": "**影片講解**：[單調棧【基礎演算法精講 26】](https://www.bilibili.com/video/BV1VN411J7S7/)\n\n**核心思想**：\n- 維護一個單調遞增/遞減的棧\n- 快速查詢每個元素左/右側第一個更大/更小的元素\n\n**模板程式碼**（查詢左/右側最近的更大元素）：見原文\n\n**時間複雜度**：O(n)",
           "isLeaf": true,
           "problems": [
             {
@@ -71,7 +71,7 @@
         },
         {
           "title": "§1.2 進階（選做）",
-          "summary": "<strong>思維擴充套件</strong>：<ul><li><a href=\"https://leetcode.cn/problems/maximum-width-ramp/\">962. 最大寬度坡</a> 1608</li><li><a href=\"https://leetcode.cn/problems/minimum-operations-to-convert-all-elements-to-zero/\">3542. 將所有元素變為 0 的最少操作次數</a> 1890</li><li><a href=\"https://leetcode.cn/problems/longest-well-performing-interval/\">1124. 表現良好的最長時間段</a> 1908</li></ul>",
+          "summary": "**進階應用**（選做）\n\n**思維擴充套件題**：\n- [962. 最大寬度坡](https://leetcode.cn/problems/maximum-width-ramp/) (1608)\n- [3542. 將所有元素變為 0 的最少操作次數](https://leetcode.cn/problems/minimum-operations-to-convert-all-elements-to-zero/) (1890)\n- [1124. 表現良好的最長時間段](https://leetcode.cn/problems/longest-well-performing-interval/) (1908)",
           "isLeaf": true,
           "problems": [
             {
@@ -330,7 +330,7 @@
     },
     {
       "title": "三、貢獻法",
-      "summary": "<strong>思維擴充套件</strong>：<ul><li><a href=\"https://leetcode.cn/problems/subarray-with-elements-greater-than-varying-threshold/\">2334. 元素值大於變化閾值的子陣列</a> 2381</li><li><a href=\"https://leetcode.cn/problems/count-subarrays-where-max-element-appears-at-least-k-times/solutions/2560940/hua-dong-chuang-kou-fu-ti-dan-pythonjava-xvwg/\">2962. 統計最大元素出現至少 K 次的子陣列·我的題解</a> 中的思考題（解答見評論）</li></ul>",
+      "summary": "**核心技巧**：計算每個元素作為最小值/最大值時對答案的貢獻\n\n**思維擴充套件題**：\n- [2334. 元素值大於變化閾值的子陣列](https://leetcode.cn/problems/subarray-with-elements-greater-than-varying-threshold/) (2381)\n- [2962. 統計最大元素出現至少 K 次的子陣列](https://leetcode.cn/problems/count-subarrays-where-max-element-appears-at-least-k-times/solutions/2560940/) 思考題",
       "children": [
         {
           "title": "",
@@ -469,7 +469,7 @@
     },
     {
       "title": "關聯題單",
-      "summary": "<ul><li><strong>單調棧最佳化 DP</strong>：見 <a href=\"https://leetcode.cn/circle/discuss/tXLS3i/\">動態規劃題單</a> 中的「§11.2 單調棧最佳化 DP」。</li><li><strong>單調佇列</strong>：見 <a href=\"https://leetcode.cn/circle/discuss/mOr1u6/\">資料結構題單</a> 中的「§4.3 單調佇列」。</li></ul><br><a href=\"https://leetcode.cn/circle/discuss/RvFUtj/\">如何科學刷題？</a><br><ol><li><a href=\"https://leetcode.cn/circle/discuss/0viNMK/\">滑動視窗與雙指標（定長/不定長/單序列/雙序列/三指標/分組迴圈）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/SqopEo/\">二分演算法（二分答案/最小化最大值/最大化最小值/第K小）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/9oZFK9/\">單調棧（基礎/矩形面積/貢獻法/最小字典序）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/YiXPXW/\">網格圖（DFS/BFS/綜合應用）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/dHn9Vk/\">位運算（基礎/性質/拆位/試填/恆等式/思維）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/01LUak/\">圖論演算法（DFS/BFS/拓撲排序/基環樹/最短路/最小生成樹/網路流）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/tXLS3i/\">動態規劃（入門/揹包/劃分/狀態機/區間/狀壓/數位/資料結構最佳化/樹形/博弈/機率期望）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/mOr1u6/\">常用資料結構（字首和/差分/棧/佇列/堆/字典樹/並查集/樹狀陣列/線段樹）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/IYT3ss/\">數學演算法（數論/組合/機率期望/博弈/計算幾何/隨機演算法）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/g6KTKL/\">貪心與思維（基本貪心策略/反悔/區間/字典序/數學/思維/腦筋急轉彎/構造）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/K0n2gO/\">連結串列、二叉樹與回溯（前後指標/快慢指標/DFS/BFS/直徑/LCA/一般樹）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/SJFwQI/\">字串（KMP/Z函式/Manacher/字串雜湊/AC自動機/字尾陣列/子序列自動機）</a></li></ol><br><a href=\"https://github.com/EndlessCheng/codeforces-go/blob/master/leetcode/SOLUTIONS.md\">我的題解精選（已分類）</a><br><br>歡迎關注 <a href=\"https://space.bilibili.com/206214\">B站@靈茶山艾府</a><br><br>如果你發現有題目可以補充進來，歡迎評論反饋。",
+      "summary": "<ul><li><strong>單調棧最佳化 DP</strong>：見 <a href=\"https://leetcode.cn/circle/discuss/tXLS3i/\">動態規劃題單</a> 中的「§11.2 單調棧最佳化 DP」。</li><li><strong>單調佇列</strong>：見 <a href=\"https://leetcode.cn/circle/discuss/mOr1u6/\">資料結構題單</a> 中的「§4.3 單調佇列」。</li></ul><br><a href=\"https://leetcode.cn/circle/discuss/RvFUtj/\">如何科學刷題？</a><br><ol><li><a href=\"https://leetcode.cn/circle/discuss/0viNMK/\">滑動視窗與雙指標（定長/不定長/單序列/雙序列/三指標/分組迴圈）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/SqopEo/\">二分演算法（二分答案/最小化最大值/最大化最小值/第K小）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/9oZFK9/\">單調棧（基礎/矩形面積/貢獻法/最小字典序）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/YiXPXW/\">網格圖（DFS/BFS/綜合應用）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/dHn9Vk/\">位運算（基礎/性質/拆位/試填/恆等式/思維）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/01LUak/\">圖論演算法（DFS/BFS/拓撲排序/基環樹/最短路/最小生成樹/網路流）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/tXLS3i/\">動態規劃（入門/背包/劃分/狀態機/區間/狀壓/數位/資料結構最佳化/樹形/博弈/機率期望）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/mOr1u6/\">常用資料結構（字首和/差分/棧/佇列/堆/字典樹/並查集/樹狀陣列/線段樹）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/IYT3ss/\">數學演算法（數論/組合/機率期望/博弈/計算幾何/隨機演算法）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/g6KTKL/\">貪心與思維（基本貪心策略/反悔/區間/字典序/數學/思維/腦筋急轉彎/構造）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/K0n2gO/\">連結串列、二叉樹與回溯（前後指標/快慢指標/DFS/BFS/直徑/LCA/一般樹）</a></li><li><a href=\"https://leetcode.cn/circle/discuss/SJFwQI/\">字串（KMP/Z函式/Manacher/字串雜湊/AC自動機/字尾陣列/子序列自動機）</a></li></ol><br><a href=\"https://github.com/EndlessCheng/codeforces-go/blob/master/leetcode/SOLUTIONS.md\">我的題解精選（已分類）</a><br><br>歡迎關注 <a href=\"https://space.bilibili.com/206214\">B站@靈茶山艾府</a><br><br>如果你發現有題目可以補充進來，歡迎評論反饋。",
       "isLeaf": true
     }
   ]

@@ -1,7 +1,7 @@
 {
   "title": "【演算法題單】數學演算法（數論/組合/機率期望/博弈/計算幾何/隨機演算法）",
   "src": "https://leetcode.cn/circle/discuss/IYT3ss/",
-  "summary": "本文全面整理了力扣上的數學相關題目，其中數論和組合數學的題目比較多。\n\n部分題目（尤其是組合數學）會涉及到取模，我寫了一篇詳細的取模教程，請看 [模運算的世界：當加減乘除遇上取模](https://leetcode.cn/circle/discuss/mDfnkW/)。",
+  "summary": "**本題單涵蓋**：\n- 數論：質數、GCD/LCM、質因數分解、歐拉函式\n- 組合數學：排列組合、容斥原理、卡特蘭數\n- 機率期望：期望計算、機率 DP\n- 博弈論：Nim 遊戲、SG 函式\n- 計算幾何：點線面、凸包\n- 隨機演算法：蒙特卡羅、拒絕抽樣\n\n**取模相關**：部分題目涉及取模運算，詳見 [模運算教程](https://leetcode.cn/circle/discuss/mDfnkW/)",
   "children": [
     {
       "title": "一、數論",
