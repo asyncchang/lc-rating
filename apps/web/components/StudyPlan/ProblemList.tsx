@@ -3,7 +3,6 @@ import { RatingCircle, ratingInfo } from "@/components/common/RatingCircle";
 import { LC_HOST_EN, LC_HOST_ZH } from "@/config/constants";
 import { useGlobalSettingsStore } from "@/hooks/useGlobalSettings";
 import { StudyPlanData } from "@/types";
-import Link from "next/link";
 import React from "react";
 
 interface ProblemListProps {
@@ -22,13 +21,14 @@ const ProblemList = React.memo(({ problems }: ProblemListProps) => {
         return (
           <div key={problem.slug}>
             <div className="flex flex-row items-center text-pretty justify-between rounded p-1 m-1 bg-muted/50">
-              <Link
-                href={`${LC_HOST}/problems${problem.slug}`}
+              <a
+                href={`${LC_HOST}/problems/${problem.slug}`}
                 target="_blank"
+                rel="noopener noreferrer"
                 className="hover:underline"
               >
-                {problem.title}
-              </Link>
+                {problem.id}. {problem.title}
+              </a>
               <div className="flex flex-row items-center gap-2">
                 {problem.score ? (
                   <div className="flex flex-row items-center">

@@ -71,9 +71,9 @@ const Navigator = React.memo(() => {
       </div>
       <div className="font-bold md:flex gap-1 hidden">
         <div>本頁面所有題解來自</div>
-        <Link href={BILIBILI_0X3F_SPACE.url} className="underline text-red-700">
+        <a href={BILIBILI_0X3F_SPACE.url} target="_blank" rel="noopener noreferrer" className="underline text-red-700">
           {BILIBILI_0X3F_SPACE.title}
-        </Link>
+        </a>
         <div>感謝！</div>
       </div>
       <div className="flex gap-4">
