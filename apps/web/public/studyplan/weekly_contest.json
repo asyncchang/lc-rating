@@ -1192,6 +1192,68 @@
                     ]
                 },
                 {
+                    "id": 31,
+                    "title": "4.3 圖論進階：基環樹、倍增與 Tarjan",
+                    "summary": "",
+                    "isLeaf": true,
+                    "problems": [
+                        {
+                            "id": "2360",
+                            "title": "圖中的最長環",
+                            "slug": "longest-cycle-in-a-graph",
+                            "src": "https://leetcode.cn/problems/longest-cycle-in-a-graph/",
+                            "solution": null,
+                            "score": 1897.1863301576,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "1192",
+                            "title": "查詢叢集內的關鍵連線",
+                            "slug": "critical-connections-in-a-network",
+                            "src": "https://leetcode.cn/problems/critical-connections-in-a-network/",
+                            "solution": null,
+                            "score": 2084.6866916045,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "1483",
+                            "title": "樹節點的第 K 個祖先",
+                            "slug": "kth-ancestor-of-a-tree-node",
+                            "src": "https://leetcode.cn/problems/kth-ancestor-of-a-tree-node/",
+                            "solution": null,
+                            "score": 2115.0911494487,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "2127",
+                            "title": "參加會議的最多員工數",
+                            "slug": "maximum-employees-to-be-invited-to-a-meeting",
+                            "src": "https://leetcode.cn/problems/maximum-employees-to-be-invited-to-a-meeting/",
+                            "solution": null,
+                            "score": 2449.1323757838,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "2097",
+                            "title": "合法重新排列數對",
+                            "slug": "valid-arrangement-of-pairs",
+                            "src": "https://leetcode.cn/problems/valid-arrangement-of-pairs/",
+                            "solution": null,
+                            "score": 2650.8996457642,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "2836",
+                            "title": "在傳球遊戲中最大化函式值",
+                            "slug": "maximize-value-of-function-in-a-ball-passing-game",
+                            "src": "https://leetcode.cn/problems/maximize-value-of-function-in-a-ball-passing-game/",
+                            "solution": null,
+                            "score": 2768.8154223451,
+                            "isPremium": false
+                        }
+                    ]
+                },
+                {
                     "id": 22,
                     "title": "4.3 數學、數論與組合計數",
                     "summary": "",
@@ -1245,8 +1307,70 @@
                     ]
                 },
                 {
+                    "id": 30,
+                    "title": "4.5 字串進階：KMP、Z 演算法與字串雜湊",
+                    "summary": "",
+                    "isLeaf": true,
+                    "problems": [
+                        {
+                            "id": "1392",
+                            "title": "最長快樂字首",
+                            "slug": "longest-happy-prefix",
+                            "src": "https://leetcode.cn/problems/longest-happy-prefix/",
+                            "solution": null,
+                            "score": 1876.146019008,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "3036",
+                            "title": "匹配模式陣列的子陣列數目 II",
+                            "slug": "number-of-subarrays-that-match-a-pattern-ii",
+                            "src": "https://leetcode.cn/problems/number-of-subarrays-that-match-a-pattern-ii/",
+                            "solution": null,
+                            "score": 1894.5496928891,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "3008",
+                            "title": "找出陣列中的美麗下標 II",
+                            "slug": "find-beautiful-indices-in-the-given-array-ii",
+                            "src": "https://leetcode.cn/problems/find-beautiful-indices-in-the-given-array-ii/",
+                            "solution": null,
+                            "score": 2016.2085876254,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "3213",
+                            "title": "最小代價構造字串",
+                            "slug": "construct-string-with-minimum-cost",
+                            "src": "https://leetcode.cn/problems/construct-string-with-minimum-cost/",
+                            "solution": null,
+                            "score": 2170.7313528632,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "3031",
+                            "title": "將單詞恢復初始狀態所需的最短時間 II",
+                            "slug": "minimum-time-to-revert-word-to-initial-state-ii",
+                            "src": "https://leetcode.cn/problems/minimum-time-to-revert-word-to-initial-state-ii/",
+                            "solution": null,
+                            "score": 2277.9557248587,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "3292",
+                            "title": "形成目標字串需要的最少字串數 II",
+                            "slug": "minimum-number-of-valid-strings-to-form-target-ii",
+                            "src": "https://leetcode.cn/problems/minimum-number-of-valid-strings-to-form-target-ii/",
+                            "solution": null,
+                            "score": 2661.736901362,
+                            "isPremium": false
+                        }
+                    ]
+                },
+                {
                     "id": 23,
-                    "title": "4.4 樹狀陣列、線段樹與 Trie",
+                    "title": "4.6 樹狀陣列、線段樹與 Trie",
                     "summary": "",
                     "isLeaf": true,
                     "problems": [
@@ -1293,6 +1417,68 @@
                             "src": "https://leetcode.cn/problems/handling-sum-queries-after-update/",
                             "solution": null,
                             "score": 2397.8728428256,
+                            "isPremium": false
+                        }
+                    ]
+                },
+                {
+                    "id": 32,
+                    "title": "4.7 離線查詢與進階區間維護：ST 表與掃描線",
+                    "summary": "",
+                    "isLeaf": true,
+                    "problems": [
+                        {
+                            "id": "2070",
+                            "title": "每一個查詢的最大美麗值",
+                            "slug": "most-beautiful-item-for-each-query",
+                            "src": "https://leetcode.cn/problems/most-beautiful-item-for-each-query/",
+                            "solution": null,
+                            "score": 1724.1545485476,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "1851",
+                            "title": "包含每個查詢的最小區間",
+                            "slug": "minimum-interval-to-include-each-query",
+                            "src": "https://leetcode.cn/problems/minimum-interval-to-include-each-query/",
+                            "solution": null,
+                            "score": 2286.1378742318,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "2940",
+                            "title": "找到 Alice 和 Bob 可以相遇的建築",
+                            "slug": "find-building-where-alice-and-bob-can-meet",
+                            "src": "https://leetcode.cn/problems/find-building-where-alice-and-bob-can-meet/",
+                            "solution": null,
+                            "score": 2327.4743300299,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "1707",
+                            "title": "與陣列中元素的最大異或值",
+                            "slug": "maximum-xor-with-an-element-from-array",
+                            "src": "https://leetcode.cn/problems/maximum-xor-with-an-element-from-array/",
+                            "solution": null,
+                            "score": 2358.9669560824,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "2747",
+                            "title": "統計沒有收到請求的伺服器數目",
+                            "slug": "count-zero-request-servers",
+                            "src": "https://leetcode.cn/problems/count-zero-request-servers/",
+                            "solution": null,
+                            "score": 2405.3375364501,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "2736",
+                            "title": "最大和查詢",
+                            "slug": "maximum-sum-queries",
+                            "src": "https://leetcode.cn/problems/maximum-sum-queries/",
+                            "solution": null,
+                            "score": 2533.2830157959,
                             "isPremium": false
                         }
                     ]
