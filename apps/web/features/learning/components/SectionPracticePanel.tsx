@@ -140,7 +140,7 @@ export function SectionPracticePanel({
           </div>
           <div className="h-2 overflow-hidden rounded-full bg-muted">
             <div
-              className="h-full rounded-full bg-lime-500 transition-all duration-300"
+              className="h-full rounded-full bg-primary transition-all duration-300"
               style={{ width: `${completionPct}%` }}
             />
           </div>

@@ -31,6 +31,6 @@ test("normalizeMarkdownCodeBlockIndentation updates fenced blocks only", () => {
 
   const output = normalizeMarkdownCodeBlockIndentation(input);
 
-  assert.match(output, /```cpp\nif \(ok\) \{\n    return 1;\n\}\n```/);
+  assert.match(output, /```cpp\nif \(ok\) \{\n {4}return 1;\n\}\n```/);
   assert.match(output, /^text$/m);
 });

@@ -1,5 +1,6 @@
 import { useGlobalSettingsStore } from "./hook";
-import type { GlobalSettingsStoreState } from "./types_v2";
+import { isTextSize } from "./types_v2";
+import type { GlobalSettingsStoreState, TextSize } from "./types_v2";
 
-export { useGlobalSettingsStore };
-export type { GlobalSettingsStoreState };
+export { useGlobalSettingsStore, isTextSize };
+export type { GlobalSettingsStoreState, TextSize };

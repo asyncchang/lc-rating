@@ -14,6 +14,7 @@ import {
   Trophy,
   Target,
   ArrowDownWideNarrow,
+  Swords,
   type LucideIcon,
 } from "lucide-react";
 
@@ -24,6 +25,7 @@ export interface StudyPlanTheme {
 }
 
 export const studyPlanIcons: Record<string, LucideIcon> = {
+  weekly_contest: Swords,
   q3_handbook: Target,
   technical_interview: Cpu,
   rating_2100: Trophy,
@@ -49,6 +51,11 @@ export const defaultTheme: StudyPlanTheme = {
 };
 
 export const studyPlanThemes: Record<string, StudyPlanTheme> = {
+  weekly_contest: {
+    gradient: "linear-gradient(135deg, #0ea5e9 0%, #4338ca 100%)",
+    accent: "#0ea5e9",
+    accentDark: "#4338ca",
+  },
   q3_handbook: {
     gradient: "linear-gradient(135deg, #0f766e 0%, #b45309 100%)",
     accent: "#0f766e",
