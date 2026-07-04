@@ -73,6 +73,8 @@ function withSectionPractice(summary: string, sectionId: number) {
 export const technicalInterview = {
   id: 1,
   title: "技術面試準備",
+  description:
+    "針對高效能、即時、運算密集型 ML 系統的高階技術面試整理：21 章涵蓋核心演算法主題與效能工程視角，把常見題型對應到真實系統瓶頸與 C++ 實作細節。",
   src: "",
   last_update: "2026-06-13T00:00:00.000Z",
   summary: md(
