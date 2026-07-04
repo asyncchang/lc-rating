@@ -40,14 +40,22 @@ export const BILIBILI_0X3F_SPACE = {
 
 /**
  * Keys of study plans/lectures authored in this fork, layered on top of the
- * upstream 靈茶山艾府（0x3F）題單. Overview grids use this to visually split
- * self-built content from the original 0x3F set with a section divider.
+ * upstream 靈茶山艾府（0x3F）題單. Split into two groups so overview grids can
+ * render three labeled sections in order: 0x3F 題單 -> 學習路線 -> 面試準備.
  */
-export const CUSTOM_STUDYPLAN_KEYS: ReadonlySet<string> = new Set([
+export const LEARNING_PATH_KEYS: ReadonlySet<string> = new Set([
   "weekly_contest",
+  "rating_2100",
+]);
+
+export const INTERVIEW_PREP_KEYS: ReadonlySet<string> = new Set([
   "interview_sprint",
   "technical_interview",
-  "rating_2100",
+]);
+
+export const CUSTOM_STUDYPLAN_KEYS: ReadonlySet<string> = new Set([
+  ...LEARNING_PATH_KEYS,
+  ...INTERVIEW_PREP_KEYS,
 ]);
 
 export const STUDYPLANS = {
