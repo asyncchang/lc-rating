@@ -13,6 +13,7 @@ import {
   Trees,
   Trophy,
   Target,
+  Medal,
   ArrowDownWideNarrow,
   Swords,
   type LucideIcon,
@@ -27,6 +28,7 @@ export interface StudyPlanTheme {
 export const studyPlanIcons: Record<string, LucideIcon> = {
   weekly_contest: Swords,
   q3_handbook: Target,
+  q4_handbook: Medal,
   technical_interview: Cpu,
   rating_2100: Trophy,
   binary_search: Search,
@@ -60,6 +62,11 @@ export const studyPlanThemes: Record<string, StudyPlanTheme> = {
     gradient: "linear-gradient(135deg, #0f766e 0%, #b45309 100%)",
     accent: "#0f766e",
     accentDark: "#115e59",
+  },
+  q4_handbook: {
+    gradient: "linear-gradient(135deg, #7c3aed 0%, #b45309 100%)",
+    accent: "#7c3aed",
+    accentDark: "#6d28d9",
   },
   technical_interview: {
     gradient: "linear-gradient(135deg, #2563eb 0%, #16a34a 100%)",
