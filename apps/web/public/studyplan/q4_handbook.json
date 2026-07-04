@@ -136,7 +136,7 @@
             },
             {
               "id": "968",
-              "title": "監控二元樹",
+              "title": "監控二叉樹",
               "slug": "binary-tree-cameras",
               "src": "https://leetcode.com/problems/binary-tree-cameras/",
               "solution": null,
@@ -223,7 +223,7 @@
             },
             {
               "id": "1649",
-              "title": "通過指令創建有序陣列",
+              "title": "透過指令建立有序陣列",
               "slug": "create-sorted-array-through-instructions",
               "src": "https://leetcode.com/problems/create-sorted-array-through-instructions/",
               "solution": null,
@@ -283,7 +283,7 @@
             },
             {
               "id": "2179",
-              "title": "統計數組中好三元組數目",
+              "title": "統計陣列中好三元組數目",
               "slug": "count-good-triplets-in-an-array",
               "src": "https://leetcode.com/problems/count-good-triplets-in-an-array/",
               "solution": null,
@@ -430,7 +430,7 @@
             },
             {
               "id": "924",
-              "title": "盡量減少惡意軟體的傳播",
+              "title": "儘量減少惡意軟體的傳播",
               "slug": "minimize-malware-spread",
               "src": "https://leetcode.com/problems/minimize-malware-spread/",
               "solution": null,
@@ -711,7 +711,7 @@
             },
             {
               "id": "952",
-              "title": "按公因數計算最大組件大小",
+              "title": "按公因數計算最大元件大小",
               "slug": "largest-component-size-by-common-factor",
               "src": "https://leetcode.com/problems/largest-component-size-by-common-factor/",
               "solution": null,
@@ -777,7 +777,7 @@
             },
             {
               "id": "863",
-              "title": "二元樹中所有距離為 K 的節點",
+              "title": "二叉樹中所有距離為 K 的結點",
               "slug": "all-nodes-distance-k-in-binary-tree",
               "src": "https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/",
               "solution": null,
@@ -824,7 +824,7 @@
             },
             {
               "id": "2246",
-              "title": "相鄰字符不同的最長路徑",
+              "title": "相鄰字元不同的最長路徑",
               "slug": "longest-path-with-different-adjacent-characters",
               "src": "https://leetcode.com/problems/longest-path-with-different-adjacent-characters/",
               "solution": null,
@@ -845,7 +845,7 @@
           "problems": [
             {
               "id": "979",
-              "title": "在二元樹中分配硬幣",
+              "title": "在二叉樹中分配硬幣",
               "slug": "distribute-coins-in-binary-tree",
               "src": "https://leetcode.com/problems/distribute-coins-in-binary-tree/",
               "solution": null,
