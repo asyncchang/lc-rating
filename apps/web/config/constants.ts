@@ -47,6 +47,7 @@ export const LEARNING_PATH_KEYS: ReadonlySet<string> = new Set([
   "weekly_contest",
   "rating_2100",
   "q3_handbook",
+  "q4_handbook",
 ]);
 
 export const INTERVIEW_PREP_KEYS: ReadonlySet<string> = new Set([
@@ -62,6 +63,7 @@ export const CUSTOM_STUDYPLAN_KEYS: ReadonlySet<string> = new Set([
 export const STUDYPLANS = {
   weekly_contest: "週賽 AK 之路",
   q3_handbook: "LeetCode 競賽 Q3 手冊",
+  q4_handbook: "LeetCode 競賽 Q4 手冊",
   technical_interview: "技術面試準備",
   rating_2100: "進階刷題衝刺（1700→2100 四階段）",
   binary_search: "二分搜尋",

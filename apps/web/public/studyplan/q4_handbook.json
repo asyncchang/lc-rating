@@ -1,0 +1,1132 @@
+{
+  "id": 940,
+  "title": "LeetCode 競賽 Q4 手冊：第四題模式訓練",
+  "src": null,
+  "last_update": "2026-07-04T00:00:00.000Z",
+  "children": [
+    {
+      "id": 94005,
+      "title": "進階動態規劃",
+      "children": [
+        {
+          "id": 940051,
+          "title": "進階動態規劃：必修",
+          "isLeaf": true,
+          "summary": "必修題用來練習「進階動態規劃」的核心技巧。",
+          "problems": [
+            {
+              "id": "1547",
+              "title": "切棍子的最小成本",
+              "slug": "minimum-cost-to-cut-a-stick",
+              "src": "https://leetcode.com/problems/minimum-cost-to-cut-a-stick/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "必修 · 區間 DP",
+              "stage": "必修",
+              "pattern": "區間 DP"
+            },
+            {
+              "id": "312",
+              "title": "戳氣球",
+              "slug": "burst-balloons",
+              "src": "https://leetcode.com/problems/burst-balloons/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "必修 · 區間 DP",
+              "stage": "必修",
+              "pattern": "區間 DP"
+            },
+            {
+              "id": "526",
+              "title": "優美的排列",
+              "slug": "beautiful-arrangement",
+              "src": "https://leetcode.com/problems/beautiful-arrangement/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "必修 · 狀壓 DP",
+              "stage": "必修",
+              "pattern": "狀壓 DP"
+            }
+          ]
+        },
+        {
+          "id": 940052,
+          "title": "進階動態規劃：進階",
+          "isLeaf": true,
+          "summary": "進階題用來練習「進階動態規劃」的核心技巧。",
+          "problems": [
+            {
+              "id": "943",
+              "title": "最短超級串",
+              "slug": "find-the-shortest-superstring",
+              "src": "https://leetcode.com/problems/find-the-shortest-superstring/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "進階 · 狀壓 DP",
+              "stage": "進階",
+              "pattern": "狀壓 DP"
+            },
+            {
+              "id": "691",
+              "title": "貼紙拼詞",
+              "slug": "stickers-to-spell-word",
+              "src": "https://leetcode.com/problems/stickers-to-spell-word/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "進階 · 狀壓 DP / 記憶化",
+              "stage": "進階",
+              "pattern": "狀壓 DP / 記憶化"
+            },
+            {
+              "id": "233",
+              "title": "數字 1 的個數",
+              "slug": "number-of-digit-one",
+              "src": "https://leetcode.com/problems/number-of-digit-one/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "進階 · 數位 DP",
+              "stage": "進階",
+              "pattern": "數位 DP"
+            }
+          ]
+        },
+        {
+          "id": 940053,
+          "title": "進階動態規劃：挑戰",
+          "isLeaf": true,
+          "summary": "挑戰題用來練習「進階動態規劃」的核心技巧。",
+          "problems": [
+            {
+              "id": "2376",
+              "title": "統計特殊整數",
+              "slug": "count-special-integers",
+              "src": "https://leetcode.com/problems/count-special-integers/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "挑戰 · 數位 DP",
+              "stage": "挑戰",
+              "pattern": "數位 DP"
+            },
+            {
+              "id": "1425",
+              "title": "帶限制的子序列和",
+              "slug": "constrained-subsequence-sum",
+              "src": "https://leetcode.com/problems/constrained-subsequence-sum/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "挑戰 · 單調隊列優化 DP",
+              "stage": "挑戰",
+              "pattern": "單調隊列優化 DP"
+            },
+            {
+              "id": "968",
+              "title": "監控二叉樹",
+              "slug": "binary-tree-cameras",
+              "src": "https://leetcode.com/problems/binary-tree-cameras/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "挑戰 · 樹形 DP",
+              "stage": "挑戰",
+              "pattern": "樹形 DP"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 94006,
+      "title": "線段樹與樹狀陣列",
+      "children": [
+        {
+          "id": 940061,
+          "title": "線段樹與樹狀陣列：必修",
+          "isLeaf": true,
+          "summary": "必修題用來練習「線段樹與樹狀陣列」的核心技巧。",
+          "problems": [
+            {
+              "id": "307",
+              "title": "區域和檢索 - 陣列可修改",
+              "slug": "range-sum-query-mutable",
+              "src": "https://leetcode.com/problems/range-sum-query-mutable/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "必修 · 樹狀陣列",
+              "stage": "必修",
+              "pattern": "樹狀陣列"
+            },
+            {
+              "id": "315",
+              "title": "計算右側小於當前元素的個數",
+              "slug": "count-of-smaller-numbers-after-self",
+              "src": "https://leetcode.com/problems/count-of-smaller-numbers-after-self/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "必修 · 樹狀陣列 / 離散化",
+              "stage": "必修",
+              "pattern": "樹狀陣列 / 離散化"
+            },
+            {
+              "id": "493",
+              "title": "翻轉對",
+              "slug": "reverse-pairs",
+              "src": "https://leetcode.com/problems/reverse-pairs/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "必修 · 樹狀陣列 / 歸併",
+              "stage": "必修",
+              "pattern": "樹狀陣列 / 歸併"
+            }
+          ]
+        },
+        {
+          "id": 940062,
+          "title": "線段樹與樹狀陣列：進階",
+          "isLeaf": true,
+          "summary": "進階題用來練習「線段樹與樹狀陣列」的核心技巧。",
+          "problems": [
+            {
+              "id": "327",
+              "title": "區間和的個數",
+              "slug": "count-of-range-sum",
+              "src": "https://leetcode.com/problems/count-of-range-sum/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "進階 · 前綴和 + 樹狀陣列",
+              "stage": "進階",
+              "pattern": "前綴和 + 樹狀陣列"
+            },
+            {
+              "id": "1649",
+              "title": "透過指令建立有序陣列",
+              "slug": "create-sorted-array-through-instructions",
+              "src": "https://leetcode.com/problems/create-sorted-array-through-instructions/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "進階 · 樹狀陣列",
+              "stage": "進階",
+              "pattern": "樹狀陣列"
+            },
+            {
+              "id": "699",
+              "title": "掉落的方塊",
+              "slug": "falling-squares",
+              "src": "https://leetcode.com/problems/falling-squares/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "進階 · 線段樹 / 座標壓縮",
+              "stage": "進階",
+              "pattern": "線段樹 / 座標壓縮"
+            }
+          ]
+        },
+        {
+          "id": 940063,
+          "title": "線段樹與樹狀陣列：挑戰",
+          "isLeaf": true,
+          "summary": "挑戰題用來練習「線段樹與樹狀陣列」的核心技巧。",
+          "problems": [
+            {
+              "id": "218",
+              "title": "天際線問題",
+              "slug": "the-skyline-problem",
+              "src": "https://leetcode.com/problems/the-skyline-problem/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "挑戰 · 掃描線 + 堆",
+              "stage": "挑戰",
+              "pattern": "掃描線 + 堆"
+            },
+            {
+              "id": "715",
+              "title": "Range 模組",
+              "slug": "range-module",
+              "src": "https://leetcode.com/problems/range-module/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "挑戰 · 線段樹 / 有序集合",
+              "stage": "挑戰",
+              "pattern": "線段樹 / 有序集合"
+            },
+            {
+              "id": "2179",
+              "title": "統計陣列中好三元組數目",
+              "slug": "count-good-triplets-in-an-array",
+              "src": "https://leetcode.com/problems/count-good-triplets-in-an-array/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "挑戰 · 樹狀陣列",
+              "stage": "挑戰",
+              "pattern": "樹狀陣列"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 94007,
+      "title": "進階圖論",
+      "children": [
+        {
+          "id": 940071,
+          "title": "進階圖論：必修",
+          "isLeaf": true,
+          "summary": "必修題用來練習「進階圖論」的核心技巧。",
+          "problems": [
+            {
+              "id": "743",
+              "title": "網路延遲時間",
+              "slug": "network-delay-time",
+              "src": "https://leetcode.com/problems/network-delay-time/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "必修 · Dijkstra",
+              "stage": "必修",
+              "pattern": "Dijkstra"
+            },
+            {
+              "id": "787",
+              "title": "K 站中轉內最便宜的航班",
+              "slug": "cheapest-flights-within-k-stops",
+              "src": "https://leetcode.com/problems/cheapest-flights-within-k-stops/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "必修 · 分層 / Bellman-Ford",
+              "stage": "必修",
+              "pattern": "分層 / Bellman-Ford"
+            },
+            {
+              "id": "210",
+              "title": "課程表 II",
+              "slug": "course-schedule-ii",
+              "src": "https://leetcode.com/problems/course-schedule-ii/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "必修 · 拓撲排序",
+              "stage": "必修",
+              "pattern": "拓撲排序"
+            }
+          ]
+        },
+        {
+          "id": 940072,
+          "title": "進階圖論：進階",
+          "isLeaf": true,
+          "summary": "進階題用來練習「進階圖論」的核心技巧。",
+          "problems": [
+            {
+              "id": "864",
+              "title": "獲取所有鑰匙的最短路徑",
+              "slug": "shortest-path-to-get-all-keys",
+              "src": "https://leetcode.com/problems/shortest-path-to-get-all-keys/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "進階 · 狀態壓縮 BFS",
+              "stage": "進階",
+              "pattern": "狀態壓縮 BFS"
+            },
+            {
+              "id": "1786",
+              "title": "從第一個節點出發到最後一個節點的受限路徑數",
+              "slug": "number-of-restricted-paths-from-first-to-last-node",
+              "src": "https://leetcode.com/problems/number-of-restricted-paths-from-first-to-last-node/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "進階 · Dijkstra + DP",
+              "stage": "進階",
+              "pattern": "Dijkstra + DP"
+            },
+            {
+              "id": "1319",
+              "title": "連通網路的操作次數",
+              "slug": "number-of-operations-to-make-network-connected",
+              "src": "https://leetcode.com/problems/number-of-operations-to-make-network-connected/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "進階 · 併查集",
+              "stage": "進階",
+              "pattern": "併查集"
+            }
+          ]
+        },
+        {
+          "id": 940073,
+          "title": "進階圖論：挑戰",
+          "isLeaf": true,
+          "summary": "挑戰題用來練習「進階圖論」的核心技巧。",
+          "problems": [
+            {
+              "id": "847",
+              "title": "訪問所有節點的最短路徑",
+              "slug": "shortest-path-visiting-all-nodes",
+              "src": "https://leetcode.com/problems/shortest-path-visiting-all-nodes/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "挑戰 · 狀壓 BFS",
+              "stage": "挑戰",
+              "pattern": "狀壓 BFS"
+            },
+            {
+              "id": "778",
+              "title": "水位上升的泳池中游泳",
+              "slug": "swim-in-rising-water",
+              "src": "https://leetcode.com/problems/swim-in-rising-water/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "挑戰 · Dijkstra / 併查集",
+              "stage": "挑戰",
+              "pattern": "Dijkstra / 併查集"
+            },
+            {
+              "id": "924",
+              "title": "儘量減少惡意軟體的傳播",
+              "slug": "minimize-malware-spread",
+              "src": "https://leetcode.com/problems/minimize-malware-spread/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "挑戰 · 併查集",
+              "stage": "挑戰",
+              "pattern": "併查集"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 94008,
+      "title": "字串進階",
+      "children": [
+        {
+          "id": 940081,
+          "title": "字串進階：必修",
+          "isLeaf": true,
+          "summary": "必修題用來練習「字串進階」的核心技巧。",
+          "problems": [
+            {
+              "id": "28",
+              "title": "找出字串中第一個匹配項的下標",
+              "slug": "find-the-index-of-the-first-occurrence-in-a-string",
+              "src": "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "必修 · KMP",
+              "stage": "必修",
+              "pattern": "KMP"
+            },
+            {
+              "id": "208",
+              "title": "實現 Trie (前綴樹)",
+              "slug": "implement-trie-prefix-tree",
+              "src": "https://leetcode.com/problems/implement-trie-prefix-tree/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "必修 · 字典樹",
+              "stage": "必修",
+              "pattern": "字典樹"
+            },
+            {
+              "id": "647",
+              "title": "迴文子串",
+              "slug": "palindromic-substrings",
+              "src": "https://leetcode.com/problems/palindromic-substrings/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "必修 · 中心擴展 / DP",
+              "stage": "必修",
+              "pattern": "中心擴展 / DP"
+            }
+          ]
+        },
+        {
+          "id": 940082,
+          "title": "字串進階：進階",
+          "isLeaf": true,
+          "summary": "進階題用來練習「字串進階」的核心技巧。",
+          "problems": [
+            {
+              "id": "214",
+              "title": "最短回文串",
+              "slug": "shortest-palindrome",
+              "src": "https://leetcode.com/problems/shortest-palindrome/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "進階 · KMP / 字串雜湊",
+              "stage": "進階",
+              "pattern": "KMP / 字串雜湊"
+            },
+            {
+              "id": "1044",
+              "title": "最長重複子串",
+              "slug": "longest-duplicate-substring",
+              "src": "https://leetcode.com/problems/longest-duplicate-substring/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "進階 · 二分 + 字串雜湊",
+              "stage": "進階",
+              "pattern": "二分 + 字串雜湊"
+            },
+            {
+              "id": "1707",
+              "title": "與陣列中元素的最大異或值",
+              "slug": "maximum-xor-with-an-element-from-array",
+              "src": "https://leetcode.com/problems/maximum-xor-with-an-element-from-array/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "進階 · 01-Trie / 離線",
+              "stage": "進階",
+              "pattern": "01-Trie / 離線"
+            }
+          ]
+        },
+        {
+          "id": 940083,
+          "title": "字串進階：挑戰",
+          "isLeaf": true,
+          "summary": "挑戰題用來練習「字串進階」的核心技巧。",
+          "problems": [
+            {
+              "id": "336",
+              "title": "迴文對",
+              "slug": "palindrome-pairs",
+              "src": "https://leetcode.com/problems/palindrome-pairs/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "挑戰 · 字典樹 / 雜湊",
+              "stage": "挑戰",
+              "pattern": "字典樹 / 雜湊"
+            },
+            {
+              "id": "745",
+              "title": "前綴和後綴搜索",
+              "slug": "prefix-and-suffix-search",
+              "src": "https://leetcode.com/problems/prefix-and-suffix-search/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "挑戰 · 字典樹",
+              "stage": "挑戰",
+              "pattern": "字典樹"
+            },
+            {
+              "id": "1147",
+              "title": "段式迴文",
+              "slug": "longest-chunked-palindrome-decomposition",
+              "src": "https://leetcode.com/problems/longest-chunked-palindrome-decomposition/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "挑戰 · 字串雜湊 / 貪心",
+              "stage": "挑戰",
+              "pattern": "字串雜湊 / 貪心"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 94009,
+      "title": "數學與數論",
+      "children": [
+        {
+          "id": 940091,
+          "title": "數學與數論：必修",
+          "isLeaf": true,
+          "summary": "必修題用來練習「數學與數論」的核心技巧。",
+          "problems": [
+            {
+              "id": "50",
+              "title": "Pow(x, n)",
+              "slug": "powx-n",
+              "src": "https://leetcode.com/problems/powx-n/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "必修 · 快速冪",
+              "stage": "必修",
+              "pattern": "快速冪"
+            },
+            {
+              "id": "172",
+              "title": "階乘後的零",
+              "slug": "factorial-trailing-zeroes",
+              "src": "https://leetcode.com/problems/factorial-trailing-zeroes/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "必修 · 數論",
+              "stage": "必修",
+              "pattern": "數論"
+            },
+            {
+              "id": "204",
+              "title": "計數質數",
+              "slug": "count-primes",
+              "src": "https://leetcode.com/problems/count-primes/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "必修 · 埃氏篩 / 線性篩",
+              "stage": "必修",
+              "pattern": "埃氏篩 / 線性篩"
+            }
+          ]
+        },
+        {
+          "id": 940092,
+          "title": "數學與數論：進階",
+          "isLeaf": true,
+          "summary": "進階題用來練習「數學與數論」的核心技巧。",
+          "problems": [
+            {
+              "id": "1201",
+              "title": "醜數 III",
+              "slug": "ugly-number-iii",
+              "src": "https://leetcode.com/problems/ugly-number-iii/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "進階 · 二分 + 容斥 + LCM",
+              "stage": "進階",
+              "pattern": "二分 + 容斥 + LCM"
+            },
+            {
+              "id": "878",
+              "title": "第 N 個神奇數字",
+              "slug": "nth-magical-number",
+              "src": "https://leetcode.com/problems/nth-magical-number/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "進階 · 二分 + 容斥",
+              "stage": "進階",
+              "pattern": "二分 + 容斥"
+            },
+            {
+              "id": "2400",
+              "title": "恰好移動 k 步到達某一位置的方法數目",
+              "slug": "number-of-ways-to-reach-a-position-after-exactly-k-steps",
+              "src": "https://leetcode.com/problems/number-of-ways-to-reach-a-position-after-exactly-k-steps/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "進階 · 組合數 + 逆元",
+              "stage": "進階",
+              "pattern": "組合數 + 逆元"
+            }
+          ]
+        },
+        {
+          "id": 940093,
+          "title": "數學與數論：挑戰",
+          "isLeaf": true,
+          "summary": "挑戰題用來練習「數學與數論」的核心技巧。",
+          "problems": [
+            {
+              "id": "920",
+              "title": "播放列表的數量",
+              "slug": "number-of-music-playlists",
+              "src": "https://leetcode.com/problems/number-of-music-playlists/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "挑戰 · 組合 DP / 容斥",
+              "stage": "挑戰",
+              "pattern": "組合 DP / 容斥"
+            },
+            {
+              "id": "952",
+              "title": "按公因數計算最大元件大小",
+              "slug": "largest-component-size-by-common-factor",
+              "src": "https://leetcode.com/problems/largest-component-size-by-common-factor/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "挑戰 · 質因數 + 併查集",
+              "stage": "挑戰",
+              "pattern": "質因數 + 併查集"
+            },
+            {
+              "id": "2513",
+              "title": "最小化兩個陣列中的最大值",
+              "slug": "minimize-the-maximum-of-two-arrays",
+              "src": "https://leetcode.com/problems/minimize-the-maximum-of-two-arrays/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "挑戰 · 二分 + 容斥",
+              "stage": "挑戰",
+              "pattern": "二分 + 容斥"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 94010,
+      "title": "樹上進階技巧",
+      "children": [
+        {
+          "id": 940101,
+          "title": "樹上進階技巧：必修",
+          "isLeaf": true,
+          "summary": "必修題用來練習「樹上進階技巧」的核心技巧。",
+          "problems": [
+            {
+              "id": "236",
+              "title": "二元樹的最近公共祖先",
+              "slug": "lowest-common-ancestor-of-a-binary-tree",
+              "src": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "必修 · LCA",
+              "stage": "必修",
+              "pattern": "LCA"
+            },
+            {
+              "id": "543",
+              "title": "二元樹的直徑",
+              "slug": "diameter-of-binary-tree",
+              "src": "https://leetcode.com/problems/diameter-of-binary-tree/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "必修 · 樹形 DP",
+              "stage": "必修",
+              "pattern": "樹形 DP"
+            },
+            {
+              "id": "863",
+              "title": "二叉樹中所有距離為 K 的結點",
+              "slug": "all-nodes-distance-k-in-binary-tree",
+              "src": "https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "必修 · 建父指標 + BFS",
+              "stage": "必修",
+              "pattern": "建父指標 + BFS"
+            }
+          ]
+        },
+        {
+          "id": 940102,
+          "title": "樹上進階技巧：進階",
+          "isLeaf": true,
+          "summary": "進階題用來練習「樹上進階技巧」的核心技巧。",
+          "problems": [
+            {
+              "id": "834",
+              "title": "樹中距離之和",
+              "slug": "sum-of-distances-in-tree",
+              "src": "https://leetcode.com/problems/sum-of-distances-in-tree/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "進階 · 換根 DP",
+              "stage": "進階",
+              "pattern": "換根 DP"
+            },
+            {
+              "id": "310",
+              "title": "最小高度樹",
+              "slug": "minimum-height-trees",
+              "src": "https://leetcode.com/problems/minimum-height-trees/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "進階 · 拓撲 / 樹的直徑",
+              "stage": "進階",
+              "pattern": "拓撲 / 樹的直徑"
+            },
+            {
+              "id": "2246",
+              "title": "相鄰字元不同的最長路徑",
+              "slug": "longest-path-with-different-adjacent-characters",
+              "src": "https://leetcode.com/problems/longest-path-with-different-adjacent-characters/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "進階 · 樹形 DP",
+              "stage": "進階",
+              "pattern": "樹形 DP"
+            }
+          ]
+        },
+        {
+          "id": 940103,
+          "title": "樹上進階技巧：挑戰",
+          "isLeaf": true,
+          "summary": "挑戰題用來練習「樹上進階技巧」的核心技巧。",
+          "problems": [
+            {
+              "id": "979",
+              "title": "在二叉樹中分配硬幣",
+              "slug": "distribute-coins-in-binary-tree",
+              "src": "https://leetcode.com/problems/distribute-coins-in-binary-tree/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "挑戰 · 樹形 DP",
+              "stage": "挑戰",
+              "pattern": "樹形 DP"
+            },
+            {
+              "id": "2867",
+              "title": "統計樹中的合法路徑數目",
+              "slug": "count-valid-paths-in-a-tree",
+              "src": "https://leetcode.com/problems/count-valid-paths-in-a-tree/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "挑戰 · 質數 + 併查集 / 樹形",
+              "stage": "挑戰",
+              "pattern": "質數 + 併查集 / 樹形"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 94011,
+      "title": "折半枚舉與分治",
+      "children": [
+        {
+          "id": 940111,
+          "title": "折半枚舉與分治：必修",
+          "isLeaf": true,
+          "summary": "必修題用來練習「折半枚舉與分治」的核心技巧。",
+          "problems": [
+            {
+              "id": "241",
+              "title": "為運算表達式設計優先級",
+              "slug": "different-ways-to-add-parentheses",
+              "src": "https://leetcode.com/problems/different-ways-to-add-parentheses/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "必修 · 分治",
+              "stage": "必修",
+              "pattern": "分治"
+            },
+            {
+              "id": "912",
+              "title": "排序陣列",
+              "slug": "sort-an-array",
+              "src": "https://leetcode.com/problems/sort-an-array/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "必修 · 歸併 / 快排",
+              "stage": "必修",
+              "pattern": "歸併 / 快排"
+            },
+            {
+              "id": "148",
+              "title": "排序鍊表",
+              "slug": "sort-list",
+              "src": "https://leetcode.com/problems/sort-list/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "必修 · 歸併分治",
+              "stage": "必修",
+              "pattern": "歸併分治"
+            }
+          ]
+        },
+        {
+          "id": 940112,
+          "title": "折半枚舉與分治：進階",
+          "isLeaf": true,
+          "summary": "進階題用來練習「折半枚舉與分治」的核心技巧。",
+          "problems": [
+            {
+              "id": "1755",
+              "title": "最接近目標值的子序列和",
+              "slug": "closest-subsequence-sum",
+              "src": "https://leetcode.com/problems/closest-subsequence-sum/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "進階 · 折半枚舉 + 二分",
+              "stage": "進階",
+              "pattern": "折半枚舉 + 二分"
+            },
+            {
+              "id": "2035",
+              "title": "將陣列分成兩個陣列並最小化陣列和的差",
+              "slug": "partition-array-into-two-arrays-to-minimize-sum-difference",
+              "src": "https://leetcode.com/problems/partition-array-into-two-arrays-to-minimize-sum-difference/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "進階 · 折半枚舉",
+              "stage": "進階",
+              "pattern": "折半枚舉"
+            },
+            {
+              "id": "805",
+              "title": "陣列的均值分割",
+              "slug": "split-array-with-same-average",
+              "src": "https://leetcode.com/problems/split-array-with-same-average/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "進階 · 折半枚舉 / 背包",
+              "stage": "進階",
+              "pattern": "折半枚舉 / 背包"
+            }
+          ]
+        },
+        {
+          "id": 940113,
+          "title": "折半枚舉與分治：挑戰",
+          "isLeaf": true,
+          "summary": "挑戰題用來練習「折半枚舉與分治」的核心技巧。",
+          "problems": [
+            {
+              "id": "4",
+              "title": "尋找兩個正序陣列的中位數",
+              "slug": "median-of-two-sorted-arrays",
+              "src": "https://leetcode.com/problems/median-of-two-sorted-arrays/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "挑戰 · 分治 / 二分",
+              "stage": "挑戰",
+              "pattern": "分治 / 二分"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 94012,
+      "title": "位元進階",
+      "children": [
+        {
+          "id": 940121,
+          "title": "位元進階：必修",
+          "isLeaf": true,
+          "summary": "必修題用來練習「位元進階」的核心技巧。",
+          "problems": [
+            {
+              "id": "78",
+              "title": "子集",
+              "slug": "subsets",
+              "src": "https://leetcode.com/problems/subsets/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "必修 · 子集枚舉",
+              "stage": "必修",
+              "pattern": "子集枚舉"
+            },
+            {
+              "id": "421",
+              "title": "陣列中兩個數的最大異或值",
+              "slug": "maximum-xor-of-two-numbers-in-an-array",
+              "src": "https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "必修 · 01-Trie / 線性基",
+              "stage": "必修",
+              "pattern": "01-Trie / 線性基"
+            },
+            {
+              "id": "137",
+              "title": "只出現一次的數字 II",
+              "slug": "single-number-ii",
+              "src": "https://leetcode.com/problems/single-number-ii/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "必修 · 位元計數",
+              "stage": "必修",
+              "pattern": "位元計數"
+            }
+          ]
+        },
+        {
+          "id": 940122,
+          "title": "位元進階：進階",
+          "isLeaf": true,
+          "summary": "進階題用來練習「位元進階」的核心技巧。",
+          "problems": [
+            {
+              "id": "2044",
+              "title": "統計按位或能得到最大值的子集數目",
+              "slug": "count-number-of-maximum-bitwise-or-subsets",
+              "src": "https://leetcode.com/problems/count-number-of-maximum-bitwise-or-subsets/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "進階 · 子集枚舉",
+              "stage": "進階",
+              "pattern": "子集枚舉"
+            },
+            {
+              "id": "898",
+              "title": "子陣列按位或操作",
+              "slug": "bitwise-ors-of-subarrays",
+              "src": "https://leetcode.com/problems/bitwise-ors-of-subarrays/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "進階 · OR 集合 / 對數性質",
+              "stage": "進階",
+              "pattern": "OR 集合 / 對數性質"
+            },
+            {
+              "id": "260",
+              "title": "只出現一次的數字 III",
+              "slug": "single-number-iii",
+              "src": "https://leetcode.com/problems/single-number-iii/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "進階 · XOR 分組",
+              "stage": "進階",
+              "pattern": "XOR 分組"
+            }
+          ]
+        },
+        {
+          "id": 940123,
+          "title": "位元進階：挑戰",
+          "isLeaf": true,
+          "summary": "挑戰題用來練習「位元進階」的核心技巧。",
+          "problems": [
+            {
+              "id": "982",
+              "title": "按位與為零的三元組",
+              "slug": "triples-with-bitwise-and-equal-to-zero",
+              "src": "https://leetcode.com/problems/triples-with-bitwise-and-equal-to-zero/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "挑戰 · SOS / 計數",
+              "stage": "挑戰",
+              "pattern": "SOS / 計數"
+            },
+            {
+              "id": "1803",
+              "title": "統計異或值在範圍內的數對有多少",
+              "slug": "count-pairs-with-xor-in-a-range",
+              "src": "https://leetcode.com/problems/count-pairs-with-xor-in-a-range/",
+              "solution": null,
+              "score": null,
+              "difficulty": 3,
+              "isPremium": false,
+              "subsection": "挑戰 · 01-Trie",
+              "stage": "挑戰",
+              "pattern": "01-Trie"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
