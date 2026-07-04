@@ -45,13 +45,16 @@ export const BILIBILI_0X3F_SPACE = {
  */
 export const CUSTOM_STUDYPLAN_KEYS: ReadonlySet<string> = new Set([
   "weekly_contest",
+  "interview_sprint",
+  "technical_interview",
+  "rating_2100",
 ]);
 
 export const STUDYPLANS = {
   weekly_contest: "週賽 AK 之路",
   q3_handbook: "LeetCode 競賽 Q3 手冊",
   technical_interview: "技術面試準備",
-  rating_2100: "Rating 2100",
+  rating_2100: "進階刷題衝刺（1700→2100 四階段）",
   binary_search: "二分搜尋",
   sorting: "排序",
   bitwise_operations: "位元運算",
