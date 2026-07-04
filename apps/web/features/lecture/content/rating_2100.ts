@@ -2,7 +2,9 @@ import type { TutorialData } from "@/types";
 
 export const rating_2100 = {
   id: 1,
-  title: "Rating 2100 攻略計畫",
+  title: "進階刷題衝刺：1700 → 2100",
+  description:
+    "為已具備約 1700 rating 基礎的人設計，按 1700→1800→1900→2100 分四階段練習，每階段再依主題分類，逐步練成能在比賽中穩定調用的組合技巧。",
   src: "",
   last_update: "2026-05-29T04:54:36.866176+00:00",
   summary:
