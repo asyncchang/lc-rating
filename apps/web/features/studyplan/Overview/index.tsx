@@ -1,8 +1,9 @@
 "use client";
 
-import { STUDYPLANS } from "@/config/constants";
+import { CUSTOM_STUDYPLAN_KEYS, STUDYPLANS } from "@/config/constants";
 import { Input } from "@/components/ui/input";
 import { StatCard } from "@/components/common/StatCard";
+import { SectionDivider } from "@/components/common/SectionDivider";
 import {
   BookOpen,
   CheckCircle2,
@@ -95,6 +96,13 @@ function StudyPlanOverview() {
 
   const activeFilterLabel =
     filterTabs.find((tab) => tab.key === filter)?.label ?? "全部";
+
+  const customPlans = filteredPlans.filter(([key]) =>
+    CUSTOM_STUDYPLAN_KEYS.has(key),
+  );
+  const originalPlans = filteredPlans.filter(
+    ([key]) => !CUSTOM_STUDYPLAN_KEYS.has(key),
+  );
 
   return (
     <div className="min-h-screen bg-background font-han">
@@ -237,17 +245,40 @@ function StudyPlanOverview() {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 xl:grid-cols-3 2xl:grid-cols-4 2xl:gap-6">
-            {filteredPlans.map(([key, title]) => (
-              <StudyPlanCard
-                key={key}
-                planKey={key}
-                title={title}
-                searchQuery={trimmedQuery}
-                searchMatches={planSearchMatches[key] ?? []}
-              />
-            ))}
-          </div>
+          <>
+            {customPlans.length > 0 && (
+              <>
+                <SectionDivider label="自建學習路線" />
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 xl:grid-cols-3 2xl:grid-cols-4 2xl:gap-6">
+                  {customPlans.map(([key, title]) => (
+                    <StudyPlanCard
+                      key={key}
+                      planKey={key}
+                      title={title}
+                      searchQuery={trimmedQuery}
+                      searchMatches={planSearchMatches[key] ?? []}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+            {originalPlans.length > 0 && (
+              <>
+                <SectionDivider label="0x3F 原始題單" />
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 xl:grid-cols-3 2xl:grid-cols-4 2xl:gap-6">
+                  {originalPlans.map(([key, title]) => (
+                    <StudyPlanCard
+                      key={key}
+                      planKey={key}
+                      title={title}
+                      searchQuery={trimmedQuery}
+                      searchMatches={planSearchMatches[key] ?? []}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+          </>
         )}
       </div>
     </div>
