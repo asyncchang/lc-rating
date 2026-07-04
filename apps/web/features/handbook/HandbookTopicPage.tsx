@@ -66,7 +66,7 @@ export function HandbookTopicPage({
         {/* Hero */}
         <header className="mb-6 rounded-3xl border border-border/60 bg-background/80 p-5 shadow-sm sm:p-7">
           <div className="flex items-center gap-3">
-            <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-lime-500/10 text-lime-600 dark:text-lime-400">
+            <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
               <Icon className="h-6 w-6" />
             </span>
             <div>
@@ -104,7 +104,7 @@ export function HandbookTopicPage({
                       className={cn(
                         "block rounded-lg px-2 py-1.5 leading-snug transition-colors",
                         active === s.id
-                          ? "bg-lime-500/10 font-medium text-foreground"
+                          ? "bg-primary/10 font-medium text-foreground"
                           : "text-muted-foreground hover:bg-accent hover:text-foreground",
                       )}
                     >

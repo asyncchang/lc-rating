@@ -38,7 +38,17 @@ export const BILIBILI_0X3F_SPACE = {
   title: "靈茶山艾府(0x3F)@Bilibili",
 };
 
+/**
+ * Keys of study plans/lectures authored in this fork, layered on top of the
+ * upstream 靈茶山艾府（0x3F）題單. Overview grids use this to visually split
+ * self-built content from the original 0x3F set with a section divider.
+ */
+export const CUSTOM_STUDYPLAN_KEYS: ReadonlySet<string> = new Set([
+  "weekly_contest",
+]);
+
 export const STUDYPLANS = {
+  weekly_contest: "週賽 AK 之路",
   q3_handbook: "LeetCode 競賽 Q3 手冊",
   technical_interview: "技術面試準備",
   rating_2100: "Rating 2100",

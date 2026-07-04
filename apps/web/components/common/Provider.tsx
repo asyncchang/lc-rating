@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ThemeProvider } from "next-themes";
 import { useState } from "react";
 import { Toaster } from "@/components/ui/sonner";
+import { TextSizeEffect } from "@/components/common/TextSizeEffect";
 
 interface ProviderProps {
   children: React.ReactNode;
@@ -23,6 +24,7 @@ export function Provider({ children }: ProviderProps) {
           enableSystem
           disableTransitionOnChange
         >
+          <TextSizeEffect />
           {children}
         </ThemeProvider>
         <ReactQueryDevtools />

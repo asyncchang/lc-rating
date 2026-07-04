@@ -12,6 +12,7 @@ const initialState: GlobalSettingsStoreState = {
   tagLanguage: "zh",
   linkLanguage: "zh",
   premium: true,
+  textSize: "standard",
 };
 
 const persistOption: PersistOptions<
@@ -44,6 +45,8 @@ export const useGlobalSettingsStore = create<GlobalSettingsStore>()(
 
         togglePremium: () => set({ premium: !get().premium }),
         setPremium: (premium: boolean) => set({ premium }),
+
+        setTextSize: (size) => set({ textSize: size }),
       }),
       persistOption,
     ),

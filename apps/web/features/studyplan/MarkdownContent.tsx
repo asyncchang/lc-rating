@@ -294,7 +294,7 @@ export function StudyPlanMarkdownContent({
     const CHEVRON_SVG =
       '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
     // Layout-matching glyphs for the collapsible headers (see HandbookExample):
-    // a code icon for neutral code blocks, an info glyph for lime <details>.
+    // a code icon for neutral code blocks, an info glyph for brand-tinted <details>.
     const CODE_SVG =
       '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>';
     const INFO_SVG =
@@ -361,7 +361,7 @@ export function StudyPlanMarkdownContent({
 
       const wrapper = document.createElement("div");
       wrapper.setAttribute("data-code-toggle", "true");
-      // Neutral accent bar keeps code distinct from the lime prose admonitions,
+      // Neutral accent bar keeps code distinct from the brand-tinted prose admonitions,
       // while the icon-left / chevron-right header matches HandbookExample.
       wrapper.className =
         "not-prose my-4 overflow-hidden rounded-xl border border-border/60 border-l-4 border-l-muted-foreground/30";
@@ -445,16 +445,16 @@ export function StudyPlanMarkdownContent({
       if (!summary) return;
 
       details.setAttribute("data-styled-details", "true");
-      // Lime left bar + tinted header mirror HandbookExample so every prose
+      // Primary left bar + tinted header mirror HandbookExample so every prose
       // admonition reads the same: info glyph left, title, chevron right.
       details.className =
-        "not-prose my-5 overflow-hidden rounded-xl border border-lime-500/30 border-l-4 border-l-lime-500 bg-lime-500/5 shadow-sm transition-colors";
+        "not-prose my-5 overflow-hidden rounded-xl border border-primary/30 border-l-4 border-l-primary bg-primary/5 shadow-sm transition-colors";
       summary.className =
-        "group flex cursor-pointer list-none select-none items-center gap-2 bg-lime-500/10 px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-lime-500/15 [&::-webkit-details-marker]:hidden";
+        "group flex cursor-pointer list-none select-none items-center gap-2 bg-primary/10 px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-primary/15 [&::-webkit-details-marker]:hidden";
 
       const icon = document.createElement("span");
       icon.className =
-        "flex shrink-0 items-center text-lime-600 dark:text-lime-400";
+        "flex shrink-0 items-center text-primary";
       icon.innerHTML = INFO_SVG;
 
       const title = document.createElement("span");
@@ -473,7 +473,7 @@ export function StudyPlanMarkdownContent({
 
       const content = document.createElement("div");
       content.className =
-        "space-y-4 border-t border-lime-500/20 bg-background/70 px-4 py-4";
+        "space-y-4 border-t border-primary/20 bg-background/70 px-4 py-4";
       while (summary.nextSibling) {
         content.appendChild(summary.nextSibling);
       }
