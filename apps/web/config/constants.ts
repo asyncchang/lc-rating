@@ -40,18 +40,29 @@ export const BILIBILI_0X3F_SPACE = {
 
 /**
  * Keys of study plans/lectures authored in this fork, layered on top of the
- * upstream 靈茶山艾府（0x3F）題單. Overview grids use this to visually split
- * self-built content from the original 0x3F set with a section divider.
+ * upstream 靈茶山艾府（0x3F）題單. Split into two groups so overview grids can
+ * render three labeled sections in order: 0x3F 題單 -> 學習路線 -> 面試準備.
  */
-export const CUSTOM_STUDYPLAN_KEYS: ReadonlySet<string> = new Set([
+export const LEARNING_PATH_KEYS: ReadonlySet<string> = new Set([
   "weekly_contest",
+  "rating_2100",
+]);
+
+export const INTERVIEW_PREP_KEYS: ReadonlySet<string> = new Set([
+  "interview_sprint",
+  "technical_interview",
+]);
+
+export const CUSTOM_STUDYPLAN_KEYS: ReadonlySet<string> = new Set([
+  ...LEARNING_PATH_KEYS,
+  ...INTERVIEW_PREP_KEYS,
 ]);
 
 export const STUDYPLANS = {
   weekly_contest: "週賽 AK 之路",
   q3_handbook: "LeetCode 競賽 Q3 手冊",
   technical_interview: "技術面試準備",
-  rating_2100: "Rating 2100",
+  rating_2100: "進階刷題衝刺（1700→2100 四階段）",
   binary_search: "二分搜尋",
   sorting: "排序",
   bitwise_operations: "位元運算",

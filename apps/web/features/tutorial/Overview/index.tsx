@@ -1,7 +1,11 @@
 "use client";
 
 import { LECTURE_CATEGORIES } from "@/features/lecture/content";
-import { CUSTOM_STUDYPLAN_KEYS } from "@/config/constants";
+import {
+  CUSTOM_STUDYPLAN_KEYS,
+  INTERVIEW_PREP_KEYS,
+  LEARNING_PATH_KEYS,
+} from "@/config/constants";
 import { Input } from "@/components/ui/input";
 import { StatCard } from "@/components/common/StatCard";
 import { SectionDivider } from "@/components/common/SectionDivider";
@@ -68,11 +72,14 @@ function TutorialOverview() {
 
   const totalPlans = Object.keys(LECTURE_CATEGORIES).length;
 
-  const customPlans = filteredPlans.filter(([key]) =>
-    CUSTOM_STUDYPLAN_KEYS.has(key),
-  );
   const originalPlans = filteredPlans.filter(
     ([key]) => !CUSTOM_STUDYPLAN_KEYS.has(key),
+  );
+  const learningPathPlans = filteredPlans.filter(([key]) =>
+    LEARNING_PATH_KEYS.has(key),
+  );
+  const interviewPrepPlans = filteredPlans.filter(([key]) =>
+    INTERVIEW_PREP_KEYS.has(key),
   );
 
   return (
@@ -184,37 +191,30 @@ function TutorialOverview() {
               </div>
             ) : (
               <>
-                {customPlans.length > 0 && (
-                  <>
-                    <SectionDivider label="自建學習路線" />
-                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 xl:grid-cols-3 2xl:grid-cols-4 2xl:gap-6">
-                      {customPlans.map(([key, title]) => (
-                        <TutorialCard
-                          key={key}
-                          planKey={key}
-                          title={title}
-                          searchQuery={trimmedQuery}
-                          searchMatches={planSearchMatches[key] ?? []}
-                        />
-                      ))}
-                    </div>
-                  </>
-                )}
-                {originalPlans.length > 0 && (
-                  <>
-                    <SectionDivider label="0x3F 原始題單" />
-                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 xl:grid-cols-3 2xl:grid-cols-4 2xl:gap-6">
-                      {originalPlans.map(([key, title]) => (
-                        <TutorialCard
-                          key={key}
-                          planKey={key}
-                          title={title}
-                          searchQuery={trimmedQuery}
-                          searchMatches={planSearchMatches[key] ?? []}
-                        />
-                      ))}
-                    </div>
-                  </>
+                {(
+                  [
+                    ["0x3F 題單", originalPlans],
+                    ["學習路線", learningPathPlans],
+                    ["面試準備", interviewPrepPlans],
+                  ] as const
+                ).map(
+                  ([label, plans]) =>
+                    plans.length > 0 && (
+                      <div key={label}>
+                        <SectionDivider label={label} />
+                        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 xl:grid-cols-3 2xl:grid-cols-4 2xl:gap-6">
+                          {plans.map(([key, title]) => (
+                            <TutorialCard
+                              key={key}
+                              planKey={key}
+                              title={title}
+                              searchQuery={trimmedQuery}
+                              searchMatches={planSearchMatches[key] ?? []}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    ),
                 )}
               </>
             )}
