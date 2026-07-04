@@ -20,14 +20,9 @@ test("normalizeCodeBlockIndentation leaves 4-space indents unchanged", () => {
 });
 
 test("normalizeMarkdownCodeBlockIndentation updates fenced blocks only", () => {
-  const input = [
-    "text",
-    "```cpp",
-    "if (ok) {",
-    "  return 1;",
-    "}",
-    "```",
-  ].join("\n");
+  const input = ["text", "```cpp", "if (ok) {", "  return 1;", "}", "```"].join(
+    "\n",
+  );
 
   const output = normalizeMarkdownCodeBlockIndentation(input);
 
