@@ -37,7 +37,9 @@ export function normalizeCodeBlockIndentation(code: string): string {
     .join("\n");
 }
 
-export function normalizeMarkdownCodeBlockIndentation(markdown: string): string {
+export function normalizeMarkdownCodeBlockIndentation(
+  markdown: string,
+): string {
   return markdown.replace(
     /```([\w+-]*)\n([\s\S]*?)```/g,
     (_, lang: string, code: string) =>

@@ -123,7 +123,10 @@ export const ROUTERS = {
     children: LECTURE_KEYS.reduce(
       (acc: { title: string; href: string }[], key) => [
         ...acc,
-        { title: STUDYPLANS[key as keyof typeof STUDYPLANS], href: `/lecture/${key}` },
+        {
+          title: STUDYPLANS[key as keyof typeof STUDYPLANS],
+          href: `/lecture/${key}`,
+        },
       ],
       [],
     ),

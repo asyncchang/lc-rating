@@ -453,8 +453,7 @@ export function StudyPlanMarkdownContent({
         "group flex cursor-pointer list-none select-none items-center gap-2 bg-primary/10 px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-primary/15 [&::-webkit-details-marker]:hidden";
 
       const icon = document.createElement("span");
-      icon.className =
-        "flex shrink-0 items-center text-primary";
+      icon.className = "flex shrink-0 items-center text-primary";
       icon.innerHTML = INFO_SVG;
 
       const title = document.createElement("span");
