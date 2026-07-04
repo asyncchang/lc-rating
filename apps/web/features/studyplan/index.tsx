@@ -22,30 +22,53 @@ import {
 import Link from "next/link";
 import { useMemo } from "react";
 import { extractImageUrls } from "./dedupe";
+import { StudyPlanMarkdownContent } from "./MarkdownContent";
+import { normalizeExampleContainers } from "./normalizeExampleContainers";
 import { SectionQuickLinks } from "@/features/learning/components/SectionQuickLinks";
 import { SidebarVisibilityButtons } from "@/features/learning/components/SidebarVisibilityButtons";
 import {
   getStudyPlanPracticeStats,
   indexTutorialSectionsById,
 } from "@/features/learning/utils/sectionTree";
+import {
+  getMergedStudyPlan,
+  isMergedLearningPath,
+} from "@/features/learning/utils/mergeStudyPlanContent";
 
 interface StudyPlanProps {
   plan: string;
 }
 
 function StudyPlan({ plan }: StudyPlanProps) {
-  const { studyPlan } = useStudyPlan(plan);
+  const { studyPlan: fetchedStudyPlan } = useStudyPlan(plan);
   const { tutorial } = useTutorial(plan);
   const progress = useProgressMap();
+
+  // Self-authored learning paths (週賽 AK 之路 等) no longer have a standalone
+  // 講義 page; their prose is folded into the 題單 tree here. 0x3F plans keep the
+  // fetched studyplan and join lecture summaries by id as before.
+  const merged = useMemo(() => getMergedStudyPlan(plan), [plan]);
+  const mergedPath = isMergedLearningPath(plan);
+  const studyPlan = mergedPath ? merged?.root : fetchedStudyPlan;
 
   const planTitle =
     STUDYPLANS[plan as keyof typeof STUDYPLANS] ?? studyPlan?.title ?? plan;
   const Icon = studyPlanIcons[plan] ?? BookOpen;
   const theme = studyPlanThemes[plan] ?? defaultTheme;
 
+  // 0x3F plans join lecture prose by id; merged learning paths already carry
+  // their prose on the section nodes, so skip the id-join to avoid double text.
   const tutorialById = useMemo(
-    () => indexTutorialSectionsById(tutorial),
-    [tutorial],
+    () => (mergedPath ? undefined : indexTutorialSectionsById(tutorial)),
+    [mergedPath, tutorial],
+  );
+
+  const rootSummary = useMemo(
+    () =>
+      mergedPath && merged?.summary
+        ? normalizeExampleContainers(merged.summary)
+        : "",
+    [mergedPath, merged?.summary],
   );
 
   const topLevelImageUrls = useMemo(
@@ -211,7 +234,34 @@ function StudyPlan({ plan }: StudyPlanProps) {
 
       <div className="mx-auto w-full max-w-7xl px-3 py-5 pb-24 sm:px-4 sm:py-6 md:px-6 md:py-8 md:pb-20 xl:max-w-[88rem] xl:px-8 2xl:max-w-[96rem]">
         <div className="flex flex-col gap-8">
-          {tutorial && (
+          {mergedPath && rootSummary && (
+            <section className="overflow-hidden rounded-[1.75rem] border border-border/60 bg-card shadow-sm">
+              <div className="flex items-center gap-3 border-b border-border/60 bg-muted/20 px-4 py-3 sm:px-5">
+                <div
+                  className="shrink-0 rounded-2xl p-2.5 ring-1 ring-border/60"
+                  style={{ background: theme.gradient }}
+                >
+                  <GraduationCap className="h-5 w-5 text-white drop-shadow-sm" />
+                </div>
+                <div className="min-w-0">
+                  <h2 className="text-base font-semibold tracking-tight text-foreground sm:text-lg">
+                    課程總覽
+                  </h2>
+                  <p className="mt-0.5 text-sm text-muted-foreground">
+                    觀念說明已整合進本題單；下方各章節同時附上重點講解與練習題。
+                  </p>
+                </div>
+              </div>
+              <div className="p-4 sm:p-5">
+                <StudyPlanMarkdownContent
+                  content={rootSummary}
+                  variant="section"
+                />
+              </div>
+            </section>
+          )}
+
+          {!mergedPath && tutorial && (
             <Link
               href={`/lecture/${plan}`}
               className="group block overflow-hidden rounded-[1.75rem] border border-border/60 bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md"

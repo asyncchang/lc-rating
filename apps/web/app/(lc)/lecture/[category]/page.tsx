@@ -2,6 +2,7 @@ import { LECTURE_CATEGORIES } from "@/features/lecture/content";
 import type { Metadata } from "next";
 import { lazy } from "react";
 import { tutorialDataMap } from "@/utils/tutorialIndex";
+import { notFound } from "next/navigation";
 
 const Tutorial = lazy(() => import("@/features/tutorial"));
 
@@ -36,5 +37,10 @@ export async function generateMetadata({
 
 export default async function Page({ params }: PageProps) {
   const { category } = await params;
+  // Self-authored learning paths no longer have a standalone 講義 page; their
+  // prose lives in the matching 題單. Only 0x3F lecture categories render here.
+  if (!LECTURE_CATEGORIES[category]) {
+    notFound();
+  }
   return <Tutorial plan={category} />;
 }

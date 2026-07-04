@@ -60,6 +60,27 @@ export const CUSTOM_STUDYPLAN_KEYS: ReadonlySet<string> = new Set([
   ...INTERVIEW_PREP_KEYS,
 ]);
 
+/**
+ * Keys that still have a standalone「講義」page. Only the upstream 0x3F 主題:
+ * the self-authored learning paths / interview prep plans folded their 講義
+ * prose into their 題單, so they intentionally do not appear here.
+ */
+export const LECTURE_KEYS = [
+  "binary_search",
+  "sorting",
+  "bitwise_operations",
+  "data_structure",
+  "dynamic_programming",
+  "graph",
+  "greedy",
+  "grid",
+  "math",
+  "monotonic_stack",
+  "sliding_window",
+  "string",
+  "trees",
+] as const;
+
 export const STUDYPLANS = {
   weekly_contest: "週賽 AK 之路",
   q3_handbook: "LeetCode 競賽 Q3 手冊",
@@ -99,10 +120,10 @@ export const ROUTERS = {
   tutorials: {
     title: "講義",
     href: `/lecture`,
-    children: Object.entries(STUDYPLANS).reduce(
-      (acc: { title: string; href: string }[], [key, title]) => [
+    children: LECTURE_KEYS.reduce(
+      (acc: { title: string; href: string }[], key) => [
         ...acc,
-        { title, href: `/lecture/${key}` },
+        { title: STUDYPLANS[key as keyof typeof STUDYPLANS], href: `/lecture/${key}` },
       ],
       [],
     ),

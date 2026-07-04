@@ -33,8 +33,11 @@ const SectionContainer = React.memo(
     const totalProblems = countStudyPlanProblems(section);
     const childCount = section.children?.length ?? 0;
 
+    // Merged learning paths carry prose on the section itself; 0x3F plans join
+    // it from the lecture tree via `tutorialById`.
     const tutorial = tutorialById?.get(section.id);
-    const rawSummary = tutorial?.summary ?? "";
+    const rawSummary = tutorial?.summary ?? section.summary ?? "";
+    const sectionDescription = section.description ?? "";
     const dedupedSummary = useMemo(
       () => stripDuplicateImages(rawSummary, parentImageUrls),
       [rawSummary, parentImageUrls],
@@ -90,6 +93,11 @@ const SectionContainer = React.memo(
           >
             {section.title}
           </CardTitle>
+          {sectionDescription ? (
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              {sectionDescription}
+            </p>
+          ) : null}
           {dedupedSummary ? (
             <Collapsible className="group/summary mt-4">
               <CollapsibleTrigger className="flex w-full items-center justify-between gap-3 rounded-full border border-border/60 bg-muted/30 px-4 py-2 text-left text-xs font-medium text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground">
