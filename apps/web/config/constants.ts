@@ -46,6 +46,7 @@ export const BILIBILI_0X3F_SPACE = {
 export const LEARNING_PATH_KEYS: ReadonlySet<string> = new Set([
   "weekly_contest",
   "rating_2100",
+  "q3_handbook",
 ]);
 
 export const INTERVIEW_PREP_KEYS: ReadonlySet<string> = new Set([

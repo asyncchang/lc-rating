@@ -8,6 +8,8 @@ import type { TutorialData } from "@/types";
 export const weeklyContest = {
   id: 1,
   title: "週賽 AK 之路",
+  description:
+    "以一場週賽的解剖為主軸：五個階段從 Q1/Q2 手速、Q3 建模練到 Q4 深度武器，再用三場全真模擬檢驗實戰節奏與罰時控制。",
   src: "",
   last_update: "2026-07-04T00:00:00.000000+00:00",
   summary:
