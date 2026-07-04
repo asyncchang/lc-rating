@@ -7,7 +7,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
-import { useGlobalSettingsStore } from "@/hooks/useGlobalSettings";
+import {
+  isTextSize,
+  useGlobalSettingsStore,
+  type TextSize,
+} from "@/hooks/useGlobalSettings";
 import { isThemePreference, ThemePreference } from "@/types/siteStorage";
 import { useTheme } from "next-themes";
 
@@ -17,9 +21,21 @@ const themeOptions: { value: ThemePreference; label: string }[] = [
   { value: "dark", label: "深色" },
 ];
 
+const textSizeOptions: { value: TextSize; label: string }[] = [
+  { value: "small", label: "小" },
+  { value: "standard", label: "標準" },
+  { value: "large", label: "大" },
+];
+
 const Preference = () => {
-  const { linkLanguage, toggleLinkLanguage, tagLanguage, toggleTagLanguage } =
-    useGlobalSettingsStore();
+  const {
+    linkLanguage,
+    toggleLinkLanguage,
+    tagLanguage,
+    toggleTagLanguage,
+    textSize,
+    setTextSize,
+  } = useGlobalSettingsStore();
   const { theme = "system", setTheme } = useTheme();
 
   const handleThemeChange = (value: string) => {
@@ -29,6 +45,15 @@ const Preference = () => {
     }
 
     setTheme(value);
+  };
+
+  const handleTextSizeChange = (value: string) => {
+    if (!isTextSize(value)) {
+      console.error(`[Preference] Invalid text size: ${value}`);
+      return;
+    }
+
+    setTextSize(value);
   };
 
   return (
@@ -48,6 +73,24 @@ const Preference = () => {
           </SelectContent>
         </Select>
       </div>
+      <div className="space-y-2">
+        <Label htmlFor="text-size-preference">文字大小</Label>
+        <Select value={textSize} onValueChange={handleTextSizeChange}>
+          <SelectTrigger id="text-size-preference" className="w-[12rem]">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {textSizeOptions.map((option) => (
+              <SelectItem key={option.value} value={option.value}>
+                {option.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        <p className="text-sm text-muted-foreground">
+          調整整個網站的文字比例，包含導覽、題單與講義內容。
+        </p>
+      </div>
       <div className="flex items-center gap-2">
         <span>超連結:</span>
         <Label htmlFor="airplane-mode">中文</Label>
@@ -55,7 +98,7 @@ const Preference = () => {
           id="airplane-mode"
           checked={linkLanguage !== "zh"}
           onCheckedChange={toggleLinkLanguage}
-          className="data-[state=unchecked]:bg-red-400 data-[state=checked]:bg-lime-500"
+          className="data-[state=unchecked]:bg-red-400 data-[state=checked]:bg-primary"
         />
         <Label htmlFor="airplane-mode">英文</Label>
       </div>
@@ -66,7 +109,7 @@ const Preference = () => {
           id="airplane-mode"
           checked={tagLanguage !== "zh"}
           onCheckedChange={toggleTagLanguage}
-          className="data-[state=unchecked]:bg-red-400 data-[state=checked]:bg-lime-500"
+          className="data-[state=unchecked]:bg-red-400 data-[state=checked]:bg-primary"
         />
         <Label htmlFor="airplane-mode">英文</Label>
       </div>

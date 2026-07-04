@@ -16,9 +16,11 @@ import { q3Handbook } from "./q3_handbook";
 import { slidingWindow } from "./sliding_window";
 import { string } from "./string";
 import { trees } from "./trees";
+import { weeklyContest } from "./weekly_contest";
 
 /** Lecture category key -> display title. Lecture-owned; independent of STUDYPLANS. */
 export const LECTURE_CATEGORIES: Record<string, string> = {
+  weekly_contest: "週賽 AK 之路",
   q3_handbook: "LeetCode 競賽 Q3 手冊",
   interview_sprint: "面試衝刺計畫",
   technical_interview: "技術面試準備",
@@ -40,6 +42,7 @@ export const LECTURE_CATEGORIES: Record<string, string> = {
 
 /** Lecture category key -> authored content tree. Replaces the old tutorial/*.json. */
 export const lectureContentMap: Record<string, TutorialData.Root> = {
+  weekly_contest: weeklyContest,
   q3_handbook: q3Handbook,
   technical_interview: technicalInterview,
   rating_2100: rating_2100,

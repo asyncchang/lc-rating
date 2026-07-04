@@ -4,20 +4,20 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
 
-// Unified green button style shared across the app: a soft light-lime
-// surface with dark green text, tuned to stay legible on both light and dark
-// themes (a brighter lime on dark so it reads clearly against dark surfaces).
-const greenButton =
-  "bg-lime-200 text-green-900 shadow-sm hover:bg-lime-300 hover:shadow-md focus-visible:ring-lime-600/40 dark:bg-lime-300 dark:text-green-950 dark:hover:bg-lime-200";
+// Unified brand button style shared across the app: solid primary surface
+// with matching foreground, aligned with cp-handbook's default button. The
+// primary token adapts per theme so it stays legible in light and dark.
+const brandButton =
+  "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 hover:shadow-md focus-visible:ring-ring/40";
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium cursor-pointer select-none transition-all duration-200 ease-out disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] active:scale-[0.97] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
   {
     variants: {
       variant: {
-        default: greenButton,
-        brand: greenButton,
-        success: greenButton,
+        default: brandButton,
+        brand: brandButton,
+        success: brandButton,
         destructive:
           "bg-destructive text-white shadow-sm hover:bg-destructive/90 hover:shadow-md focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40",
         outline:
