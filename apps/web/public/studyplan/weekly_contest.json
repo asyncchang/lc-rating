@@ -2,7 +2,7 @@
     "id": 1,
     "title": "週賽 AK 之路",
     "src": "",
-    "last_update": "2026-07-04T12:00:00.000000+00:00",
+    "last_update": "2026-07-04T21:00:00.000000+00:00",
     "summary": "",
     "children": [
         {
@@ -325,7 +325,7 @@
         {
             "id": 7,
             "title": "2. 建模關：Q3 的常客套路（1400-1700）",
-            "summary": "Q3 的本質是「把敘述翻譯成已知模型」。這一階段練五個出現率最高的模型，重點是辨認訊號：看到什麼字眼，就該想到什麼工具。",
+            "summary": "Q3 的本質是「把敘述翻譯成已知模型」。這一階段練出現率最高的幾個核心模型，重點是辨認訊號：看到什麼字眼，就該想到什麼工具。",
             "children": [
                 {
                     "id": 8,
@@ -695,6 +695,148 @@
                             "src": "https://leetcode.cn/problems/subarray-sums-divisible-by-k/",
                             "solution": null,
                             "score": 1675.989407584,
+                            "isPremium": false
+                        }
+                    ]
+                },
+                {
+                    "id": 33,
+                    "title": "2.7 回溯：子集、組合、排列的枚舉框架",
+                    "summary": "",
+                    "isLeaf": true,
+                    "problems": [
+                        {
+                            "id": "1863",
+                            "title": "找出所有子集的異或總和再求和",
+                            "slug": "sum-of-all-subset-xor-totals",
+                            "src": "https://leetcode.cn/problems/sum-of-all-subset-xor-totals/",
+                            "solution": null,
+                            "score": 1372.1152262488,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "2044",
+                            "title": "統計按位或能得到最大值的子集數目",
+                            "slug": "count-number-of-maximum-bitwise-or-subsets",
+                            "src": "https://leetcode.cn/problems/count-number-of-maximum-bitwise-or-subsets/",
+                            "solution": null,
+                            "score": 1567.6884942977,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "2698",
+                            "title": "求一個整數的懲罰數",
+                            "slug": "find-the-punishment-number-of-an-integer",
+                            "src": "https://leetcode.cn/problems/find-the-punishment-number-of-an-integer/",
+                            "solution": null,
+                            "score": 1678.6245760413,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "1239",
+                            "title": "串聯字串的最大長度",
+                            "slug": "maximum-length-of-a-concatenated-string-with-unique-characters",
+                            "src": "https://leetcode.cn/problems/maximum-length-of-a-concatenated-string-with-unique-characters/",
+                            "solution": null,
+                            "score": 1719.945199874,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "2305",
+                            "title": "公平分發餅乾",
+                            "slug": "fair-distribution-of-cookies",
+                            "src": "https://leetcode.cn/problems/fair-distribution-of-cookies/",
+                            "solution": null,
+                            "score": 1886.7040111218,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "996",
+                            "title": "平方陣列的數目",
+                            "slug": "number-of-squareful-arrays",
+                            "src": "https://leetcode.cn/problems/number-of-squareful-arrays/",
+                            "solution": null,
+                            "score": 1932.3730795204,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "2597",
+                            "title": "美麗子集的數目",
+                            "slug": "the-number-of-beautiful-subsets",
+                            "src": "https://leetcode.cn/problems/the-number-of-beautiful-subsets/",
+                            "solution": null,
+                            "score": 2023.4303440211,
+                            "isPremium": false
+                        }
+                    ]
+                },
+                {
+                    "id": 34,
+                    "title": "2.8 前後綴分解：枚舉分割點，左右各預處理",
+                    "summary": "",
+                    "isLeaf": true,
+                    "problems": [
+                        {
+                            "id": "2256",
+                            "title": "最小平均差",
+                            "slug": "minimum-average-difference",
+                            "src": "https://leetcode.cn/problems/minimum-average-difference/",
+                            "solution": null,
+                            "score": 1394.9149882274,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "2909",
+                            "title": "元素和最小的山形三元組 II",
+                            "slug": "minimum-sum-of-mountain-triplets-ii",
+                            "src": "https://leetcode.cn/problems/minimum-sum-of-mountain-triplets-ii/",
+                            "solution": null,
+                            "score": 1478.8676835951,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "2483",
+                            "title": "商店的最少代價",
+                            "slug": "minimum-penalty-for-a-shop",
+                            "src": "https://leetcode.cn/problems/minimum-penalty-for-a-shop/",
+                            "solution": null,
+                            "score": 1494.500749598,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "2874",
+                            "title": "有序三元組中的最大值 II",
+                            "slug": "maximum-value-of-an-ordered-triplet-ii",
+                            "src": "https://leetcode.cn/problems/maximum-value-of-an-ordered-triplet-ii/",
+                            "solution": null,
+                            "score": 1583.212966224,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "2420",
+                            "title": "找到所有好下標",
+                            "slug": "find-all-good-indices",
+                            "src": "https://leetcode.cn/problems/find-all-good-indices/",
+                            "solution": null,
+                            "score": 1695.0815222626,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "2100",
+                            "title": "適合野炊的日子",
+                            "slug": "find-good-days-to-rob-the-bank",
+                            "src": "https://leetcode.cn/problems/find-good-days-to-rob-the-bank/",
+                            "solution": null,
+                            "score": 1702.4962514406,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "2906",
+                            "title": "構造乘積矩陣",
+                            "slug": "construct-product-matrix",
+                            "src": "https://leetcode.cn/problems/construct-product-matrix/",
+                            "solution": null,
+                            "score": 2074.8331146269,
                             "isPremium": false
                         }
                     ]
@@ -1074,6 +1216,59 @@
                             "src": "https://leetcode.cn/problems/count-subarrays-with-median-k/",
                             "solution": null,
                             "score": 1998.889914712,
+                            "isPremium": false
+                        }
+                    ]
+                },
+                {
+                    "id": 35,
+                    "title": "3.7 雙序列 DP：兩個字串對著走",
+                    "summary": "",
+                    "isLeaf": true,
+                    "problems": [
+                        {
+                            "id": "1035",
+                            "title": "不相交的線",
+                            "slug": "uncrossed-lines",
+                            "src": "https://leetcode.cn/problems/uncrossed-lines/",
+                            "solution": null,
+                            "score": 1805.5947071171,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "1898",
+                            "title": "可移除字元的最大數目",
+                            "slug": "maximum-number-of-removable-characters",
+                            "src": "https://leetcode.cn/problems/maximum-number-of-removable-characters/",
+                            "solution": null,
+                            "score": 1912.8440554296,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "1092",
+                            "title": "最短公共超序列",
+                            "slug": "shortest-common-supersequence",
+                            "src": "https://leetcode.cn/problems/shortest-common-supersequence/",
+                            "solution": null,
+                            "score": 1976.7214151234,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "1639",
+                            "title": "透過給定詞典構造目標字串的方案數",
+                            "slug": "number-of-ways-to-form-a-target-string-given-a-dictionary",
+                            "src": "https://leetcode.cn/problems/number-of-ways-to-form-a-target-string-given-a-dictionary/",
+                            "solution": null,
+                            "score": 2081.6909344021,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "2060",
+                            "title": "同源字串檢測",
+                            "slug": "check-if-an-original-string-exists-given-two-encoded-strings",
+                            "src": "https://leetcode.cn/problems/check-if-an-original-string-exists-given-two-encoded-strings/",
+                            "solution": null,
+                            "score": 2803.7652028979,
                             "isPremium": false
                         }
                     ]
@@ -1479,6 +1674,130 @@
                             "src": "https://leetcode.cn/problems/maximum-sum-queries/",
                             "solution": null,
                             "score": 2533.2830157959,
+                            "isPremium": false
+                        }
+                    ]
+                },
+                {
+                    "id": 36,
+                    "title": "4.8 矩陣快速冪：線性遞推的加速",
+                    "summary": "",
+                    "isLeaf": true,
+                    "problems": [
+                        {
+                            "id": "935",
+                            "title": "騎士撥號器",
+                            "slug": "knight-dialer",
+                            "src": "https://leetcode.cn/problems/knight-dialer/",
+                            "solution": null,
+                            "score": 1690.1655236843,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "1220",
+                            "title": "統計母音字母序列的數目",
+                            "slug": "count-vowels-permutation",
+                            "src": "https://leetcode.cn/problems/count-vowels-permutation/",
+                            "solution": null,
+                            "score": 1729.6074000215,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "1411",
+                            "title": "給 N x 3 網格圖塗色的方案數",
+                            "slug": "number-of-ways-to-paint-n-3-grid",
+                            "src": "https://leetcode.cn/problems/number-of-ways-to-paint-n-3-grid/",
+                            "solution": null,
+                            "score": 1844.6289439644,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "3193",
+                            "title": "統計逆序對的數目",
+                            "slug": "count-the-number-of-inversions",
+                            "src": "https://leetcode.cn/problems/count-the-number-of-inversions/",
+                            "solution": null,
+                            "score": 2266.3248398876,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "2851",
+                            "title": "字串轉換",
+                            "slug": "string-transformation",
+                            "src": "https://leetcode.cn/problems/string-transformation/",
+                            "solution": null,
+                            "score": 2857.6543956169,
+                            "isPremium": false
+                        }
+                    ]
+                },
+                {
+                    "id": 37,
+                    "title": "4.9 博弈論 DP：minimax 與先手優勢",
+                    "summary": "",
+                    "isLeaf": true,
+                    "problems": [
+                        {
+                            "id": "877",
+                            "title": "石子游戲",
+                            "slug": "stone-game",
+                            "src": "https://leetcode.cn/problems/stone-game/",
+                            "solution": null,
+                            "score": 1590.0463215721,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "1510",
+                            "title": "石子游戲 IV",
+                            "slug": "stone-game-iv",
+                            "src": "https://leetcode.cn/problems/stone-game-iv/",
+                            "solution": null,
+                            "score": 1786.9268132617,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "1690",
+                            "title": "石子游戲 VII",
+                            "slug": "stone-game-vii",
+                            "src": "https://leetcode.cn/problems/stone-game-vii/",
+                            "solution": null,
+                            "score": 1951.2096212775,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "1406",
+                            "title": "石子游戲 III",
+                            "slug": "stone-game-iii",
+                            "src": "https://leetcode.cn/problems/stone-game-iii/",
+                            "solution": null,
+                            "score": 2026.8957817007,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "1140",
+                            "title": "石子游戲 II",
+                            "slug": "stone-game-ii",
+                            "src": "https://leetcode.cn/problems/stone-game-ii/",
+                            "solution": null,
+                            "score": 2034.9740902393,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "1563",
+                            "title": "石子游戲 V",
+                            "slug": "stone-game-v",
+                            "src": "https://leetcode.cn/problems/stone-game-v/",
+                            "solution": null,
+                            "score": 2087.2049275667,
+                            "isPremium": false
+                        },
+                        {
+                            "id": "2029",
+                            "title": "石子游戲 IX",
+                            "slug": "stone-game-ix",
+                            "src": "https://leetcode.cn/problems/stone-game-ix/",
+                            "solution": null,
+                            "score": 2277.3595662538,
                             "isPremium": false
                         }
                     ]
