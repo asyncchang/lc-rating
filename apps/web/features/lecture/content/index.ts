@@ -19,14 +19,12 @@ import { string } from "./string";
 import { trees } from "./trees";
 import { weeklyContest } from "./weekly_contest";
 
-/** Lecture category key -> display title. Lecture-owned; independent of STUDYPLANS. */
+/**
+ * Lecture category key -> display title. Lecture-owned; independent of
+ * STUDYPLANS. Only the upstream 靈茶山艾府（0x3F）主題保留獨立「講義」頁；
+ * 自製學習路線（週賽 AK 之路等）的講義內容已合併進對應題單，因此不再列於此。
+ */
 export const LECTURE_CATEGORIES: Record<string, string> = {
-  weekly_contest: "週賽 AK 之路",
-  q3_handbook: "LeetCode 競賽 Q3 手冊",
-  q4_handbook: "LeetCode 競賽 Q4 手冊",
-  interview_sprint: "面試衝刺計畫",
-  technical_interview: "技術面試準備",
-  rating_2100: "進階刷題衝刺（1700→2100 四階段）",
   binary_search: "二分搜尋",
   sorting: "排序",
   bitwise_operations: "位元運算",
@@ -42,13 +40,11 @@ export const LECTURE_CATEGORIES: Record<string, string> = {
   trees: "樹和二元樹",
 };
 
-/** Lecture category key -> authored content tree. Replaces the old tutorial/*.json. */
+/**
+ * Lecture category key -> authored content tree, for the standalone「講義」頁。
+ * 僅含 0x3F 主題；自製路線的講義內容改由 `studyPlanContentMap` 合併進題單。
+ */
 export const lectureContentMap: Record<string, TutorialData.Root> = {
-  weekly_contest: weeklyContest,
-  q3_handbook: q3Handbook,
-  q4_handbook: q4Handbook,
-  technical_interview: technicalInterview,
-  rating_2100: rating_2100,
   binary_search: binarySearch,
   sorting: sorting,
   bitwise_operations: bitwiseOperations,
@@ -57,10 +53,22 @@ export const lectureContentMap: Record<string, TutorialData.Root> = {
   graph: graph,
   greedy: greedy,
   grid: grid,
-  interview_sprint: interviewSprint,
   math: math,
   monotonic_stack: monotonicStack,
   sliding_window: slidingWindow,
   string: string,
   trees: trees,
+};
+
+/**
+ * 自製學習路線 / 面試準備的講義內容樹。這些不再有獨立「講義」頁，
+ * 而是由題單頁依 id 合併進對應的練習題樹（含根摘要與各章節敘述）。
+ */
+export const studyPlanContentMap: Record<string, TutorialData.Root> = {
+  weekly_contest: weeklyContest,
+  q3_handbook: q3Handbook,
+  q4_handbook: q4Handbook,
+  technical_interview: technicalInterview,
+  rating_2100: rating_2100,
+  interview_sprint: interviewSprint,
 };

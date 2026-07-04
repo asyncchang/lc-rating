@@ -26,6 +26,12 @@ export interface Section {
   title: string;
   src?: string | null;
   isLeaf?: boolean;
+  /**
+   * Optional prose merged in from a learning-path 講義 tree. Present only for
+   * self-authored plans whose 講義 was folded into the 題單 (e.g. 週賽 AK 之路).
+   */
+  description?: string;
+  summary?: string;
   children?: Section[];
   problems?: Item[];
 }
