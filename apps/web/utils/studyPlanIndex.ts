@@ -14,6 +14,7 @@ import interviewSprintData from "@/public/studyplan/interview_sprint.json";
 import mathData from "@/public/studyplan/math.json";
 import monotonicStackData from "@/public/studyplan/monotonic_stack.json";
 import q3HandbookData from "@/public/studyplan/q3_handbook.json";
+import q4HandbookData from "@/public/studyplan/q4_handbook.json";
 import slidingWindowData from "@/public/studyplan/sliding_window.json";
 import stringData from "@/public/studyplan/string.json";
 import treesData from "@/public/studyplan/trees.json";
@@ -22,6 +23,7 @@ import weeklyContestData from "@/public/studyplan/weekly_contest.json";
 export const studyPlanDataMap: Record<string, StudyPlanData.Root> = {
   weekly_contest: weeklyContestData as StudyPlanData.Root,
   q3_handbook: q3HandbookData as StudyPlanData.Root,
+  q4_handbook: q4HandbookData as StudyPlanData.Root,
   technical_interview: technicalInterviewData as StudyPlanData.Root,
   rating_2100: rating2100Data as StudyPlanData.Root,
   binary_search: binarySearchData as StudyPlanData.Root,
