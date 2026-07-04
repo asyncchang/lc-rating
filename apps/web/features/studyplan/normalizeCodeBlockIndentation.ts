@@ -9,6 +9,14 @@ export function normalizeCodeBlockIndentation(code: string): string {
     return code;
   }
 
+  const doubledIndentation =
+    indents.every((n) => n % 4 === 0) && Math.min(...indents) >= 8;
+  if (doubledIndentation) {
+    return lines
+      .map((line) => line.replace(/^( {8,})/, (m) => " ".repeat(m.length / 2)))
+      .join("\n");
+  }
+
   const alreadyFourSpace =
     indents.every((n) => n % 4 === 0) && Math.min(...indents) >= 4;
   if (alreadyFourSpace) {

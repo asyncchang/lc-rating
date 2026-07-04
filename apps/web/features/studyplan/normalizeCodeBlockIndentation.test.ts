@@ -29,3 +29,21 @@ test("normalizeMarkdownCodeBlockIndentation updates fenced blocks only", () => {
   assert.match(output, /```cpp\nif \(ok\) \{\n {4}return 1;\n\}\n```/);
   assert.match(output, /^text$/m);
 });
+
+test("normalizeCodeBlockIndentation halves doubled 8-space indents", () => {
+  const input = [
+    "sort(a.begin(), a.end(),",
+    "                    [](auto& a, auto& b) { return a[1] < b[1]; });",
+    "for (auto& it : a) {",
+    "        if (it[0] >= last) {",
+    "                ++cnt;",
+    "        }",
+    "}",
+  ].join("\n");
+
+  const output = normalizeCodeBlockIndentation(input);
+  assert.equal(
+    output,
+    "sort(a.begin(), a.end(),\n          [](auto& a, auto& b) { return a[1] < b[1]; });\nfor (auto& it : a) {\n    if (it[0] >= last) {\n        ++cnt;\n    }\n}",
+  );
+});
