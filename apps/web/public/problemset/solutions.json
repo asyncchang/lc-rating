@@ -6327,6 +6327,13 @@
     "time": 1663474277970,
     "problemId": "2416"
   },
+  "2426201216": {
+    "id": "2426201216",
+    "title": "模擬 / 腦筋急轉彎（Python/Java/C++/Go）",
+    "titleSlug": "mo-ni-pythonjavacgo-by-endlesscheng-jnwc",
+    "time": 1783829067838,
+    "problemId": "3987"
+  },
   "2432996029": {
     "id": "2432996029",
     "title": "中心擴充套件法 + 狀壓 DP + 最佳化（Python/Java/C++/Go）",
@@ -6753,6 +6760,13 @@
     "titleSlug": "yong-zhan-mo-ni-pythonjavacgo-by-endless-vi8x",
     "time": 1770523373226,
     "problemId": "3834"
+  },
+  "2541361981": {
+    "id": "2541361981",
+    "title": "構造題，附更大資料範圍的思路（Python/Java/C++/Go）",
+    "titleSlug": "gou-zao-ti-fu-geng-da-shu-ju-fan-wei-de-k4ebh",
+    "time": 1783829766057,
+    "problemId": "3988"
   },
   "2542940056": {
     "id": "2542940056",
@@ -7477,7 +7491,7 @@
   },
   "2688612867": {
     "id": "2688612867",
-    "title": "Go 模擬",
+    "title": "只需約 1.5n 次比較，就能找到最小值和最大值（Python/Java/C++/Go）",
     "titleSlug": "go-mo-ni-by-endlesscheng-cg8e",
     "time": 1629605501605,
     "problemId": "1979"
@@ -10555,6 +10569,13 @@
     "time": 1774574589519,
     "problemId": "735"
   },
+  "3375957308": {
+    "id": "3375957308",
+    "title": "構造題（Python/Java/C++/Go）",
+    "titleSlug": "gou-zao-ti-by-endlesscheng-r1ve",
+    "time": 1783866531911,
+    "problemId": "3990"
+  },
   "3376945874": {
     "id": "3376945874",
     "title": "與其維護第一個未滿堆疊，不如維護所有未滿堆疊（Python/Java/C++/Go）",
@@ -10582,6 +10603,13 @@
     "titleSlug": "jian-dan-ti-jian-dan-zuo-pythonjavaccgoj-6gb2",
     "time": 1758090657165,
     "problemId": "66"
+  },
+  "338060302": {
+    "id": "338060302",
+    "title": "解析時分秒（Python/Java/C++/Go）",
+    "titleSlug": "jie-xi-shi-fen-miao-pythonjavacgo-by-end-e4wb",
+    "time": 1783829884592,
+    "problemId": "3986"
   },
   "3381061806": {
     "id": "3381061806",
@@ -15251,6 +15279,13 @@
     "titleSlug": "zui-da-dui-wei-hu-qian-k-xiao-pythonjava-h15x",
     "time": 1725168541001,
     "problemId": "3275"
+  },
+  "580796927": {
+    "id": "580796927",
+    "title": "相鄰相關型 DP + 最佳化（Python/Java/C++/Go）",
+    "titleSlug": "xiang-lin-xiang-guan-xing-dppythonjavacg-uqlr",
+    "time": 1783829235269,
+    "problemId": "3989"
   },
   "586474794": {
     "id": "586474794",
