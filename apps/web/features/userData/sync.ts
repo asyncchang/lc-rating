@@ -10,6 +10,8 @@ import { clearAuthToken, decodeAuthToken, isTokenValid } from "@/utils/auth";
 import { pullCloudSiteStorage, pushCloudSiteStorage } from "@/utils/cloudSync";
 import { useCallback, useEffect, useState } from "react";
 
+const MAX_TIMEOUT_MS = 2_147_483_647;
+
 type SyncStatus = "offline" | "signed-out" | "synced";
 
 interface SyncState {
@@ -79,13 +81,43 @@ export function useSyncState(): SyncState {
     };
   }, []);
 
+  // A token can expire while the page remains open. Keep the UI in sync with
+  // the token's lifetime instead of waiting for a reload or a failed request.
+  useEffect(() => {
+    if (!token) return;
+
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+
+    const checkTokenExpiry = () => {
+      const payload = decodeAuthToken(token);
+      if (!payload) {
+        if (readToken() === token) {
+          clearAuthToken();
+        } else {
+          setToken(null);
+        }
+        return;
+      }
+
+      const delay = Math.max(0, payload.exp - Date.now());
+      timeoutId = setTimeout(checkTokenExpiry, Math.min(delay, MAX_TIMEOUT_MS));
+    };
+
+    checkTokenExpiry();
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [token]);
+
   const isConfigured = Boolean(API_BASE);
-  const account = decodeAuthToken(token)?.username ?? null;
+  const payload = decodeAuthToken(token);
+  const account = payload?.username ?? null;
 
   let status: SyncStatus;
   if (!isConfigured) {
     status = "offline";
-  } else if (token) {
+  } else if (payload) {
     status = "synced";
   } else {
     status = "signed-out";

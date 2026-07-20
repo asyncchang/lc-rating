@@ -8,8 +8,10 @@
     "check-types": "tsc --noEmit",
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
-    "setup": "wrangler kv:namespace create LC_RATING_DATA",
-    "typegen": "wrangler types src/env.d.ts --include-runtime false"
+    "deploy:dry": "wrangler deploy --dry-run",
+    "setup": "wrangler kv namespace create LC_RATING_DATA",
+    "typegen": "wrangler types src/env.d.ts --include-runtime false",
+    "check": "pnpm typegen && pnpm check-types && pnpm deploy:dry"
   },
   "dependencies": {
     "hono": "^3.12.0"

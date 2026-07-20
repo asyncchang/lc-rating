@@ -4,6 +4,10 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
+    "backend:check": "pnpm --filter lc-rating-backend check",
+    "backend:deploy": "pnpm --filter lc-rating-backend deploy",
+    "backend:dev": "pnpm --filter lc-rating-backend dev",
+    "backend:setup": "pnpm --filter lc-rating-backend setup",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "check-types": "turbo run check-types",
