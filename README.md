@@ -92,6 +92,17 @@ lc-rating/
 - `studyplan_updater.yml`：合併上游題單的新增題目。
 - `workflow.yml`：建置並部署至 GitHub Pages。
 
+## 後端部署
+
+雲端同步後端是 Cloudflare Worker，設定與部署說明在
+[`backend/README.md`](backend/README.md)。完成一次 GitHub Actions secret
+設定後，修改 `backend/` 並合併到 `main` 就會自動部署；本機也可以執行：
+
+```bash
+pnpm backend:check
+pnpm backend:deploy
+```
+
 ## 開源協議
 
 本專案採用 MIT 協議開源。

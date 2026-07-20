@@ -29,7 +29,15 @@ export function decodeAuthToken(token: string | null): JWTPayload | null {
     if (!dataB64) return null;
     const json = atob(dataB64);
     const payload: JWTPayload = JSON.parse(json);
-    if (payload.exp < Date.now()) return null;
+    if (
+      typeof payload.userId !== "string" ||
+      typeof payload.username !== "string" ||
+      typeof payload.exp !== "number" ||
+      !Number.isFinite(payload.exp) ||
+      payload.exp <= Date.now()
+    ) {
+      return null;
+    }
     return payload;
   } catch {
     return null;
