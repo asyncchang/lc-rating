@@ -36,7 +36,7 @@
   },
   "1007682110": {
     "id": "1007682110",
-    "title": "回溯不會寫？套路在此！（Python/Java/C++/Go/JS）",
+    "title": "回溯不會寫？套路在此！（Python/Java/C++/Go/JS/Rust）",
     "titleSlug": "hui-su-bu-hui-xie-tao-lu-zai-ci-pythonja-q1yu",
     "time": 1678330702697,
     "problemId": "LCR 086"
@@ -1517,6 +1517,13 @@
     "titleSlug": "olog-n-tan-xin-er-fen-cha-zhao-pythonjav-t3qn",
     "time": 1694928352018,
     "problemId": "2856"
+  },
+  "1305930541": {
+    "id": "1305930541",
+    "title": "兩種方法：字串 / 數學（Python/Java/C++/Go）",
+    "titleSlug": "liang-chong-fang-fa-zi-fu-chuan-shu-xue-hpphq",
+    "time": 1785040980890,
+    "problemId": "4000"
   },
   "1306737974": {
     "id": "1306737974",
@@ -8728,6 +8735,13 @@
     "time": 1691283090999,
     "problemId": "2806"
   },
+  "2949409019": {
+    "id": "2949409019",
+    "title": "兩種方法：建立新陣列 / 原地三次反轉（Python/Java/C++/Go）",
+    "titleSlug": "liang-chong-fang-fa-chuang-jian-xin-shu-v5kdb",
+    "time": 1784506899838,
+    "problemId": "1260"
+  },
   "2953959029": {
     "id": "2953959029",
     "title": "小球打磚塊，O(n) 前字尾分解（Python/Java/C++/C/Go/JS/Rust）",
@@ -9721,6 +9735,13 @@
     "titleSlug": "shuang-duan-dui-lie-on-zuo-fa-by-endless-5pe1",
     "time": 1691295412674,
     "problemId": "2810"
+  },
+  "3177580151": {
+    "id": "3177580151",
+    "title": "雙指標，合併兩個有序列表（Python/Java/C++/Go）",
+    "titleSlug": "shuang-zhi-zhen-he-bing-liang-ge-you-xu-4ur12",
+    "time": 1785040157514,
+    "problemId": "4001"
   },
   "3178253488": {
     "id": "3178253488",
@@ -13040,6 +13061,13 @@
     "time": 1626581386461,
     "problemId": "1935"
   },
+  "3927702135": {
+    "id": "3927702135",
+    "title": "為什麼先手必勝？",
+    "titleSlug": "wei-shi-yao-xian-shou-bi-sheng-by-endles-qc0w",
+    "time": 1784520118915,
+    "problemId": "877"
+  },
   "3929135553": {
     "id": "3929135553",
     "title": "拓撲排序+動態規劃（Python/Java/C++/Go/JS）",
@@ -13053,6 +13081,13 @@
     "titleSlug": "dong-tai-gui-hua-pythonjavacgo-by-endles-94wq",
     "time": 1665289282209,
     "problemId": "2435"
+  },
+  "3933112461": {
+    "id": "3933112461",
+    "title": "Dijkstra 最短路（Python/Java/C++/Go）",
+    "titleSlug": "dijkstra-zui-duan-lu-pythonjavacgo-by-en-x6f4",
+    "time": 1785039832497,
+    "problemId": "4003"
   },
   "3935523633": {
     "id": "3935523633",
@@ -13298,6 +13333,13 @@
     "titleSlug": "pai-xu-hou-zui-xiao-zui-da-pi-pei-by-end-7sta",
     "time": 1670126868841,
     "problemId": "2491"
+  },
+  "3979947991": {
+    "id": "3979947991",
+    "title": "三種方法：最大化得分之差 / 最大化個人得分 / 單調佇列最佳化（Python/Java/C++/Go）",
+    "titleSlug": "san-chong-fang-fa-zui-da-hua-de-fen-zhi-4gcvw",
+    "time": 1784945663672,
+    "problemId": "1406"
   },
   "3980691002": {
     "id": "3980691002",
@@ -13676,6 +13718,13 @@
     "titleSlug": "go-ku-han-shu-er-fen-by-endlesscheng-dl6a",
     "time": 1638932770981,
     "problemId": "1095"
+  },
+  "4061939956": {
+    "id": "4061939956",
+    "title": "組合數學（Python/Java/C++/Go）",
+    "titleSlug": "zu-he-shu-xue-pythonjavacgo-by-endlessch-rlgy",
+    "time": 1785038621175,
+    "problemId": "4002"
   },
   "4062228386": {
     "id": "4062228386",
@@ -17106,6 +17155,13 @@
     "titleSlug": "bao-li-mei-ju-suo-you-by-endlesscheng-evdu",
     "time": 1649563746276,
     "problemId": "2232"
+  },
+  "991662473": {
+    "id": "991662473",
+    "title": "證明：只需考慮兩種情況（Python/Java/C++/C/Go/JS/Rust）",
+    "titleSlug": "zheng-ming-zhi-xu-kao-lu-liang-chong-qin-9vdw",
+    "time": 1785027119448,
+    "problemId": "628"
   },
   "993117830": {
     "id": "993117830",
