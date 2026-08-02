@@ -35,13 +35,18 @@ export function getSummaryPreview(summary?: string) {
   if (!summary)
     return "進入此單元後，可依下一層子單元繼續閱讀，或直接開啟完整講義與搭配練習。";
 
-  return stripExampleContainerMarkers(summary)
-    .replace(/!\[[^\]]*]\([^)]+\)/g, "")
-    .replace(/\*\*/g, "")
-    .replace(/[#>`*_~]/g, "")
-    .replace(/\s+/g, " ")
-    .trim()
-    .slice(0, 96);
+  return (
+    stripExampleContainerMarkers(summary)
+      .replace(/!\[[^\]]*]\([^)]+\)/g, "")
+      // Every lecture opens with the same "**原理講解**" heading; repeating it on
+      // each card says nothing, so start the preview at the prose after it.
+      .replace(/^\s*\*\*[^*\n]{2,12}\*\*\s*\n/, "")
+      .replace(/\*\*/g, "")
+      .replace(/[#>`*_~]/g, "")
+      .replace(/\s+/g, " ")
+      .trim()
+      .slice(0, 96)
+  );
 }
 
 /**

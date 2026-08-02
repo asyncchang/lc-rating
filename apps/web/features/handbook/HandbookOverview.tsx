@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { BarChart3, BookOpen, GraduationCap, Search } from "lucide-react";
+import { BarChart3, BookOpen, Search } from "lucide-react";
 import {
   HANDBOOK_GROUP_DESCRIPTIONS,
   HANDBOOK_GROUP_TITLES,
@@ -97,14 +97,9 @@ export default function HandbookOverview() {
           <div className="flex flex-col gap-5 p-5 sm:p-7 xl:p-8">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
               <div className="max-w-2xl space-y-2">
-                <div className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-muted/30 px-3 py-1 text-xs font-medium text-muted-foreground">
-                  <GraduationCap className="h-3.5 w-3.5" />
-                  模式手冊
-                </div>
                 <h1 className="page-title">LeetCode 模式手冊</h1>
                 <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
-                  給 Rating 1700+
-                  使用者的結構化模式手冊：整理限制判讀、不變式、證明直覺、C++17
+                  給 Rating 1700+ 的進階整理：限制判讀、不變式、證明直覺、C++17
                   模板與精選練習題。
                 </p>
                 <Link

@@ -7,13 +7,7 @@ import {
   studyPlanThemes,
   defaultTheme,
 } from "@/config/studyPlanThemes";
-import {
-  BookOpen,
-  ChevronRight,
-  ExternalLink,
-  FolderTree,
-  Layers3,
-} from "lucide-react";
+import { BookOpen, ChevronRight, ExternalLink, Layers3 } from "lucide-react";
 import Link from "next/link";
 import { useMemo } from "react";
 import { TutorialMarkdownPanel } from "./MarkdownPanel";
@@ -90,52 +84,22 @@ function Tutorial({ plan }: TutorialProps) {
                           {tutorial.description}
                         </p>
                       )}
-                      <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-white/70 sm:text-sm">
-                        {tutorial.src && (
-                          <>
-                            <a
-                              href={tutorial.src}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 transition-colors hover:text-white"
-                            >
-                              <ExternalLink className="h-3.5 w-3.5" />
-                              查看原文
-                            </a>
-                            <span className="hidden sm:inline">·</span>
-                          </>
-                        )}
-                        {tutorial.last_update && (
-                          <>
-                            <span>
-                              更新於{" "}
-                              {new Date(
-                                tutorial.last_update,
-                              ).toLocaleDateString()}
-                            </span>
-                            <span className="hidden sm:inline">·</span>
-                          </>
-                        )}
-                        <span>{stats.rootSections} 個主章節</span>
-                      </div>
+                      {tutorial.last_update && (
+                        <p className="mt-3 text-xs text-white/70 sm:text-sm">
+                          更新於{" "}
+                          {new Date(tutorial.last_update).toLocaleDateString()}
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-                  <div className="rounded-2xl bg-white/15 p-3.5 backdrop-blur-sm ring-1 ring-white/10 sm:p-4">
-                    <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-white/65">
-                      <FolderTree className="h-4 w-4" />
-                      主章節
-                    </div>
-                    <div className="mt-2 text-2xl font-bold text-white">
-                      {stats.rootSections}
-                    </div>
-                  </div>
+                {/* 主章節數已由下方「單元導覽」的計數呈現，這裡只留兩個不重複的量。 */}
+                <div className="grid grid-cols-2 gap-3 sm:max-w-md">
                   <div className="rounded-2xl bg-white/15 p-3.5 backdrop-blur-sm ring-1 ring-white/10 sm:p-4">
                     <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-white/65">
                       <Layers3 className="h-4 w-4" />
-                      總章節
+                      章節總數
                     </div>
                     <div className="mt-2 text-2xl font-bold text-white">
                       {stats.sections}
@@ -153,12 +117,6 @@ function Tutorial({ plan }: TutorialProps) {
                 </div>
 
                 <div className="flex flex-wrap gap-2 text-xs text-white/75">
-                  <Link
-                    href="/lecture"
-                    className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-3 py-1 transition-colors hover:bg-white/15"
-                  >
-                    返回講義列表
-                  </Link>
                   <Link
                     href={`/studyplan/${plan}`}
                     className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/10 px-3 py-1 transition-colors hover:bg-white/15"
@@ -189,8 +147,6 @@ function Tutorial({ plan }: TutorialProps) {
           {tutorial?.summary && (
             <TutorialMarkdownPanel
               title="講義總覽"
-              description="先通讀本頁概要，再深入各章節複習重點與模板。"
-              badge="章節導讀"
               content={tutorial.summary}
             />
           )}
@@ -198,11 +154,7 @@ function Tutorial({ plan }: TutorialProps) {
           <CourseMaterials plan={plan} />
 
           {tutorial && (
-            <LectureSectionCards
-              title="單元導覽"
-              description="先選擇要學的單元；若單元底下還有子單元，下一頁會繼續以小圖卡呈現。"
-              items={sectionCardItems}
-            />
+            <LectureSectionCards title="單元導覽" items={sectionCardItems} />
           )}
         </div>
       </div>

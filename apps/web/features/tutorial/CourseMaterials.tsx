@@ -12,12 +12,5 @@ export function CourseMaterials({ plan }: CourseMaterialsProps) {
     return null;
   }
 
-  return (
-    <TutorialMarkdownPanel
-      title="競程課程講義"
-      description="整理常見 pattern：題目訊號、推導方式、不變式、C++ 模板與練習重點。"
-      badge="Course notes"
-      content={material}
-    />
-  );
+  return <TutorialMarkdownPanel title="競程課程講義" content={material} />;
 }
