@@ -82,12 +82,12 @@ const WordFilter = React.memo(
 
     return (
       <div className="flex w-full flex-col items-start justify-center gap-2">
-        <div className="space-y-1">
-          <p className="text-sm font-medium text-foreground">關鍵字搜尋</p>
-          <p className="text-xs text-muted-foreground">
-            支援競賽、題號、題目名稱與題解名稱；多個關鍵字可用空白分隔。
-          </p>
-        </div>
+        <p className="text-sm font-medium text-foreground">
+          關鍵字搜尋
+          <span className="ml-2 font-normal text-muted-foreground">
+            競賽 / 題號 / 題名 / 題解，空白分隔多個關鍵字
+          </span>
+        </p>
         <div className="relative w-full">
           <SearchIcon className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
@@ -107,9 +107,6 @@ const WordFilter = React.memo(
           <Label htmlFor="fuse-search" className="cursor-pointer text-sm">
             模糊搜尋
           </Label>
-          <span className="text-xs text-muted-foreground">
-            關閉後會改用精確關鍵字比對
-          </span>
         </div>
       </div>
     );
