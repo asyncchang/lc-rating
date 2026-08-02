@@ -112,51 +112,28 @@ function TutorialOverview() {
             </div>
 
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 2xl:gap-4">
-              <StatCard
-                icon={LayoutGrid}
-                label="講義主題"
-                value={totalPlans}
-                hint="涵蓋常見演算法與資料結構"
-              />
+              <StatCard icon={LayoutGrid} label="講義主題" value={totalPlans} />
               <StatCard
                 icon={FolderTree}
                 label="章節總數"
                 value={overviewStats.totalSections}
-                hint="可依章節層級快速跳轉"
               />
               <StatCard
                 icon={BookOpen}
                 label="筆記總數"
                 value={overviewStats.documentedSections}
-                hint="已整理筆記的章節數"
               />
             </div>
-          </div>
-        </section>
 
-        <section className="mt-4 rounded-2xl border border-border/60 bg-card shadow-sm sm:mt-5">
-          <div className="flex flex-col gap-4 p-4 sm:p-5">
-            <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-              <div className="space-y-1">
-                <h2 className="text-sm font-semibold tracking-tight text-foreground sm:text-base">
-                  搜尋
-                </h2>
-                <p className="text-sm text-muted-foreground">
-                  以講義主題、章節名稱或 LeetCode 題號搜尋
-                </p>
-              </div>
-              <div className="w-full lg:max-w-sm xl:max-w-md">
-                <div className="relative">
-                  <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                  <Input
-                    type="search"
-                    placeholder="搜尋講義主題、章節或 LeetCode 題號..."
-                    className="h-11 rounded-xl border-border/60 bg-background pl-9 pr-4 text-sm shadow-none transition-colors hover:border-primary/30 focus-visible:ring-2"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                  />
-                </div>
-              </div>
+            <div className="relative w-full lg:max-w-md">
+              <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                type="search"
+                placeholder="搜尋講義主題、章節或 LeetCode 題號..."
+                className="h-11 rounded-xl border-border/60 bg-background pl-9 pr-4 text-sm shadow-none transition-colors hover:border-primary/30 focus-visible:ring-2"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
             </div>
           </div>
         </section>
@@ -169,16 +146,6 @@ function TutorialOverview() {
 
         {lcId === null && (
           <>
-            <div className="mb-4 flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <h2 className="text-lg font-semibold tracking-tight text-foreground">
-                  講義主題
-                </h2>
-                <p className="text-sm text-muted-foreground">
-                  先依主題查看摘要，再進入章節完整講義。
-                </p>
-              </div>
-            </div>
             {filteredPlans.length === 0 ? (
               <div className="empty-state">
                 <span className="empty-state-icon">
@@ -187,7 +154,6 @@ function TutorialOverview() {
                 <p className="text-lg font-medium text-foreground">
                   沒有找到匹配的講義
                 </p>
-                <p className="mt-1 text-sm">試試其他搜尋關鍵字。</p>
               </div>
             ) : (
               <>
@@ -223,20 +189,15 @@ function TutorialOverview() {
               <div className="mt-6 flex flex-col gap-4">
                 <TutorialMarkdownPanel
                   title="學習順序與前置依賴"
-                  description="由易到難的建議路線，箭頭代表前置依賴。"
-                  badge="學習路線"
                   content={lectureLearningPath}
                 />
                 <TutorialMarkdownPanel
                   title="通用解題心法"
-                  description="貫穿各章節的共通判斷準則，適合讀完各主題後回頭對照。"
-                  badge="跨章節整理"
                   content={lectureMetaSummary}
                 />
                 <TutorialMarkdownPanel
                   title="測試與除錯"
-                  description="LeetCode 常見的 WA / TLE / RE 自我檢查清單與手動模擬建議。"
-                  badge="方法論"
+                  description="WA / TLE / RE 的自我檢查清單。"
                   content={lectureDebuggingGuide}
                 />
               </div>

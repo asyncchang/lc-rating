@@ -1,13 +1,7 @@
 import { Button } from "@/components/ui/button";
 import type { LectureSectionTutorial } from "@/data/lectureSectionTutorials";
 import { HandbookSectionBody } from "@/features/handbook/HandbookSectionBody";
-import {
-  ArrowLeft,
-  ArrowRight,
-  BookOpen,
-  ChevronRight,
-  FolderTree,
-} from "lucide-react";
+import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { LectureSectionCards } from "@/features/tutorial/LectureSectionCards";
 import {
@@ -70,64 +64,37 @@ export function LectureSectionPage({ section }: LectureSectionPageProps) {
             <span className="font-medium text-foreground">{section.title}</span>
           </nav>
 
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-3xl">
-              <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-border/60 bg-background px-3 py-1 text-xs font-medium text-muted-foreground">
-                {hasChildren ? (
-                  <FolderTree className="h-3.5 w-3.5" />
-                ) : (
-                  <BookOpen className="h-3.5 w-3.5" />
-                )}
-                {hasChildren ? "單元導覽" : "章節完整講義"}
-              </div>
-              <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl">
-                {section.title}
-              </h1>
-              {descriptionBullets ? (
-                <ul className="mt-3 space-y-1.5 text-sm leading-6 text-muted-foreground sm:text-base">
-                  {descriptionBullets.map((bullet) => (
-                    <li key={bullet} className="flex gap-2">
-                      <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-muted-foreground/60" />
-                      <span className="min-w-0 break-words">{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
+          <div className="max-w-3xl">
+            <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl">
+              {section.title}
+            </h1>
+            {descriptionBullets ? (
+              <ul className="mt-3 space-y-1.5 text-sm leading-6 text-muted-foreground sm:text-base">
+                {descriptionBullets.map((bullet) => (
+                  <li key={bullet} className="flex gap-2">
+                    <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-muted-foreground/60" />
+                    <span className="min-w-0 break-words">{bullet}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              section.description && (
                 <p className="mt-3 text-sm leading-6 text-muted-foreground sm:text-base">
-                  {section.description ??
-                    (hasChildren
-                      ? "先選擇此單元底下的子單元；到最細層後會顯示完整講義與搭配題目。"
-                      : "依序展開觀念、模式、例題推導與 C++ 實作骨架。")}
+                  {section.description}
                 </p>
-              )}
-            </div>
-
-            <Button asChild variant="outline" className="w-fit">
-              <Link href={`/lecture/${section.planKey}`}>
-                <ArrowLeft className="h-4 w-4" />
-                返回章節列表
-              </Link>
-            </Button>
+              )
+            )}
           </div>
         </div>
       </div>
 
       {hasChildren ? (
         <main className="mx-auto w-full max-w-7xl px-4 py-6 pb-24 sm:px-6 md:py-8 xl:max-w-[88rem] xl:px-8">
-          <LectureSectionCards
-            title="子單元"
-            description={`${section.title} 底下的講義依子單元整理；選到最後一層即可閱讀完整講義與題目。`}
-            items={childItems}
-          />
+          <LectureSectionCards title="子單元" items={childItems} />
         </main>
       ) : (
         <main className="mx-auto flex w-full max-w-[96rem] flex-col gap-6 px-4 py-6 pb-24 sm:px-6 md:py-8 xl:px-8">
           <article className="mx-auto w-full min-w-0 overflow-hidden rounded-2xl border border-border/60 bg-card shadow-sm lg:max-w-[var(--lecture-reading-width)]">
-            <div className="border-b border-border/60 bg-muted/20 px-4 py-4 sm:px-6">
-              <h2 className="text-lg font-semibold tracking-tight text-foreground">
-                完整講義
-              </h2>
-            </div>
             <div className="px-4 py-5 sm:px-6 md:py-7">
               <HandbookSectionBody
                 body={section.content}

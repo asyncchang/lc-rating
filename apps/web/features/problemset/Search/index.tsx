@@ -97,34 +97,6 @@ const Search = React.memo(
         onOpenChange={setIsOpen}
         className="overflow-hidden rounded-2xl border border-border bg-card/90 shadow-sm"
       >
-        <div className="border-b border-border/60 bg-muted/20 px-4 py-4">
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-            <div className="space-y-1">
-              <h2 className="text-lg font-semibold tracking-tight text-foreground">
-                搜尋與篩選
-              </h2>
-              <p className="text-sm leading-relaxed text-muted-foreground">
-                可搜尋競賽、題號、題名與題解。輸入關鍵字後按下「確認」，或使用下方進階篩選縮小結果。
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-2 sm:w-fit">
-              <div className="rounded-xl border border-border/60 bg-background px-4 py-3 text-center">
-                <p className="text-xs text-muted-foreground">目前顯示</p>
-                <p className="mt-1 text-xl font-semibold text-foreground">
-                  {resultCount}
-                </p>
-              </div>
-              <div className="rounded-xl border border-border/60 bg-background px-4 py-3 text-center">
-                <p className="text-xs text-muted-foreground">資料總數</p>
-                <p className="mt-1 text-xl font-semibold text-foreground">
-                  {totalCount}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <div className="flex flex-col gap-3 px-4 py-4 sm:flex-row sm:items-start">
           <div className="flex-1">
             <WordFilter

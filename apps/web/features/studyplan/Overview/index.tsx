@@ -99,9 +99,6 @@ function StudyPlanOverview() {
     { key: "completed", label: "已完成", count: counts.completed },
   ];
 
-  const activeFilterLabel =
-    filterTabs.find((tab) => tab.key === filter)?.label ?? "全部";
-
   const originalPlans = filteredPlans.filter(
     ([key]) => !CUSTOM_STUDYPLAN_KEYS.has(key),
   );
@@ -133,29 +130,21 @@ function StudyPlanOverview() {
             </div>
 
             <div className="grid grid-cols-2 gap-3 xl:grid-cols-4 2xl:gap-4">
-              <StatCard
-                icon={LayoutGrid}
-                label="題單總數"
-                value={counts.all}
-                hint="涵蓋常見演算法與資料結構主題"
-              />
+              <StatCard icon={LayoutGrid} label="題單總數" value={counts.all} />
               <StatCard
                 icon={BookOpen}
                 label="題目總數"
                 value={overviewStats.totalProblems}
-                hint="所有題單合計可練習的題目數"
               />
               <StatCard
                 icon={FolderTree}
                 label="章節覆蓋"
                 value={overviewStats.totalSections}
-                hint="支援依章節層級快速定位學習路線"
               />
               <StatCard
                 icon={CheckCircle2}
                 label="已完成題目"
                 value={overviewStats.completedProblems}
-                hint="已標記為 AC 的題目數"
               />
             </div>
           </div>
@@ -163,43 +152,21 @@ function StudyPlanOverview() {
 
         <section className="mt-4 rounded-2xl border border-border/60 bg-card shadow-sm sm:mt-5">
           <div className="flex flex-col gap-4 p-4 sm:p-5">
-            <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-              <div className="space-y-1">
-                <h2 className="text-sm font-semibold tracking-tight text-foreground sm:text-base">
-                  搜尋與篩選
-                </h2>
-                <p className="text-sm text-muted-foreground">
-                  搜尋題單、章節或題號
-                </p>
-              </div>
-              <div className="w-full lg:max-w-sm xl:max-w-md">
-                <div className="relative">
-                  <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                  <Input
-                    type="search"
-                    placeholder="搜尋題單、子章節或題目編號..."
-                    className="h-11 rounded-xl border-border/60 bg-background pl-9 pr-4 text-sm shadow-none transition-colors hover:border-primary/30 focus-visible:ring-2"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                  />
-                </div>
-              </div>
+            <div className="relative w-full lg:max-w-md">
+              <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                type="search"
+                placeholder="搜尋題單、子章節或題目編號..."
+                className="h-11 rounded-xl border-border/60 bg-background pl-9 pr-4 text-sm shadow-none transition-colors hover:border-primary/30 focus-visible:ring-2"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
             </div>
 
             <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-              <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
-                <span className="rounded-full border border-border/60 bg-muted/30 px-2.5 py-1">
-                  顯示 {filteredPlans.length} / {counts.all} 份題單
-                </span>
-                <span className="rounded-full border border-border/60 bg-muted/30 px-2.5 py-1">
-                  目前篩選：{activeFilterLabel}
-                </span>
-                {trimmedQuery && (
-                  <span className="rounded-full border border-border/60 bg-muted/30 px-2.5 py-1">
-                    搜尋：{trimmedQuery}
-                  </span>
-                )}
-              </div>
+              <p className="text-xs text-muted-foreground">
+                顯示 {filteredPlans.length} / {counts.all} 份題單
+              </p>
 
               <div className="-mx-1 overflow-x-auto pb-1">
                 <div className="flex min-w-max items-center gap-2 px-1">
@@ -230,16 +197,6 @@ function StudyPlanOverview() {
 
       {/* Card Grid */}
       <div className="mx-auto max-w-7xl px-3 pb-8 sm:px-4 md:px-6 md:pb-10 xl:max-w-[88rem] xl:px-8 2xl:max-w-[96rem]">
-        <div className="mb-4 flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <h2 className="text-lg font-semibold tracking-tight text-foreground">
-              題單列表
-            </h2>
-            <p className="text-sm text-muted-foreground">
-              按主題挑選題單，或直接從已開始的進度繼續練習。
-            </p>
-          </div>
-        </div>
         {filteredPlans.length === 0 ? (
           <div className="empty-state">
             <span className="empty-state-icon">
@@ -247,9 +204,6 @@ function StudyPlanOverview() {
             </span>
             <p className="text-lg font-medium text-foreground">
               沒有找到匹配的題單
-            </p>
-            <p className="mt-1 text-sm">
-              試試其他搜尋關鍵字，或切換回不同的進度篩選條件。
             </p>
           </div>
         ) : (
