@@ -42,25 +42,21 @@ export function ProblemSetHeader({ stats, isPending }: ProblemSetHeaderProps) {
             icon={ListChecks}
             label="題目總數"
             value={isPending ? "--" : stats.total}
-            hint="涵蓋競賽題與常見演算法主題"
           />
           <StatCard
             icon={CheckCircle2}
             label="已完成"
             value={isPending ? "--" : stats.solved}
-            hint="已標記為 AC 的題目數"
           />
           <StatCard
             icon={FileText}
             label="題解數量"
             value={isPending ? "--" : stats.withSolutions}
-            hint="可直接跳轉查看的 0x3F 題解"
           />
           <StatCard
             icon={Tags}
             label="標籤覆蓋"
             value={isPending ? "--" : stats.totalTags}
-            hint="支援用演算法標籤快速篩選"
           />
         </div>
       </div>

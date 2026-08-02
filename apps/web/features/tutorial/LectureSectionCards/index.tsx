@@ -14,14 +14,12 @@ export {
 
 interface LectureSectionCardsProps {
   title: string;
-  description: string;
   items: LectureSectionCardItem[];
   emptyText?: string;
 }
 
 export function LectureSectionCards({
   title,
-  description,
   items,
   emptyText = "此層目前沒有可顯示的單元。",
 }: LectureSectionCardsProps) {
@@ -42,13 +40,10 @@ export function LectureSectionCards({
 
   return (
     <section className="rounded-3xl border border-border/60 bg-card p-4 shadow-sm sm:p-5 xl:p-6">
-      <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <h2 className="text-lg font-semibold tracking-tight text-foreground">
-            {title}
-          </h2>
-          <p className="mt-1 text-sm text-muted-foreground">{description}</p>
-        </div>
+      <div className="mb-5 flex flex-wrap items-center justify-between gap-2">
+        <h2 className="text-lg font-semibold tracking-tight text-foreground">
+          {title}
+        </h2>
         <Badge variant="outline" className="w-fit rounded-full">
           {items.length} 個單元
         </Badge>
