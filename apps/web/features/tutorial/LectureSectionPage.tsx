@@ -89,7 +89,18 @@ export function LectureSectionPage({ section }: LectureSectionPageProps) {
       </div>
 
       {hasChildren ? (
-        <main className="mx-auto w-full max-w-7xl px-4 py-6 pb-24 sm:px-6 md:py-8 xl:max-w-[88rem] xl:px-8">
+        <main className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-6 pb-24 sm:px-6 md:py-8 xl:max-w-[88rem] xl:px-8">
+          {/* A parent unit still carries authored prose — the orientation that
+              says what its sub-units are for. Show it before the card grid. */}
+          {section.content && (
+            <article className="overflow-hidden rounded-2xl border border-border/60 bg-card px-4 py-5 shadow-sm sm:px-6 md:py-7">
+              <HandbookSectionBody
+                body={section.content}
+                exampleLabel="範例"
+                language="zh"
+              />
+            </article>
+          )}
           <LectureSectionCards title="子單元" items={childItems} />
         </main>
       ) : (

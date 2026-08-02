@@ -14,168 +14,153 @@ import { WordFilter } from "./WordFilter";
 interface SearchProps {
   data: TableCol[];
   onSearch: (similarities: number[], options?: { scroll?: boolean }) => void;
-  totalCount: number;
-  resultCount: number;
 }
 
-const Search = React.memo(
-  ({ data, onSearch, totalCount, resultCount }: SearchProps) => {
-    const [isOpen, setIsOpen] = React.useState(false);
-    const [similaritiesMap, setSimilartiesMap] = useState<
-      Record<string, number[]>
-    >({});
-    const [resets, setResets] = useState<Record<string, () => void>>({});
-    const handleConfirmRef = useRef<(() => void) | null>(null);
+const Search = React.memo(({ data, onSearch }: SearchProps) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [similaritiesMap, setSimilartiesMap] = useState<
+    Record<string, number[]>
+  >({});
+  const [resets, setResets] = useState<Record<string, () => void>>({});
+  const handleConfirmRef = useRef<(() => void) | null>(null);
 
-    const updateIndices = useCallback(
-      (name: string, newSimilarties: number[]) => {
-        setSimilartiesMap((prev) => {
-          const next = { ...prev };
-          next[name] = newSimilarties;
-          return next;
-        });
-      },
-      [],
-    );
-
-    const updateReset = useCallback((idx: string, newReset: () => void) => {
-      setResets((prev) => {
+  const updateIndices = useCallback(
+    (name: string, newSimilarties: number[]) => {
+      setSimilartiesMap((prev) => {
         const next = { ...prev };
-        next[idx] = newReset;
+        next[name] = newSimilarties;
         return next;
       });
-    }, []);
+    },
+    [],
+  );
 
-    const handleConfirm = useCallback(
-      (options?: { scroll?: boolean }) => {
-        const results = Object.values(similaritiesMap).reduce(
-          (total, arr) => {
-            arr.forEach((val, idx) => {
-              if (total[idx]) {
-                total[idx] *= val;
-              }
-            });
-            return total;
-          },
-          Array.from({ length: data.length }, () => 1),
-        );
+  const updateReset = useCallback((idx: string, newReset: () => void) => {
+    setResets((prev) => {
+      const next = { ...prev };
+      next[idx] = newReset;
+      return next;
+    });
+  }, []);
 
-        onSearch(results, options);
-      },
-      [similaritiesMap, data.length, onSearch],
-    );
+  const handleConfirm = useCallback(
+    (options?: { scroll?: boolean }) => {
+      const results = Object.values(similaritiesMap).reduce(
+        (total, arr) => {
+          arr.forEach((val, idx) => {
+            if (total[idx]) {
+              total[idx] *= val;
+            }
+          });
+          return total;
+        },
+        Array.from({ length: data.length }, () => 1),
+      );
 
-    useEffect(() => {
-      handleConfirmRef.current = handleConfirm;
-    }, [handleConfirm]);
+      onSearch(results, options);
+    },
+    [similaritiesMap, data.length, onSearch],
+  );
 
-    const debouncedConfirm = useCallback(() => {
-      if (handleConfirmRef.current) {
-        handleConfirmRef.current();
-      }
-    }, []);
+  useEffect(() => {
+    handleConfirmRef.current = handleConfirm;
+  }, [handleConfirm]);
 
-    const handleReset = useCallback(() => {
-      Object.values(resets).forEach((fn) => fn?.());
-      setSimilartiesMap({});
-      onSearch(data.map(() => 1));
-    }, [resets, onSearch, data]);
+  const debouncedConfirm = useCallback(() => {
+    if (handleConfirmRef.current) {
+      handleConfirmRef.current();
+    }
+  }, []);
 
-    const isFiltered = totalCount > 0 && resultCount !== totalCount;
-    const resultCopy =
-      totalCount === 0
-        ? "資料載入中..."
-        : resultCount === 0
-          ? "目前沒有符合條件的題目"
-          : isFiltered
-            ? `目前顯示 ${resultCount} / ${totalCount} 道題目`
-            : `目前顯示全部 ${totalCount} 道題目`;
+  const handleReset = useCallback(() => {
+    Object.values(resets).forEach((fn) => fn?.());
+    setSimilartiesMap({});
+    onSearch(data.map(() => 1));
+  }, [resets, onSearch, data]);
 
-    return (
-      <Collapsible
-        open={isOpen}
-        onOpenChange={setIsOpen}
-        className="overflow-hidden rounded-2xl border border-border bg-card/90 shadow-sm"
-      >
-        <div className="flex flex-col gap-3 px-4 py-4 sm:flex-row sm:items-start">
-          <div className="flex-1">
-            <WordFilter
-              name={"WordFilter"}
+  return (
+    <Collapsible
+      open={isOpen}
+      onOpenChange={setIsOpen}
+      className="overflow-hidden rounded-2xl border border-border bg-card/90 shadow-sm"
+    >
+      <div className="flex flex-col gap-3 px-4 py-4 sm:flex-row sm:items-start">
+        <div className="flex-1">
+          <WordFilter
+            name={"WordFilter"}
+            data={data}
+            registerReset={updateReset}
+            onChange={updateIndices}
+          />
+        </div>
+        <CollapsibleTrigger asChild>
+          <Button
+            variant="outline"
+            size="sm"
+            className="w-full shrink-0 gap-1.5 sm:mt-7 sm:w-auto"
+          >
+            <Filter className="h-3.5 w-3.5" />
+            <span>{isOpen ? "收起篩選" : "進階篩選"}</span>
+            {isOpen ? (
+              <ChevronsDownUp className="h-3.5 w-3.5" />
+            ) : (
+              <ChevronsUpDown className="h-3.5 w-3.5" />
+            )}
+          </Button>
+        </CollapsibleTrigger>
+      </div>
+
+      <CollapsibleContent>
+        <div className="space-y-5 border-t border-border px-4 py-4">
+          <div>
+            <p className="mb-2 text-xs font-medium text-muted-foreground">
+              難度範圍
+            </p>
+            <RatingFilter
+              name={"RatingFilter"}
+              data={data}
+              registerReset={updateReset}
+              onChange={updateIndices}
+              onDebouncedConfirm={debouncedConfirm}
+            />
+          </div>
+          <div className="border-t border-border pt-4">
+            <p className="mb-2 text-xs font-medium text-muted-foreground">
+              演算法標籤
+            </p>
+            <TagFilter
+              name={"TagFilter"}
               data={data}
               registerReset={updateReset}
               onChange={updateIndices}
             />
           </div>
-          <CollapsibleTrigger asChild>
-            <Button
-              variant="outline"
-              size="sm"
-              className="w-full shrink-0 gap-1.5 sm:mt-7 sm:w-auto"
-            >
-              <Filter className="h-3.5 w-3.5" />
-              <span>{isOpen ? "收起篩選" : "進階篩選"}</span>
-              {isOpen ? (
-                <ChevronsDownUp className="h-3.5 w-3.5" />
-              ) : (
-                <ChevronsUpDown className="h-3.5 w-3.5" />
-              )}
-            </Button>
-          </CollapsibleTrigger>
         </div>
+      </CollapsibleContent>
 
-        <CollapsibleContent>
-          <div className="space-y-5 border-t border-border px-4 py-4">
-            <div>
-              <p className="mb-2 text-xs font-medium text-muted-foreground">
-                難度範圍
-              </p>
-              <RatingFilter
-                name={"RatingFilter"}
-                data={data}
-                registerReset={updateReset}
-                onChange={updateIndices}
-                onDebouncedConfirm={debouncedConfirm}
-              />
-            </div>
-            <div className="border-t border-border pt-4">
-              <p className="mb-2 text-xs font-medium text-muted-foreground">
-                演算法標籤
-              </p>
-              <TagFilter
-                name={"TagFilter"}
-                data={data}
-                registerReset={updateReset}
-                onChange={updateIndices}
-              />
-            </div>
-          </div>
-        </CollapsibleContent>
-
-        <div className="flex flex-col gap-3 border-t border-border/60 bg-muted/10 px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-sm text-muted-foreground">{resultCopy}</p>
-          <div className="flex flex-col gap-2 sm:flex-row">
-            <Button
-              onClick={() => handleConfirm({ scroll: true })}
-              variant="default"
-              size="sm"
-              className="w-full px-6 sm:w-auto"
-            >
-              確認
-            </Button>
-            <Button
-              onClick={handleReset}
-              variant="outline"
-              size="sm"
-              className="w-full px-6 sm:w-auto"
-            >
-              重置
-            </Button>
-          </div>
+      <div className="flex flex-col gap-3 border-t border-border/60 bg-muted/10 px-4 py-4 sm:flex-row sm:items-center sm:justify-end">
+        <div className="flex flex-col gap-2 sm:flex-row">
+          <Button
+            onClick={() => handleConfirm({ scroll: true })}
+            variant="default"
+            size="sm"
+            className="w-full px-6 sm:w-auto"
+          >
+            確認
+          </Button>
+          <Button
+            onClick={handleReset}
+            variant="outline"
+            size="sm"
+            className="w-full px-6 sm:w-auto"
+          >
+            重置
+          </Button>
         </div>
-      </Collapsible>
-    );
-  },
-);
+      </div>
+    </Collapsible>
+  );
+});
 
 Search.displayName = "Search";
 export { Search };
