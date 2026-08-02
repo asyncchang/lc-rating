@@ -3,7 +3,6 @@ import {
   studyPlanThemes,
   defaultTheme,
 } from "@/config/studyPlanThemes";
-import { Badge } from "@/components/ui/badge";
 import { ArrowRight, BookOpen } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -67,11 +66,6 @@ export function TutorialCard({
           <div className="absolute -top-6 -right-6 h-24 w-24 rounded-full bg-white/10" />
           <div className="absolute -bottom-10 -left-10 h-36 w-36 rounded-full bg-white/5" />
           <div className="absolute top-3 right-3 h-16 w-16 rounded-full bg-white/5" />
-          <div className="absolute right-3 top-3">
-            <Badge className="border-white/15 bg-white/15 text-white backdrop-blur-sm">
-              {documentedSections} 則筆記
-            </Badge>
-          </div>
           <div className="relative flex h-full items-center justify-center">
             <div className="rounded-2xl bg-white/15 p-3.5 backdrop-blur-sm ring-1 ring-white/20">
               <Icon className="h-8 w-8 text-white drop-shadow-sm" />

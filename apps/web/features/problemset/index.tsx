@@ -67,33 +67,18 @@ function ProblemSet() {
     <div className="flex flex-col gap-5 px-4 py-6 md:px-8">
       <ProblemSetHeader stats={overviewStats} isPending={isPending} />
 
-      <Search
-        data={tableData}
-        onSearch={handleSearch}
-        totalCount={problemCount}
-        resultCount={visibleCount}
-      />
+      <Search data={tableData} onSearch={handleSearch} />
 
       <section
         ref={tableRef}
         className="scroll-mt-20 overflow-hidden rounded-2xl border border-border/60 bg-card shadow-sm"
       >
-        <div className="flex flex-col gap-3 border-b border-border/60 bg-muted/20 px-4 py-4 sm:flex-row sm:items-end sm:justify-between">
-          <div className="space-y-1">
-            <h2 className="text-lg font-semibold tracking-tight text-foreground">
-              搜尋結果
-            </h2>
-            <p className="text-sm text-muted-foreground">
-              {isPending
-                ? "正在載入題目資料..."
-                : `目前顯示 ${visibleCount} / ${problemCount} 道題目`}
-            </p>
-          </div>
-          {!isPending && visibleCount !== problemCount ? (
-            <div className="inline-flex items-center rounded-full border border-border/60 bg-background px-3 py-1 text-xs text-muted-foreground">
-              已篩掉 {problemCount - visibleCount} 道題目
-            </div>
-          ) : null}
+        <div className="border-b border-border/60 bg-muted/20 px-4 py-4">
+          <h2 className="text-lg font-semibold tracking-tight text-foreground">
+            {isPending
+              ? "正在載入題目資料..."
+              : `${visibleCount} / ${problemCount} 道題目`}
+          </h2>
         </div>
 
         <div className="w-full overflow-x-hidden">

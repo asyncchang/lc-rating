@@ -7,13 +7,7 @@ import {
   studyPlanThemes,
   defaultTheme,
 } from "@/config/studyPlanThemes";
-import {
-  BookOpen,
-  ChevronRight,
-  ExternalLink,
-  FolderTree,
-  Layers3,
-} from "lucide-react";
+import { BookOpen, ChevronRight, ExternalLink, Layers3 } from "lucide-react";
 import Link from "next/link";
 import { useMemo } from "react";
 import { TutorialMarkdownPanel } from "./MarkdownPanel";
@@ -100,20 +94,12 @@ function Tutorial({ plan }: TutorialProps) {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-                  <div className="rounded-2xl bg-white/15 p-3.5 backdrop-blur-sm ring-1 ring-white/10 sm:p-4">
-                    <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-white/65">
-                      <FolderTree className="h-4 w-4" />
-                      主章節
-                    </div>
-                    <div className="mt-2 text-2xl font-bold text-white">
-                      {stats.rootSections}
-                    </div>
-                  </div>
+                {/* 主章節數已由下方「單元導覽」的計數呈現，這裡只留兩個不重複的量。 */}
+                <div className="grid grid-cols-2 gap-3 sm:max-w-md">
                   <div className="rounded-2xl bg-white/15 p-3.5 backdrop-blur-sm ring-1 ring-white/10 sm:p-4">
                     <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-white/65">
                       <Layers3 className="h-4 w-4" />
-                      總章節
+                      章節總數
                     </div>
                     <div className="mt-2 text-2xl font-bold text-white">
                       {stats.sections}
