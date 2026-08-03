@@ -3037,6 +3037,13 @@
     "time": 1778376104754,
     "problemId": "3923"
   },
+  "1656858690": {
+    "id": "1656858690",
+    "title": "三種做法：排序 / 維護最大次大 / 列舉右維護左（Python/Java/C++/Go）",
+    "titleSlug": "san-chong-zuo-fa-pai-xu-wei-hu-zui-da-ci-c5bg",
+    "time": 1785112020540,
+    "problemId": "1464"
+  },
   "1658221095": {
     "id": "1658221095",
     "title": "「越長越合法」型滑動視窗（Python/Java/C++/C/Go/JS/Rust）",
@@ -4297,6 +4304,13 @@
     "time": 1681536109895,
     "problemId": "LCR 051"
   },
+  "1956255570": {
+    "id": "1956255570",
+    "title": "O(n) 一次遍歷（Python/Java/C++/Go）",
+    "titleSlug": "on-yi-ci-bian-li-pythonjavacgo-by-endles-xnue",
+    "time": 1785646243426,
+    "problemId": "4006"
+  },
   "1959369889": {
     "id": "1959369889",
     "title": "兩種方法：DP / 貪心（Python/Java/C++/Go）",
@@ -4618,6 +4632,13 @@
     "titleSlug": "bao-sou-jian-zhi-by-endlesscheng-iv6z",
     "time": 1636257975337,
     "problemId": "2065"
+  },
+  "2036510687": {
+    "id": "2036510687",
+    "title": "列舉 + 兩個雜湊表（Python/Java/C++/Go）",
+    "titleSlug": "mei-ju-liang-ge-ha-xi-biao-pythonjavacgo-actu",
+    "time": 1785635001999,
+    "problemId": "4007"
   },
   "2036642817": {
     "id": "2036642817",
@@ -5325,6 +5346,13 @@
     "titleSlug": "san-jin-zhi-fen-jie-pythonjavaccgojsrust-0u6o",
     "time": 1755130830095,
     "problemId": "1780"
+  },
+  "2203655753": {
+    "id": "2203655753",
+    "title": "三種寫法：記憶化搜尋/查表法/刷表法（Python/Java/C++/Go）",
+    "titleSlug": "san-chong-xie-fa-ji-yi-hua-sou-suo-cha-b-h7b7",
+    "time": 1785548506240,
+    "problemId": "1510"
   },
   "2204380301": {
     "id": "2204380301",
@@ -7041,6 +7069,13 @@
     "time": 1702181397623,
     "problemId": "2960"
   },
+  "2597818588": {
+    "id": "2597818588",
+    "title": "兩種方法：二分答案 / 倒推，附思考題（Python/Java/C++/Go）",
+    "titleSlug": "liang-chong-fang-fa-er-fen-da-an-dao-tui-oake",
+    "time": 1785637263195,
+    "problemId": "4008"
+  },
   "2598780139": {
     "id": "2598780139",
     "title": "前字尾分解 + DP（Python/Java/C++/Go）",
@@ -8623,6 +8658,13 @@
     "time": 1732011065680,
     "problemId": "208"
   },
+  "2925257442": {
+    "id": "2925257442",
+    "title": "兩種方法：多維 DP / 二分答案 + DFS 搜尋",
+    "titleSlug": "zhe-shi-ge-cuo-ti-by-endlesscheng-enes",
+    "time": 1785647939308,
+    "problemId": "4009"
+  },
   "292566381": {
     "id": "292566381",
     "title": "BFS 為什麼要用佇列？一個影片講透！（Python/Java/C++/Go）",
@@ -9196,6 +9238,13 @@
     "titleSlug": "shuang-zhi-zhen-xiang-bu-ming-bai-yi-ge-pno55",
     "time": 1668227649608,
     "problemId": "15"
+  },
+  "3057449970": {
+    "id": "3057449970",
+    "title": "列舉 + 最優性最佳化（Python/Java/C++/Go）",
+    "titleSlug": "mei-ju-pythonjavacgo-by-endlesscheng-t5bz",
+    "time": 1785644029679,
+    "problemId": "4010"
   },
   "3057587548": {
     "id": "3057587548",
@@ -10753,7 +10802,7 @@
   },
   "3397964824": {
     "id": "3397964824",
-    "title": "為什麼要按照左端點排序？兩種方法：排序/差分陣列（Python/Java/C++/Go/JS/Rust）",
+    "title": "三種方法：排序 / 差分陣列 / 掃描線（Python/Java/C++/Go/JS/Rust）",
     "titleSlug": "jian-dan-zuo-fa-yi-ji-wei-shi-yao-yao-zh-f2b3",
     "time": 1717299335857,
     "problemId": "56"
@@ -11114,6 +11163,13 @@
     "titleSlug": "dong-tai-gui-hua-qian-zhui-he-pythonjava-nia8",
     "time": 1755403982407,
     "problemId": "3654"
+  },
+  "3479756094": {
+    "id": "3479756094",
+    "title": "等價轉化 + 字首和 + 樹狀陣列 / 歸併排序（Python/Java/C++/Go）",
+    "titleSlug": "deng-jie-zhuan-hua-qian-zhui-he-ni-xu-du-2ygw",
+    "time": 1785643679620,
+    "problemId": "4013"
   },
   "3480413551": {
     "id": "3480413551",
@@ -11548,6 +11604,13 @@
     "titleSlug": "jian-ji-xie-fa-by-endlesscheng-bvrx",
     "time": 1630210645695,
     "problemId": "1987"
+  },
+  "356857303": {
+    "id": "356857303",
+    "title": "字首和 + 二分查詢（Python/Java/C++/Go）",
+    "titleSlug": "qian-zhui-he-er-fen-cha-zhao-pythonjavac-4kbm",
+    "time": 1785643393949,
+    "problemId": "4012"
   },
   "3570284045": {
     "id": "3570284045",
@@ -12780,6 +12843,13 @@
     "titleSlug": "ku-han-shu-mo-ni-pythonjavacgo-by-endles-glg4",
     "time": 1749961077956,
     "problemId": "3582"
+  },
+  "386559203": {
+    "id": "386559203",
+    "title": "非暴力做法（Python/Java/C++/Go）",
+    "titleSlug": "fei-bao-li-zuo-fa-pythonjavacgo-by-endle-my0f",
+    "time": 1785643725419,
+    "problemId": "4011"
   },
   "3867272115": {
     "id": "3867272115",
