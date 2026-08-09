@@ -331,10 +331,12 @@ export function StudyPlanMarkdownContent({
       img.className = imageClassName;
     });
 
-    // Turn each section heading (h2) into a labelled accent band so callouts
-    // like 「典型讀題訊號」 read as titled sections instead of a flat bold line.
-    // Opt-in via enhanceLeetCode so this only touches the lecture/handbook
-    // surfaces, never the plain study-plan prose.
+    // Turn each section heading (h2) into a labelled accent band so the lesson
+    // skeleton (「辨識題型的訊號」、「不變量或正確性證明」…) reads as titled
+    // sections instead of a flat bold line. The left bar and accent-soft fill
+    // reuse the handbook's `.callout` language, and the top margin matches its
+    // `.reading h2 { margin-top: 2.8rem }`. Opt-in via enhanceLeetCode so this
+    // only touches the lecture/handbook surfaces, never plain study-plan prose.
     if (enhanceLeetCode) {
       innerHtml.current
         .querySelectorAll<HTMLHeadingElement>("h2")
@@ -342,7 +344,7 @@ export function StudyPlanMarkdownContent({
           if (heading.getAttribute("data-section-heading") === "true") return;
           heading.setAttribute("data-section-heading", "true");
           heading.className =
-            "not-prose mb-3 mt-8 flex items-center gap-2.5 border-l-4 border-l-primary/70 bg-primary/5 px-3.5 py-2 text-lg font-semibold tracking-tight text-foreground first:mt-0 sm:text-xl";
+            "not-prose mb-3 mt-[2.8rem] flex items-center gap-2.5 rounded-r-md border-l-4 border-l-primary bg-accent px-3.5 py-2 text-lg font-semibold leading-tight tracking-tight text-accent-foreground first:mt-0 sm:text-xl";
         });
     }
 
@@ -423,7 +425,8 @@ export function StudyPlanMarkdownContent({
       pre.style.display = shouldOpenCode ? "" : "none";
       pre.style.margin = "0";
       pre.style.borderRadius = "0";
-      pre.style.borderTop = "1px solid hsl(var(--border) / 0.6)";
+      pre.style.borderTop =
+        "1px solid color-mix(in srgb, var(--border) 60%, transparent)";
       if (shouldOpenCode) chevron.style.transform = "rotate(90deg)";
 
       const toggleCode = () => {

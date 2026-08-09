@@ -7,12 +7,15 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-han);
   --font-mono: monospace;
-  /* 思源黑體（Source Han Sans / Noto Sans CJK）優先的黑體堆疊，未安裝時依序退回其他黑體 */
+  /* 與 competitive-programming-handbook 相同的字體堆疊：拉丁字用 Inter（數字、
+     複雜度符號與程式碼旁的識別字才會與 handbook 一致），中日韓字自然落到後面
+     的思源黑體／Noto Sans CJK 系列。 */
   --font-han:
-    "Noto Sans TC", "Source Han Sans TC", "思源黑體", "PingFang TC",
-    "Microsoft JhengHei", "Microsoft YaHei", system-ui, sans-serif;
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Noto Sans TC", "Source Han Sans TC", "思源黑體", "PingFang TC",
+    "Microsoft JhengHei", "Microsoft YaHei", sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -49,44 +52,59 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-/* 調色盤：綠色主色、清爽的綠灰底 */
+/* 調色盤：與 competitive-programming-handbook 共用的一套青藍（teal）主色與板岩
+   灰底。色票直接取自 handbook 的 `src/styles/global.css`，兩個站台看起來像同
+   一本書的兩個章節。語意名稱維持 shadcn 慣例，方便既有元件沿用。 */
 :root {
-  --background: hsl(150 30% 98%);
-  --foreground: hsl(160 30% 11%);
-  --card: hsl(0 0% 100%);
-  --card-foreground: hsl(160 30% 11%);
-  --popover: hsl(0 0% 100%);
-  --popover-foreground: hsl(160 30% 11%);
-  --primary: hsl(152 68% 33%);
-  --primary-foreground: hsl(150 40% 98%);
-  --secondary: hsl(150 24% 93%);
-  --secondary-foreground: hsl(160 30% 11%);
-  --muted: hsl(150 24% 93%);
-  --muted-foreground: hsl(155 14% 42%);
-  --accent: hsl(150 34% 95%);
-  --accent-foreground: hsl(160 30% 11%);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: hsl(150 22% 89%);
-  --input: hsl(150 22% 89%);
-  --ring: hsl(152 68% 33%);
-  --brand-start: #34d399;
-  --brand-mid: #059669;
-  --brand-end: #10b981;
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.965 0 0);
-  --sidebar-foreground: oklch(0.205 0 0);
-  --sidebar-primary: oklch(0.26 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.925 0 0);
-  --sidebar-accent-foreground: oklch(0.145 0 0);
-  --sidebar-border: oklch(0.88 0 0);
-  --sidebar-ring: oklch(0.56 0 0);
+  /* handbook --bg / --text / --surface */
+  --background: #f7f8fa;
+  --foreground: #17212b;
+  --card: #ffffff;
+  --card-foreground: #17212b;
+  --popover: #ffffff;
+  --popover-foreground: #17212b;
+  /* handbook --accent / --accent-strong / --accent-soft */
+  --primary: #0c7183;
+  --primary-foreground: #ffffff;
+  --secondary: #eef2f5;
+  --secondary-foreground: #17212b;
+  --muted: #eef2f5;
+  --muted-foreground: #5f6f7d;
+  --accent: #dff4f7;
+  --accent-foreground: #075766;
+  --destructive: #b3261e;
+  --destructive-foreground: #b3261e;
+  --border: #d7e0e7;
+  --input: #d7e0e7;
+  /* handbook --focus：焦點環刻意與主色分離，避免青色文字與青色外框糊在一起 */
+  --ring: #3d7eff;
+  --brand-start: #2a9db1;
+  --brand-mid: #0c7183;
+  --brand-end: #075766;
+  /* handbook 的語意色，供成功／警告／危險狀態使用 */
+  --success: #197044;
+  --warning: #9b5b00;
+  --danger: #b3261e;
+  --accent-strong: #075766;
+  --accent-soft: #dff4f7;
+  --code-bg: #101720;
+  --code-text: #e6edf3;
+  --shadow: 0 10px 30px rgb(18 37 53 / 8%);
+  --chart-1: #0c7183;
+  --chart-2: #197044;
+  --chart-3: #9b5b00;
+  --chart-4: #3d7eff;
+  --chart-5: #b3261e;
+  /* handbook 的 .card 用 0.7rem 圓角 */
+  --radius: 0.7rem;
+  --sidebar: #eef2f5;
+  --sidebar-foreground: #17212b;
+  --sidebar-primary: #0c7183;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #dff4f7;
+  --sidebar-accent-foreground: #075766;
+  --sidebar-border: #d7e0e7;
+  --sidebar-ring: #3d7eff;
   --navbar-height: 64px;
   --lecture-reading-width: 100%;
   /* 導航欄高度 */
@@ -110,39 +128,51 @@
   }
 }
 
+/* 深色模式同樣照抄 handbook 的 :root[data-theme='dark'] 色票。 */
 .dark {
-  --background: hsl(160 35% 7%);
-  --foreground: hsl(150 30% 96%);
-  --card: hsl(160 30% 11%);
-  --card-foreground: hsl(150 30% 96%);
-  --popover: hsl(160 30% 11%);
-  --popover-foreground: hsl(150 30% 96%);
-  --primary: hsl(152 60% 55%);
-  --primary-foreground: hsl(160 40% 9%);
-  --secondary: hsl(158 25% 16%);
-  --secondary-foreground: hsl(150 30% 96%);
-  --muted: hsl(158 25% 16%);
-  --muted-foreground: hsl(150 15% 68%);
-  --accent: hsl(158 25% 18%);
-  --accent-foreground: hsl(150 30% 96%);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: hsl(158 22% 22%);
-  --input: hsl(158 22% 22%);
-  --ring: hsl(152 60% 55%);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.18 0 0);
-  --sidebar-foreground: oklch(0.94 0 0);
-  --sidebar-primary: oklch(0.92 0 0);
-  --sidebar-primary-foreground: oklch(0.145 0 0);
-  --sidebar-accent: oklch(0.26 0 0);
-  --sidebar-accent-foreground: oklch(0.98 0 0);
-  --sidebar-border: oklch(0.31 0 0);
-  --sidebar-ring: oklch(0.68 0 0);
+  --background: #0e141a;
+  --foreground: #e7edf2;
+  --card: #151e27;
+  --card-foreground: #e7edf2;
+  --popover: #151e27;
+  --popover-foreground: #e7edf2;
+  --primary: #60c6d5;
+  --primary-foreground: #0e141a;
+  --secondary: #1d2934;
+  --secondary-foreground: #e7edf2;
+  --muted: #1d2934;
+  --muted-foreground: #a9b5bf;
+  --accent: #173c43;
+  --accent-foreground: #8edce7;
+  --destructive: #ff8a83;
+  --destructive-foreground: #ff8a83;
+  --border: #33414d;
+  --input: #33414d;
+  --ring: #8ab4ff;
+  --brand-start: #8edce7;
+  --brand-mid: #60c6d5;
+  --brand-end: #173c43;
+  --success: #6bd49d;
+  --warning: #f1b960;
+  --danger: #ff8a83;
+  --accent-strong: #8edce7;
+  --accent-soft: #173c43;
+  --code-bg: #080d12;
+  --code-text: #eff6fc;
+  --shadow: 0 12px 36px rgb(0 0 0 / 24%);
+  --chart-1: #60c6d5;
+  --chart-2: #6bd49d;
+  --chart-3: #f1b960;
+  --chart-4: #8ab4ff;
+  --chart-5: #ff8a83;
+  --sidebar: #151e27;
+  --sidebar-foreground: #e7edf2;
+  --sidebar-primary: #60c6d5;
+  --sidebar-primary-foreground: #0e141a;
+  --sidebar-accent: #173c43;
+  --sidebar-accent-foreground: #8edce7;
+  --sidebar-border: #33414d;
+  --sidebar-ring: #8ab4ff;
 }
 
 /* 全站文字大小設定，與 cp-handbook 相同的縮放比例 */
@@ -174,12 +204,12 @@ html[data-text-size="large"] {
     background:
       radial-gradient(
         60rem 32rem at 110% -8%,
-        rgba(52, 211, 153, 0.1),
+        rgba(12, 113, 131, 0.08),
         transparent 70%
       ),
       radial-gradient(
         52rem 30rem at -10% 0%,
-        rgba(5, 150, 105, 0.12),
+        rgba(7, 87, 102, 0.09),
         transparent 70%
       );
   }
@@ -188,18 +218,24 @@ html[data-text-size="large"] {
     background:
       radial-gradient(
         60rem 32rem at 110% -8%,
-        rgba(52, 211, 153, 0.08),
+        rgba(96, 198, 213, 0.07),
         transparent 70%
       ),
       radial-gradient(
         52rem 30rem at -10% 0%,
-        rgba(5, 150, 105, 0.12),
+        rgba(23, 60, 67, 0.5),
         transparent 70%
       );
   }
 
   ::selection {
-    background: rgba(16, 185, 129, 0.35);
+    background: rgba(12, 113, 131, 0.28);
+  }
+
+  /* handbook 用一條與主色分離的藍色粗外框當焦點環，鍵盤操作時明顯可見。 */
+  :focus-visible {
+    outline: 3px solid var(--ring);
+    outline-offset: 3px;
   }
 
   /* Use the generic monospace keyword so code honors the browser's
@@ -214,18 +250,18 @@ html[data-text-size="large"] {
 }
 
 @utility brand-gradient {
-  background-color: var(--brand-mid, #059669);
+  background-color: var(--brand-mid, #0c7183);
   background-image: linear-gradient(
     135deg,
-    var(--brand-start, #34d399) 0%,
-    var(--brand-mid, #059669) 50%,
-    var(--brand-end, #10b981) 100%
+    var(--brand-start, #2a9db1) 0%,
+    var(--brand-mid, #0c7183) 50%,
+    var(--brand-end, #075766) 100%
   );
 }
 
 @layer utilities {
   .brand-text-gradient {
-    background-image: linear-gradient(120deg, #059669 0%, #34d399 100%);
+    background-image: linear-gradient(120deg, var(--accent-strong) 0%, var(--brand-start) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -259,7 +295,7 @@ html[data-text-size="large"] {
     inset-inline: 0;
     top: 0;
     height: 2px;
-    background-color: var(--brand-start, #34d399);
+    background-color: var(--brand-start, #2a9db1);
     opacity: 0;
     transition: opacity 200ms ease-out;
   }
@@ -285,8 +321,8 @@ html[data-text-size="large"] {
     @apply h-7 w-1.5 shrink-0 rounded-full sm:h-8;
     background-image: linear-gradient(
       180deg,
-      var(--brand-start, #34d399),
-      var(--brand-mid, #059669)
+      var(--brand-start, #2a9db1),
+      var(--brand-mid, #0c7183)
     );
   }
 
@@ -321,6 +357,39 @@ html[data-text-size="large"] {
 }
 
 /* Markdown 內容樣式 */
+
+/* 閱讀節奏：handbook 的 body 是 17px / line-height 1.75，正文欄寬 48rem。
+   這裡把同一組數值套到 lc-rating 的 prose 容器上，蓋掉 typography plugin 的
+   prose-base / prose-lg 字級，使兩站的一行字數與行距一致。 */
+.prose,
+[data-slot="card-description"] {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+
+/* handbook 的 .reading h2 { margin-top: 2.8rem } / h3 { margin-top: 2rem }，
+   兩者行高都是 1.3。 */
+.prose :is(h2, h3, h4),
+[data-slot="card-description"] :is(h2, h3, h4) {
+  line-height: 1.3;
+  scroll-margin-top: calc(var(--navbar-height) + 1rem);
+}
+
+.prose h2,
+[data-slot="card-description"] h2 {
+  margin-top: 2.8rem;
+}
+
+.prose h3,
+[data-slot="card-description"] h3 {
+  margin-top: 2rem;
+}
+
+.prose > :first-child,
+[data-slot="card-description"] > :first-child {
+  margin-top: 0;
+}
+
 .prose table,
 [data-slot="card-description"] table {
   @apply mb-5 w-full border-collapse border-border text-sm sm:text-base;
@@ -345,31 +414,54 @@ html[data-text-size="large"] {
   @apply mb-4 last:mb-0 leading-relaxed;
 }
 
-/* 程式碼塊樣式與自動換行 */
+/* 程式碼塊樣式與自動換行。深底在淺色頁面上也保留，與 handbook 的
+   `pre { background: var(--code-bg) }` 相同——程式碼永遠是一塊獨立的暗色面板。 */
 .prose pre,
 [data-slot="card-description"] pre {
-  @apply my-4 overflow-x-hidden rounded-lg border border-border bg-muted/50 p-4 whitespace-pre-wrap break-words dark:bg-gray-900/50;
+  @apply my-4 overflow-x-hidden p-4 whitespace-pre-wrap break-words;
+  border: 1px solid #2a3947;
+  border-radius: 0.65rem;
+  background: var(--code-bg);
+  color: var(--code-text);
+  font-size: 0.875rem;
+  line-height: 1.55;
+  tab-size: 2;
   overflow-wrap: anywhere;
 }
 
+/* handbook 的行內程式碼是「淺底 + 細框」的小晶片，與段落文字區隔但不搶眼。 */
 .prose code,
 [data-slot="card-description"] code {
-  @apply font-mono text-sm px-1 py-0.5 rounded bg-muted dark:bg-gray-800;
+  @apply font-mono;
+  border: 1px solid var(--border);
+  border-radius: 0.3rem;
+  background: var(--muted);
+  padding: 0.08rem 0.28rem;
+  font-size: 0.9em;
   font-variant-ligatures: none;
 }
 
 .prose pre code,
 [data-slot="card-description"] pre code {
-  @apply p-0 bg-transparent dark:bg-transparent block;
+  @apply p-0 block;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: inherit;
   font-variant-ligatures: none;
   overflow-x: visible;
   overflow-wrap: anywhere;
   white-space: inherit;
 }
 
+/* handbook 的 .reading blockquote：4px 主色左邊條 + accent-soft 底，不做圓角。 */
 [data-slot="card-description"] blockquote,
 .prose blockquote {
-  @apply my-5 rounded-r-xl border-l-4 border-primary/25 bg-muted/25 py-3 pl-4 pr-4;
+  margin: 1.4rem 0;
+  border-left: 4px solid var(--primary);
+  background: var(--accent-soft);
+  padding: 0.7rem 1rem;
+  border-radius: 0;
 }
 
 [data-slot="card-description"] hr,
@@ -410,10 +502,10 @@ html[data-text-size="large"] {
 /* Search-result row highlight (plays once then stops) */
 @keyframes search-highlight-row {
   0% {
-    background-color: rgba(16, 185, 129, 0.22);
+    background-color: rgba(12, 113, 131, 0.2);
   }
   70% {
-    background-color: rgba(16, 185, 129, 0.1);
+    background-color: rgba(12, 113, 131, 0.09);
   }
   100% {
     background-color: transparent;
