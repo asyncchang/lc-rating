@@ -19,6 +19,35 @@ Run from repo root unless noted.
 - `pnpm check-types` runs Next type generation and `tsc --noEmit`.
 - `pnpm format` formats `*.ts`, `*.tsx`, and `*.md` with Prettier.
 
+## 講義課節骨架（與 competitive-programming-handbook 對齊）
+
+`apps/web/features/lecture/content/` 的每一小節都採用 competitive-programming-handbook 的課節骨架。handbook 的 109 篇課節全部帶同一組標題、同一個順序，lc-rating 的講義照做。
+
+必備標題（依序）：
+
+1. `## 這個技術解決什麼問題` — 暴力做法為何不夠，這個技巧的槓桿在哪。
+2. `## 辨識題型的訊號` — 看到什麼特徵就該想到它。
+3. `## 核心想法與直覺`
+4. `## 狀態／資料結構定義` — 變數、容器、區間語意、上下界。
+5. `## 不變量或正確性證明` — 迴圈不變量、交換論證、歸納法。**這是骨架裡最有價值的一節，不要寫成複述步驟。**
+6. `## 逐步演算法`
+7. `## C++17 模板`
+8. `## 時間與空間複雜度` — 含推導理由（例如均攤為何成立），不只給結果。
+9. `## 常見錯誤與邊界條件`
+10. `## 與相似技巧的比較` — 和鄰近技巧的取捨。
+11. `## 例題與分級練習`
+12. `## 本節重點速查` — 一段話收尾，只留帶得走的東西。
+
+lc-rating 另有三個 handbook 沒有的標題，位置固定：`## 程式碼拆解`（緊接在 C++17 模板之後）、`## 常見變形`（常見錯誤與邊界條件之後）、`## 代表例題`（例題與分級練習之前）。
+
+工具（在 `apps/web/` 下執行）：
+
+- `npx tsx scripts/validateLectureSkeleton.mjs` — 回報各主題完成度。加 `--strict` 會在標題缺漏或順序錯誤時失敗；可接主題名稱只看單一主題。
+- `npx tsx scripts/applyLectureSections.mjs additions.json` — 套用撰寫好的小節並強制標題順序。JSON 格式是 `{ 主題: { 小節標題: { 標題: markdown } } }`。不帶參數則只重新排序。
+- `scripts/lectureSkeleton.mjs` — 標題清單與順序的單一事實來源。
+
+尚未補齊的小節仍只有骨架的一部分；補寫時整節一次補到齊，並用 `--strict` 確認。
+
 ## Coding Style & Naming Conventions
 
 - Use TypeScript, React, and Tailwind CSS conventions already in the codebase.
