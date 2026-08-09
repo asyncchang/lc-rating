@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* global process */
 /**
  * Apply authored lesson sections to the 講義 content trees.
  *

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* global process */
 /**
  * Report how far the 講義 have moved onto the handbook lesson skeleton.
  *
