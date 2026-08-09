@@ -53,8 +53,8 @@ const CONTENT_DIR = new URL(
 ).pathname;
 
 export async function loadTopic(topic) {
-  const module = await import(`${CONTENT_DIR}${topic}.ts`);
-  const entry = Object.entries(module).find(
+  const loaded = await import(`${CONTENT_DIR}${topic}.ts`);
+  const entry = Object.entries(loaded).find(
     ([, value]) => value && typeof value === "object" && "children" in value,
   );
   if (!entry) throw new Error(`${topic}: no exported lecture root`);
