@@ -61,6 +61,46 @@ lc-rating 另有三個 handbook 沒有的標題，位置固定：`## 程式碼�
 - A parser test exists: `pnpm --filter web test` (uses `apps/web/lc-parser/`).
 - If you add automated tests, document how to run them in this file.
 
+## 題單小節導讀（`public/studyplan/*.json`）
+
+This is a **separate surface** from the 講義 above. Do not confuse the two:
+
+- 講義 = `apps/web/features/lecture/content/*.ts`, served by `useTutorial` at
+  `/lecture/[category]/[section]`. The skeleton documented above governs it.
+- 題單 = `apps/web/public/studyplan/*.json`, fetched by `useStudyPlan`. Each
+  leaf section's `summary` is the prose shown above that section's problem
+  table, rendered by `HandbookSectionBody`.
+
+Most 題單 summaries are short upstream blurbs from 靈茶山艾府's discuss posts.
+`graph` and `sliding_window` instead carry full lecture-style prose using the
+same headings as the 講義 skeleton, minus `## 例題與分級練習` — the 題單 page
+already renders the section's `problems` array as an interactive list right
+below, so a written practice section would duplicate it. When editing these two
+topics, keep that shape; when editing other topics, leave the upstream blurbs
+alone unless asked.
+
+Content rules for these lecture-style summaries:
+
+- `## 不變量或正確性證明` must state an actual invariant and argue why it holds,
+  naming the precondition it depends on (non-negative weights, acyclicity, …).
+- Templates are C++17, not Python. `## 本節重點速查` is one line of recall cues.
+- Inline math uses `$…$` (KaTeX runs with `nonStandard: true`).
+- A markdown table only becomes an interactive problem list when its header has
+  both an ID column (`ID`/`LC ID`/`題號`) and a title column
+  (`Problem`/`Title`/`題目`/`題名`); other tables render as plain tables.
+
+Authoring workflow — written as markdown, never hand-edited into the JSON:
+
+1. Write `apps/web/scripts/lecture_content/<topic>/<n>-<slug>.md`, where `<n>`
+   is the leading number of the target section title (`17.1` for
+   `17.1 網路流`).
+2. `python3 apps/web/scripts/apply_lectures.py <topic>` copies each file into
+   the matching section's `summary`, preserving the minified UTF-8 format so
+   diffs stay limited to changed fields. `--check` reports without writing.
+3. `python3 apps/web/scripts/check_lecture_style.py <topic> --verbose` reports
+   which sections still lack which headings; `--strict` exits non-zero when a
+   topic is not fully aligned.
+
 ## Commit & Pull Request Guidelines
 
 - Commit messages are short and often use prefixes like `fix:`; keep them descriptive (for example `fix: correct rating filter`).
