@@ -27825,6 +27825,50 @@
     "solutionId": "3479756094",
     "tagIds": []
   },
+  "4014": {
+    "id": "4014",
+    "title": "應用折扣後的最低總價",
+    "titleSlug": "minimum-total-price-after-applying-discounts",
+    "rating": 0,
+    "premium": false,
+    "_hash": "2277211039",
+    "contestId": "1393",
+    "solutionId": "2277211039",
+    "tagIds": []
+  },
+  "4015": {
+    "id": "4015",
+    "title": "樹的加權和",
+    "titleSlug": "weighted-sum-of-a-tree",
+    "rating": 0,
+    "premium": false,
+    "_hash": "3839255789",
+    "contestId": "1393",
+    "solutionId": "3839255789",
+    "tagIds": []
+  },
+  "4016": {
+    "id": "4016",
+    "title": "兩個不重疊子正方形的最大面積",
+    "titleSlug": "maximum-area-of-two-non-overlapping-square-submatrices",
+    "rating": 0,
+    "premium": false,
+    "_hash": "4168709965",
+    "contestId": "1393",
+    "solutionId": "4168709965",
+    "tagIds": []
+  },
+  "4017": {
+    "id": "4017",
+    "title": "陣列中的峰值 II",
+    "titleSlug": "peaks-in-array-ii",
+    "rating": 0,
+    "premium": false,
+    "_hash": "1617184046",
+    "contestId": "1393",
+    "solutionId": "1617184046",
+    "tagIds": []
+  },
   "828": {
     "id": "828",
     "title": "統計子串中的唯一字元",
