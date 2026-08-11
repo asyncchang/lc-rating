@@ -29,9 +29,11 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
 
-      - name: Merge upstream study-plan updates
+      - name: Apply localized study-plan overlay
         working-directory: ./apps/web/lc-maker
-        run: python merge_upstream_to_local.py
+        run: |
+          python merge_upstream_to_local.py
+          python merge_upstream_to_local.py --check
 
       - name: Configure Git
         run: |

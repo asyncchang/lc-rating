@@ -196,12 +196,6 @@ const studyPlanCourseMaterials: Record<string, string> = {
     "**Pattern 6：回溯**\n\n排列、組合、子集、棋盤搜索。模板是選擇、遞迴、撤銷；剪枝來自排序、剩餘容量、合法性檢查。",
   ].join("\n\n"),
 };
-const beginnerLecturePreface = [
-  "**講義閱讀方式**",
-  "每個 pattern 都照同一個順序理解：先看題目訊號，再定義狀態或資料結構，接著寫出維護的不變式，最後再整理 C++ 模板。講義中的程式碼是骨架與典型寫法，閱讀時要把每個變數對應回狀態語意，而不是只記住語法。",
-  "**課堂解題流程**：\n1. 讀限制：`n`、值域、邊數、是否多次查詢。\n2. 找訊號：連續區間、排序、集合狀態、圖可達、最小最大、歷史版本。\n3. 選 pattern：把題目映射到已知模型。\n4. 寫不變式：例如 BFS 第一次出隊最短、單調棧內元素保持遞增、Fenwick 維護前綴和。\n5. 驗證複雜度：先算狀態數，再算每個狀態的轉移成本。",
-].join("\n\n");
-
 const beginnerPracticeGuide = [
   "**課後練習方式**",
   "練習後請回到講義的四個面向檢查：模型是否選對、狀態是否足夠、轉移或資料結構是否維護不變式、複雜度是否符合限制。",
@@ -214,7 +208,5 @@ export function getStudyPlanCourseMaterial(plan: string) {
     return undefined;
   }
 
-  return [beginnerLecturePreface, material, beginnerPracticeGuide].join(
-    "\n\n---\n\n",
-  );
+  return [material, beginnerPracticeGuide].join("\n\n---\n\n");
 }

@@ -1,14 +1,20 @@
 #!/usr/bin/env python3
-"""Merge newly added upstream study-plan problems into local files."""
+"""Synchronize upstream study plans into the local Traditional-Chinese overlay."""
 
 from __future__ import annotations
 
 import argparse
+import copy
 import json
 import os
+import re
 import sys
 import urllib.request
+from dataclasses import dataclass, field
+from fractions import Fraction
 from pathlib import Path
+from typing import Iterable, Iterator, Sequence
+from urllib.parse import unquote, urlparse
 
 from translate_to_traditional import translate_dict, translate_text
 
@@ -19,9 +25,12 @@ DEFAULT_UPSTREAM_BASE = (
 )
 DEFAULT_LOCAL_DIR = Path(__file__).resolve().parent.parent / "public" / "studyplan"
 REQUEST_HEADERS = {
-    "User-Agent": "Mozilla/5.0 (compatible; lc-rating-studyplan-sync/1.0)",
+    "User-Agent": "Mozilla/5.0 (compatible; lc-rating-studyplan-sync/2.0)",
 }
 REQUEST_TIMEOUT = 30
+
+# These are the only plans backed by upstream. The other seven local plans must
+# never be selected implicitly or accepted as selectors.
 STUDY_PLANS = (
     "binary_search",
     "bitwise_operations",
@@ -37,11 +46,148 @@ STUDY_PLANS = (
     "trees",
 )
 
+SLUG_CORRECTIONS = {
+    # Keep the requested historical malformed spelling covered as well.
+    "minimum-number-of-valid-strings-to-form-target-with-the-product":
+        "minimum-number-of-valid-strings-to-form-target-with-their-product",
+    # The live upstream LC 2892 record uses this singular form. LeetCode and
+    # the local overlay use "their product".
+    "minimizing-array-after-replacing-pairs-with-the-product":
+        "minimizing-array-after-replacing-pairs-with-their-product",
+}
+LC2892_SLUG = (
+    "minimizing-array-after-replacing-pairs-with-their-product"
+)
+
+# Values here are reapplied after every upstream refresh. This is deliberately
+# an explicit allowlist rather than a general preference for stale local data.
+LOCAL_CORRECTION_ALLOWLIST: dict[str, dict[str, object]] = {
+    LC2892_SLUG: {
+        "slug": LC2892_SLUG,
+        "src": f"https://leetcode.cn/problems/{LC2892_SLUG}/",
+    },
+}
+
+# An override maps an upstream title path (excluding the document root) to a
+# canonical slug that anchors the intended local section. Slug anchors avoid
+# coupling the sync to unreliable upstream IDs or local numeric section IDs.
+SectionRoute = str | tuple[str, ...]
+
+SECTION_ROUTE_OVERRIDES: dict[
+    str,
+    dict[tuple[str, ...], SectionRoute],
+] = {
+    "binary_search": {
+        ("一、二分查找",):
+            "find-first-and-last-position-of-element-in-sorted-array",
+    },
+    "grid": {
+        ("介绍", "思考题"): ("1. 網格圖 DFS",),
+    },
+    "string": {
+        ("介绍", "六、字典树"): ("6. 字典樹",),
+    },
+}
+
+MUTABLE_PROBLEM_FIELDS = ("title", "src", "solution", "isPremium")
+CROSS_REFERENCE_KEYWORDS = (
+    "关联题单",
+    "相關題單",
+    "算法题单",
+    "演算法題單",
+    "参见",
+    "參見",
+    "我的题解精选",
+    "我的題解精選",
+    "B站@",
+)
+SENTINEL_ID_MINIMUM = 1_000_000_000
+
 _tc2sc_converter = None
 
 
+@dataclass
+class NodeInfo:
+    """Indexed facts about one node in a study-plan tree."""
+
+    node: dict
+    parent: NodeInfo | None
+    path: tuple[str, ...]
+    depth: int
+    order: int
+    direct_slugs: frozenset[str] = frozenset()
+    descendant_slugs: frozenset[str] = frozenset()
+
+    @property
+    def can_hold_problems(self) -> bool:
+        return bool(self.node.get("problems")) or not self.node.get("children")
+
+
+@dataclass
+class TreeIndex:
+    """Pre-order node index with recursive slug sets."""
+
+    root: NodeInfo
+    nodes: list[NodeInfo]
+    by_identity: dict[int, NodeInfo]
+
+
+@dataclass
+class RouteDecision:
+    """A deterministic section-routing result."""
+
+    target: NodeInfo | None
+    warning: str | None = None
+
+
+@dataclass
+class MergeStats:
+    """Human-readable counters and diagnostics for one plan."""
+
+    added_problems: int = 0
+    refreshed_problems: int = 0
+    preserved_local_problems: int = 0
+    summaries_added: int = 0
+    summaries_replaced: int = 0
+    summaries_removed: int = 0
+    warnings: list[str] = field(default_factory=list)
+    mapping_failures: list[str] = field(default_factory=list)
+
+
+@dataclass
+class MergeResult:
+    """The desired local document and its diagnostics."""
+
+    data: dict
+    changed: bool
+    stats: MergeStats
+
+
+@dataclass
+class UpstreamProblem:
+    """The preferred upstream record and its source section."""
+
+    problem: dict
+    section: NodeInfo
+    safe_id: bool
+
+
+@dataclass
+class TopicRun:
+    """Loaded result for a CLI-selected topic."""
+
+    name: str
+    local_file: Path
+    result: MergeResult | None = None
+    load_error: str | None = None
+
+
+class SyncLoadError(RuntimeError):
+    """Raised when a local or upstream plan cannot be loaded safely."""
+
+
 def fetch_json(url: str) -> dict | list:
-    """Download and parse a JSON file from a URL."""
+    """Download and parse one JSON resource."""
     request = urllib.request.Request(url, headers=REQUEST_HEADERS)
     with urllib.request.urlopen(request, timeout=REQUEST_TIMEOUT) as response:
         return json.loads(response.read())
@@ -60,7 +206,7 @@ def get_tc2sc_converter():
 
 
 def normalize_id(problem_id: object) -> str:
-    """Normalize problem identifiers so local and upstream IDs compare cleanly."""
+    """Normalize display identifiers without using them as problem identity."""
     if isinstance(problem_id, int):
         return str(problem_id)
 
@@ -71,331 +217,697 @@ def normalize_id(problem_id: object) -> str:
             value = converter.convert(value)
         else:
             value = value.replace("面試題", "面试题").replace("棋盤", "棋盘")
+    return value.strip()
 
-    return value
+
+def normalize_slug(value: object) -> str | None:
+    """Return a canonical slug from a bare slug, wrapper, or problem URL."""
+    if value is None:
+        return None
+
+    raw = unquote(str(value).strip())
+    if not raw:
+        return None
+
+    parsed = urlparse(raw)
+    path = parsed.path or raw.split("?", 1)[0].split("#", 1)[0]
+    parts = [part for part in path.split("/") if part]
+    if "problems" in parts:
+        index = parts.index("problems")
+        if index + 1 >= len(parts):
+            return None
+        slug = parts[index + 1]
+    elif len(parts) == 1:
+        slug = parts[0]
+    elif not parsed.scheme and parts:
+        # This also accepts slash-wrapped values such as /two-sum/.
+        slug = parts[-1]
+    else:
+        return None
+
+    normalized = slug.strip().lower()
+    if not normalized:
+        return None
+    return SLUG_CORRECTIONS.get(normalized, normalized)
 
 
-def collect_problem_ids(node: dict | list) -> set[str]:
-    """Collect normalized problem IDs from a study-plan tree."""
-    ids: set[str] = set()
+def problem_slug(problem: dict) -> str | None:
+    """Return the normalized slug identity for a problem record."""
+    return normalize_slug(problem.get("slug") or problem.get("src"))
 
+
+def iter_nodes(node: dict | list) -> Iterator[dict]:
+    """Yield all dictionary nodes in pre-order."""
     if isinstance(node, dict):
-        for problem in node.get("problems", []):
-            problem_id = problem.get("id") or problem.get("slug")
-            if problem_id is not None:
-                ids.add(normalize_id(problem_id))
+        yield node
         for child in node.get("children", []):
-            ids.update(collect_problem_ids(child))
+            yield from iter_nodes(child)
     else:
         for item in node:
-            ids.update(collect_problem_ids(item))
-
-    return ids
+            yield from iter_nodes(item)
 
 
-def collect_leaf_sections(node: dict | list, sections: list[dict] | None = None) -> list[dict]:
-    """Collect sections that directly contain problems."""
-    if sections is None:
-        sections = []
-
-    if isinstance(node, dict):
-        if node.get("problems"):
-            sections.append(node)
-        for child in node.get("children", []):
-            collect_leaf_sections(child, sections)
-    else:
-        for item in node:
-            collect_leaf_sections(item, sections)
-
-    return sections
+def iter_problems(node: dict | list) -> Iterator[dict]:
+    """Yield all problem records without deduplicating them."""
+    for section in iter_nodes(node):
+        for problem in section.get("problems", []):
+            if isinstance(problem, dict):
+                yield problem
 
 
-def section_ids(section: dict) -> set[str]:
-    """Collect normalized IDs for problems directly inside a section."""
+def collect_problem_slugs(node: dict | list) -> set[str]:
+    """Collect canonical problem identities from a study-plan tree."""
     return {
-        normalize_id(problem.get("id") or problem.get("slug"))
-        for problem in section.get("problems", [])
+        slug
+        for problem in iter_problems(node)
+        if (slug := problem_slug(problem)) is not None
     }
 
 
-def find_best_local_section(upstream_section: dict, local_sections: list[dict]) -> dict | None:
-    """Find the local section with the highest problem-ID overlap."""
-    upstream_ids = section_ids(upstream_section)
-    if not upstream_ids:
-        return None
+def build_tree_index(root: dict) -> TreeIndex:
+    """Index a tree and compute direct and descendant slug sets."""
+    nodes: list[NodeInfo] = []
+    by_identity: dict[int, NodeInfo] = {}
 
-    best_section = None
-    best_overlap = 0
-    for local_section in local_sections:
-        overlap = len(upstream_ids & section_ids(local_section))
-        if overlap > best_overlap:
-            best_overlap = overlap
-            best_section = local_section
+    def visit(
+        node: dict,
+        parent: NodeInfo | None,
+        path: tuple[str, ...],
+        depth: int,
+    ) -> NodeInfo:
+        info = NodeInfo(
+            node=node,
+            parent=parent,
+            path=path,
+            depth=depth,
+            order=len(nodes),
+        )
+        nodes.append(info)
+        by_identity[id(node)] = info
 
-    return best_section
-
-
-def build_parent_map(
-    node: dict | list,
-    parent: dict | None = None,
-    parent_map: dict[int, dict | None] | None = None,
-) -> dict[int, dict | None]:
-    """Build a map from node identity to parent node."""
-    if parent_map is None:
-        parent_map = {}
-
-    if isinstance(node, dict):
-        parent_map[id(node)] = parent
+        direct = {
+            slug
+            for problem in node.get("problems", [])
+            if isinstance(problem, dict)
+            if (slug := problem_slug(problem)) is not None
+        }
+        descendants = set(direct)
         for child in node.get("children", []):
-            build_parent_map(child, node, parent_map)
-    else:
-        for item in node:
-            build_parent_map(item, parent, parent_map)
+            if not isinstance(child, dict):
+                continue
+            title = str(child.get("title") or "").strip()
+            child_info = visit(child, info, path + (title,), depth + 1)
+            descendants.update(child_info.descendant_slugs)
 
-    return parent_map
+        info.direct_slugs = frozenset(direct)
+        info.descendant_slugs = frozenset(descendants)
+        return info
+
+    root_info = visit(root, None, (), 0)
+    return TreeIndex(root=root_info, nodes=nodes, by_identity=by_identity)
 
 
-def find_sibling_target(
-    upstream_section: dict,
-    upstream_root: dict,
-    local_sections: list[dict],
-) -> dict | None:
-    """Find a local section via sibling overlap when direct matching fails."""
-    parent_map = build_parent_map(upstream_root)
-    parent = parent_map.get(id(upstream_section))
-    if parent is None:
+def format_path(info: NodeInfo) -> str:
+    """Format a section path for diagnostics."""
+    return " > ".join(info.path) if info.path else "<root>"
+
+
+def _route_score(
+    source: NodeInfo,
+    candidate: NodeInfo,
+) -> tuple[object, ...] | None:
+    direct_overlap = len(source.direct_slugs & candidate.direct_slugs)
+    descendant_overlap = len(
+        source.descendant_slugs & candidate.descendant_slugs
+    )
+    if descendant_overlap == 0:
         return None
 
-    for sibling in parent.get("children", []):
-        if id(sibling) == id(upstream_section):
-            continue
-        target = find_best_local_section(sibling, local_sections)
-        if target is not None:
-            return target
+    if source.direct_slugs and direct_overlap:
+        return (
+            1,
+            direct_overlap,
+            Fraction(direct_overlap, max(1, len(candidate.direct_slugs))),
+            int(candidate.can_hold_problems),
+            Fraction(
+                descendant_overlap,
+                max(1, len(source.descendant_slugs)),
+            ),
+            Fraction(
+                descendant_overlap,
+                max(1, len(candidate.descendant_slugs)),
+            ),
+            candidate.depth,
+            -len(candidate.descendant_slugs),
+        )
 
-    return None
-
-
-def parse_score(score: object) -> float | None:
-    """Convert a score value to a sortable number."""
-    if score is None:
-        return None
-    if isinstance(score, (int, float)):
-        return float(score)
-    try:
-        return float(str(score))
-    except (TypeError, ValueError):
-        return None
-
-
-def problem_index_sort_key(problem: dict) -> tuple[int, object]:
-    """Build a numeric-aware sort key for problem identifiers."""
-    value = str(problem.get("id") or problem.get("slug") or "")
-    digits = "".join(character for character in value if character.isdigit())
-    if digits:
-        return (0, int(digits))
-    return (1, value)
-
-
-def problem_sort_key(problem: dict) -> tuple[float, tuple[int, object], str]:
-    """Sort problems by score ascending with null first, then by problem index."""
-    score = parse_score(problem.get("score"))
-    fallback = str(problem.get("slug") or "")
     return (
-        score if score is not None else float("-inf"),
-        problem_index_sort_key(problem),
-        fallback,
+        0,
+        Fraction(
+            descendant_overlap,
+            max(1, len(source.descendant_slugs)),
+        ),
+        Fraction(
+            descendant_overlap,
+            max(1, len(candidate.descendant_slugs)),
+        ),
+        descendant_overlap,
+        candidate.depth,
+        -len(candidate.descendant_slugs),
     )
 
 
-def sort_section_problems(section: dict) -> None:
-    """Sort a section's problems in ascending score order."""
-    section["problems"] = sorted(section.get("problems", []), key=problem_sort_key)
+def _explicit_route(
+    plan_name: str,
+    source: NodeInfo,
+    candidates: Sequence[NodeInfo],
+    overrides: dict[str, dict[tuple[str, ...], SectionRoute]],
+) -> RouteDecision | None:
+    anchor = overrides.get(plan_name, {}).get(source.path)
+    if anchor is None:
+        return None
+    if isinstance(anchor, tuple):
+        matches = [
+            candidate
+            for candidate in candidates
+            if candidate.path == anchor
+        ]
+        if not matches:
+            return RouteDecision(
+                None,
+                f"override for {format_path(source)} has missing local "
+                f"path {' > '.join(anchor)!r}",
+            )
+        return RouteDecision(matches[0])
+
+    canonical_anchor = normalize_slug(anchor)
+    matches = [
+        candidate
+        for candidate in candidates
+        if canonical_anchor in candidate.direct_slugs
+    ]
+    if not matches:
+        return RouteDecision(
+            None,
+            f"override for {format_path(source)} has missing local "
+            f"anchor {anchor!r}",
+        )
+    matches.sort(key=lambda item: (-item.depth, item.order))
+    warning = None
+    if len(matches) > 1:
+        warning = (
+            f"override anchor {anchor!r} occurs in multiple local sections; "
+            f"using {format_path(matches[0])}"
+        )
+    return RouteDecision(matches[0], warning)
 
 
-def merge_new_problems(local_root: dict, upstream_root: dict) -> int:
-    """Merge new upstream problems into the best-matching local sections."""
-    local_ids = collect_problem_ids(local_root)
-    local_sections = collect_leaf_sections(local_root)
-    touched_sections: dict[int, dict] = {}
-    added = 0
-
-    def walk(upstream_node: dict | list) -> None:
-        nonlocal added
-
-        if isinstance(upstream_node, dict):
-            new_problems = [
-                problem
-                for problem in upstream_node.get("problems", [])
-                if normalize_id(problem.get("id") or problem.get("slug")) not in local_ids
-            ]
-
-            if new_problems:
-                target = find_best_local_section(upstream_node, local_sections)
-                if target is None:
-                    target = find_sibling_target(upstream_node, upstream_root, local_sections)
-
-                if target is not None:
-                    for problem in new_problems:
-                        translated_problem = translate_dict(problem)
-                        target.setdefault("problems", []).append(translated_problem)
-                        local_ids.add(normalize_id(problem.get("id") or problem.get("slug")))
-                        added += 1
-                    touched_sections[id(target)] = target
-                else:
-                    titles = [problem.get("title", "?") for problem in new_problems]
-                    print(
-                        "  warning: no matching local section for "
-                        f"{len(new_problems)} problem(s): {titles}"
-                    )
-
-            for child in upstream_node.get("children", []):
-                walk(child)
-            return
-
-        for item in upstream_node:
-            walk(item)
-
-    walk(upstream_root)
-
-    for section in touched_sections.values():
-        sort_section_problems(section)
-
-    return added
+def resolve_overrides(
+    overrides: dict[str, dict[tuple[str, ...], SectionRoute]] | None,
+) -> dict[str, dict[tuple[str, ...], SectionRoute]]:
+    """Fall back to the built-in route table when no override map is given."""
+    return SECTION_ROUTE_OVERRIDES if overrides is None else overrides
 
 
-CROSS_REFERENCE_KEYWORDS = ("关联题单", "算法题单")
+def route_section(
+    plan_name: str,
+    source: NodeInfo,
+    candidates: Sequence[NodeInfo],
+    overrides: (
+        dict[str, dict[tuple[str, ...], SectionRoute]] | None
+    ) = None,
+) -> RouteDecision:
+    """Route by explicit slug anchor, then recursive slug overlap."""
+    explicit = _explicit_route(
+        plan_name,
+        source,
+        candidates,
+        resolve_overrides(overrides),
+    )
+    if explicit is not None:
+        return explicit
+
+    scored: list[tuple[tuple[object, ...], NodeInfo]] = []
+    for candidate in candidates:
+        score = _route_score(source, candidate)
+        if score is not None:
+            scored.append((score, candidate))
+    if not scored:
+        return RouteDecision(None)
+
+    best_score = max(score for score, _candidate in scored)
+    tied = [
+        candidate for score, candidate in scored if score == best_score
+    ]
+    tied.sort(key=lambda item: item.order)
+    warning = None
+    if len(tied) > 1:
+        warning = (
+            f"ambiguous overlap for {format_path(source)}; using "
+            f"{format_path(tied[0])} before "
+            + ", ".join(format_path(item) for item in tied[1:])
+        )
+    return RouteDecision(tied[0], warning)
 
 
-def is_cross_reference_section(node: dict) -> bool:
-    """Return True if this section is a cross-reference link list (no real content)."""
-    title = node.get("title", "")
-    if not any(keyword in title for keyword in CROSS_REFERENCE_KEYWORDS):
+def is_sentinel_id(problem_id: object) -> bool:
+    """Return whether an ID is a known scraper/rating sentinel."""
+    if isinstance(problem_id, bool) or problem_id is None:
         return False
-    return not node.get("problems") and not node.get("children")
-
-
-def collect_all_sections(
-    node: dict | list,
-    result: list[tuple[dict, set[str]]] | None = None,
-) -> list[tuple[dict, set[str]]]:
-    """Collect all sections with their recursive problem IDs (including descendants)."""
-    if result is None:
-        result = []
-
-    if isinstance(node, dict):
-        ids = collect_problem_ids(node)
-        if ids:
-            result.append((node, ids))
-        for child in node.get("children", []):
-            collect_all_sections(child, result)
-    else:
-        for item in node:
-            collect_all_sections(item, result)
-
-    return result
-
-
-def collect_sections_with_summary(
-    node: dict | list,
-    result: list[tuple[dict, str, set[str]]] | None = None,
-) -> list[tuple[dict, str, set[str]]]:
-    """Collect upstream sections that have a non-empty summary.
-
-    Returns (section_node, summary_text, recursive_problem_ids) tuples.
-    Excludes cross-reference sections that only contain link lists.
-    """
-    if result is None:
-        result = []
-
-    if isinstance(node, dict):
-        if is_cross_reference_section(node):
-            return result
-        summary = node.get("summary") or ""
-        if summary:
-            ids = collect_problem_ids(node)
-            result.append((node, summary, ids))
-        for child in node.get("children", []):
-            collect_sections_with_summary(child, result)
-    else:
-        for item in node:
-            collect_sections_with_summary(item, result)
-
-    return result
-
-
-def find_best_section_by_ids(
-    upstream_ids: set[str],
-    local_sections_with_ids: list[tuple[dict, set[str]]],
-) -> dict | None:
-    """Find the local section with the best problem-ID overlap.
-
-    Prefers the most specific match: among sections with similar overlap counts,
-    pick the one with the highest overlap ratio (overlap / local size) to avoid
-    always matching the root which contains all IDs.
-    """
-    if not upstream_ids:
-        return None
-
-    best_section = None
-    best_overlap = 0
-    best_ratio = 0.0
-    for local_section, local_ids in local_sections_with_ids:
-        overlap = len(upstream_ids & local_ids)
-        if overlap == 0:
-            continue
-        ratio = overlap / len(local_ids)
-        if overlap > best_overlap or (overlap == best_overlap and ratio > best_ratio):
-            best_overlap = overlap
-            best_ratio = ratio
-            best_section = local_section
-
-    return best_section
-
-
-def merge_missing_summaries(local_root: dict, upstream_root: dict) -> int:
-    """Fill in missing summaries from upstream into matching local sections."""
-    local_sections_with_ids = collect_all_sections(local_root)
-    upstream_summaries = collect_sections_with_summary(upstream_root)
-    added = 0
-
-    for _upstream_section, summary_text, upstream_ids in upstream_summaries:
-        target = find_best_section_by_ids(upstream_ids, local_sections_with_ids)
-        if target is None:
-            continue
-        if target.get("summary") or target.get("content"):
-            continue
-        target["summary"] = translate_text(summary_text)
-        added += 1
-
-    # Handle root-level summary
-    upstream_root_summary = upstream_root.get("summary") or ""
-    if upstream_root_summary and not local_root.get("summary") and not local_root.get("content"):
-        local_root["summary"] = translate_text(upstream_root_summary)
-        added += 1
-
-    return added
-
-
-def load_upstream(plan_name: str, base_url: str) -> dict | None:
-    """Load a single upstream study-plan file."""
     try:
-        payload = fetch_json(f"{base_url.rstrip('/')}/{plan_name}.json")
-    except Exception as exc:  # noqa: BLE001
-        print(f"  {plan_name}: failed to load upstream data ({exc})", file=sys.stderr)
-        return None
+        return int(str(problem_id)) >= SENTINEL_ID_MINIMUM
+    except ValueError:
+        return False
 
-    if isinstance(payload, dict):
-        return payload
 
-    print(f"  {plan_name}: upstream payload is not a JSON object", file=sys.stderr)
+def has_safe_id(
+    problem: dict,
+    slug: str,
+    id_to_slugs: dict[str, set[str]],
+) -> bool:
+    """Return whether a problem's ID unambiguously denotes exactly this slug."""
+    problem_id = problem.get("id")
+    if problem_id is None:
+        return False
+    normalized_id = normalize_id(problem_id)
+    return bool(
+        normalized_id
+        and not is_sentinel_id(problem_id)
+        and id_to_slugs.get(normalized_id) == {slug}
+    )
+
+
+def _problem_candidate_quality(
+    problem: dict,
+    slug: str,
+    id_to_slugs: dict[str, set[str]],
+) -> tuple[int, int, int]:
+    safe_id = has_safe_id(problem, slug, id_to_slugs)
+    raw_slug = str(problem.get("slug") or "")
+    clean_slug = (
+        bool(raw_slug)
+        and not raw_slug.startswith("/")
+        and "://" not in raw_slug
+    )
+    populated = sum(
+        field_name in problem
+        for field_name in MUTABLE_PROBLEM_FIELDS
+    )
+    return (int(safe_id), int(clean_slug), populated)
+
+
+def build_upstream_problem_catalog(
+    upstream_index: TreeIndex,
+    stats: MergeStats,
+) -> dict[str, UpstreamProblem]:
+    """Choose one metadata source per slug without trusting IDs as identity."""
+    records: list[tuple[dict, NodeInfo, int, str]] = []
+    id_to_slugs: dict[str, set[str]] = {}
+
+    for section in upstream_index.nodes:
+        for problem in section.node.get("problems", []):
+            if not isinstance(problem, dict):
+                continue
+            slug = problem_slug(problem)
+            if slug is None:
+                stats.mapping_failures.append(
+                    f"upstream problem {problem.get('title')!r} in "
+                    f"{format_path(section)} has no usable slug"
+                )
+                continue
+            records.append((problem, section, len(records), slug))
+            if problem.get("id") is not None:
+                problem_id = normalize_id(problem["id"])
+                id_to_slugs.setdefault(problem_id, set()).add(slug)
+
+    for problem_id, slugs in sorted(id_to_slugs.items()):
+        if len(slugs) > 1 or is_sentinel_id(problem_id):
+            reason = "duplicate" if len(slugs) > 1 else "sentinel"
+            stats.warnings.append(
+                f"ignored {reason} upstream ID {problem_id!r} for identity"
+            )
+
+    by_slug: dict[str, list[tuple[dict, NodeInfo, int]]] = {}
+    for problem, section, order, slug in records:
+        by_slug.setdefault(slug, []).append((problem, section, order))
+
+    catalog: dict[str, UpstreamProblem] = {}
+    for slug, choices in by_slug.items():
+        chosen_problem, chosen_section, _order = max(
+            choices,
+            key=lambda choice: (
+                _problem_candidate_quality(
+                    choice[0],
+                    slug,
+                    id_to_slugs,
+                ),
+                -choice[2],
+            ),
+        )
+        catalog[slug] = UpstreamProblem(
+            problem=chosen_problem,
+            section=chosen_section,
+            safe_id=has_safe_id(chosen_problem, slug, id_to_slugs),
+        )
+    return catalog
+
+
+def translated_problem(problem: dict, slug: str) -> dict:
+    """Translate an upstream problem and apply canonical local corrections."""
+    translated = translate_dict(copy.deepcopy(problem))
+    if not isinstance(translated, dict):
+        raise TypeError("translated problem must remain a dictionary")
+    translated["slug"] = slug
+    translated.update(LOCAL_CORRECTION_ALLOWLIST.get(slug, {}))
+    return translated
+
+
+def refresh_existing_problem(
+    local_problem: dict,
+    upstream_problem: UpstreamProblem,
+    slug: str,
+) -> bool:
+    """Refresh mutable fields while preserving an intentional null score."""
+    translated = translated_problem(upstream_problem.problem, slug)
+    changed = False
+
+    for field_name in MUTABLE_PROBLEM_FIELDS:
+        if field_name not in translated:
+            continue
+        if local_problem.get(field_name) != translated[field_name]:
+            local_problem[field_name] = translated[field_name]
+            changed = True
+
+    if upstream_problem.safe_id and "id" in translated:
+        if local_problem.get("id") != translated["id"]:
+            local_problem["id"] = translated["id"]
+            changed = True
+
+    if local_problem.get("slug") != translated["slug"]:
+        local_problem["slug"] = translated["slug"]
+        changed = True
+
+    # Local null means "look up the runtime rating"; do not materialize the
+    # upstream snapshot into that field. Existing non-null values may refresh.
+    if (
+        "score" in translated
+        and local_problem.get("score") is not None
+        and local_problem.get("score") != translated["score"]
+    ):
+        local_problem["score"] = translated["score"]
+        changed = True
+
+    for field_name, value in LOCAL_CORRECTION_ALLOWLIST.get(slug, {}).items():
+        if local_problem.get(field_name) != value:
+            local_problem[field_name] = value
+            changed = True
+
+    return changed
+
+
+def _record_route_warning(stats: MergeStats, decision: RouteDecision) -> None:
+    if decision.warning and decision.warning not in stats.warnings:
+        stats.warnings.append(decision.warning)
+
+
+def find_problem_target(
+    plan_name: str,
+    source: NodeInfo,
+    local_candidates: Sequence[NodeInfo],
+    stats: MergeStats,
+    overrides: dict[str, dict[tuple[str, ...], SectionRoute]] | None,
+) -> NodeInfo | None:
+    """Find a stable local leaf, falling back through upstream ancestors."""
+    # Built-in overrides are summary-only prose mappings. Callers may provide
+    # explicit problem overrides for a known all-new upstream section.
+    problem_overrides = {} if overrides is None else overrides
+    current: NodeInfo | None = source
+    while current is not None and current.parent is not None:
+        decision = route_section(
+            plan_name,
+            current,
+            local_candidates,
+            problem_overrides,
+        )
+        _record_route_warning(stats, decision)
+        if decision.target is not None:
+            return decision.target
+        current = current.parent
     return None
 
 
-def parse_args() -> argparse.Namespace:
+def merge_problems(
+    plan_name: str,
+    local_index: TreeIndex,
+    upstream_index: TreeIndex,
+    stats: MergeStats,
+    overrides: (
+        dict[str, dict[tuple[str, ...], SectionRoute]] | None
+    ) = None,
+) -> None:
+    """Refresh known slugs and append unseen slugs without deleting local data."""
+    upstream_catalog = build_upstream_problem_catalog(upstream_index, stats)
+    local_by_slug: dict[str, list[dict]] = {}
+    missing_local_slug_count = 0
+    for problem in iter_problems(local_index.root.node):
+        slug = problem_slug(problem)
+        if slug is None:
+            missing_local_slug_count += 1
+            continue
+        local_by_slug.setdefault(slug, []).append(problem)
+
+    stats.preserved_local_problems = (
+        len(set(local_by_slug) - set(upstream_catalog))
+        + missing_local_slug_count
+    )
+
+    for slug, upstream_problem in upstream_catalog.items():
+        existing = local_by_slug.get(slug)
+        if existing:
+            for local_problem in existing:
+                if refresh_existing_problem(
+                    local_problem,
+                    upstream_problem,
+                    slug,
+                ):
+                    stats.refreshed_problems += 1
+            continue
+
+        local_candidates = [
+            info
+            for info in local_index.nodes
+            if info.parent is not None and info.can_hold_problems
+        ]
+        target = find_problem_target(
+            plan_name,
+            upstream_problem.section,
+            local_candidates,
+            stats,
+            overrides,
+        )
+        if target is None:
+            stats.mapping_failures.append(
+                f"no local section for new problem {slug!r} from "
+                f"{format_path(upstream_problem.section)}"
+            )
+            continue
+
+        target.node.setdefault("problems", []).append(
+            translated_problem(upstream_problem.problem, slug)
+        )
+        local_by_slug[slug] = target.node["problems"][-1:]
+        stats.added_problems += 1
+
+
+def section_summary(node: dict) -> str:
+    """Return a node's upstream prose, accepting the legacy content field."""
+    value = node.get("summary")
+    if not value:
+        value = node.get("content")
+    return str(value) if value else ""
+
+
+def is_pure_navigation_node(info: NodeInfo) -> bool:
+    """Return whether a slugless section is only cross-reference navigation."""
+    if info.descendant_slugs:
+        return False
+    path_text = " > ".join(info.path)
+    if any(keyword in path_text for keyword in CROSS_REFERENCE_KEYWORDS):
+        return True
+    summary = section_summary(info.node).lstrip()
+    return bool(
+        re.match(r"^(?:见|見)\s*(?:\[|【)", summary)
+        or summary.startswith("GitHub 仓库")
+        or summary.startswith("GitHub 倉庫")
+        or summary.startswith("关注作者")
+        or summary.startswith("關注作者")
+    )
+
+
+def merge_summaries(
+    plan_name: str,
+    local_index: TreeIndex,
+    upstream_index: TreeIndex,
+    stats: MergeStats,
+    overrides: (
+        dict[str, dict[tuple[str, ...], SectionRoute]] | None
+    ) = None,
+) -> None:
+    """Replace all local prose fields with mapped current upstream summaries."""
+    before: dict[int, tuple[bool, str, str]] = {}
+    for info in local_index.nodes:
+        node = info.node
+        before[id(node)] = (
+            "summary" in node or "content" in node,
+            str(node.get("summary") or ""),
+            str(node.get("content") or ""),
+        )
+        node.pop("summary", None)
+        node.pop("content", None)
+
+    pending: dict[int, list[str]] = {}
+
+    def add_summary(target: NodeInfo, text: str) -> None:
+        translated = translate_text(text)
+        values = pending.setdefault(id(target.node), [])
+        if translated not in values:
+            values.append(translated)
+
+    root_summary = section_summary(upstream_index.root.node)
+    if root_summary:
+        add_summary(local_index.root, root_summary)
+
+    local_candidates = [
+        info for info in local_index.nodes if info.parent is not None
+    ]
+    active_overrides = resolve_overrides(overrides)
+    for source in upstream_index.nodes:
+        if source.parent is None:
+            continue
+        summary = section_summary(source.node)
+        has_override = source.path in active_overrides.get(plan_name, {})
+        if not summary or (
+            is_pure_navigation_node(source) and not has_override
+        ):
+            continue
+        decision = route_section(
+            plan_name,
+            source,
+            local_candidates,
+            overrides,
+        )
+        _record_route_warning(stats, decision)
+        if decision.target is None:
+            stats.mapping_failures.append(
+                f"no local section for upstream summary at "
+                f"{format_path(source)}"
+            )
+            continue
+        add_summary(decision.target, summary)
+
+    for info in local_index.nodes:
+        values = pending.get(id(info.node))
+        if values:
+            info.node["summary"] = "\n\n".join(values)
+
+    for info in local_index.nodes:
+        had_fields, old_summary, old_content = before[id(info.node)]
+        old_text = old_summary or old_content
+        new_text = str(info.node.get("summary") or "")
+        if new_text and not old_text:
+            stats.summaries_added += 1
+        elif new_text and (
+            new_text != old_text
+            or bool(old_content)
+            or ("content" in info.node)
+        ):
+            stats.summaries_replaced += 1
+        elif not new_text and (old_text or had_fields):
+            stats.summaries_removed += 1
+
+
+def merge_plan(
+    local_root: dict,
+    upstream_root: dict,
+    plan_name: str,
+    *,
+    overrides: (
+        dict[str, dict[tuple[str, ...], SectionRoute]] | None
+    ) = None,
+) -> MergeResult:
+    """Build the desired localized overlay without mutating either input."""
+    if plan_name not in STUDY_PLANS:
+        raise ValueError(f"unsupported study plan: {plan_name}")
+    if not isinstance(local_root, dict) or not isinstance(upstream_root, dict):
+        raise TypeError("study-plan roots must be JSON objects")
+
+    merged = copy.deepcopy(local_root)
+    upstream = copy.deepcopy(upstream_root)
+    stats = MergeStats()
+    local_index = build_tree_index(merged)
+    upstream_index = build_tree_index(upstream)
+
+    merge_problems(
+        plan_name,
+        local_index,
+        upstream_index,
+        stats,
+        overrides,
+    )
+    merge_summaries(
+        plan_name,
+        local_index,
+        upstream_index,
+        stats,
+        overrides,
+    )
+    return MergeResult(data=merged, changed=merged != local_root, stats=stats)
+
+
+def load_upstream(plan_name: str, base_url: str) -> dict:
+    """Load and validate one upstream study-plan file."""
+    url = f"{base_url.rstrip('/')}/{plan_name}.json"
+    try:
+        payload = fetch_json(url)
+    except Exception as exc:  # noqa: BLE001
+        raise SyncLoadError(
+            f"failed to load upstream data from {url}: {exc}"
+        ) from exc
+    if not isinstance(payload, dict):
+        raise SyncLoadError(f"upstream payload from {url} is not an object")
+    return payload
+
+
+def load_local(local_file: Path) -> dict:
+    """Load and validate one local study-plan file."""
+    try:
+        with local_file.open("r", encoding="utf-8") as handle:
+            payload = json.load(handle)
+    except Exception as exc:  # noqa: BLE001
+        raise SyncLoadError(
+            f"failed to load local data from {local_file}: {exc}"
+        ) from exc
+    if not isinstance(payload, dict):
+        raise SyncLoadError(f"local payload in {local_file} is not an object")
+    return payload
+
+
+def write_minified_json(path: Path, payload: dict) -> None:
+    """Write the established minified, unescaped UTF-8 representation."""
+    with path.open("w", encoding="utf-8") as handle:
+        json.dump(payload, handle, ensure_ascii=False, separators=(",", ":"))
+
+
+def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     """Parse CLI arguments."""
     parser = argparse.ArgumentParser(
-        description="Merge upstream study-plan updates into local JSON files"
+        description="Synchronize upstream study plans into the local overlay"
+    )
+    parser.add_argument(
+        "topics",
+        nargs="*",
+        metavar="TOPIC",
+        help="Optional shared study-plan topic(s); defaults to all 12.",
     )
     parser.add_argument(
         "--base-url",
@@ -410,63 +922,134 @@ def parse_args() -> argparse.Namespace:
         default=str(DEFAULT_LOCAL_DIR),
         help="Local study-plan directory to update.",
     )
-    parser.add_argument(
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument(
         "--dry-run",
         action="store_true",
-        help="Preview the merge without writing files.",
+        help="Preview changes without writing; mapping failures still fail.",
     )
-    return parser.parse_args()
+    mode.add_argument(
+        "--check",
+        action="store_true",
+        help="Do not write and exit nonzero if any selected file would change.",
+    )
+    args = parser.parse_args(argv)
+    invalid_topics = [
+        topic for topic in args.topics if topic not in STUDY_PLANS
+    ]
+    if invalid_topics:
+        parser.error(
+            "invalid topic(s): "
+            + ", ".join(invalid_topics)
+            + "; choose from "
+            + ", ".join(STUDY_PLANS)
+        )
+    return args
 
 
-def main() -> int:
-    """Merge upstream study-plan problems and summaries into the local repository."""
-    args = parse_args()
-    local_dir = Path(args.local_dir)
-    total_problems = 0
-    total_summaries = 0
+def selected_topics(topics: Iterable[str]) -> tuple[str, ...]:
+    """Deduplicate selectors while preserving their command-line order."""
+    selected = tuple(dict.fromkeys(topics))
+    return selected or STUDY_PLANS
 
-    for plan_name in STUDY_PLANS:
-        local_file = local_dir / f"{plan_name}.json"
-        if not local_file.exists():
-            print(f"  {plan_name}: local file not found, skipping")
-            continue
 
-        upstream_data = load_upstream(plan_name, args.base_url)
-        if upstream_data is None:
-            continue
-
-        with local_file.open("r", encoding="utf-8") as handle:
-            local_data = json.load(handle)
-
-        before = len(collect_problem_ids(local_data))
-        added = merge_new_problems(local_data, upstream_data)
-        summaries_added = merge_missing_summaries(local_data, upstream_data)
-
-        if added or summaries_added:
-            if not args.dry_run:
-                with local_file.open("w", encoding="utf-8") as handle:
-                    json.dump(local_data, handle, ensure_ascii=False, separators=(",", ":"))
-
-            after = len(collect_problem_ids(local_data))
-            action = "would update" if args.dry_run else "updated"
-            parts = []
-            if added:
-                parts.append(f"+{added} problem(s)")
-            if summaries_added:
-                parts.append(f"+{summaries_added} summary(ies)")
-            detail = ", ".join(parts)
-            print(f"  {plan_name}: {action} {detail}")
-            if added:
-                print(f"    ({before} -> {after} total IDs)")
-            total_problems += added
-            total_summaries += summaries_added
-        else:
-            print(f"  {plan_name}: up to date")
+def print_topic_report(run: TopicRun, preview: bool) -> None:
+    """Print useful per-topic change and failure details."""
+    if run.load_error:
+        print(f"  {run.name}: FAILED ({run.load_error})", file=sys.stderr)
+        return
+    assert run.result is not None
+    result = run.result
+    stats = result.stats
+    if stats.mapping_failures:
+        print(
+            f"  {run.name}: FAILED ({len(stats.mapping_failures)} "
+            "mapping failure(s))",
+            file=sys.stderr,
+        )
+    elif result.changed:
+        action = "would update" if preview else "updated"
+        print(f"  {run.name}: {action}")
+    else:
+        print(f"  {run.name}: up to date")
 
     print(
-        f"Total study-plan changes: "
-        f"+{total_problems} problem(s), +{total_summaries} summary(ies)"
+        "    problems: "
+        f"+{stats.added_problems} added, "
+        f"{stats.refreshed_problems} refreshed, "
+        f"{stats.preserved_local_problems} local-only preserved"
     )
+    print(
+        "    summaries: "
+        f"{stats.summaries_replaced} replaced, "
+        f"{stats.summaries_removed} removed, "
+        f"{stats.summaries_added} added"
+    )
+    for warning in stats.warnings:
+        print(f"    warning: {warning}")
+    for failure in stats.mapping_failures:
+        print(f"    error: {failure}", file=sys.stderr)
+
+
+def main(argv: Sequence[str] | None = None) -> int:
+    """Run the selected sync atomically with respect to validation failures."""
+    args = parse_args(argv)
+    topics = selected_topics(args.topics)
+    local_dir = Path(args.local_dir)
+    runs: list[TopicRun] = []
+
+    for plan_name in topics:
+        local_file = local_dir / f"{plan_name}.json"
+        run = TopicRun(name=plan_name, local_file=local_file)
+        try:
+            local_data = load_local(local_file)
+            upstream_data = load_upstream(plan_name, args.base_url)
+            run.result = merge_plan(local_data, upstream_data, plan_name)
+        except (SyncLoadError, TypeError, ValueError) as exc:
+            run.load_error = str(exc)
+        runs.append(run)
+
+    failed = any(
+        run.load_error
+        or (
+            run.result is not None
+            and bool(run.result.stats.mapping_failures)
+        )
+        for run in runs
+    )
+    preview = args.dry_run or args.check or failed
+
+    # Do not leave a partially updated set when any selected plan failed.
+    if not preview:
+        for run in runs:
+            assert run.result is not None
+            if run.result.changed:
+                write_minified_json(run.local_file, run.result.data)
+
+    for run in runs:
+        print_topic_report(run, preview)
+
+    completed = [run.result for run in runs if run.result is not None]
+    changed_topics = sum(result.changed for result in completed)
+    print(
+        "Totals: "
+        f"{len(runs)} topic(s), "
+        f"{changed_topics} changed, "
+        f"+{sum(result.stats.added_problems for result in completed)} "
+        "problem(s), "
+        f"{sum(result.stats.refreshed_problems for result in completed)} "
+        "refreshed, "
+        f"{sum(result.stats.summaries_replaced for result in completed)} "
+        "summary replacement(s), "
+        f"{sum(result.stats.summaries_removed for result in completed)} "
+        "summary removal(s), "
+        f"{sum(len(result.stats.warnings) for result in completed)} warning(s)"
+    )
+
+    if failed:
+        return 2
+    if args.check and changed_topics:
+        return 1
     return 0
 
 

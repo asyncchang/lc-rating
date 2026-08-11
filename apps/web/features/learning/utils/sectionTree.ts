@@ -88,19 +88,6 @@ export function flattenStudyPlanProblems(
   ];
 }
 
-export function indexTutorialSectionsById(root?: TutorialData.Root) {
-  const map = new Map<number, TutorialData.Section>();
-  if (!root) return map;
-
-  function walk(section: TutorialData.Section) {
-    map.set(section.id, section);
-    section.children?.forEach(walk);
-  }
-
-  root.children.forEach(walk);
-  return map;
-}
-
 export function getTutorialStats(root?: TutorialData.Root): SectionStats {
   if (!root) {
     return { sections: 0, rootSections: 0, documented: 0 };

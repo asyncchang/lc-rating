@@ -16,20 +16,13 @@ export interface Item {
   subsection?: string;
 }
 
-/**
- * Problemset tree: the "what to practice" side of a study plan. Tutorial prose
- * lives in the matching `TutorialData` tree and is joined to sections here by
- * the stable numeric `id`.
- */
+/** Problemset tree: upstream/local summaries stay beside tracked problems. */
 export interface Section {
   id: number;
   title: string;
   src?: string | null;
   isLeaf?: boolean;
-  /**
-   * Optional prose merged in from a learning-path 講義 tree. Present only for
-   * self-authored plans whose 講義 was folded into the 題單 (e.g. 週賽 AK 之路).
-   */
+  /** Upstream summary or prose merged from a self-authored learning path. */
   description?: string;
   summary?: string;
   children?: Section[];
@@ -41,5 +34,7 @@ export interface Root {
   title: string;
   src: string | null;
   last_update: string | null;
+  description?: string;
+  summary?: string;
   children: Section[];
 }

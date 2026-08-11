@@ -14,11 +14,13 @@ from Simplified Chinese to Traditional Chinese.
   - Formats written JSON with Prettier when `pnpm`/`npx` is available, matching
     the current checked-in `public/**/*.json` style.
 - `merge_upstream_to_local.py`
-  - Merges only newly added upstream study-plan problems into the local
-    `apps/web/public/studyplan/*.json` files.
-  - Leaves existing local summaries untouched.
-  - Re-sorts touched sections by `score` in ascending order, with `null`
-    scores first.
+  - Maintains the 12 shared study plans as Traditional-Chinese overlays of
+    `huxulm/lc-rating`.
+  - Matches problems by normalized slug, refreshes upstream metadata and short
+    summaries, and adds new upstream problems to the matching local section.
+  - Preserves stable local section IDs/hierarchy, reviewed corrections,
+    intentional `null` scores, and local-only problems. The seven plans without
+    an upstream counterpart are never touched.
 - `translate_to_traditional.py`
   - Shared translation helpers built on OpenCC.
 
@@ -49,6 +51,26 @@ Dry-run the study-plan merge against local files:
 ```bash
 LC_RATING_UPSTREAM_STUDYPLAN_BASE="file:///absolute/path/to/apps/web/public/studyplan" \
     python merge_upstream_to_local.py --dry-run
+```
+
+Limit a preview to selected plans:
+
+```bash
+python merge_upstream_to_local.py --dry-run graph sliding_window
+```
+
+Verify that a pinned upstream snapshot is already applied:
+
+```bash
+python merge_upstream_to_local.py \
+    --base-url "https://raw.githubusercontent.com/huxulm/lc-rating/<commit>/apps/web/public/studyplan" \
+    --check
+```
+
+Run the overlay unit tests:
+
+```bash
+python -m unittest test_merge_upstream_to_local.py
 ```
 
 ## GitHub Actions

@@ -5,20 +5,17 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { cn } from "@/lib/utils";
-import { StudyPlanData, TutorialData } from "@/types";
+import { StudyPlanData } from "@/types";
 import { ChevronDown } from "lucide-react";
 import React, { useMemo } from "react";
 import { StudyPlanMarkdownContent } from "./MarkdownContent";
 import { ProblemList } from "./ProblemList";
 import { extractImageUrls, stripDuplicateImages } from "./dedupe";
-import { normalizeExampleContainers } from "./normalizeExampleContainers";
 import { sectionAnchor } from "@/utils/sectionAnchor";
 import { countStudyPlanProblems } from "@/features/learning/utils/sectionTree";
 
 interface SectionContainerProps {
   section: StudyPlanData.Section;
-  /** Lookup of tutorial node by shared numeric id, for summary rendering. */
-  tutorialById?: Map<number, TutorialData.Section>;
   level?: number;
   parentImageUrls?: Set<string>;
 }
@@ -26,25 +23,17 @@ interface SectionContainerProps {
 const SectionContainer = React.memo(
   ({
     section,
-    tutorialById,
     level = 0,
     parentImageUrls = new Set(),
   }: SectionContainerProps) => {
     const totalProblems = countStudyPlanProblems(section);
     const childCount = section.children?.length ?? 0;
 
-    // Merged learning paths carry prose on the section itself; 0x3F plans join
-    // it from the lecture tree via `tutorialById`.
-    const tutorial = tutorialById?.get(section.id);
-    const rawSummary = tutorial?.summary ?? section.summary ?? "";
+    const rawSummary = section.summary ?? "";
     const sectionDescription = section.description ?? "";
     const dedupedSummary = useMemo(
       () => stripDuplicateImages(rawSummary, parentImageUrls),
       [rawSummary, parentImageUrls],
-    );
-    const normalizedSummary = useMemo(
-      () => normalizeExampleContainers(dedupedSummary),
-      [dedupedSummary],
     );
 
     // Merge parent + current section images so children won't repeat them either
@@ -112,7 +101,7 @@ const SectionContainer = React.memo(
               <CollapsibleContent>
                 <div className="mt-3 rounded-[1.5rem] border border-border/60 bg-muted/20 p-4 sm:p-5">
                   <StudyPlanMarkdownContent
-                    content={normalizedSummary}
+                    content={dedupedSummary}
                     variant="section"
                   />
                 </div>
@@ -133,7 +122,6 @@ const SectionContainer = React.memo(
                   <SectionContainer
                     key={child.id}
                     section={child}
-                    tutorialById={tutorialById}
                     level={level + 1}
                     parentImageUrls={mergedImageUrls}
                   />
