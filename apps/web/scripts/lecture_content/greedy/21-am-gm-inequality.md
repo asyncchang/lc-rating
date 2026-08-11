@@ -27,17 +27,47 @@ $$\frac{x_1 + \cdots + x_n}{n} \ge \sqrt[n]{x_1 \cdots x_n}$$
 ## C++17 模板
 
 ```cpp
+long long modPow(long long base, long long exponent, long long mod) {
+  long long result = 1 % mod;
+  while (exponent > 0) {
+    if (exponent & 1) {
+      result = static_cast<long long>((__int128)result * base % mod);
+    }
+    base = static_cast<long long>((__int128)base * base % mod);
+    exponent >>= 1;
+  }
+  return result;
+}
+
 // 把 n 拆成 k 個正整數，使乘積最大（盡量平均）。
 long long maxProductSplit(long long n, long long k, long long mod) {
   const long long base = n / k, remainder = n % k;
   // remainder 份是 base + 1，其餘 k - remainder 份是 base
-  return power(base + 1, remainder, mod) * power(base, k - remainder, mod) % mod;
+  return static_cast<long long>(
+      (__int128)modPow(base + 1, remainder, mod) *
+      modPow(base, k - remainder, mod) % mod);
 }
 ```
 
+## 時間與空間複雜度
+
+直接由商與餘數構造，$O(1)$；若需取模冪則為 $O(\log k)$。空間 $O(1)$。
+
 ## 常見錯誤與邊界條件
 
-把「和固定求乘積最大」與「積固定求和最小」搞混（兩者都由 AM-GM 導出但構造不同）；餘數分配錯誤（應有 `n % k` 份多一）；`base` 為 0 時（`k > n`）無法拆成正整數，需特判；取模前先比較大小而失效。
+- 把「和固定求乘積最大」與「積固定求和最小」搞混（兩者都由 AM-GM 導出但構造不同）。
+- 餘數分配錯誤（應有 `n % k` 份多一）。
+- `base` 為 0 時（`k > n`）無法拆成正整數，需特判。
+- 取模前先比較大小而失效。
+
+## 常見變形
+
+固定長度 `L` 的圍欄題要先數清楚「哪些邊真的消耗圍欄」，再套 AM-GM：
+
+- **四邊都要圍的長方形**：`2x + 2y = L`，所以 `x + y = L/2`。面積 `xy` 在 `x = y = L/4` 時最大，答案為 $L^2/16$。
+- **靠牆、只圍三邊**：設平行牆的一邊長 `x`、兩條垂直邊各長 `y`，限制是 `x + 2y = L`。令 `u = x`、`v = 2y`，則 `u + v = L`，而面積 $xy = uv/2$；在 `u = v = L/2` 時最大，所以 `x = L/2`、`y = L/4`，答案為 $L^2/8$。
+
+把三邊靠牆也寫成 $L^2/16$，等於誤把牆那一邊算進圍欄；反過來，四邊情況用 $L^2/8$ 則漏算了一組對邊。
 
 ## 與相似技巧的比較
 
@@ -45,8 +75,7 @@ long long maxProductSplit(long long n, long long k, long long mod) {
 
 ## 本節重點速查
 
-和固定時越平均乘積越大；任兩份相差不超過 1；求最小就走極端；餘數決定有幾份要多一。
-
-## 時間與空間複雜度
-
-直接由商與餘數構造，$O(1)$；若需取模冪則為 $O(\log k)$。空間 $O(1)$。
+- 和固定時越平均乘積越大
+- 任兩份相差不超過 1
+- 求最小就走極端
+- 餘數決定有幾份要多一。

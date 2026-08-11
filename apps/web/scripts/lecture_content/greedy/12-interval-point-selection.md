@@ -43,7 +43,11 @@ int findMinArrowShots(vector<vector<int>>& points) {
 
 ## 常見錯誤與邊界條件
 
-按左端點排序；把點放在左端點（會漏覆蓋後續區間）；區間為閉合時判斷寫成 `>=` 而多放點；`lastPoint` 用 `int` 而輸入含 `INT_MIN`/`INT_MAX` 造成溢位（本題常見陷阱，需 `long long`）；空輸入回傳 0。
+- 按左端點排序。
+- 把點放在左端點（會漏覆蓋後續區間）。
+- 區間為閉合時判斷寫成 `>=` 而多放點。
+- `lastPoint` 用 `int` 而輸入含 `INT_MIN`/`INT_MAX` 造成溢位（本題常見陷阱，需 `long long`）。
+- 空輸入回傳 0。
 
 ## 與相似技巧的比較
 
@@ -51,7 +55,10 @@ int findMinArrowShots(vector<vector<int>>& points) {
 
 ## 本節重點速查
 
-按右端點排序；點放在右端點上；未被覆蓋才放新點；注意端點極值溢位。
+- 按右端點排序
+- 點放在右端點上
+- 未被覆蓋才放新點
+- 注意端點極值溢位。
 
 ## 時間與空間複雜度
 

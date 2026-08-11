@@ -60,7 +60,11 @@ class RandomizedSet {
 
 ## 常見錯誤與邊界條件
 
-刪除後忘記更新被搬到前面那個元素的下標；先 `pop_back` 再更新而讀到已失效的值；洗牌用全域隨機下標造成分布不均；空集合時 `getRandom` 越界；`rand() % n` 有模偏差，應使用 `uniform_int_distribution`。
+- 刪除後忘記更新被搬到前面那個元素的下標。
+- 先 `pop_back` 再更新而讀到已失效的值。
+- 洗牌用全域隨機下標造成分布不均。
+- 空集合時 `getRandom` 越界。
+- `rand() % n` 有模偏差，應使用 `uniform_int_distribution`。
 
 ## 與相似技巧的比較
 
@@ -68,4 +72,7 @@ class RandomizedSet {
 
 ## 本節重點速查
 
-陣列加雜湊表；刪除靠與尾端交換；Fisher-Yates 要從 `[0, i]` 選；蓄水池第 `i` 個以 $1/i$ 取代。
+- 陣列加雜湊表
+- 刪除靠與尾端交換
+- Fisher-Yates 要從 `[0, i]` 選
+- 蓄水池第 `i` 個以 $1/i$ 取代。

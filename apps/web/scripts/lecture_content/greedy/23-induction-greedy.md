@@ -45,7 +45,11 @@ long long minUnreachable(vector<int>& nums) {
 
 ## 常見錯誤與邊界條件
 
-未排序；擴張條件寫成 `x > reach`（漏掉恰好等於 `reach + 1` 的情形）；`reach` 溢位需 `long long`；補數變形中忘記補完後不要前進原陣列指標；空陣列時答案為 1。
+- 未排序。
+- 擴張條件寫成 `x > reach`（漏掉恰好等於 `reach + 1` 的情形）。
+- `reach` 溢位需 `long long`。
+- 補數變形中忘記補完後不要前進原陣列指標。
+- 空陣列時答案為 1。
 
 ## 與相似技巧的比較
 
@@ -53,4 +57,7 @@ long long minUnreachable(vector<int>& nums) {
 
 ## 本節重點速查
 
-先排序；`x <= reach + 1` 才能擴張；斷點就是 `reach + 1`；補數時 `reach` 會翻倍故只需對數次。
+- 先排序
+- `x <= reach + 1` 才能擴張
+- 斷點就是 `reach + 1`
+- 補數時 `reach` 會翻倍故只需對數次。

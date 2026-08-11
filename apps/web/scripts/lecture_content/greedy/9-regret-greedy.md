@@ -54,7 +54,36 @@ int scheduleCourse(vector<vector<int>>& courses) {
 
 ## 常見錯誤與邊界條件
 
-排序關鍵欄位選錯（本題必須按截止日而非時長）；用小根堆而撤銷了最好的選擇；撤銷後忘記同步扣除累積資源；先判斷再加入而非「先加入再撤銷」（後者程式更短且不會漏解）；累積量溢位。
+- 排序關鍵欄位選錯（本題必須按截止日而非時長）。
+- 用小根堆而撤銷了最好的選擇。
+- 撤銷後忘記同步扣除累積資源。
+- 先判斷再加入而非「先加入再撤銷」（後者程式更短且不會漏解）。
+- 累積量溢位。
+
+## 常見變形
+
+[LCP 30 魔塔遊戲](https://leetcode.cn/problems/p0NxJO) 是「前綴一旦違規，就延後目前遇過最傷的一項」的代表。先檢查所有房間總和；若總和為負，即使重排也不可能走完。掃描時把負數房間放進小根堆並累加生命值；只要生命值降到 0 以下，就彈出堆頂（數值最小、傷害最大的房間）並把它移到序列尾端：
+
+```cpp
+int magicTower(vector<int>& nums) {
+  if (accumulate(nums.begin(), nums.end(), 0LL) < 0) { return -1; }
+  priority_queue<int, vector<int>, greater<int>> negative;
+  long long hp = 1;
+  int moved = 0;
+  for (int x : nums) {
+    hp += x;
+    if (x < 0) { negative.push(x); }
+    if (hp <= 0) {
+      hp -= negative.top();  // 撤銷目前最傷的房間，延後到最後
+      negative.pop();
+      ++moved;
+    }
+  }
+  return moved;
+}
+```
+
+不變量是：處理完目前前綴後，已延後 `moved` 間房的方案保持生命值為正，且在延後相同房間數的方案中，保留的前綴生命值最大。違規時延後最負的房間，回補生命最多，因此最不會傷害後續；總和非負則保證延後房間最後仍能走完。
 
 ## 與相似技巧的比較
 
@@ -62,4 +91,7 @@ int scheduleCourse(vector<vector<int>>& courses) {
 
 ## 本節重點速查
 
-先全拿再撤銷；堆頂放最容易撤銷者；排序欄位決定可行性判據；撤銷時記得同步扣資源。
+- 先全拿再撤銷
+- 堆頂放最容易撤銷者
+- 排序欄位決定可行性判據
+- 撤銷時記得同步扣資源。

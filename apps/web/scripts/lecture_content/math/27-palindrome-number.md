@@ -14,10 +14,6 @@
 
 生成迴文的完備性：長度為 `L` 的迴文由它的前 $\lceil L/2 \rceil$ 位唯一決定——後半段是前半段的鏡射，沒有自由度。因此枚舉所有可能的前半段，就恰好不重不漏地生成所有該長度的迴文。這把「檢查 $10^L$ 個數」降為「生成 $10^{L/2}$ 個數」，是平方級的縮減。
 
-## 時間與空間複雜度
-
-判斷為 $O(\log_{10} x)$ 時間、$O(1)$ 空間（不需轉字串）。生成不超過 `n` 的所有迴文為 $O(\sqrt{n})$，因為只枚舉一半的位數。
-
 ## C++17 模板
 
 ```cpp
@@ -43,9 +39,60 @@ long long buildPalindrome(long long half, bool odd) {
 }
 ```
 
+需要**由小到大**列舉且受上界限制時，按「1 位、2 位、3 位、4 位……」生成；同一長度內前半段遞增，完整迴文也遞增。以下版本在每次乘 10 前檢查 `limit`，不會先溢位再比較：
+
+```cpp
+bool buildBounded(long long half, bool odd, long long limit, long long& value) {
+  value = half;
+  long long tail = odd ? half / 10 : half;
+  while (tail > 0) {
+    const int digit = tail % 10;
+    if (value > (limit - digit) / 10) { return false; }
+    value = value * 10 + digit;
+    tail /= 10;
+  }
+  return value <= limit;
+}
+
+vector<long long> palindromesUpTo(long long limit) {
+  vector<long long> result;
+  if (limit < 1) { return result; }
+
+  for (long long base = 1;;) {
+    // base=1 產生 1 位、2 位；base=10 產生 3 位、4 位；依此類推。
+    const long long decadeEnd =
+        base > LLONG_MAX / 10 ? LLONG_MAX : base * 10 - 1;
+    for (long long half = base; half <= limit && half <= decadeEnd; ++half) {
+      long long value;
+      if (!buildBounded(half, true, limit, value)) { break; }
+      result.push_back(value);
+    }
+    for (long long half = base; half <= limit && half <= decadeEnd; ++half) {
+      long long value;
+      if (!buildBounded(half, false, limit, value)) { break; }
+      result.push_back(value);
+    }
+    if (base > limit / 10 || base > LLONG_MAX / 10) { break; }
+    base *= 10;
+  }
+  return result;
+}
+```
+
+外層每輪先產生奇數長度，再產生下一個偶數長度，例如 `1..9`、`11..99`、`101..999`，所以輸出全域有序。`base > limit / 10` 與 `base > LLONG_MAX / 10` 同時限制下一輪的題目上界與型別上界。
+
+## 時間與空間複雜度
+
+判斷為 $O(\log_{10} x)$ 時間、$O(1)$ 空間。若上界為 `N`，候選前半段約有 $O(\sqrt N)$ 個；鏡射每個候選需 $O(\log N)$ 位元操作，因此嚴格寫成 $O(\sqrt N\log N)$ 時間，若把 64 位整數位數視為常數則常簡記為 $O(\sqrt N)$。回傳完整列表需 $O(\sqrt N)$ 輸出空間；串流逐個處理可用 $O(1)$ 額外空間。
+
 ## 常見錯誤與邊界條件
 
-負數應直接判否（負號不對稱）；末位為 0 而本身非 0 的數不可能是迴文（首位不會是 0）；奇數長度時忘記 `rev / 10` 去掉中間位；生成時奇偶兩種長度只做一種而漏解；鏡射結果溢位需用 `long long`。
+- 負數應直接判否（負號不對稱）。
+- 末位為 0 而本身非 0 的數不可能是迴文（首位不會是 0）。
+- 奇數長度時忘記 `rev / 10` 去掉中間位。
+- 生成時奇偶兩種長度只做一種而漏解。
+- 先做 `value * 10 + digit` 再檢查會在比較前就溢位。
+- 把所有奇數長度全部生成完才生成偶數長度，輸出不會全域有序。
 
 ## 與相似技巧的比較
 
@@ -53,4 +100,7 @@ long long buildPalindrome(long long half, bool odd) {
 
 ## 本節重點速查
 
-只反轉一半，條件是 `x > rev`；奇數位比 `rev / 10`；負數與尾零直接否；大範圍要用生成而非枚舉。
+- 只反轉一半，條件是 `x > rev`
+- 奇數位比 `rev / 10`
+- 負數與尾零直接否
+- 大範圍要用生成而非枚舉。

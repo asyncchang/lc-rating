@@ -38,7 +38,10 @@ int trailingZeroes(int n) { return static_cast<int>(legendre(n, 5)); }
 
 ## 常見錯誤與邊界條件
 
-直接計算 `p^k` 而溢位（改用 `n /= p` 迭代）；末尾零去數 2 的指數而非 5；把公式誤記成 $\lfloor n/p \rfloor$ 單一項，漏掉高次冪的貢獻（`n = 25` 時會少算）；`n = 0` 時 `0! = 1`，答案為 0，迴圈自然處理。
+- 直接計算 `p^k` 而溢位（改用 `n /= p` 迭代）。
+- 末尾零去數 2 的指數而非 5。
+- 把公式誤記成 $\lfloor n/p \rfloor$ 單一項，漏掉高次冪的貢獻（`n = 25` 時會少算）。
+- `n = 0` 時 `0! = 1`，答案為 0，迴圈自然處理。
 
 ## 與相似技巧的比較
 
@@ -46,4 +49,7 @@ int trailingZeroes(int n) { return static_cast<int>(legendre(n, 5)); }
 
 ## 本節重點速查
 
-逐層累加 $\lfloor n/p^k \rfloor$；用 `n /= p` 迭代防溢位；末尾零看 5 不看 2；每個數在前 `e` 層各被數一次。
+- 逐層累加 $\lfloor n/p^k \rfloor$
+- 用 `n /= p` 迭代防溢位
+- 末尾零看 5 不看 2
+- 每個數在前 `e` 層各被數一次。

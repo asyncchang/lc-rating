@@ -50,7 +50,11 @@ long long countDivisibleByAny(long long n, const vector<long long>& nums) {
 
 ## 常見錯誤與邊界條件
 
-符號取反（奇數個集合應為加）；LCM 在計算中溢位，需在超過 `n` 時提前中斷；忘記排除空集合（`mask` 從 1 開始）；條件數過多時 $2^m$ 爆炸，需改用其他方法；交集的計算方式與題意不符。
+- 符號取反（奇數個集合應為加）。
+- LCM 在計算中溢位，需在超過 `n` 時提前中斷。
+- 忘記排除空集合（`mask` 從 1 開始）。
+- 條件數過多時 $2^m$ 爆炸，需改用其他方法。
+- 交集的計算方式與題意不符。
 
 ## 與相似技巧的比較
 
@@ -58,4 +62,7 @@ long long countDivisibleByAny(long long n, const vector<long long>& nums) {
 
 ## 本節重點速查
 
-奇加偶減；每個元素恰被計一次由 $(1-1)^t = 0$ 保證；`mask` 從 1 開始；LCM 超過上界就提前剪枝。
+- 奇加偶減
+- 每個元素恰被計一次由 $(1-1)^t = 0$ 保證
+- `mask` 從 1 開始
+- LCM 超過上界就提前剪枝。
