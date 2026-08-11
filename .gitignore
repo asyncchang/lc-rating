@@ -40,6 +40,9 @@ yarn-error.log*
 # turbo
 .turbo
 
+# local agent tool state
+.codex/
+
 # ui
 dist/
 backend/.wrangler.generated.toml

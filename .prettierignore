@@ -1,0 +1,16 @@
+node_modules
+.next
+.turbo
+build
+dist
+out
+
+# Minified study-plan data: `format:data` owns these, and reflowing them would
+# explode the diffs that `merge_upstream_to_local.py` keeps minimal.
+apps/web/public/studyplan
+
+# 講義 Markdown authoring source. Prettier normalizes `*emphasis*` to
+# `_emphasis_` and then escapes underscores, which silently rewrites the KaTeX
+# in these files: `$P_i = (P_{i-1} + 1)$` becomes `$P*i = (P*{i-1} + 1)$`.
+# The math is the content here, so these stay hand-formatted.
+apps/web/scripts/lecture_content

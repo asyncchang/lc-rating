@@ -3,9 +3,9 @@
 ## Project Structure & Module Organization
 
 - `apps/web/` is the main Next.js 16 app (App Router). UI lives in `components/`, feature modules in `features/`, shared hooks in `hooks/`, derived data in `data/`, and utilities in `utils/`/`lib/`.
-- `apps/web/public/` contains static data used at runtime (for example `problemset/`, `studyplan/`, and `tutorial/`).
+- `apps/web/public/` contains static data used at runtime (for example `problemset/` and `studyplan/`).
 - `apps/web/lc-parser/` holds the TypeScript HTML→Markdown parser; `apps/web/lc-maker/` holds Python sync/translation scripts.
-- `scripts/` holds Python study-plan generation/update scripts.
+- `apps/web/scripts/` holds the 講義 authoring and validation tooling, plus the Markdown authoring source under `lecture_content/`.
 - `packages/` holds shared configs and UI primitives (`eslint-config/`, `tailwind-config/`, `typescript-config/`, `ui/`).
 
 ## Build, Test, and Development Commands
@@ -17,7 +17,10 @@ Run from repo root unless noted.
 - `pnpm build` builds all packages/apps with Turbo.
 - `pnpm lint` runs ESLint in the workspace.
 - `pnpm check-types` runs Next type generation and `tsc --noEmit`.
-- `pnpm format` formats `*.ts`, `*.tsx`, and `*.md` with Prettier.
+- `pnpm format` formats `*.ts`, `*.tsx`, and `*.md` with Prettier. `.prettierignore`
+  keeps it away from `scripts/lecture_content/` and `public/studyplan/`: Prettier
+  rewrites `*emphasis*` to `_emphasis_` and then escapes underscores, which turns
+  `$P_i = (P_{i-1} + 1)$` into `$P*i = (P*{i-1} + 1)$` and silently breaks the KaTeX.
 
 ## 講義課節骨架（與 competitive-programming-handbook 對齊）
 
@@ -33,16 +36,17 @@ Run from repo root unless noted.
 6. `## 逐步演算法`
 7. `## C++17 模板`
 8. `## 時間與空間複雜度` — 含推導理由（例如均攤為何成立），不只給結果。
-9. `## 常見錯誤與邊界條件`
+9. `## 常見錯誤與邊界條件` — 一個坑一個 bullet。不要用「；」把多個坑串成一段。
 10. `## 與相似技巧的比較` — 和鄰近技巧的取捨。
 11. `## 例題與分級練習`
-12. `## 本節重點速查` — 一段話收尾，只留帶得走的東西。
+12. `## 本節重點速查` — 用精簡 Markdown bullet list 收尾；每點只放一個可帶走的不變量、前提、複雜度或實作警告。
 
 lc-rating 另有三個 handbook 沒有的標題，位置固定：`## 程式碼拆解`（緊接在 C++17 模板之後）、`## 常見變形`（常見錯誤與邊界條件之後）、`## 代表例題`（例題與分級練習之前）。
 
 工具（在 `apps/web/` 下執行）：
 
-- `npx tsx scripts/validateLectureSkeleton.mjs` — 回報各主題完成度。加 `--strict` 會在標題缺漏或順序錯誤時失敗；可接主題名稱只看單一主題。
+- `npx tsx scripts/validateLectureSkeleton.mjs` — 回報各主題完成度。加 `--strict` 會在標題缺漏、順序錯誤、Markdown-backed 課節仍是自由散文、重點速查不是 bullet list，或常見錯誤用「；」串成長段時失敗；可接主題名稱只看單一主題。
+- `npx tsx scripts/validateContentFormatting.mjs` — 檢查所有講義、題單與 Markdown authoring source 的 KaTeX、數學分隔符與 code fence。
 - `npx tsx scripts/applyLectureSections.mjs additions.json` — 套用撰寫好的小節並強制標題順序。JSON 格式是 `{ 主題: { 小節標題: { 標題: markdown } } }`。不帶參數則只重新排序。
 - `scripts/lectureSkeleton.mjs` — 標題清單與順序的單一事實來源。
 
@@ -59,7 +63,8 @@ lc-rating 另有三個 handbook 沒有的標題，位置固定：`## 程式碼�
 
 - There is no general test suite; rely on `pnpm lint` and `pnpm check-types` for CI safety.
 - A parser test exists: `pnpm --filter web test` (uses `apps/web/lc-parser/`).
-- If you add automated tests, document how to run them in this file.
+- `pnpm --filter web test:unit` runs the TypeScript unit tests.
+- `cd apps/web/lc-maker && python -m unittest test_merge_upstream_to_local.py` runs the study-plan overlay tests.
 
 ## 題單小節導讀（`public/studyplan/*.json`）
 
@@ -71,35 +76,24 @@ This is a **separate surface** from the 講義 above. Do not confuse the two:
   leaf section's `summary` is the prose shown above that section's problem
   table, rendered by `HandbookSectionBody`.
 
-Most 題單 summaries are short upstream blurbs from 靈茶山艾府's discuss posts.
-`graph` and `sliding_window` instead carry full lecture-style prose using the
-same headings as the 講義 skeleton, minus `## 例題與分級練習` — the 題單 page
-already renders the section's `problems` array as an interactive list right
-below, so a written practice section would duplicate it. When editing these two
-topics, keep that shape; when editing other topics, leave the upstream blurbs
-alone unless asked.
+The 12 plans shared with `huxulm/lc-rating` are localized overlays: upstream
+owns problem membership, mutable problem metadata, and short summaries; this
+fork preserves Traditional Chinese, stable numeric section IDs/hierarchy,
+reviewed corrections, and local-only problems. Full teaching prose belongs in
+the TypeScript lectures, including `graph` and `sliding_window`.
 
-Content rules for these lecture-style summaries:
+Do not hand-edit the 12 shared JSON files. Synchronize them through
+`apps/web/lc-maker/merge_upstream_to_local.py`; use `--dry-run` to preview and
+`--check` to verify idempotence. The seven plans with no upstream counterpart
+(`weekly_contest`, `rating_2100`, `q3_handbook`, `q4_handbook`,
+`technical_interview`, `interview_sprint`, and `sorting`) remain local-owned.
 
-- `## 不變量或正確性證明` must state an actual invariant and argue why it holds,
-  naming the precondition it depends on (non-negative weights, acyclicity, …).
-- Templates are C++17, not Python. `## 本節重點速查` is one line of recall cues.
+Content rules:
+
 - Inline math uses `$…$` (KaTeX runs with `nonStandard: true`).
 - A markdown table only becomes an interactive problem list when its header has
   both an ID column (`ID`/`LC ID`/`題號`) and a title column
   (`Problem`/`Title`/`題目`/`題名`); other tables render as plain tables.
-
-Authoring workflow — written as markdown, never hand-edited into the JSON:
-
-1. Write `apps/web/scripts/lecture_content/<topic>/<n>-<slug>.md`, where `<n>`
-   is the leading number of the target section title (`17.1` for
-   `17.1 網路流`).
-2. `python3 apps/web/scripts/apply_lectures.py <topic>` copies each file into
-   the matching section's `summary`, preserving the minified UTF-8 format so
-   diffs stay limited to changed fields. `--check` reports without writing.
-3. `python3 apps/web/scripts/check_lecture_style.py <topic> --verbose` reports
-   which sections still lack which headings; `--strict` exits non-zero when a
-   topic is not fully aligned.
 
 ## Commit & Pull Request Guidelines
 
