@@ -47,10 +47,17 @@ export const TOPICS = [
   "trees",
 ];
 
-const CONTENT_DIR = new URL(
-  "../features/lecture/content/",
-  import.meta.url,
-).pathname;
+const CONTENT_DIR = new URL("../features/lecture/content/", import.meta.url)
+  .pathname;
+
+/** Markdown authoring source: `lecture_content/<topic>/<n>-<slug>.md`. */
+export const MARKDOWN_ROOT = new URL("./lecture_content/", import.meta.url)
+  .pathname;
+
+/** Leading section number: "17.1 網路流" -> "17.1", "9-layered.md" -> "9". */
+export function leadingNumber(text) {
+  return text.match(/^\s*(\d+(?:\.\d+)*)[-.、]?\s*/)?.[1] ?? null;
+}
 
 export async function loadTopic(topic) {
   const loaded = await import(`${CONTENT_DIR}${topic}.ts`);
@@ -58,7 +65,11 @@ export async function loadTopic(topic) {
     ([, value]) => value && typeof value === "object" && "children" in value,
   );
   if (!entry) throw new Error(`${topic}: no exported lecture root`);
-  return { exportName: entry[0], root: entry[1], path: `${CONTENT_DIR}${topic}.ts` };
+  return {
+    exportName: entry[0],
+    root: entry[1],
+    path: `${CONTENT_DIR}${topic}.ts`,
+  };
 }
 
 /** Every node carrying a summary, depth-first, with its path of titles. */
@@ -103,7 +114,10 @@ export function renderSkeleton({ preamble, sections }) {
   const ordered = [...sections.keys()].sort((a, b) => {
     const ai = SECTION_ORDER.indexOf(a);
     const bi = SECTION_ORDER.indexOf(b);
-    return (ai === -1 ? Number.MAX_SAFE_INTEGER : ai) - (bi === -1 ? Number.MAX_SAFE_INTEGER : bi);
+    return (
+      (ai === -1 ? Number.MAX_SAFE_INTEGER : ai) -
+      (bi === -1 ? Number.MAX_SAFE_INTEGER : bi)
+    );
   });
 
   for (const heading of ordered) {

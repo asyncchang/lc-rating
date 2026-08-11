@@ -7,8 +7,7 @@ on:
   workflow_dispatch:
 
   workflow_run:
-    workflows:
-      ["StudyPlan Updater", "Upstream Data Sync"]
+    workflows: ["StudyPlan Updater", "Upstream Data Sync"]
     types:
       - completed
 
@@ -39,6 +38,9 @@ jobs:
           node-version: 24
       - run: npm install -g pnpm
       - run: pnpm install
+      - run: pnpm --filter web test:unit
+      - run: pnpm --filter web validate:content
+      - run: pnpm --filter web exec tsx scripts/validateLectureSkeleton.mjs --strict
       - run: pnpm run build
       - run: touch build/apps/web/.nojekyll
       - name: Upload artifact

@@ -11,6 +11,7 @@ import markedKatex from "marked-katex-extension";
 import { Marked } from "marked";
 import { markedHighlight } from "marked-highlight";
 import React, { useEffect, useMemo, useRef } from "react";
+import { normalizeInlineMath } from "./markdownMath";
 import { normalizeMarkdownCodeBlockIndentation } from "./normalizeCodeBlockIndentation";
 import { normalizeExampleContainers } from "./normalizeExampleContainers";
 
@@ -127,117 +128,6 @@ function findMatchingParen(text: string, openParenIndex: number) {
   }
 
   return -1;
-}
-
-// Greek letters used in asymptotic notation (e.g. `O(α(n))`, `Θ(n)`) mapped to
-// their LaTeX commands so KaTeX renders them as real symbols.
-const GREEK_TO_LATEX: Record<string, string> = {
-  α: "\\alpha",
-  β: "\\beta",
-  γ: "\\gamma",
-  δ: "\\delta",
-  ε: "\\epsilon",
-  ζ: "\\zeta",
-  η: "\\eta",
-  θ: "\\theta",
-  λ: "\\lambda",
-  μ: "\\mu",
-  π: "\\pi",
-  ρ: "\\rho",
-  σ: "\\sigma",
-  τ: "\\tau",
-  φ: "\\phi",
-  χ: "\\chi",
-  ψ: "\\psi",
-  ω: "\\omega",
-  Γ: "\\Gamma",
-  Δ: "\\Delta",
-  Θ: "\\Theta",
-  Λ: "\\Lambda",
-  Σ: "\\Sigma",
-  Φ: "\\Phi",
-  Ω: "\\Omega",
-};
-
-// Convert backtick-wrapped complexity expressions (e.g. `O(n log n)`,
-// `O(2^{n/2})`, `O(α(n))`) into KaTeX inline math so symbols and superscripts
-// render properly. Gating is structural — the span must look like asymptotic
-// notation, e.g. O(...), Θ(...), Ω(...) — rather than relying on a character
-// allow-list (which silently dropped valid math such as Greek letters). Spans
-// describing things in CJK (e.g. `O(不同前綴狀態數)`) are intentionally left as
-// inline code, and any expression KaTeX cannot parse falls back gracefully
-// because the renderer is configured with `throwOnError: false`.
-function complexityToKatex(text: string) {
-  return text.replace(/`([^`\n]+)`/g, (match, inner: string) => {
-    const expr = inner.trim();
-    if (!/^[OΘΩ]\(.+\)$/.test(expr)) return match;
-    if (/[\u3400-\u9fff\uf900-\ufaff]/.test(expr)) return match;
-    const latex = expr
-      // Accept every spelling of the radicand — `sqrt(n)`, `sqrt{n}`, and the
-      // bare `sqrt n` (the space-separated form used alongside `O(n log n)`).
-      // Without the bare case, KaTeX rendered the literal letters s·q·r·t·n,
-      // i.e. the "O(sqrtn)" glitch. The `(?<!\\)` guard stops a later rule from
-      // re-matching an already-converted `\sqrt{…}` (the paren form produces
-      // `\sqrt{n}`, which the brace rule would otherwise turn into `\\sqrt{n}` —
-      // KaTeX reads `\\` as a line break and renders the radicand as literal
-      // letters, the "O(⏎sqrtn)" glitch).
-      .replace(/(?<!\\)\bsqrt\s*\(\s*([^()]*?)\s*\)/g, "\\sqrt{$1}")
-      .replace(/(?<!\\)\bsqrt\s*\{\s*([^{}]*?)\s*\}/g, "\\sqrt{$1}")
-      .replace(/(?<!\\)\bsqrt\s+([A-Za-z0-9]+)/g, "\\sqrt{$1}")
-      .replace(/\blog\b/g, "\\log")
-      // Map bare min/max operators to their LaTeX commands so KaTeX renders
-      // them upright instead of as the italic letters m\u00b7i\u00b7n / m\u00b7a\u00b7x (the same
-      // glitch class as the `sqrt`/`log` cases above).
-      .replace(/\bmin\b/g, "\\min")
-      .replace(/\bmax\b/g, "\\max")
-      // Brace multi-letter snake_case runs so authors don't have to. Without
-      // this, `count_cost` renders as `count` with a stray single-char
-      // subscript (count_c \u00b7 ost); a bare `number_of_ones` would even trip
-      // KaTeX's "double subscript" error. We turn the first underscore into a
-      // real subscript covering the whole trailing run and escape any further
-      // underscores inside it. Single-letter subscripts (`a_i`, `n_2`) already
-      // render correctly and are intentionally left alone.
-      .replace(
-        /([A-Za-z][A-Za-z0-9]*)_([A-Za-z0-9]{2,}(?:_[A-Za-z0-9]+)*)/g,
-        (_m, base: string, run: string) =>
-          `${base}_{${run.replace(/_/g, "\\_")}}`,
-      )
-      .replace(/[\u0370-\u03ff]/g, (g) => GREEK_TO_LATEX[g] ?? g)
-      .replace(/\s*\*\s*/g, " \\cdot ");
-    return `$${latex}$`;
-  });
-}
-
-function normalizeInlineMath(md: string) {
-  return md
-    .split(/(```[\s\S]*?```)/g)
-    .map((segment) => {
-      if (segment.startsWith("```")) {
-        return segment;
-      }
-
-      // Some study plan content wraps KaTeX inline math in backticks by mistake.
-      return complexityToKatex(segment)
-        .replace(/`(\${1,2}[^`\n]+?\${1,2})`/g, "$1")
-        .replace(/(^|[^$])\$([^$\n]+)\$(?!\$)/g, (match, prefix, math) => {
-          if (shouldRenderAsPlainText(math)) {
-            return `${prefix}${math}`;
-          }
-
-          return match;
-        });
-    })
-    .join("");
-}
-
-function shouldRenderAsPlainText(math: string) {
-  const normalized = math.trim();
-
-  if (/[\u3400-\u9fff]/.test(normalized)) {
-    return true;
-  }
-
-  return /^\([A-Za-z_][\w\s,]*\)$/.test(normalized);
 }
 
 function createMarkup(md: string) {

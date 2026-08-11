@@ -14,18 +14,13 @@
  */
 import { readFileSync, readdirSync } from "node:fs";
 import {
+  MARKDOWN_ROOT,
   REQUIRED_HEADINGS,
   eachSection,
+  leadingNumber,
   loadTopic,
   parseSkeleton,
 } from "./lectureSkeleton.mjs";
-
-const CONTENT_DIR = new URL("./lecture_content/", import.meta.url).pathname;
-
-/** Leading section number: "17.1 網路流" -> "17.1", "9-layered.md" -> "9". */
-function leadingNumber(text) {
-  return text.match(/^\s*(\d+(?:\.\d+)*)[-.、]?\s*/)?.[1] ?? null;
-}
 
 const topics = process.argv.slice(2);
 if (topics.length === 0) {
@@ -38,13 +33,13 @@ const notes = [];
 
 for (const topic of topics) {
   const byNumber = new Map();
-  for (const file of readdirSync(`${CONTENT_DIR}${topic}`)) {
+  for (const file of readdirSync(`${MARKDOWN_ROOT}${topic}`)) {
     if (!file.endsWith(".md")) continue;
     const number = leadingNumber(file);
     if (!number) continue;
     byNumber.set(
       number,
-      parseSkeleton(readFileSync(`${CONTENT_DIR}${topic}/${file}`, "utf8")),
+      parseSkeleton(readFileSync(`${MARKDOWN_ROOT}${topic}/${file}`, "utf8")),
     );
   }
 
@@ -54,11 +49,13 @@ for (const topic of topics) {
 
   eachSection(root, (node) => {
     const parsed = parseSkeleton(node.summary);
-    // Skip 自由散文 nodes (topic intros); they carry no skeleton by design.
-    if (parsed.sections.size === 0) return;
-
     const number = leadingNumber(node.title);
     const authored = number ? byNumber.get(number) : undefined;
+    // Topic intros and other free prose have no authored lesson. A numbered
+    // Markdown-backed leaf is different: treat it as a lesson even when its
+    // runtime summary currently has no H2 headings, otherwise a migration gap
+    // such as graph 17.1 is silently skipped.
+    if (parsed.sections.size === 0 && !authored) return;
     if (!authored) {
       notes.push(`${topic}: no markdown for "${node.title}"`);
       return;
@@ -70,7 +67,10 @@ for (const topic of topics) {
       if (parsed.sections.has(heading)) continue; // keep existing prose
       const body = authored.sections.get(heading);
       if (body) fill[heading] = body;
-      else notes.push(`${topic}: "${node.title}" needs ${heading}, markdown has none`);
+      else
+        notes.push(
+          `${topic}: "${node.title}" needs ${heading}, markdown has none`,
+        );
     }
     if (Object.keys(fill).length > 0) topicAdditions[node.title] = fill;
   });
