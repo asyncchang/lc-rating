@@ -63,6 +63,11 @@ const navLinks: {
     label: ROUTERS.handbook.title,
     match: "/handbook",
   },
+  {
+    href: ROUTERS.account.href,
+    label: ROUTERS.account.title,
+    match: "/account",
+  },
 ];
 
 const Navigator = React.memo(() => {

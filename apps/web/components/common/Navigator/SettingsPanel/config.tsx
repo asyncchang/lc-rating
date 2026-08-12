@@ -1,8 +1,5 @@
-import { BarChart3, History, List, RefreshCw, Wrench } from "lucide-react";
+import { List, Wrench } from "lucide-react";
 import CustomizeOptions from "./settingPages/CustomizeOption";
-import ProgressOverview from "./settingPages/ProgressOverview";
-import RecentSubmissions from "./settingPages/RecentSubmissions";
-import SyncStorage from "./settingPages/SyncStorage";
 import { lazy } from "react";
 
 const Troubleshooting = lazy(() => import("./settingPages/Troubleshooting"));
@@ -16,28 +13,10 @@ export type SettingTabType = {
 
 export const settingTabs: SettingTabType[] = [
   {
-    key: "SyncProgress",
-    title: "帳號與同步",
-    icon: <RefreshCw />,
-    component: <SyncStorage />,
-  },
-  {
     key: "CustomizeOptions",
     title: "自訂進度選項",
     icon: <List />,
     component: <CustomizeOptions />,
-  },
-  {
-    key: "ProgressOverview",
-    title: "進度總覽",
-    icon: <BarChart3 />,
-    component: <ProgressOverview />,
-  },
-  {
-    key: "RecentSubmissions",
-    title: "最近紀錄",
-    icon: <History />,
-    component: <RecentSubmissions />,
   },
   {
     key: "Troubleshooting",
