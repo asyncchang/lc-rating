@@ -15,11 +15,7 @@ import {
   type ReadingWidth,
   type TextSize,
 } from "@/hooks/useGlobalSettings";
-import {
-  isThemePreference,
-  type Language,
-  type ThemePreference,
-} from "@/types/siteStorage";
+import { isThemePreference, type ThemePreference } from "@/types/siteStorage";
 
 const themeOptions: { value: ThemePreference; label: string }[] = [
   { value: "system", label: "系統" },
@@ -37,11 +33,6 @@ const readingWidthOptions: { value: ReadingWidth; label: string }[] = [
   { value: "standard", label: "標準" },
   { value: "wide", label: "寬" },
   { value: "full", label: "全寬" },
-];
-
-const languageOptions: { value: Language; label: string }[] = [
-  { value: "zh", label: "中文" },
-  { value: "en", label: "英文" },
 ];
 
 interface SegmentedRowProps<T extends string> {
@@ -88,16 +79,8 @@ function SegmentedRow<T extends string>({
 export function AppearanceMenu() {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
-  const {
-    textSize,
-    setTextSize,
-    readingWidth,
-    setReadingWidth,
-    linkLanguage,
-    setLinkLanguage,
-    tagLanguage,
-    setTagLanguage,
-  } = useGlobalSettingsStore();
+  const { textSize, setTextSize, readingWidth, setReadingWidth } =
+    useGlobalSettingsStore();
 
   useEffect(() => {
     setMounted(true);
@@ -134,18 +117,6 @@ export function AppearanceMenu() {
           value={mounted ? readingWidth : undefined}
           options={readingWidthOptions}
           onChange={setReadingWidth}
-        />
-        <SegmentedRow
-          label="超連結語言"
-          value={mounted ? linkLanguage : undefined}
-          options={languageOptions}
-          onChange={setLinkLanguage}
-        />
-        <SegmentedRow
-          label="標籤語言"
-          value={mounted ? tagLanguage : undefined}
-          options={languageOptions}
-          onChange={setTagLanguage}
         />
       </PopoverContent>
     </Popover>
