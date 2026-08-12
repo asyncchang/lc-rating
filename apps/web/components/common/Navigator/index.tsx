@@ -1,7 +1,17 @@
 "use client";
 
 import { BILIBILI_0X3F_SPACE, ROUTERS, STUDYPLANS } from "@/config/constants";
-import { Code2, Menu, X } from "lucide-react";
+import {
+  BookOpen,
+  CircleUser,
+  Code2,
+  GraduationCap,
+  Library,
+  ListChecks,
+  Menu,
+  Trophy,
+  X,
+} from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -42,31 +52,37 @@ const navLinks: {
     href: ROUTERS.contest.href,
     label: ROUTERS.contest.title,
     match: "/contest",
+    icon: Trophy,
   },
   {
     href: ROUTERS.problemset.href,
     label: ROUTERS.problemset.title,
     match: "/problemset",
+    icon: Library,
   },
   {
     href: ROUTERS.studyPlans.href,
     label: ROUTERS.studyPlans.title,
     match: "/studyplan",
+    icon: ListChecks,
   },
   {
     href: ROUTERS.tutorials.href,
     label: ROUTERS.tutorials.title,
     match: "/lecture",
+    icon: GraduationCap,
   },
   {
     href: ROUTERS.handbook.href,
     label: ROUTERS.handbook.title,
     match: "/handbook",
+    icon: BookOpen,
   },
   {
     href: ROUTERS.account.href,
     label: ROUTERS.account.title,
     match: "/account",
+    icon: CircleUser,
   },
 ];
 
