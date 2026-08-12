@@ -727,6 +727,31 @@ def section_summary(node: dict) -> str:
     return str(value) if value else ""
 
 
+# Upstream summaries carry two systematic artifacts we drop on every sync: a
+# leetcode SEO "banner" image whose alt text is keyword spam (and whose host is
+# unreachable from many networks, so it renders as broken alt text), and a
+# trailing "…模板…：" label left dangling because upstream removes the code
+# block it introduced. The actual templates live in the standalone lecture that
+# each plan already links to, so the dangling label is only a broken promise.
+_BANNER_IMAGE_RE = re.compile(r"!\[[^\]]*(?:題單|题单)[^\]]*\]\([^)]*\)\n*")
+_BANNER_IMG_TAG_RE = re.compile(r"<img\b[^>]*(?:題單|题单)[^>]*>\n*")
+_DANGLING_TEMPLATE_RE = re.compile(r"\n*[^\n]*模板[^\n]*[：:]\s*\Z")
+
+
+def sanitize_summary(text: str) -> str:
+    """Strip upstream keyword-spam banners and dangling template labels."""
+    if not text:
+        return text
+    cleaned = _BANNER_IMAGE_RE.sub("", text)
+    cleaned = _BANNER_IMG_TAG_RE.sub("", cleaned)
+    cleaned = _DANGLING_TEMPLATE_RE.sub("", cleaned)
+    if cleaned == text:
+        # Preserve untouched prose byte-for-byte; only normalize whitespace
+        # around content we actually removed.
+        return text
+    return cleaned.strip()
+
+
 def is_pure_navigation_node(info: NodeInfo) -> bool:
     """Return whether a slugless section is only cross-reference navigation."""
     if info.descendant_slugs:
@@ -768,7 +793,9 @@ def merge_summaries(
     pending: dict[int, list[str]] = {}
 
     def add_summary(target: NodeInfo, text: str) -> None:
-        translated = translate_text(text)
+        translated = sanitize_summary(translate_text(text))
+        if not translated:
+            return
         values = pending.setdefault(id(target.node), [])
         if translated not in values:
             values.append(translated)

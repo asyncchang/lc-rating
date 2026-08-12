@@ -6,7 +6,7 @@ export const monotonicStack = {
   src: "https://leetcode.cn/circle/discuss/9oZFK9/",
   last_update: "2026-02-24T14:03:29.762933+00:00",
   summary:
-    "![單調堆疊題單](https://pic.leetcode.cn/1711714526-rMdiIh-t3-c.png)\n\n> *他向遠方望去，無法看到高山背後的矮山，只看到一座座更高的山峰*\n\n**前置知識**：建議先完成 [資料結構題單](https://leetcode.cn/circle/discuss/mOr1u6/) 中的「列舉右，維護左」及「堆疊」的基礎題\n\n**本題單涵蓋**：\n- 單調堆疊基礎：查詢左/右側更大/更小元素\n- 矩形面積：柱狀圖、最大矩形\n- 貢獻法：計算每個元素的貢獻\n- 最小字典序：構造問題\n\n:::example 單調堆疊：求每個元素的下一個更大元素\n**C++ 單調堆疊模板 (下一個更大元素)**：\n\n```cpp\n// 單調堆疊：求每個元素的下一個更大元素\nvector<int> nextGreaterElement(vector<int>& nums) {\n    int n = nums.size();\n    vector<int> res(n, -1);\n    stack<int> st;\n    for (int i = 0; i < n; ++i) {\n        while (!st.empty() && nums[st.top()] < nums[i]) {\n            res[st.top()] = nums[i];  // 堆疊頂的下一個更大元素就是 nums[i]\n            st.pop();\n        }\n        st.push(i);\n    }\n    return res;\n}\n```\n:::\n",
+    "> *他向遠方望去，無法看到高山背後的矮山，只看到一座座更高的山峰*\n\n**前置知識**：建議先完成 [資料結構題單](https://leetcode.cn/circle/discuss/mOr1u6/) 中的「列舉右，維護左」及「堆疊」的基礎題\n\n**本題單涵蓋**：\n- 單調堆疊基礎：查詢左/右側更大/更小元素\n- 矩形面積：柱狀圖、最大矩形\n- 貢獻法：計算每個元素的貢獻\n- 最小字典序：構造問題\n\n:::example 單調堆疊：求每個元素的下一個更大元素\n**C++ 單調堆疊模板 (下一個更大元素)**：\n\n```cpp\n// 單調堆疊：求每個元素的下一個更大元素\nvector<int> nextGreaterElement(vector<int>& nums) {\n    int n = nums.size();\n    vector<int> res(n, -1);\n    stack<int> st;\n    for (int i = 0; i < n; ++i) {\n        while (!st.empty() && nums[st.top()] < nums[i]) {\n            res[st.top()] = nums[i];  // 堆疊頂的下一個更大元素就是 nums[i]\n            st.pop();\n        }\n        st.push(i);\n    }\n    return res;\n}\n```\n:::\n",
   children: [
     {
       id: 2,

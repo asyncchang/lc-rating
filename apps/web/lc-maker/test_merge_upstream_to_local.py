@@ -424,6 +424,78 @@ class SummaryMergeTests(unittest.TestCase):
         self.assertEqual(second.stats.refreshed_problems, 0)
 
 
+class SanitizeSummaryTests(unittest.TestCase):
+    def test_removes_keyword_spam_banner_but_keeps_prose(self) -> None:
+        text = (
+            "![二分題單 二分查詢 leetcode 二分]"
+            "(https://pic.leetcode.cn/x-t2.png)\n\n"
+            "> 圖：閉區間二分\n\n**刷題建議**：先刷簡單題。"
+        )
+        cleaned = sync.sanitize_summary(text)
+        self.assertNotIn("pic.leetcode.cn", cleaned)
+        self.assertTrue(cleaned.startswith("> 圖：閉區間二分"))
+        self.assertIn("**刷題建議**", cleaned)
+
+    def test_removes_html_img_tag_banner(self) -> None:
+        text = (
+            '<img src="https://pic.leetcode.cn/grid004.png" '
+            'alt="網格圖題單 DFS 力扣">\n\n正文'
+        )
+        self.assertEqual(sync.sanitize_summary(text), "正文")
+
+    def test_removes_banner_when_alt_is_simplified(self) -> None:
+        text = "![位運算题单 力扣](https://pic.leetcode.cn/and.png)\n\n正文"
+        self.assertEqual(sync.sanitize_summary(text), "正文")
+
+    def test_empties_summary_that_is_only_a_banner(self) -> None:
+        text = "![資料結構題單 靈神](https://pic.leetcode.cn/prog.jfif)"
+        self.assertEqual(sync.sanitize_summary(text), "")
+
+    def test_removes_trailing_dangling_template_label(self) -> None:
+        text = "推薦開區間寫二分。\n\n開區間二分模板（求最大）："
+        self.assertEqual(sync.sanitize_summary(text), "推薦開區間寫二分。")
+
+    def test_removes_bare_dangling_template_label(self) -> None:
+        self.assertEqual(sync.sanitize_summary("支援刪除。\n\n模板："), "支援刪除。")
+
+    def test_keeps_template_label_followed_by_code(self) -> None:
+        text = "模板：\n\n```py\ndef f():\n    return 1\n```"
+        self.assertEqual(sync.sanitize_summary(text), text)
+
+    def test_keeps_ordinary_image_and_prose_untouched(self) -> None:
+        text = "![toposort diagram](https://pic.leetcode.cn/006.png)\n\n正文"
+        self.assertEqual(sync.sanitize_summary(text), text)
+
+    def test_is_idempotent(self) -> None:
+        text = (
+            "![二分題單](https://pic.leetcode.cn/x.png)\n\n正文\n\n模板："
+        )
+        once = sync.sanitize_summary(text)
+        self.assertEqual(sync.sanitize_summary(once), once)
+        self.assertEqual(once, "正文")
+
+    def test_merge_strips_banner_and_dangling_label_from_upstream(self) -> None:
+        local = make_plan([make_leaf("Local", [make_problem("shared")])])
+        upstream = make_plan(
+            [
+                make_leaf(
+                    "Local",
+                    [make_problem("shared")],
+                    summary="推薦開區間寫二分。\n\n開區間二分模板（求最大）：",
+                )
+            ],
+            summary=(
+                "![二分題單 leetcode 二分](https://pic.leetcode.cn/x.png)\n\n"
+                "> 圖：查詢第一個 8"
+            ),
+        )
+        result = sync.merge_plan(local, upstream, "binary_search")
+        section = find_section(result.data, "Local")
+        self.assertNotIn("pic.leetcode.cn", result.data["summary"])
+        self.assertEqual(result.data["summary"], "> 圖：查詢第一個 8")
+        self.assertEqual(section["summary"], "推薦開區間寫二分。")
+
+
 class CliTests(unittest.TestCase):
     def _run_main(self, argv: list[str]) -> int:
         with (

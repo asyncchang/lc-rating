@@ -6,7 +6,7 @@ export const binarySearch = {
   src: "https://leetcode.cn/circle/discuss/SqopEo/",
   last_update: "2026-02-24T14:23:02.465505+00:00",
   summary:
-    "![二分題單](https://pic.leetcode.cn/1711713491-SoiQWc-t2.png)\n\n> 圖：閉區間二分迴圈結束時的左右指標位置（查詢第一個 8）\n\n**刷題建議**：初學者建議先刷難度 < 1700 分的題目，進階題目常結合資料結構、圖論等\n\n**本題單涵蓋**：\n- 基礎二分查詢（查詢元素、統計個數）\n- 二分答案（最小化最大值、最大化最小值、第 K 小）\n- 三分法與其他應用\n\n:::example 閉區間 [left, right] 二分模板\n**C++ 模板**：\n\n```cpp\n// 閉區間 [left, right] 二分模板\nint search(vector<int>& nums, int target) {\n    int left = 0, right = nums.size() - 1;  // 搜尋範圍 [left, right]\n    while (left <= right) {\n        int mid = left + (right - left) / 2;  // 防溢位寫法\n        if (nums[mid] == target) {\n            return mid;\n        } else if (nums[mid] < target) {\n            left = mid + 1;\n        } else {\n            right = mid - 1;\n        }\n    }\n    return -1;\n}\n```\n:::\n",
+    "> 圖：閉區間二分迴圈結束時的左右指標位置（查詢第一個 8）\n\n**刷題建議**：初學者建議先刷難度 < 1700 分的題目，進階題目常結合資料結構、圖論等\n\n**本題單涵蓋**：\n- 基礎二分查詢（查詢元素、統計個數）\n- 二分答案（最小化最大值、最大化最小值、第 K 小）\n- 三分法與其他應用\n\n:::example 閉區間 [left, right] 二分模板\n**C++ 模板**：\n\n```cpp\n// 閉區間 [left, right] 二分模板\nint search(vector<int>& nums, int target) {\n    int left = 0, right = nums.size() - 1;  // 搜尋範圍 [left, right]\n    while (left <= right) {\n        int mid = left + (right - left) / 2;  // 防溢位寫法\n        if (nums[mid] == target) {\n            return mid;\n        } else if (nums[mid] < target) {\n            left = mid + 1;\n        } else {\n            right = mid - 1;\n        }\n    }\n    return -1;\n}\n```\n:::\n",
   children: [
     {
       id: 2,
