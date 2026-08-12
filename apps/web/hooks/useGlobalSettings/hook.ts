@@ -13,6 +13,7 @@ const initialState: GlobalSettingsStoreState = {
   linkLanguage: "zh",
   premium: true,
   textSize: "standard",
+  readingWidth: "standard",
 };
 
 const persistOption: PersistOptions<
@@ -47,6 +48,8 @@ export const useGlobalSettingsStore = create<GlobalSettingsStore>()(
         setPremium: (premium: boolean) => set({ premium }),
 
         setTextSize: (size) => set({ textSize: size }),
+
+        setReadingWidth: (width) => set({ readingWidth: width }),
       }),
       persistOption,
     ),

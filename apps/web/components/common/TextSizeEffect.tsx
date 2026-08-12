@@ -4,13 +4,15 @@ import { useGlobalSettingsStore } from "@/hooks/useGlobalSettings";
 import { useEffect, useState } from "react";
 
 /**
- * Applies the global text-size preference by stamping `data-text-size` on the
- * root element; `globals.css` maps it to a root font-size scale. Mirrors
- * cp-handbook's AppPreferenceEffects so both sites resize text the same way.
+ * Applies global display preferences by stamping `data-text-size` and
+ * `data-reading-width` on the root element; `globals.css` maps them to a root
+ * font-size scale and a `--lecture-reading-width` override. Mirrors
+ * cp-handbook's AppPreferenceEffects so both sites resize content the same way.
  */
 export function TextSizeEffect() {
   const [mounted, setMounted] = useState(false);
   const textSize = useGlobalSettingsStore((state) => state.textSize);
+  const readingWidth = useGlobalSettingsStore((state) => state.readingWidth);
 
   useEffect(() => {
     setMounted(true);
@@ -23,6 +25,14 @@ export function TextSizeEffect() {
       delete document.documentElement.dataset.textSize;
     };
   }, [mounted, textSize]);
+
+  useEffect(() => {
+    if (!mounted) return;
+    document.documentElement.dataset.readingWidth = readingWidth;
+    return () => {
+      delete document.documentElement.dataset.readingWidth;
+    };
+  }, [mounted, readingWidth]);
 
   return null;
 }

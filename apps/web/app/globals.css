@@ -184,6 +184,16 @@ html[data-text-size="large"] {
   font-size: 112.5%;
 }
 
+/* 長文閱讀欄寬偏好；「標準」沿用上面的響應式階梯，其餘覆寫
+   `--lecture-reading-width`（min() 本身即響應式，小螢幕自動退回 100%）。 */
+html[data-reading-width="wide"] {
+  --lecture-reading-width: min(100%, 120rem);
+}
+
+html[data-reading-width="full"] {
+  --lecture-reading-width: 100%;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

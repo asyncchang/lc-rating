@@ -117,7 +117,7 @@ export function HandbookTopicPage({
           </aside>
 
           {/* Lecture body */}
-          <main className="min-w-0">
+          <main className="min-w-0 lg:max-w-[var(--lecture-reading-width)]">
             {topic.sections.map((s) => (
               <section
                 key={s.id}

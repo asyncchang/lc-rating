@@ -6,6 +6,7 @@ import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
+import { AppearanceMenu } from "./AppearanceMenu";
 import { GithubBadge } from "./GithubBadge";
 import SettingsPanel from "./SettingsPanel";
 import { SidebarTrigger, useSidebar } from "@/components/ui/sidebar";
@@ -133,6 +134,7 @@ const Navigator = React.memo(() => {
 
         {/* Right section */}
         <div className="flex items-center gap-1 sm:gap-2">
+          <AppearanceMenu />
           <div className="hidden md:block">
             <SettingsPanel show={show} onOpenChange={setShow} />
           </div>
