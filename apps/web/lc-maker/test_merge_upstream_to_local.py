@@ -496,6 +496,51 @@ class SanitizeSummaryTests(unittest.TestCase):
         self.assertEqual(section["summary"], "推薦開區間寫二分。")
 
 
+class SectionTemplateTests(unittest.TestCase):
+    def test_fills_binary_search_max_template(self) -> None:
+        text = "推薦使用開區間寫二分。\n\n開區間二分模板（求最大）："
+        out = sync.inject_section_template("binary_search", "4. 求最大", text)
+        self.assertIn("```cpp", out)
+        self.assertIn("binarySearchMax", out)
+        self.assertIn("開區間二分模板（求最大）：", out)
+        self.assertTrue(out.rstrip().endswith("```"))
+        # dangling label is gone (now followed by code)
+        self.assertFalse(sync._DANGLING_TEMPLATE_RE.search(out.rstrip()))
+
+    def test_fills_data_structure_bare_label_by_title(self) -> None:
+        out = sync.inject_section_template("data_structure", "5.4 單調佇列", "前言\n\n模板：")
+        self.assertIn("maxSlidingWindow", out)
+        out2 = sync.inject_section_template("data_structure", "6.6 懶刪除堆", "前言\n\n模板：")
+        self.assertIn("LazyHeap", out2)
+
+    def test_no_template_leaves_dangling_label_for_sanitize(self) -> None:
+        text = "foo\n\n模板："
+        # a section we have no template for: inject is a no-op...
+        self.assertEqual(sync.inject_section_template("binary_search", "9. 其他", text), text)
+        # ...and sanitize then strips the dangling label
+        self.assertEqual(sync.sanitize_summary(text), "foo")
+
+    def test_non_dangling_summary_is_untouched(self) -> None:
+        text = "求最大 already documented, no label here."
+        self.assertEqual(sync.inject_section_template("binary_search", "4. 求最大", text), text)
+
+    def test_merge_fills_template_end_to_end(self) -> None:
+        local = make_plan([make_leaf("4. 求最大", [make_problem("shared")])])
+        upstream = make_plan(
+            [
+                make_leaf(
+                    "4. 求最大",
+                    [make_problem("shared")],
+                    summary="推荐使用开区间写二分。\n\n开区间二分模板（求最大）：",
+                )
+            ]
+        )
+        result = sync.merge_plan(local, upstream, "binary_search")
+        section = find_section(result.data, "4. 求最大")
+        self.assertIn("```cpp", section["summary"])
+        self.assertIn("binarySearchMax", section["summary"])
+
+
 class CliTests(unittest.TestCase):
     def _run_main(self, argv: list[str]) -> int:
         with (

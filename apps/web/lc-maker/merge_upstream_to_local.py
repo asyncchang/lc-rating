@@ -727,12 +727,12 @@ def section_summary(node: dict) -> str:
     return str(value) if value else ""
 
 
-# Upstream summaries carry two systematic artifacts we drop on every sync: a
-# leetcode SEO "banner" image whose alt text is keyword spam (and whose host is
-# unreachable from many networks, so it renders as broken alt text), and a
-# trailing "…模板…：" label left dangling because upstream removes the code
-# block it introduced. The actual templates live in the standalone lecture that
-# each plan already links to, so the dangling label is only a broken promise.
+# Upstream summaries carry two systematic artifacts. First, a leetcode SEO
+# "banner" image whose alt text is keyword spam (and whose host is unreachable
+# from many networks, so it renders as broken alt text) — always dropped.
+# Second, a trailing "…模板…：" label left dangling because upstream strips the
+# code block it introduces: where we have the canonical template
+# (SECTION_TEMPLATES) we re-attach a C++ version, otherwise we drop the label.
 _BANNER_IMAGE_RE = re.compile(r"!\[[^\]]*(?:題單|题单)[^\]]*\]\([^)]*\)\n*")
 _BANNER_IMG_TAG_RE = re.compile(r"<img\b[^>]*(?:題單|题单)[^>]*>\n*")
 _DANGLING_TEMPLATE_RE = re.compile(r"\n*[^\n]*模板[^\n]*[：:]\s*\Z")
@@ -750,6 +750,151 @@ def sanitize_summary(text: str) -> str:
         # around content we actually removed.
         return text
     return cleaned.strip()
+
+
+# Upstream stores these algorithm templates only in its legacy apps/v0 data, in
+# a flattened form (<br>-joined, indentation lost, other languages only). We
+# reconstruct a clean C++ version and re-attach it where the dangling "模板："
+# label appears. Comments are Traditional Chinese to match the fork's prose.
+_CPP_BSEARCH_MIN = """// 開區間二分模板（求最小）：回傳滿足 check(x) == true 的最小 x
+// 迴圈不變量：check(left) 恆為 false，check(right) 恆為 true
+int binarySearchMin(vector<int>& nums) {
+    auto check = [&](int mid) -> bool {
+        // 依題意判斷 mid 是否滿足要求
+    };
+    int left = -1, right = nums.size();  // 開區間 (left, right)，依題意設定初始邊界
+    while (left + 1 < right) {           // 開區間不為空
+        int mid = left + (right - left) / 2;
+        if (check(mid)) {
+            right = mid;  // check(mid) == true，答案在 (left, mid]
+        } else {
+            left = mid;   // check(mid) == false，答案在 (mid, right)
+        }
+    }
+    return right;  // 最小的滿足 check 的值
+}"""
+
+_CPP_BSEARCH_MAX = """// 開區間二分模板（求最大）：回傳滿足 check(x) == true 的最大 x
+// 迴圈不變量：check(left) 恆為 true，check(right) 恆為 false
+int binarySearchMax(vector<int>& nums) {
+    auto check = [&](int mid) -> bool {
+        // 依題意判斷 mid 是否滿足要求
+    };
+    int left = -1, right = nums.size();  // 開區間 (left, right)，依題意設定初始邊界
+    while (left + 1 < right) {           // 開區間不為空
+        int mid = left + (right - left) / 2;
+        if (check(mid)) {
+            left = mid;   // 注意這裡更新的是 left，和求最小相反
+        } else {
+            right = mid;
+        }
+    }
+    return left;  // check 更新的是誰，最終就回傳誰
+}"""
+
+_CPP_MONOTONIC_QUEUE = """// 單調佇列模板：計算每個長度為 k 的視窗的最大值，時間複雜度 O(n)
+vector<int> maxSlidingWindow(const vector<int>& nums, int k) {
+    int n = nums.size();
+    vector<int> ans(n - k + 1);  // 視窗個數
+    deque<int> q;                // 雙端佇列，儲存下標
+    for (int i = 0; i < n; i++) {
+        // 1. 右邊入：維護佇列單調遞減
+        while (!q.empty() && nums[q.back()] <= nums[i]) {
+            q.pop_back();
+        }
+        q.push_back(i);
+        // 2. 左邊出：隊首離開視窗就彈出
+        int left = i - k + 1;  // 視窗左端點
+        if (q.front() < left) {
+            q.pop_front();
+        }
+        // 3. 在視窗左端點記錄答案（隊首即最大值）
+        if (left >= 0) {
+            ans[left] = nums[q.front()];
+        }
+    }
+    return ans;
+}"""
+
+_CPP_LAZY_HEAP = """// 懶刪除堆模板：支援刪除堆中任意元素
+// 最大堆 LazyHeap<int> maxPq; 最小堆 LazyHeap<int, greater<int>> minPq;
+template <typename T, typename Compare = less<T>>
+class LazyHeap {
+    priority_queue<T, vector<T>, Compare> pq;
+    unordered_map<T, int> remove_cnt;  // 每個元素剩餘要刪除的次數
+    size_t sz = 0;                     // 堆的實際大小
+
+    void apply_remove() {  // 正式執行延遲的刪除
+        while (!pq.empty() && remove_cnt[pq.top()] > 0) {
+            remove_cnt[pq.top()]--;
+            pq.pop();
+        }
+    }
+
+public:
+    size_t size() { return sz; }
+
+    void remove(T x) {  // 懶刪除
+        remove_cnt[x]++;
+        sz--;
+    }
+
+    T top() {
+        apply_remove();
+        return pq.top();
+    }
+
+    T pop() {
+        apply_remove();
+        sz--;
+        T x = pq.top();
+        pq.pop();
+        return x;
+    }
+
+    void push(T x) {
+        if (remove_cnt[x] > 0) {
+            remove_cnt[x]--;  // 抵消先前的刪除
+        } else {
+            pq.push(x);
+        }
+        sz++;
+    }
+};"""
+
+# plan -> list of (title keyword, intro label, C++ code). Matched when a local
+# section's title contains the keyword and its summary ends with a dangling
+# "模板…：" label.
+SECTION_TEMPLATES: dict[str, list[tuple[str, str, str]]] = {
+    "binary_search": [
+        ("求最小", "開區間二分模板（求最小）：", _CPP_BSEARCH_MIN),
+        ("求最大", "開區間二分模板（求最大）：", _CPP_BSEARCH_MAX),
+    ],
+    "data_structure": [
+        ("單調佇列", "模板：", _CPP_MONOTONIC_QUEUE),
+        ("懶刪除堆", "模板：", _CPP_LAZY_HEAP),
+    ],
+}
+
+
+def template_block(label: str, code: str) -> str:
+    """Render the intro label followed by a fenced C++ block."""
+    return f"{label}\n\n```cpp\n{code}\n```"
+
+
+def inject_section_template(plan_name: str, title: str, summary: str) -> str:
+    """Replace a dangling "模板…：" label with the canonical C++ template."""
+    entries = SECTION_TEMPLATES.get(plan_name)
+    if not entries or not summary:
+        return summary
+    if not _DANGLING_TEMPLATE_RE.search(summary.rstrip()):
+        return summary
+    for keyword, label, code in entries:
+        if keyword in title:
+            base = _DANGLING_TEMPLATE_RE.sub("", summary).rstrip()
+            block = template_block(label, code)
+            return f"{base}\n\n{block}" if base else block
+    return summary
 
 
 def is_pure_navigation_node(info: NodeInfo) -> bool:
@@ -793,7 +938,11 @@ def merge_summaries(
     pending: dict[int, list[str]] = {}
 
     def add_summary(target: NodeInfo, text: str) -> None:
-        translated = sanitize_summary(translate_text(text))
+        translated = translate_text(text)
+        translated = inject_section_template(
+            plan_name, str(target.node.get("title") or ""), translated
+        )
+        translated = sanitize_summary(translated)
         if not translated:
             return
         values = pending.setdefault(id(target.node), [])
