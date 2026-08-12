@@ -1,6 +1,6 @@
 const studyPlanCourseMaterials: Record<string, string> = {
   technical_interview: [
-    "**教授講義補充：系統題的完整解題敘述**",
+    "**系統題的完整解題敘述**",
     "技術面試題常把演算法包進服務、資料流或資源限制情境，同時考演算法選型與溝通品質。解題時不要只說「我用 BFS」或「我用 DP」，而要把題目拆成四件事：資料如何表示、狀態代表什麼、每一步如何保持不變式、複雜度是否符合限制。若能把這四件事說清楚，即使程式碼還沒寫完，面試官也能判斷你的方向是正確的。",
     "**觀念起點**\n\n技術面試題常把熟悉演算法包成接近系統實作的敘述：拓撲關係像狀態圖最短路，依賴流程像 DAG，服務 API 像多索引資料結構，資料流像受限空間下的摘要維護。讀題時先不要尋找模板名稱，而是先回答「目前局面由哪些資訊決定」以及「下一步操作會改變哪些資訊」。\n\n若題目要求設計 class 或 API，演算法只是其中一部分。你還要說清楚 canonical state 放在哪裡、查詢索引如何維護、更新時哪些舊資料要刪掉、tie-breaker 如何定義。這些說明能避免 heap stale entry、set comparator 不完整、map 與索引不同步等錯誤。",
     "**常見模式總表**：\n- 狀態圖最短路：狀態包含節點、資源、mask、時間；等權用 BFS，0/1 權用 deque，非負權用 Dijkstra。\n- 距離與向量：先固定資料表示，再用叉積、點積、投影、掃描線或距離平方判斷。\n- 依賴圖：先建有向邊，再用拓撲排序檢查 cycle；若需要最早完成時間，在拓撲序上做 DP。\n- 資料流與日誌：只保留足以回答問題的摘要；CSV/event log 題先定義 corrupted input 的處理策略。\n- 資料結構同步：API 題通常有一個 canonical state，再維護 heap / set / map 作查詢索引。\n- 資源限制與 C++：把 memory、操作次數、狀態總數、ownership 與 thread-safety 寫成明確條件，再決定是否需要壓縮狀態或 bounded buffer。",
@@ -12,7 +12,7 @@ const studyPlanCourseMaterials: Record<string, string> = {
   ].join("\n\n"),
 
   rating_2100: [
-    "**教授講義補充：Rating 2100 的組合式思考**",
+    "**Rating 2100 的組合式思考**",
     "這個區間的題目通常不是新演算法，而是把排序、二分、DP、圖論或資料結構接在一起。讀題時先找「哪個維度可以被固定」，再問固定後剩下的部分是否能用已知工具快速回答。例如排序固定時間順序，Fenwick 回答前綴數量；二分固定答案，貪心檢查可行性；枚舉一個端點，資料結構維護另一端候選。",
     "**觀念起點**\n\nRating 2100 題常要求讀者把已知基礎工具重新組合。看到 `n <= 2e5` 時，先假設需要 `O(n log n)` 或接近線性；看到 `n <= 20` 時，才考慮狀壓；看到多次查詢時，先問能否離線排序；看到最小化最大值或最大化最小值時，先檢查可行性是否單調。\n\n這個難度最需要練的是「固定一個維度」。固定右端點後，左側能不能用 hash/Fenwick/set 維護？固定答案後，能不能用貪心 check？固定一個節點後，其他距離能不能由預處理表查到？題目的突破口通常來自這種改寫。",
     "**常見模式**：\n- 排序 + 前綴最佳值：把二維條件變成一維掃描，維護 `max(value - cost)` 或 `min(prefix)`。\n- 二分答案 + greedy check：答案有單調性，但實際構造困難；先用 predicate 判斷可行。\n- 離線排序 + Fenwick / segment tree：查詢與資料都有門檻，按門檻排序後逐步加入資料。\n- 狀態 BFS / 分層圖：同一位置的未來取決於 mask、剩餘資源或已使用次數。\n- DP + 優化：先保留樸素轉移，再用前綴最佳、二分前驅、單調隊列或資料結構找最佳前驅。\n- 枚舉小集合：若限制有 `n <= 20`、bit 數小、質因數少，優先考慮狀壓或枚舉子集。",
@@ -27,7 +27,7 @@ const studyPlanCourseMaterials: Record<string, string> = {
   ].join("\n\n"),
 
   binary_search: [
-    "**教授講義補充：二分的本質是不變式**",
+    "**二分的本質是不變式**",
     "二分不是只把 `mid` 寫出來，而是維護一個清楚的不變式。對 `lower_bound` 類問題，常用半開區間 `[left, right)`，語意是答案一定在這段區間內。對二分答案，必須先證明 predicate 單調：若 `can(x)` 為 true，則所有更大的 x 也 true，或所有更小的 x 也 true。",
     "**例題解析：最小化最大分段和**\n\n**完整問題**：給定一個正整數陣列 `nums` 與整數 `k`。請把陣列依原本順序切成最多 `k` 個非空連續段，使所有段落元素和的最大值最小。請回傳這個最小可能值。\n\n若限制 `limit` 越大，越容易切成功，所以 `canSplit(limit)` 單調。檢查方式是從左到右貪心累加，超過 limit 就開新段；這種貪心正確，因為在固定 limit 下，當前段能多放就多放，不會增加段數。",
     "```cpp\nlong long splitArrayMinLargestSum(vector<int>& nums, int k) {\n    auto canSplit = [&nums, k](long long limit) {\n        int groups = 1;\n        long long sum = 0;\n        for (int x : nums) {\n            if (x > limit) {\n                return false;\n            }\n            if (sum + x > limit) {\n                groups++;\n                sum = 0;\n            }\n            sum += x;\n        }\n        return groups <= k;\n    };\n\n    long long left = *max_element(nums.begin(), nums.end());\n    long long right = accumulate(nums.begin(), nums.end(), 0LL);\n    while (left < right) {\n        long long mid = left + (right - left) / 2;\n        if (canSplit(mid)) {\n            right = mid;\n        } else {\n            left = mid + 1;\n        }\n    }\n    return left;\n}\n```",
@@ -39,7 +39,7 @@ const studyPlanCourseMaterials: Record<string, string> = {
   ].join("\n\n"),
 
   bitwise_operations: [
-    "**教授講義補充：把整數當成集合與向量**",
+    "**把整數當成集合與向量**",
     "位元題的第一步是決定每一個 bit 的語意：它可能代表集合元素是否存在，也可能代表一個二進位位值對總答案的貢獻。若題目中的狀態數小、元素只有選或不選，mask 是集合；若題目問 XOR / OR / AND 的總和、最大值或可行性，就逐 bit 分析。",
     "**例題解析：所有 pair 的 XOR 總和**\n\n**完整問題**：給定一個整數陣列 `nums`，請計算所有 pair `(i, j)`、`i < j` 的 `nums[i] XOR nums[j]` 總和，並回傳該總和。\n\nXOR 的某一 bit 為 1，當且僅當兩個數在該 bit 不同。若第 b 位有 `ones` 個 1，`zeros` 個 0，則這一 bit 對所有 pair 的貢獻是 `ones * zeros * 2^b`。所有 bit 相加就是答案。",
     "```cpp\nlong long pairXorSum(vector<int>& nums) {\n    long long answer = 0;\n    for (int bit = 0; bit < 31; ++bit) {\n        long long ones = 0;\n        for (int x : nums) {\n            ones += (x >> bit) & 1;\n        }\n        long long zeros = nums.size() - ones;\n        answer += ones * zeros * (1LL << bit);\n    }\n    return answer;\n}\n```",
@@ -52,7 +52,7 @@ const studyPlanCourseMaterials: Record<string, string> = {
   ].join("\n\n"),
 
   data_structure: [
-    "**教授講義補充：資料結構是查詢與更新的不變式**",
+    "**資料結構是查詢與更新的不變式**",
     "選資料結構時先寫出每次操作需要什麼：取最大、查前綴和、找前驅後繼、刪除過期元素、比較前綴、或維護區間資訊。資料結構的核心不是容器名稱，而是它維護了哪個不變式，以及更新後如何恢復這個不變式。",
     "**例題解析：動態前綴和**\n\n**完整問題**：請設計一個資料結構，初始化時給定長度為 `n` 的陣列，支援兩種操作：`add(index, delta)` 將位置 `index` 加上 `delta`，以及 `rangeSum(left, right)` 回傳閉區間 `[left, right]` 的總和。操作次數很多，必須比每次線性掃描更快。\n\n若用普通前綴和，每次更新要改很多位置。Fenwick tree 用 `index += index & -index` 更新所有負責包含該點的桶；查詢用 `index -= index & -index` 累加前綴桶。",
     "```cpp\nclass Fenwick {\n        vector<long long> bit_;\n\n    public:\n        Fenwick(int n) : bit_(n + 1) {}\n\n        void add(int index, long long delta) {\n                for (++index; index < (int)bit_.size(); index += index & -index) {\n                        bit_[index] += delta;\n                }\n        }\n\n        long long prefixSum(int index) {\n                long long sum = 0;\n                for (++index; index > 0; index -= index & -index) {\n                        sum += bit_[index];\n                }\n                return sum;\n        }\n\n        long long rangeSum(int left, int right) { return prefixSum(right) - (left == 0 ? 0 : prefixSum(left - 1)); }\n};\n```",
@@ -66,7 +66,7 @@ const studyPlanCourseMaterials: Record<string, string> = {
   ].join("\n\n"),
 
   dynamic_programming: [
-    "**教授講義補充：DP 是把暴力搜尋合併同類狀態**",
+    "**DP 是把暴力搜尋合併同類狀態**",
     "DP 的起點不是陣列，而是暴力搜尋。當不同路徑走到同一個局面，且未來只取決於這個局面，就可以把局面定義成狀態。設計 DP 時要回答：狀態代表什麼、轉移從哪裡來、初始值是什麼、計算順序如何保證依賴已完成。",
     "**例題解析：0/1 背包**\n\n**完整問題**：給定 `n` 個物品，第 `i` 個物品重量為 `weights[i]`、價值為 `values[i]`，以及背包容量 `capacity`。每個物品最多選一次，請在總重量不超過 `capacity` 的前提下最大化總價值。\n\n`dp[cap]` 表示目前處理過的物品中，容量不超過 cap 的最大價值。每個物品只能選一次，所以容量要倒序枚舉，避免同一物品在同一輪被重複使用。",
     "```cpp\nint zeroOneKnapsack(vector<int>& weights, vector<int>& values, int capacity) {\n    vector<int> dp(capacity + 1);\n    for (int i = 0; i < (int)weights.size(); ++i) {\n        for (int cap = capacity; cap >= weights[i]; --cap) {\n            dp[cap] = max(dp[cap], dp[cap - weights[i]] + values[i]);\n        }\n    }\n    return dp[capacity];\n}\n```",
@@ -81,7 +81,7 @@ const studyPlanCourseMaterials: Record<string, string> = {
   ].join("\n\n"),
 
   graph: [
-    "**教授講義補充：先判斷圖的性質，再選演算法**",
+    "**先判斷圖的性質，再選演算法**",
     "圖論題最重要的是建模。先回答：節點是什麼、邊代表什麼、邊有沒有方向、邊權是什麼、是否可能成環、答案問連通性還是路徑順序。這些性質決定工具：無向連通用 DFS/BFS 或 DSU；有向依賴用拓撲排序；非負權最短路用 Dijkstra；互相可達群組用 SCC；移除邊是否斷開用橋。",
     "**例題解析：依賴圖完成時間**\n\n**完整問題**：給定 `n` 個任務、每個任務需要的時間 `time[i]`，以及若干依賴關係 `[u, v]`，表示任務 `u` 完成後任務 `v` 才能開始。多個可做任務可以平行進行。請回傳完成所有任務所需的最短總時間；若依賴成環，回傳 `-1`。\n\n若關係 `u -> v` 表示 u 完成後才能做 v，這是 DAG 上的最長路。拓撲排序保證處理 v 時，所有前置課程都已經更新過 `finish[v]`。若最後處理節點數少於 n，代表有 cycle，無法完成。",
     "```cpp\nint minimumTime(int n, vector<vector<int>>& relations, vector<int>& time) {\n    vector<vector<int>> graph(n);\n    vector<int> indegree(n), finish(n);\n    for (auto& edge : relations) {\n        int from = edge[0] - 1, to = edge[1] - 1;\n        graph[from].push_back(to);\n        indegree[to]++;\n    }\n\n    queue<int> q;\n    for (int node = 0; node < n; ++node) {\n        finish[node] = time[node];\n        if (indegree[node] == 0) {\n            q.push(node);\n        }\n    }\n\n    int seen = 0;\n    while (!q.empty()) {\n        int node = q.front();\n        q.pop();\n        seen++;\n        for (int next_node : graph[node]) {\n            finish[next_node] = max(finish[next_node], finish[node] + time[next_node]);\n            if (--indegree[next_node] == 0) {\n                q.push(next_node);\n            }\n        }\n    }\n    return seen == n ? *max_element(finish.begin(), finish.end()) : -1;\n}\n```",
@@ -97,7 +97,7 @@ const studyPlanCourseMaterials: Record<string, string> = {
   ].join("\n\n"),
 
   greedy: [
-    "**教授講義補充：貪心必須能證明局部選擇安全**",
+    "**貪心必須能證明局部選擇安全**",
     "貪心題不是看到排序就結束，而是要說明為什麼局部選擇不會破壞最優解。常用證明有交換論證、留有最多剩餘空間、反悔貪心與必要條件構造。若找不到證明，通常要改用 DP 或搜尋。",
     "**例題解析：最多不重疊區間**\n\n**完整問題**：給定多個區間 `[start, end]`，請選出最多數量的區間，使任意兩個被選區間不重疊。若一個區間的 `start` 大於等於上一個被選區間的 `end`，視為可以接在後面。請回傳最多可選幾個區間。\n\n排序依右端點由小到大。選擇右端點最早的區間是安全的，因為任何最優解的第一個區間若不是它，都可以替換成這個更早結束的區間，後面可選空間不會變小。",
     "```cpp\nint maxNonOverlapping(vector<vector<int>>& intervals) {\n    sort(intervals.begin(), intervals.end(), [](const auto& lhs, const auto& rhs) { return lhs[1] < rhs[1]; });\n    int answer = 0;\n    int last_end = INT_MIN;\n    for (const auto& interval : intervals) {\n        if (interval[0] >= last_end) {\n            answer++;\n            last_end = interval[1];\n        }\n    }\n    return answer;\n}\n```",
@@ -110,7 +110,7 @@ const studyPlanCourseMaterials: Record<string, string> = {
   ].join("\n\n"),
 
   grid: [
-    "**教授講義補充：網格題就是隱式圖**",
+    "**網格題就是隱式圖**",
     "網格不需要真的把所有邊建出來。每個格子是節點，方向陣列定義鄰邊。讀題時要判斷：移動成本是否相同、是否有多個起點、狀態是否包含鑰匙或剩餘資源、是否需要從邊界反向搜尋。",
     "**例題解析：多源 BFS 最近距離**\n\n**完整問題**：給定一個二維網格，部分格子是 source，其餘格子是一般格。每次可以往上下左右相鄰格移動一步。請對每個格子計算它到最近 source 的最短距離，並回傳距離矩陣。\n\n若要求每個格子到最近 source 的距離，不要從每個格子各跑一次 BFS。把所有 source 一起入隊，距離設為 0。BFS 的層序擴張保證第一次到達某格就是最近 source 的距離。",
     "```cpp\nvector<vector<int>> distanceToNearestSource(vector<vector<int>>& grid) {\n    int rows = grid.size(), cols = grid[0].size();\n    const int kDirs[5] = {1, 0, -1, 0, 1};\n    vector<vector<int>> dist(rows, vector<int>(cols, -1));\n    queue<pair<int, int>> q;\n\n    for (int row = 0; row < rows; ++row) {\n        for (int col = 0; col < cols; ++col) {\n            if (grid[row][col] == 0) {\n                dist[row][col] = 0;\n                q.push({row, col});\n            }\n        }\n    }\n\n    while (!q.empty()) {\n        auto [row, col] = q.front();\n        q.pop();\n        for (int dir = 0; dir < 4; ++dir) {\n            int next_row = row + kDirs[dir];\n            int next_col = col + kDirs[dir + 1];\n            if (next_row < 0 || next_row >= rows || next_col < 0 || next_col >= cols) {\n                continue;\n            }\n            if (dist[next_row][next_col] != -1) {\n                continue;\n            }\n            dist[next_row][next_col] = dist[row][col] + 1;\n            q.push({next_row, next_col});\n        }\n    }\n    return dist;\n}\n```",
@@ -123,7 +123,7 @@ const studyPlanCourseMaterials: Record<string, string> = {
   ].join("\n\n"),
 
   math: [
-    "**教授講義補充：數學題先找不變量與週期**",
+    "**數學題先找不變量與週期**",
     "數學題常不是套公式，而是找到題目背後的不變量：整除關係、模數週期、奇偶性、質因數、排列組合限制、或幾何方向。先把小例子列出來，再找哪些量在操作後不變，哪些量可以分解成獨立貢獻。",
     "**例題解析：前綴和同餘**\n\n**完整問題**：給定整數陣列 `nums` 與正整數 `k`，請計算有多少個非空連續子陣列的元素和可以被 `k` 整除。\n\n若要找子陣列和可被 k 整除，令 `prefix[i]` 是前 i 個數的總和。子陣列 `(l, r]` 的和能被 k 整除，等價於 `prefix[r] % k == prefix[l] % k`。因此只要統計每個餘數出現次數。",
     "```cpp\nlong long countSubarraysDivisibleByK(vector<int>& nums, int k) {\n    unordered_map<int, long long> count;\n    count[0] = 1;\n    long long answer = 0;\n    int prefix = 0;\n    for (int x : nums) {\n        prefix = (prefix + x) % k;\n        if (prefix < 0) {\n            prefix += k;\n        }\n        answer += count[prefix];\n        count[prefix]++;\n    }\n    return answer;\n}\n```",
@@ -140,7 +140,7 @@ const studyPlanCourseMaterials: Record<string, string> = {
   ].join("\n\n"),
 
   monotonic_stack: [
-    "**教授講義補充：單調棧用來找第一個破壞單調性的元素**",
+    "**單調棧用來找第一個破壞單調性的元素**",
     "單調棧維護一批尚未找到答案的元素。當新元素進來破壞單調性，被彈出的元素就能確定答案。這類題的核心是決定棧中存 index 還是 value，以及相等元素該保留左邊還是右邊，這會影響貢獻計數是否重複。",
     "**例題解析：所有子陣列最小值總和**\n\n**完整問題**：給定整數陣列 `nums`，請列舉所有非空連續子陣列，取每個子陣列的最小值後加總，並回傳總和。\n\n對每個元素 `nums[i]`，找它作為最小值能覆蓋多少子陣列。左邊找前一個嚴格小於它的位置，右邊找下一個小於等於它的位置，用不對稱比較避免相等元素重複計算。貢獻是 `nums[i] * left_count * right_count`。",
     "```cpp\nlong long sumSubarrayMinimums(vector<int>& nums) {\n    int n = nums.size();\n    vector<int> left(n), right(n);\n    vector<int> stack;\n\n    for (int i = 0; i < n; ++i) {\n        while (!stack.empty() && nums[stack.back()] > nums[i]) {\n            stack.pop_back();\n        }\n        left[i] = stack.empty() ? i + 1 : i - stack.back();\n        stack.push_back(i);\n    }\n\n    stack.clear();\n    for (int i = n - 1; i >= 0; --i) {\n        while (!stack.empty() && nums[stack.back()] >= nums[i]) {\n            stack.pop_back();\n        }\n        right[i] = stack.empty() ? n - i : stack.back() - i;\n        stack.push_back(i);\n    }\n\n    long long answer = 0;\n    for (int i = 0; i < n; ++i) {\n        answer += 1LL * nums[i] * left[i] * right[i];\n    }\n    return answer;\n}\n```",
@@ -153,7 +153,7 @@ const studyPlanCourseMaterials: Record<string, string> = {
   ].join("\n\n"),
 
   sliding_window: [
-    "**教授講義補充：滑動視窗處理可局部維護的連續區間**",
+    "**滑動視窗處理可局部維護的連續區間**",
     "滑動視窗只適用於連續子陣列或子字串，且合法性要能在右端加入、左端移除後快速更新。如果條件需要全域排序或任意重排，通常不是視窗題。視窗題要先決定是固定長度、最長合法、最短合法，還是計數問題。",
     "**例題解析：恰好 K 個不同整數**\n\n**完整問題**：給定整數陣列 `nums` 與整數 `k`，請計算有多少個非空連續子陣列剛好包含 `k` 種不同的整數。\n\n直接維護「恰好 K」較難，因為左端移動時答案不容易累加。轉成「最多 K 個不同」就容易：對每個 right，合法 left 到 right 的所有子陣列都可計入。最後用 `atMost(k) - atMost(k - 1)`。",
     "```cpp\nlong long atMostKDistinct(vector<int>& nums, int k) {\n    unordered_map<int, int> count;\n    long long answer = 0;\n    int left = 0;\n    for (int right = 0; right < (int)nums.size(); ++right) {\n        if (count[nums[right]]++ == 0) {\n            k--;\n        }\n        while (k < 0) {\n            if (--count[nums[left++]] == 0) {\n                k++;\n            }\n        }\n        answer += right - left + 1;\n    }\n    return answer;\n}\n\nlong long exactlyKDistinct(vector<int>& nums, int k) { return atMostKDistinct(nums, k) - atMostKDistinct(nums, k - 1); }\n```",
@@ -166,7 +166,7 @@ const studyPlanCourseMaterials: Record<string, string> = {
   ].join("\n\n"),
 
   string: [
-    "**教授講義補充：字串演算法是在加速比較**",
+    "**字串演算法是在加速比較**",
     "字串題的核心問題通常是比較：某段是否等於另一段、某個 pattern 出現在哪些位置、前綴和後綴有多長相同、或多個字典詞是否能匹配 target。先明確比較單位，再選工具。",
     "**例題解析：KMP 找所有匹配位置**\n\n**完整問題**：給定文字 `text` 與模式字串 `pattern`，請回傳 `pattern` 在 `text` 中所有出現位置的起始 index。匹配必須完全相同，且需要比對大量文字時避免每個位置都重新比對整個 pattern。\n\nprefix function `pi[i]` 表示 `pattern[0..i]` 的最長相等真前後綴長度。匹配失敗時，pattern 不需要回到 0，而是跳到 `pi[j - 1]`，保留仍然可能匹配的前綴。",
     "```cpp\nvector<int> prefixFunction(const string& s) {\n    vector<int> pi(s.size());\n    for (int i = 1; i < (int)s.size(); ++i) {\n        int j = pi[i - 1];\n        while (j > 0 && s[i] != s[j]) {\n            j = pi[j - 1];\n        }\n        if (s[i] == s[j]) {\n            j++;\n        }\n        pi[i] = j;\n    }\n    return pi;\n}\n\nvector<int> findMatches(const string& text, const string& pattern) {\n    vector<int> pi = prefixFunction(pattern);\n    vector<int> answer;\n    int matched = 0;\n    for (int i = 0; i < (int)text.size(); ++i) {\n        while (matched > 0 && text[i] != pattern[matched]) {\n            matched = pi[matched - 1];\n        }\n        if (text[i] == pattern[matched]) {\n            matched++;\n        }\n        if (matched == (int)pattern.size()) {\n            answer.push_back(i - (int)pattern.size() + 1);\n            matched = pi[matched - 1];\n        }\n    }\n    return answer;\n}\n```",
@@ -181,7 +181,7 @@ const studyPlanCourseMaterials: Record<string, string> = {
   ].join("\n\n"),
 
   trees: [
-    "**教授講義補充：樹題用遞迴語意拆解**",
+    "**樹題用遞迴語意拆解**",
     "樹沒有環，因此每條邊都把問題分成父側與子樹側。寫 DFS 前先定義函式回傳什麼：高度、子樹大小、最佳路徑、是否合法、或某種狀態集合。若答案與根的選擇有關，先固定根做一次後序，再用換根 DP 把父側資訊傳給孩子。",
     "**例題解析：二元樹直徑**\n\n**完整問題**：給定一棵二元樹的根節點 `root`，請回傳樹的直徑。直徑定義為任意兩個節點之間路徑上的邊數最大值，路徑不一定要經過根節點。\n\n直徑可能經過某個節點，也可能完全在子樹內。DFS 回傳「從當前節點往下走的最大深度」，同時用左右深度更新全域答案 `left_depth + right_depth`。這是典型的後序 DFS：先取得孩子資訊，再合併。",
     "```cpp\nint diameterOfBinaryTree(TreeNode* root) {\n    int answer = 0;\n    function<int(TreeNode*)> depth = [&answer, &depth](TreeNode* node) {\n        if (!node) {\n            return 0;\n        }\n        int left_depth = depth(node->left);\n        int right_depth = depth(node->right);\n        answer = max(answer, left_depth + right_depth);\n        return max(left_depth, right_depth) + 1;\n    };\n    depth(root);\n    return answer;\n}\n```",
