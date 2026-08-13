@@ -132,5 +132,6 @@ export const ROUTERS = {
     ),
   },
   handbook: { title: "手冊", href: `/handbook` },
+  plan: { title: "課表", href: `/plan` },
   account: { title: "帳號", href: `/account` },
 };
