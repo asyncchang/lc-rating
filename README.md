@@ -21,6 +21,7 @@ LeetCode 刷題與學習輔助工具。提供以競賽分數為基礎的難度�
 - **專題題單**：整合靈茶山艾府 (0x3F) 題單，涵蓋二分查找、滑動視窗、單調堆疊、動態規劃、圖論、貪心、位元運算、資料結構、字串、樹與二元樹、網格圖、數學等主題。
 - **難度評分**：採用 zerotrac 的題目難度評分，並以區間（未知、1000–1200、1200–1400……）視覺化呈現。
 - **講義筆記**：依題單主題生成的學習講義，整理模型題、訊號、不變式、推導、套路、陷阱與複雜度，並附 C++ 實作骨架。
+- **訓練課表**：十二週競賽訓練計畫，每週一個 pattern，題目依評分排序，含每週節奏、限時模擬安排與階段檢核點。
 - **進度管理**：做題記錄存於瀏覽器本地。
 - **介面設定**：深色／淺色主題切換、中文／英文 LeetCode 連結切換、響應式版面。
 
@@ -66,7 +67,7 @@ pnpm build
 lc-rating/
 ├── apps/
 │   └── web/                  # 主網頁應用（Next.js App Router）
-│       ├── app/              # 路由（contest / problemset / studyplan / lecture / search / troubleshoot）
+│       ├── app/              # 路由（contest / problemset / studyplan / lecture / plan / search / troubleshoot）
 │       ├── components/       # 共用元件（common、ui、ui-customized）
 │       ├── features/         # 功能模組（contest、problemset、studyplan、tutorial、learning…）
 │       ├── data/             # 講義與題單衍生資料
