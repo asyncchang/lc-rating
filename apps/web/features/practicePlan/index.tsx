@@ -3,6 +3,7 @@
 import { SectionDivider } from "@/components/common/SectionDivider";
 import { StatCard } from "@/components/common/StatCard";
 import {
+  practicePlanCalibration,
   practicePlanMetrics,
   practicePlanNoteTemplate,
   practicePlanPhases,
@@ -57,6 +58,75 @@ function PracticePlan() {
               />
             </div>
           </div>
+        </section>
+
+        {/* 難度校準 */}
+        <SectionDivider label="難度校準" />
+        <section className="space-y-3">
+          <p className="max-w-3xl text-sm leading-relaxed text-muted-foreground">
+            {practicePlanCalibration.headline}
+          </p>
+          <div className="grid gap-3 lg:grid-cols-2">
+            <div className="overflow-x-auto rounded-2xl border border-border/60 bg-card">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="whitespace-nowrap bg-muted/60 text-xs uppercase tracking-wide text-muted-foreground">
+                    <th className="px-4 py-2 text-left font-medium">區間</th>
+                    <th className="px-4 py-2 text-right font-medium">中位數</th>
+                    <th className="px-4 py-2 text-right font-medium">
+                      四分位距
+                    </th>
+                    <th className="px-4 py-2 text-right font-medium">≥2100</th>
+                    <th className="px-4 py-2 text-right font-medium">≥2300</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border/60">
+                  {practicePlanCalibration.windows.map((w) => (
+                    <tr key={w.label}>
+                      <td className="px-4 py-2.5">{w.label}</td>
+                      <td className="px-4 py-2.5 text-right tabular-nums">
+                        {w.median}
+                      </td>
+                      <td className="px-4 py-2.5 text-right tabular-nums text-muted-foreground">
+                        {w.iqr}
+                      </td>
+                      <td className="px-4 py-2.5 text-right tabular-nums text-muted-foreground">
+                        {w.over2100}
+                      </td>
+                      <td className="px-4 py-2.5 text-right tabular-nums text-muted-foreground">
+                        {w.over2300}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="overflow-x-auto rounded-2xl border border-border/60 bg-card">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-muted/60 text-xs uppercase tracking-wide text-muted-foreground">
+                    <th className="px-4 py-2 text-left font-medium">年份</th>
+                    <th className="px-4 py-2 text-right font-medium">
+                      Q3 中位數
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border/60">
+                  {practicePlanCalibration.byYear.map((y) => (
+                    <tr key={y.year}>
+                      <td className="px-4 py-2.5 tabular-nums">{y.year}</td>
+                      <td className="px-4 py-2.5 text-right tabular-nums">
+                        {y.q3}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <p className="max-w-3xl text-xs leading-relaxed text-muted-foreground">
+            {`統計於 ${practicePlanCalibration.updatedAt}。${practicePlanCalibration.method}難度逐年漂移，數字過期時重跑一次並更新 practicePlan.ts 的校準區塊。`}
+          </p>
         </section>
 
         {/* 每週節奏 */}
