@@ -5,6 +5,7 @@ import { StatCard } from "@/components/common/StatCard";
 import {
   practicePlanCalibration,
   practicePlanMetrics,
+  practicePlanOverload,
   practicePlanNoteTemplate,
   practicePlanPhases,
   practicePlanProfile,
@@ -49,7 +50,7 @@ function PracticePlan() {
 
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
               <StatCard icon={ListChecks} label="主線題" value={stats.main} />
-              <StatCard icon={Flag} label="挑戰題" value={stats.bonus} />
+              <StatCard icon={Flag} label="超載題" value={stats.bonus} />
               <StatCard icon={Timer} label="限時模擬" value={stats.contests} />
               <StatCard
                 icon={CalendarRange}
@@ -169,6 +170,26 @@ function PracticePlan() {
               "看過題解、或寫超過 40 分鐘的題，在第 2 天、第 7 天、第 21 天各重寫一次，三次都一次過才把狀態從「需要複習」降為「已解題」。看過題解的當次不算已解題。"
             }
           </p>
+        </section>
+
+        {/* 超載題 */}
+        <SectionDivider label="超載題怎麼做" />
+        <section className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
+          <div className="rounded-2xl border-l-4 border-primary bg-accent/60 px-4 py-3">
+            <p className="text-sm leading-relaxed">
+              {practicePlanOverload.principle}
+            </p>
+          </div>
+          <ol className="space-y-1.5 rounded-2xl border border-border/60 bg-card p-4 text-sm text-muted-foreground">
+            {practicePlanOverload.rules.map((rule, i) => (
+              <li key={rule} className="flex gap-2.5">
+                <span className="shrink-0 font-mono text-xs tabular-nums text-primary">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="leading-relaxed">{rule}</span>
+              </li>
+            ))}
+          </ol>
         </section>
 
         {/* 三個階段 */}

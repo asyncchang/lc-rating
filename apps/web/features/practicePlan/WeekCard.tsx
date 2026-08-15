@@ -14,7 +14,7 @@ interface WeekCardProps {
   data: PracticePlanWeek;
 }
 
-/** 一週的課表：主線題與挑戰題各一列，掛上站上既有的進度與筆記。 */
+/** 一週的課表：主線題與該週的超載題各一列，掛上站上既有的進度與筆記。 */
 export function WeekCard({ data }: WeekCardProps) {
   return (
     <article className="overflow-hidden rounded-2xl border border-border/60 bg-card shadow-sm">
@@ -73,8 +73,11 @@ export function WeekCard({ data }: WeekCardProps) {
                 />
                 <RatingChip rating={problem.rating} />
                 {problem.bonus && (
-                  <span className="rounded-full bg-accent px-2 py-0.5 text-xs text-accent-foreground">
-                    挑戰
+                  <span
+                    className="rounded-full bg-accent px-2 py-0.5 text-xs text-accent-foreground"
+                    title="超載題：允許看題解，但要自己重寫一遍；不計入一次過率"
+                  >
+                    超載
                   </span>
                 )}
               </div>
