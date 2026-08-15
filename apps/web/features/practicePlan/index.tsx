@@ -3,7 +3,9 @@
 import { SectionDivider } from "@/components/common/SectionDivider";
 import { StatCard } from "@/components/common/StatCard";
 import {
+  practicePlanCalibration,
   practicePlanMetrics,
+  practicePlanOverload,
   practicePlanNoteTemplate,
   practicePlanPhases,
   practicePlanProfile,
@@ -48,7 +50,7 @@ function PracticePlan() {
 
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
               <StatCard icon={ListChecks} label="主線題" value={stats.main} />
-              <StatCard icon={Flag} label="挑戰題" value={stats.bonus} />
+              <StatCard icon={Flag} label="超載題" value={stats.bonus} />
               <StatCard icon={Timer} label="限時模擬" value={stats.contests} />
               <StatCard
                 icon={CalendarRange}
@@ -57,6 +59,75 @@ function PracticePlan() {
               />
             </div>
           </div>
+        </section>
+
+        {/* 難度校準 */}
+        <SectionDivider label="難度校準" />
+        <section className="space-y-3">
+          <p className="max-w-3xl text-sm leading-relaxed text-muted-foreground">
+            {practicePlanCalibration.headline}
+          </p>
+          <div className="grid gap-3 lg:grid-cols-2">
+            <div className="overflow-x-auto rounded-2xl border border-border/60 bg-card">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="whitespace-nowrap bg-muted/60 text-xs uppercase tracking-wide text-muted-foreground">
+                    <th className="px-4 py-2 text-left font-medium">區間</th>
+                    <th className="px-4 py-2 text-right font-medium">中位數</th>
+                    <th className="px-4 py-2 text-right font-medium">
+                      四分位距
+                    </th>
+                    <th className="px-4 py-2 text-right font-medium">≥2100</th>
+                    <th className="px-4 py-2 text-right font-medium">≥2300</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border/60">
+                  {practicePlanCalibration.windows.map((w) => (
+                    <tr key={w.label}>
+                      <td className="px-4 py-2.5">{w.label}</td>
+                      <td className="px-4 py-2.5 text-right tabular-nums">
+                        {w.median}
+                      </td>
+                      <td className="px-4 py-2.5 text-right tabular-nums text-muted-foreground">
+                        {w.iqr}
+                      </td>
+                      <td className="px-4 py-2.5 text-right tabular-nums text-muted-foreground">
+                        {w.over2100}
+                      </td>
+                      <td className="px-4 py-2.5 text-right tabular-nums text-muted-foreground">
+                        {w.over2300}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="overflow-x-auto rounded-2xl border border-border/60 bg-card">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-muted/60 text-xs uppercase tracking-wide text-muted-foreground">
+                    <th className="px-4 py-2 text-left font-medium">年份</th>
+                    <th className="px-4 py-2 text-right font-medium">
+                      Q3 中位數
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border/60">
+                  {practicePlanCalibration.byYear.map((y) => (
+                    <tr key={y.year}>
+                      <td className="px-4 py-2.5 tabular-nums">{y.year}</td>
+                      <td className="px-4 py-2.5 text-right tabular-nums">
+                        {y.q3}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <p className="max-w-3xl text-xs leading-relaxed text-muted-foreground">
+            {`統計於 ${practicePlanCalibration.updatedAt}。${practicePlanCalibration.method}難度逐年漂移，數字過期時重跑一次並更新 practicePlan.ts 的校準區塊。`}
+          </p>
         </section>
 
         {/* 每週節奏 */}
@@ -99,6 +170,26 @@ function PracticePlan() {
               "看過題解、或寫超過 40 分鐘的題，在第 2 天、第 7 天、第 21 天各重寫一次，三次都一次過才把狀態從「需要複習」降為「已解題」。看過題解的當次不算已解題。"
             }
           </p>
+        </section>
+
+        {/* 超載題 */}
+        <SectionDivider label="超載題怎麼做" />
+        <section className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
+          <div className="rounded-2xl border-l-4 border-primary bg-accent/60 px-4 py-3">
+            <p className="text-sm leading-relaxed">
+              {practicePlanOverload.principle}
+            </p>
+          </div>
+          <ol className="space-y-1.5 rounded-2xl border border-border/60 bg-card p-4 text-sm text-muted-foreground">
+            {practicePlanOverload.rules.map((rule, i) => (
+              <li key={rule} className="flex gap-2.5">
+                <span className="shrink-0 font-mono text-xs tabular-nums text-primary">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="leading-relaxed">{rule}</span>
+              </li>
+            ))}
+          </ol>
         </section>
 
         {/* 三個階段 */}

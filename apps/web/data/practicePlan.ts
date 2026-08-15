@@ -17,7 +17,10 @@ export interface PracticePlanProblem {
   rating: number | null;
   /** 這題在課表裡的角色：練什麼、為什麼排在這個位置。 */
   role: string;
-  /** 選做的加碼題，主線做完仍有餘力再碰。 */
+  /**
+   * 超載題：刻意高過當週主線 200–300 分的一題，用來把主線難度變成相對輕鬆的
+   * 一檔。做法與主線題不同，見 practicePlanOverload。
+   */
   bonus?: boolean;
 }
 
@@ -50,8 +53,57 @@ export interface PracticePlanPhase {
 export const practicePlanProfile = {
   audience:
     "適合週賽 Q1–Q2 穩定、Q3 偶爾，每週能投入 4–6 小時，目標是穩定 AK Q3 的人。",
-  ratingBand: "1400 → 1900",
+  ratingBand: "1500 → 2050",
 } as const;
+
+// 課表終點的依據：近年 Q3 的實際評分分佈，用本站 problemset 的 contests.json
+// （problemIds 依序即 Q1–Q4）與 zerotrac 評分算出。難度會逐年漂移，重算方式見
+// 下方 method，數字過期時直接重跑並更新這裡。
+export const practicePlanCalibration = {
+  updatedAt: "2026-08",
+  method:
+    "取 contests.json 內每場的第三題，對照 problems.json 的 zerotrac 評分後統計。",
+  headline:
+    "近 12 個月週賽 Q3 的中位數是 1909、上四分位 1999，2100 以上佔 12%。目標因此設在 2000（吃下上四分位），主線題排到 2050–2085，而每週的超載題再往上加 200–300，第三階段練到 2250–2270——練習的天花板要高過目標，2000 才會變成相對輕鬆的一檔。",
+  byYear: [
+    { year: "2022", q3: 1718 },
+    { year: "2023", q3: 1889 },
+    { year: "2024", q3: 1907 },
+    { year: "2025", q3: 2040 },
+    { year: "2026", q3: 1854 },
+  ],
+  windows: [
+    {
+      label: "近 12 個月（週賽）",
+      median: 1909,
+      iqr: "1777–1999",
+      over2100: "12%",
+      over2300: "0%",
+    },
+    {
+      label: "近 24 個月（週賽）",
+      median: 2011,
+      iqr: "1860–2187",
+      over2100: "33%",
+      over2300: "17%",
+    },
+  ],
+} as const;
+
+// 每週一題「超載題」的設計原則與做法。超載題不是加分題——它的分數帶刻意高過
+// 當週主線 200–300，用途是把主線的難度變成「相對輕鬆」的那一檔。因此它的做法
+// 與主線題不同：允許看題解，但一定要自己重寫一遍。
+export const practicePlanOverload = {
+  principle:
+    "要在比賽壓力下穩定解出 2000 分的題，練習的天花板必須高過目標 200–300 分。課表因此每週配一題超載題：第一階段約 1900–2050，第二階段 2090–2160，第三階段 2250–2270。",
+  rules: [
+    "每週一題，排在非模擬週的週六，45 分鐘。",
+    "25 分鐘沒有方向就看題解——超載題的目的是接觸技巧，不是獨立解出。",
+    "看完題解就關掉，從零自己重寫一遍。寫不出來就再看一次。訓練效果來自這一步，不是來自讀懂。",
+    "不列入一次過率統計，也不要求三次複習全過；只要求「隔一週能重寫出來」。",
+    "連續兩週的超載題完全沒有頭緒，把該階段的超載題降 100 分——超載要能撐得住才有意義。",
+  ],
+};
 
 export const practicePlanWeeks: PracticePlanWeek[] = [
   {
@@ -98,11 +150,11 @@ export const practicePlanWeeks: PracticePlanWeek[] = [
         role: "把「操作次數」變成視窗內的可容忍量",
       },
       {
-        id: "2962",
-        title: "統計最大元素出現至少 K 次的子陣列",
-        slug: "count-subarrays-where-max-element-appears-at-least-k-times",
-        rating: 1701,
-        role: "越長越合法的計數版",
+        id: "2762",
+        title: "不間斷子陣列",
+        slug: "continuous-subarrays",
+        rating: 1940,
+        role: "視窗內同時維護最大與最小值（有序集合／雙單調佇列）",
         bonus: true,
       },
     ],
@@ -154,11 +206,11 @@ export const practicePlanWeeks: PracticePlanWeek[] = [
         role: "同餘分組；負數取模的陷阱",
       },
       {
-        id: "3026",
-        title: "最大好子陣列和",
-        slug: "maximum-good-subarray-sum",
-        rating: 1817,
-        role: "雜湊表存「最小前綴和」而非出現次數",
+        id: "1124",
+        title: "表現良好的最長時間段",
+        slug: "longest-well-performing-interval",
+        rating: 1908,
+        role: "前綴和 ＋ 單調棧：把「和為正」轉成前綴和的比較",
         bonus: true,
       },
     ],
@@ -209,11 +261,11 @@ export const practicePlanWeeks: PracticePlanWeek[] = [
         role: "上取整寫法 (a + b - 1) / b",
       },
       {
-        id: "1552",
-        title: "兩球之間的磁力",
-        slug: "magnetic-force-between-two-balls",
-        rating: 1920,
-        role: "最大化最小值 ＋ 先排序",
+        id: "2517",
+        title: "禮盒的最大甜蜜度",
+        slug: "maximum-tastiness-of-candy-basket",
+        rating: 2021,
+        role: "最大化最小值 ＋ 排序後的貪心 check",
         bonus: true,
       },
     ],
@@ -265,11 +317,11 @@ export const practicePlanWeeks: PracticePlanWeek[] = [
         role: "單調棧的線上（streaming）版",
       },
       {
-        id: "907",
-        title: "子陣列的最小值之和",
-        slug: "sum-of-subarray-minimums",
-        rating: 1976,
-        role: "貢獻法 ＋ 相等元素的歸屬（去重）",
+        id: "1856",
+        title: "子陣列最小乘積的最大值",
+        slug: "maximum-subarray-min-product",
+        rating: 2051,
+        role: "單調棧定邊界 ＋ 前綴和求區段和",
         bonus: true,
       },
     ],
@@ -320,11 +372,11 @@ export const practicePlanWeeks: PracticePlanWeek[] = [
         role: "按時間推進的事件模擬（Q3 高頻骨架）",
       },
       {
-        id: "1642",
-        title: "可以到達的最遠建築",
-        slug: "furthest-building-you-can-reach",
-        rating: 1962,
-        role: "反悔堆——先隨便選，之後用堆換回來",
+        id: "2402",
+        title: "會議室 III",
+        slug: "meeting-rooms-iii",
+        rating: 2093,
+        role: "雙堆事件模擬的完全體：空閒堆 ＋ 佔用堆",
         bonus: true,
       },
     ],
@@ -376,11 +428,11 @@ export const practicePlanWeeks: PracticePlanWeek[] = [
         role: "排序 ＋ 後綴最大值 ＋ 二分",
       },
       {
-        id: "1943",
-        title: "描述繪畫結果",
-        slug: "describe-the-painting",
-        rating: 1969,
-        role: "掃描線的完整形式（事件點 ＋ 有序表）",
+        id: "2584",
+        title: "分割陣列使乘積互質",
+        slug: "split-the-array-to-make-coprime-products",
+        rating: 2159,
+        role: "質因數分解後化為區間覆蓋，再掃描線",
         bonus: true,
       },
     ],
@@ -438,11 +490,11 @@ export const practicePlanWeeks: PracticePlanWeek[] = [
         role: "同時維護兩組狀態（正／負）",
       },
       {
-        id: "1186",
-        title: "刪除一次得到子陣列最大和",
-        slug: "maximum-subarray-sum-with-one-deletion",
-        rating: 1799,
-        role: "狀態多一維「已用掉刪除機會」",
+        id: "1955",
+        title: "統計特殊子序列的數目",
+        slug: "count-number-of-special-subsequences",
+        rating: 2125,
+        role: "三狀態計數 DP，狀態機的完整形式",
         bonus: true,
       },
     ],
@@ -501,11 +553,11 @@ export const practicePlanWeeks: PracticePlanWeek[] = [
         role: "劃分的判定版；最後一段長度有限",
       },
       {
-        id: "1043",
-        title: "分隔陣列以得到最大和",
-        slug: "partition-array-for-maximum-sum",
-        rating: 1916,
-        role: "劃分 ＋ 段內資訊（最大值）同時維護",
+        id: "2209",
+        title: "用地毯覆蓋後的最少白色磚塊",
+        slug: "minimum-white-tiles-after-covering-with-carpets",
+        rating: 2106,
+        role: "約束劃分個數：dp[i][j] 多一維「用掉幾條地毯」",
         bonus: true,
       },
     ],
@@ -522,32 +574,11 @@ export const practicePlanWeeks: PracticePlanWeek[] = [
     ],
     problems: [
       {
-        id: "3286",
-        title: "穿越網格圖的安全路徑",
-        slug: "find-a-safe-walk-through-a-grid",
-        rating: 1608,
-        role: "0-1 BFS：邊權只有 0 和 1 時用雙端佇列",
-      },
-      {
         id: "1926",
         title: "迷宮中離入口最近的出口",
         slug: "nearest-exit-from-entrance-in-maze",
         rating: 1638,
         role: "模板：格點 BFS ＋ 就地標記已訪問",
-      },
-      {
-        id: "1091",
-        title: "二進位制矩陣中的最短路徑",
-        slug: "shortest-path-in-binary-matrix",
-        rating: 1658,
-        role: "八方向；BFS 的層數就是答案",
-      },
-      {
-        id: "1162",
-        title: "地圖分析",
-        slug: "as-far-from-land-as-possible",
-        rating: 1666,
-        role: "多源 BFS：所有源點一起入隊",
       },
       {
         id: "3341",
@@ -557,11 +588,32 @@ export const practicePlanWeeks: PracticePlanWeek[] = [
         role: "模板：Dijkstra（優先佇列 ＋ 已定值跳過）",
       },
       {
+        id: "1765",
+        title: "地圖中的最高點",
+        slug: "map-of-highest-peak",
+        rating: 1783,
+        role: "多源 BFS：所有源點一起入隊",
+      },
+      {
         id: "1631",
         title: "最小體力消耗路徑",
         slug: "path-with-minimum-effort",
         rating: 1948,
         role: "三種解法（二分＋BFS／Dijkstra／並查集）各寫一遍",
+      },
+      {
+        id: "1368",
+        title: "使網格圖至少有一條有效路徑的最小代價",
+        slug: "minimum-cost-to-make-at-least-one-valid-path-in-a-grid",
+        rating: 2069,
+        role: "0-1 BFS 的正宗題：改方向花 1、順向花 0",
+      },
+      {
+        id: "864",
+        title: "獲取所有鑰匙的最短路徑",
+        slug: "shortest-path-to-get-all-keys",
+        rating: 2259,
+        role: "BFS ＋ 狀態壓縮：狀態是（座標, 鑰匙集合）",
         bonus: true,
       },
     ],
@@ -579,18 +631,11 @@ export const practicePlanWeeks: PracticePlanWeek[] = [
     contest: 5,
     problems: [
       {
-        id: "1026",
-        title: "節點與其祖先之間的最大差值",
-        slug: "maximum-difference-between-node-and-ancestor",
-        rating: 1446,
-        role: "自頂向下：把資訊當參數往下傳",
-      },
-      {
         id: "3249",
         title: "統計好節點的數目",
         slug: "count-the-number-of-good-nodes",
         rating: 1566,
-        role: "自底向上：回傳子樹大小",
+        role: "暖身：自底向上回傳子樹大小",
       },
       {
         id: "2115",
@@ -600,13 +645,6 @@ export const practicePlanWeeks: PracticePlanWeek[] = [
         role: "模板：拓撲排序（入度歸零入隊）",
       },
       {
-        id: "1443",
-        title: "收集樹上所有蘋果的最少時間",
-        slug: "minimum-time-to-collect-all-apples-in-a-tree",
-        rating: 1683,
-        role: "一般樹（鄰接表 ＋ parent 去重）；有遞有歸",
-      },
-      {
         id: "1372",
         title: "二叉樹中的最長交錯路徑",
         slug: "longest-zigzag-path-in-a-binary-tree",
@@ -614,16 +652,30 @@ export const practicePlanWeeks: PracticePlanWeek[] = [
         role: "樹形 DP：回傳兩種方向的長度",
       },
       {
-        id: "1519",
-        title: "子樹中標籤相同的節點數",
-        slug: "number-of-nodes-in-the-sub-tree-with-the-same-label",
-        rating: 1809,
-        role: "子樹資訊合併（回傳計數陣列）",
+        id: "2477",
+        title: "到達首都的最少油耗",
+        slug: "minimum-fuel-cost-to-report-to-the-capital",
+        rating: 2012,
+        role: "樹形 DP：子樹人數決定邊的貢獻",
+      },
+      {
+        id: "2050",
+        title: "並行課程 III",
+        slug: "parallel-courses-iii",
+        rating: 2084,
+        role: "在拓撲序上 DP，Q3 的高頻組合",
+      },
+      {
+        id: "3203",
+        title: "合併兩棵樹後的最小直徑",
+        slug: "find-minimum-diameter-after-merging-two-trees",
+        rating: 2266,
+        role: "兩次求直徑後貪心接合，答案取三者最大",
         bonus: true,
       },
     ],
     deliverable:
-      "一句判準——問題只關於子樹 ⇒ 後序（自底向上回傳）；只關於從根到當前的路徑 ⇒ 前序（參數往下傳）；兩者都要 ⇒ 有遞有歸。",
+      "一句判準——問題只關於子樹 ⇒ 後序（自底向上回傳）；只關於從根到當前的路徑 ⇒ 前序（參數往下傳）；兩者都要 ⇒ 有遞有歸。拓撲排序看到「先修／依賴」就用。",
   },
   {
     week: 11,
@@ -634,32 +686,11 @@ export const practicePlanWeeks: PracticePlanWeek[] = [
     ],
     problems: [
       {
-        id: "2433",
-        title: "找出字首異或的原始陣列",
-        slug: "find-the-original-array-of-prefix-xor",
-        rating: 1367,
-        role: "暖身：a ^ b ^ b == a",
-      },
-      {
         id: "1442",
         title: "形成兩個異或相等陣列的三元組數目",
         slug: "count-triplets-that-can-form-two-arrays-of-equal-xor",
         rating: 1525,
-        role: "異或前綴和 ＋ 雜湊表（接回第 2 週）",
-      },
-      {
-        id: "2044",
-        title: "統計按位或能得到最大值的子集數目",
-        slug: "count-number-of-maximum-bitwise-or-subsets",
-        rating: 1568,
-        role: "子集枚舉 1 << n；n ≤ 20 的訊號",
-      },
-      {
-        id: "2425",
-        title: "所有數對的異或和",
-        slug: "bitwise-xor-of-all-pairings",
-        rating: 1622,
-        role: "拆位：每一位獨立算貢獻",
+        role: "暖身：異或前綴和 ＋ 雜湊表（接回第 2 週）",
       },
       {
         id: "2275",
@@ -669,16 +700,37 @@ export const practicePlanWeeks: PracticePlanWeek[] = [
         role: "拆位後變成「哪一位的 1 最多」",
       },
       {
+        id: "1835",
+        title: "所有數對按位與結果的異或和",
+        slug: "find-xor-sum-of-all-pairs-bitwise-and",
+        rating: 1825,
+        role: "拆位貢獻法：每一位獨立算配對數",
+      },
+      {
         id: "3097",
         title: "或值至少為 K 的最短子陣列 II",
         slug: "shortest-subarray-with-or-at-least-k-ii",
         rating: 1891,
         role: "滑窗 ＋ 按位計數（可撤銷的 OR）",
+      },
+      {
+        id: "3209",
+        title: "子陣列按位與值為 K 的數目",
+        slug: "number-of-subarrays-with-and-value-of-k",
+        rating: 2050,
+        role: "LogTrick：固定右端點，AND 值只會變 log 次",
+      },
+      {
+        id: "3007",
+        title: "價值和小於等於 K 的最大數字",
+        slug: "maximum-number-that-sum-of-the-prices-is-less-than-or-equal-to-k",
+        rating: 2258,
+        role: "二分答案 ＋ 按位計算貢獻（試填法的近親）",
         bonus: true,
       },
     ],
     deliverable:
-      "一句判準——與／或／異或的題目，先問「每一位能不能獨立處理？」，八成的位元運算 Q3 就是拆位 ＋ 前面學過的技巧。",
+      "一句判準——與／或／異或的題目，先問「每一位能不能獨立處理？」；不能的話問「固定右端點時，這個值最多變幾次？」（AND／OR／GCD 都只會變 log 次）。",
   },
   {
     week: 12,
@@ -690,20 +742,6 @@ export const practicePlanWeeks: PracticePlanWeek[] = [
     contest: 6,
     problems: [
       {
-        id: "2349",
-        title: "設計數字容器系統",
-        slug: "design-a-number-container-system",
-        rating: 1540,
-        role: "雜湊表 ＋ 有序集合的組合設計",
-      },
-      {
-        id: "981",
-        title: "基於時間的鍵值儲存",
-        slug: "time-based-key-value-store",
-        rating: 1575,
-        role: "設計題裡的二分查找",
-      },
-      {
         id: "990",
         title: "等式方程的可滿足性",
         slug: "satisfiability-of-equality-equations",
@@ -711,11 +749,11 @@ export const practicePlanWeeks: PracticePlanWeek[] = [
         role: "模板：並查集（路徑壓縮）",
       },
       {
-        id: "3532",
-        title: "針對圖的路徑存在性查詢 I",
-        slug: "path-existence-queries-in-a-graph-i",
-        rating: 1659,
-        role: "連通性查詢；何時該用並查集而非 BFS",
+        id: "2353",
+        title: "設計食物評分系統",
+        slug: "design-a-food-rating-system",
+        rating: 1782,
+        role: "懶刪除堆 vs 有序集合的取捨",
       },
       {
         id: "1202",
@@ -725,11 +763,25 @@ export const practicePlanWeeks: PracticePlanWeek[] = [
         role: "並查集分組後各組內排序",
       },
       {
-        id: "2353",
-        title: "設計食物評分系統",
-        slug: "design-a-food-rating-system",
-        rating: 1782,
-        role: "懶刪除堆 vs 有序集合的取捨",
+        id: "1562",
+        title: "查詢大小為 M 的最新分組",
+        slug: "find-latest-group-of-size-m",
+        rating: 1928,
+        role: "陣列上的並查集：邊加入邊合併相鄰段",
+      },
+      {
+        id: "2092",
+        title: "找出知曉祕密的所有專家",
+        slug: "find-all-people-with-secret",
+        rating: 2004,
+        role: "按時間分批的並查集，含同批次的回滾",
+      },
+      {
+        id: "952",
+        title: "按公因數計算最大元件大小",
+        slug: "largest-component-size-by-common-factor",
+        rating: 2272,
+        role: "質因數當節點的並查集建模",
         bonus: true,
       },
     ],
@@ -792,7 +844,7 @@ export const practicePlanPhases: PracticePlanPhase[] = [
     id: 3,
     label: "第三階段",
     title: "圖、樹與位元",
-    goal: "Q3 穩定 AK；Q4 至少能寫出暴力或想到方向",
+    goal: "把上限推過 Q3 的上四分位（約 2000）；這一階段的主線題會到 2050–2130",
     weeks: [9, 10, 11, 12],
     checkpoint: {
       label: "期末驗收 · 第 12 週末",
@@ -803,7 +855,13 @@ export const practicePlanPhases: PracticePlanPhase[] = [
         },
         {
           term: "達標",
-          detail: "兩場都 Q1–Q3 全過，其中至少一場在 60 分鐘內完成 Q1–Q3。",
+          detail:
+            "兩場都 Q1–Q3 全過，其中至少一場在 60 分鐘內完成 Q1–Q3。以近一年的 Q3 分佈來看，這代表你已站上 1900–2000 這一檔。",
+        },
+        {
+          term: "誠實的預期",
+          detail:
+            "十二週能穩定拿下的是中位數附近的 Q3（約 1900）；遇到 2100 以上的那 12% 仍會失手。要把上四分位也吃下來，通常還需要第四個月。",
         },
         {
           term: "接下來",
@@ -829,7 +887,7 @@ export const practicePlanRhythm = [
   {
     when: "週六（雙週）",
     minutes: "90 分",
-    what: "限時模擬舊週賽 Q1–Q3，從競賽頁挑分數帶相近的場次。非模擬週改做 45 分鐘挑戰題",
+    what: "限時模擬舊週賽 Q1–Q3，從競賽頁挑分數帶相近的場次。非模擬週改做 45 分鐘超載題（規則見下）",
   },
   {
     when: "週日",
@@ -847,7 +905,7 @@ export const practicePlanRules = [
   {
     title: "五題都在 20 分鐘內解完",
     detail:
-      "難度落後了。直接跳做該週的挑戰題，並從 Q3 手冊對應主題的「挑戰」欄再抓 2 題。不要用多做簡單題來累積數量。",
+      "難度落後了。把該週的超載題當主線做（不看題解、限時 40 分鐘），並從 Q3 手冊對應主題的「挑戰」欄再抓 2 題。不要用多做簡單題來累積數量。",
   },
   {
     title: "出差、生病、加班週",
@@ -864,9 +922,9 @@ export const practicePlanRules = [
 export const practicePlanMetrics = [
   {
     figure: "≥ 60%",
-    title: "1700 分帶一次過率",
+    title: "1900 分帶一次過率",
     detail:
-      "不看題解就通過的比例。每月底統計一次；低於 50% 表示新題吃太快，把配比改成新題 4 題、複習 3 題。",
+      "只統計主線題、不看題解就通過的比例，對準近一年 Q3 的中位數。每月底統計一次；低於 50% 表示新題吃太快，把配比改成新題 4 題、複習 3 題。超載題不計入。",
   },
   {
     figure: "≤ 5 分",
