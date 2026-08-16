@@ -5,7 +5,7 @@ interface RatingChipProps {
   rating: number | null;
 }
 
-/** 課表列上的評分標記，沿用題庫的分數帶配色。 */
+/** 集訓題目列上的評分標記，沿用題庫的分數帶配色。 */
 export function RatingChip({ rating }: RatingChipProps) {
   if (rating === null) {
     return (

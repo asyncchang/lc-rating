@@ -4,17 +4,17 @@ import { I18NLink } from "@/components/common/I18NLink";
 import { ProblemNoteButton } from "@/components/common/ProblemNoteButton";
 import { ProgressSelector } from "@/components/common/ProgressSelector";
 import { LC_HOST_EN, LC_HOST_ZH } from "@/config/constants";
-import type { PracticePlanWeek } from "@/data/practicePlan";
+import type { TrainingPlanWeek } from "@/data/trainingPlan";
 import { Timer } from "lucide-react";
 import Link from "next/link";
 
 import { RatingChip } from "./RatingChip";
 
 interface WeekCardProps {
-  data: PracticePlanWeek;
+  data: TrainingPlanWeek;
 }
 
-/** 一週的課表：主線題與該週的超載題各一列，掛上站上既有的進度與筆記。 */
+/** 一週的集訓：主線題與該週的超載題各一列，掛上站上既有的進度與筆記。 */
 export function WeekCard({ data }: WeekCardProps) {
   return (
     <article className="overflow-hidden rounded-2xl border border-border/60 bg-card shadow-sm">

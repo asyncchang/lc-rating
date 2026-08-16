@@ -1,4 +1,4 @@
-// 十二週競賽訓練課表，顯示於 /plan。
+// 十二週競賽集訓計畫，顯示於 /training。
 //
 // 選題方式：以 q3_handbook 的 pattern 分組為骨幹，用 zerotrac 評分把每週排成
 // 由易到難；handbook 必修題偏難的主題（例如堆積貪心的必修是 1962 分），另從
@@ -8,63 +8,66 @@
 // 適用對象：週賽 Q1–Q2 穩定、Q3 偶爾（約 1400–1700），每週 4–6 小時，
 // 目標是穩定 AK Q3。
 
-export interface PracticePlanProblem {
+export interface TrainingPlanProblem {
   /** LeetCode 題號，同時是進度與筆記的 key。 */
   id: string;
   title: string;
   slug: string;
   /** zerotrac 評分；早期經典題無競賽評分，為 null。 */
   rating: number | null;
-  /** 這題在課表裡的角色：練什麼、為什麼排在這個位置。 */
+  /** 這題在集訓裡的角色：練什麼、為什麼排在這個位置。 */
   role: string;
   /**
    * 超載題：刻意高過當週主線 200–300 分的一題，用來把主線難度變成相對輕鬆的
-   * 一檔。做法與主線題不同，見 practicePlanOverload。
+   * 一檔。做法與主線題不同，見 trainingPlanOverload。
    */
   bonus?: boolean;
 }
 
-export interface PracticePlanWeek {
+export interface TrainingPlanWeek {
   week: number;
   topic: string;
   /** 對應的站內講義與題單。 */
   refs: { label: string; href: string }[];
-  problems: PracticePlanProblem[];
-  /** 本週要留下的可複用產物——課表的產出是判準與模板，不是題數。 */
+  problems: TrainingPlanProblem[];
+  /** 本週要留下的可複用產物——集訓的產出是判準與模板，不是題數。 */
   deliverable: string;
   /** 這週週六排第幾場限時模擬；沒排就不填。 */
   contest?: number;
 }
 
-export interface PracticePlanCheckpoint {
+export interface TrainingPlanCheckpoint {
   label: string;
   items: { term: string; detail: string }[];
 }
 
-export interface PracticePlanPhase {
+export interface TrainingPlanPhase {
   id: number;
   label: string;
   title: string;
   goal: string;
   weeks: number[];
-  checkpoint: PracticePlanCheckpoint;
+  checkpoint: TrainingPlanCheckpoint;
 }
 
-export const practicePlanProfile = {
+export const trainingPlanProfile = {
   audience:
     "適合週賽 Q1–Q2 穩定、Q3 偶爾，每週能投入 4–6 小時，目標是穩定 AK Q3 的人。",
   ratingBand: "1500 → 2050",
 } as const;
 
-// 課表終點的依據：近年 Q3 的實際評分分佈，用本站 problemset 的 contests.json
+// 集訓終點的依據：近年 Q3 的實際評分分佈，用本站 problemset 的 contests.json
 // （problemIds 依序即 Q1–Q4）與 zerotrac 評分算出。難度會逐年漂移，重算方式見
 // 下方 method，數字過期時直接重跑並更新這裡。
-export const practicePlanCalibration = {
+export const trainingPlanCalibration = {
   updatedAt: "2026-08",
   method:
     "取 contests.json 內每場的第三題，對照 problems.json 的 zerotrac 評分後統計。",
-  headline:
-    "近 12 個月週賽 Q3 的中位數是 1909、上四分位 1999，2100 以上佔 12%。目標因此設在 2000（吃下上四分位），主線題排到 2050–2085，而每週的超載題再往上加 200–300，第三階段練到 2250–2270——練習的天花板要高過目標，2000 才會變成相對輕鬆的一檔。",
+  headline: [
+    "近 12 個月週賽 Q3：中位數 1909、上四分位 1999，2100 以上佔 12%。",
+    "目標設在 2000，吃下上四分位；主線題因此排到 2050–2085。",
+    "超載題再往上加 200–300，第三階段練到 2250–2270。",
+  ],
   byYear: [
     { year: "2022", q3: 1718 },
     { year: "2023", q3: 1889 },
@@ -93,19 +96,19 @@ export const practicePlanCalibration = {
 // 每週一題「超載題」的設計原則與做法。超載題不是加分題——它的分數帶刻意高過
 // 當週主線 200–300，用途是把主線的難度變成「相對輕鬆」的那一檔。因此它的做法
 // 與主線題不同：允許看題解，但一定要自己重寫一遍。
-export const practicePlanOverload = {
+export const trainingPlanOverload = {
   principle:
-    "要在比賽壓力下穩定解出 2000 分的題，練習的天花板必須高過目標 200–300 分。課表因此每週配一題超載題：第一階段約 1900–2050，第二階段 2090–2160，第三階段 2250–2270。",
+    "練習的天花板要高過目標 200–300 分，目標分數帶才會變成相對輕鬆的一檔。每週配一題超載題：第一階段 1900–2050，第二階段 2090–2160，第三階段 2250–2270。",
   rules: [
     "每週一題，排在非模擬週的週六，45 分鐘。",
-    "25 分鐘沒有方向就看題解——超載題的目的是接觸技巧，不是獨立解出。",
-    "看完題解就關掉，從零自己重寫一遍。寫不出來就再看一次。訓練效果來自這一步，不是來自讀懂。",
-    "不列入一次過率統計，也不要求三次複習全過；只要求「隔一週能重寫出來」。",
-    "連續兩週的超載題完全沒有頭緒，把該階段的超載題降 100 分——超載要能撐得住才有意義。",
+    "25 分鐘沒有方向就看題解；目的是接觸技巧，不是獨立解出。",
+    "看完題解就關掉，從零重寫一遍。寫不出來就再看一次。",
+    "不列入一次過率，也不要求三次複習全過；只要求隔一週能重寫出來。",
+    "連續兩週完全沒有頭緒，把該階段的超載題降 100 分。",
   ],
 };
 
-export const practicePlanWeeks: PracticePlanWeek[] = [
+export const trainingPlanWeeks: TrainingPlanWeek[] = [
   {
     week: 1,
     topic: "滑動視窗：不定長、恰好型與計數",
@@ -215,7 +218,7 @@ export const practicePlanWeeks: PracticePlanWeek[] = [
       },
     ],
     deliverable:
-      "一句判準——子陣列和且元素可正可負 ⇒ 前綴和＋雜湊表；元素全為正 ⇒ 滑動視窗。這句話是 Q3 選錯方向的最大分水嶺。",
+      "一句判準——子陣列和且元素可正可負 ⇒ 前綴和＋雜湊表；元素全為正 ⇒ 滑動視窗。",
   },
   {
     week: 3,
@@ -380,8 +383,7 @@ export const practicePlanWeeks: PracticePlanWeek[] = [
         bonus: true,
       },
     ],
-    deliverable:
-      "「事件按時間排序 ＋ 一個堆維護當前可用資源」的骨架程式碼。這個骨架每個月的週賽都會出現一次。",
+    deliverable: "「事件按時間排序 ＋ 一個堆維護當前可用資源」的骨架程式碼。",
   },
   {
     week: 6,
@@ -498,8 +500,7 @@ export const practicePlanWeeks: PracticePlanWeek[] = [
         bonus: true,
       },
     ],
-    deliverable:
-      "每題都寫下三行狀態定義——dp 的語意、轉移、邊界。DP 的能力全在這三行，程式碼只是抄寫。",
+    deliverable: "每題都寫下三行狀態定義——dp 的語意、轉移、邊界。",
   },
   {
     week: 8,
@@ -618,7 +619,7 @@ export const practicePlanWeeks: PracticePlanWeek[] = [
       },
     ],
     deliverable:
-      "一句判準——邊權全為 1 ⇒ BFS；只有 0 和 1 ⇒ 雙端佇列 BFS；任意非負 ⇒ Dijkstra。選錯就是 TLE 或 WA。",
+      "一句判準——邊權全為 1 ⇒ BFS；只有 0 和 1 ⇒ 雙端佇列 BFS；任意非負 ⇒ Dijkstra。",
   },
   {
     week: 10,
@@ -790,7 +791,7 @@ export const practicePlanWeeks: PracticePlanWeek[] = [
   },
 ];
 
-export const practicePlanPhases: PracticePlanPhase[] = [
+export const trainingPlanPhases: TrainingPlanPhase[] = [
   {
     id: 1,
     label: "第一階段",
@@ -809,7 +810,7 @@ export const practicePlanPhases: PracticePlanPhase[] = [
         {
           term: "沒通過",
           detail:
-            "第 5 週改成複習週，把四個主題的模板各重寫一次，主線題延後一週。不要帶著沒固化的地基進 DP。",
+            "第 5 週改成複習週，把四個主題的模板各重寫一次，主線題延後一週。",
         },
       ],
     },
@@ -859,9 +860,9 @@ export const practicePlanPhases: PracticePlanPhase[] = [
             "兩場都 Q1–Q3 全過，其中至少一場在 60 分鐘內完成 Q1–Q3。以近一年的 Q3 分佈來看，這代表你已站上 1900–2000 這一檔。",
         },
         {
-          term: "誠實的預期",
+          term: "預期",
           detail:
-            "十二週能穩定拿下的是中位數附近的 Q3（約 1900）；遇到 2100 以上的那 12% 仍會失手。要把上四分位也吃下來，通常還需要第四個月。",
+            "十二週能穩定拿下中位數附近的 Q3（約 1900），2100 以上的那 12% 仍會失手；要吃下上四分位通常還需要第四個月。",
         },
         {
           term: "接下來",
@@ -873,7 +874,7 @@ export const practicePlanPhases: PracticePlanPhase[] = [
   },
 ];
 
-export const practicePlanRhythm = [
+export const trainingPlanRhythm = [
   {
     when: "週一",
     minutes: "45 分",
@@ -882,7 +883,7 @@ export const practicePlanRhythm = [
   {
     when: "週二–週五",
     minutes: "40 分 ×4",
-    what: "主線題各 1 題：想 10 分 → 寫 25 分 → 記四行筆記 5 分。35 分鐘無解就看題解到「啊」那一句為止，然後自己寫完",
+    what: "主線題各 1 題：想 10 分 → 寫 25 分 → 記四行筆記 5 分。35 分鐘無解就看題解到想通的那一句為止，然後自己寫完",
   },
   {
     when: "週六（雙週）",
@@ -896,58 +897,56 @@ export const practicePlanRhythm = [
   },
 ];
 
-export const practicePlanRules = [
+export const trainingPlanRules = [
   {
     title: "一週有 3 題卡超過 45 分鐘",
     detail:
-      "這是難度超前的訊號，不是努力不夠。回到同主題題單裡低 100–150 分的題各補 2 題，本週主線延後。硬推的代價是接下來三週的信心。",
+      "難度超前的訊號。回到同主題題單裡低 100–150 分的題各補 2 題，本週主線延後。",
   },
   {
     title: "五題都在 20 分鐘內解完",
     detail:
-      "難度落後了。把該週的超載題當主線做（不看題解、限時 40 分鐘），並從 Q3 手冊對應主題的「挑戰」欄再抓 2 題。不要用多做簡單題來累積數量。",
+      "難度落後的訊號。把該週的超載題當主線做（不看題解、限時 40 分鐘），並從 Q3 手冊對應主題的「挑戰」欄再抓 2 題。",
   },
   {
     title: "出差、生病、加班週",
-    detail:
-      "只做週日那 40 分鐘複習，新題全部延後一週。複習是唯一不可跳過的部分——跳過新題只是慢一週，跳過複習是前面幾週白做。",
+    detail: "只做週日那 40 分鐘複習，新題全部延後一週；複習不跳過。",
   },
   {
     title: "模擬時 Q3 想不出來",
     detail:
-      "比賽當下就記下「這題的訊號是什麼」，賽後對照講義該主題的「訊號」欄。Q3 失手幾乎都是辨識失敗，不是實作失敗。",
+      "比賽當下記下「這題的訊號是什麼」，賽後對照講義該主題的「訊號」欄。Q3 失手多半是辨識失敗，不是實作失敗。",
   },
 ];
 
-export const practicePlanMetrics = [
+export const trainingPlanMetrics = [
   {
     figure: "≥ 60%",
     title: "1900 分帶一次過率",
     detail:
-      "只統計主線題、不看題解就通過的比例，對準近一年 Q3 的中位數。每月底統計一次；低於 50% 表示新題吃太快，把配比改成新題 4 題、複習 3 題。超載題不計入。",
+      "只算主線題、不看題解就通過的比例，每月底統計一次。低於 50% 表示新題吃太快，改成新題 4 題、複習 3 題。",
   },
   {
     figure: "≤ 5 分",
     title: "確定方向的時間",
-    detail:
-      "從讀完題到知道用哪個 pattern。這是 AK Q3 的真正瓶頸——寫得快沒用，選錯方向就沒有機會了。",
+    detail: "從讀完題到知道用哪個 pattern。Q3 的瓶頸在選方向，不在實作速度。",
   },
   {
     figure: "≥ 70%",
     title: "複習題重寫一次過率",
     detail:
-      "隔 7 天那次重寫的通過率。這個數字掉下來，代表筆記寫成了解法抄錄而不是訊號記錄。",
+      "隔 7 天那次重寫的通過率。掉下來代表筆記寫成了解法抄錄，而不是訊號記錄。",
   },
 ];
 
-export const practicePlanNoteTemplate = [
+export const trainingPlanNoteTemplate = [
   "訊號：題目裡哪句話讓我該想到這個做法",
   "關鍵一步：整題最不顯然的那一下",
   "我當時卡在哪：想不到 X ／ 邊界寫錯 Y",
   "可複用模板：函式簽名或 3 行骨架",
 ].join("\n");
 
-export const practicePlanProgressConvention = [
+export const trainingPlanProgressConvention = [
   { status: "進行中", meaning: "本週要做的 5 題" },
   { status: "需要複習", meaning: "看過題解、或超過 40 分鐘才寫出來的" },
   { status: "已解題", meaning: "獨立解出，且三次複習都一次過" },

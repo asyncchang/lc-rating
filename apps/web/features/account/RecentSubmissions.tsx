@@ -51,12 +51,12 @@ export default function RecentSubmissions() {
   return (
     <div className="space-y-4">
       <p className="text-sm text-muted-foreground">
-        這裡列出你最近更新進度的題目，依時間由新到舊排序。
+        最近更新進度的題目，依時間由新到舊排序。
       </p>
 
       {recent.length === 0 ? (
         <p className="rounded-lg border bg-card p-4 text-sm text-muted-foreground">
-          目前還沒有任何做題紀錄，先去題庫標記一題進度吧。
+          還沒有做題紀錄。到題庫標記第一題的進度。
         </p>
       ) : (
         <ul className="space-y-2">

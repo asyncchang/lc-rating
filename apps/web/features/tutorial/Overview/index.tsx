@@ -91,7 +91,7 @@ function TutorialOverview() {
               <div className="space-y-2">
                 <h1 className="page-title">講義</h1>
                 <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
-                  依主題整理的演算法筆記與模板，適合學習與複習；題目練習請至對應題單。
+                  依主題整理的演算法筆記與模板；題目練習請至對應題單。
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-2 self-start">

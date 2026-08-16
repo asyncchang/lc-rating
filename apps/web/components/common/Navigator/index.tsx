@@ -80,9 +80,9 @@ const navLinks: {
     icon: BookOpen,
   },
   {
-    href: ROUTERS.plan.href,
-    label: ROUTERS.plan.title,
-    match: "/plan",
+    href: ROUTERS.training.href,
+    label: ROUTERS.training.title,
+    match: "/training",
     icon: CalendarRange,
   },
   {

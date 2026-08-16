@@ -3,35 +3,35 @@
 import { SectionDivider } from "@/components/common/SectionDivider";
 import { StatCard } from "@/components/common/StatCard";
 import {
-  practicePlanCalibration,
-  practicePlanMetrics,
-  practicePlanOverload,
-  practicePlanNoteTemplate,
-  practicePlanPhases,
-  practicePlanProfile,
-  practicePlanProgressConvention,
-  practicePlanRhythm,
-  practicePlanRules,
-  practicePlanWeeks,
-} from "@/data/practicePlan";
+  trainingPlanCalibration,
+  trainingPlanMetrics,
+  trainingPlanOverload,
+  trainingPlanNoteTemplate,
+  trainingPlanPhases,
+  trainingPlanProfile,
+  trainingPlanProgressConvention,
+  trainingPlanRhythm,
+  trainingPlanRules,
+  trainingPlanWeeks,
+} from "@/data/trainingPlan";
 import { CalendarRange, Flag, ListChecks, Timer } from "lucide-react";
 import { useMemo } from "react";
 
 import { WeekCard } from "./WeekCard";
 
-function PracticePlan() {
+function TrainingPlan() {
   const stats = useMemo(() => {
-    const problems = practicePlanWeeks.flatMap((w) => w.problems);
+    const problems = trainingPlanWeeks.flatMap((w) => w.problems);
     return {
       main: problems.filter((p) => !p.bonus).length,
       bonus: problems.filter((p) => p.bonus).length,
-      contests: practicePlanWeeks.filter((w) => w.contest).length,
-      weeks: practicePlanWeeks.length,
+      contests: trainingPlanWeeks.filter((w) => w.contest).length,
+      weeks: trainingPlanWeeks.length,
     };
   }, []);
 
   const weekByNumber = useMemo(
-    () => new Map(practicePlanWeeks.map((w) => [w.week, w])),
+    () => new Map(trainingPlanWeeks.map((w) => [w.week, w])),
     [],
   );
 
@@ -42,9 +42,9 @@ function PracticePlan() {
         <section className="brand-glow motion-rise relative overflow-hidden rounded-3xl border border-border/60 bg-background/80 shadow-sm">
           <div className="flex flex-col gap-5 p-4 sm:p-6">
             <div className="space-y-2">
-              <h1 className="page-title">訓練課表</h1>
+              <h1 className="page-title">十二週集訓</h1>
               <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
-                {`十二週競賽訓練計畫：每週一個 pattern，題目取自站內題單並依評分排成由易到難。${practicePlanProfile.audience}`}
+                {`每週一個 pattern，題目取自站內題單並依評分排成由易到難。${trainingPlanProfile.audience}`}
               </p>
             </div>
 
@@ -55,7 +55,7 @@ function PracticePlan() {
               <StatCard
                 icon={CalendarRange}
                 label="分數帶"
-                value={practicePlanProfile.ratingBand}
+                value={trainingPlanProfile.ratingBand}
               />
             </div>
           </div>
@@ -64,9 +64,16 @@ function PracticePlan() {
         {/* 難度校準 */}
         <SectionDivider label="難度校準" />
         <section className="space-y-3">
-          <p className="text-sm leading-relaxed text-muted-foreground">
-            {practicePlanCalibration.headline}
-          </p>
+          <ul className="space-y-1 text-sm leading-relaxed text-muted-foreground">
+            {trainingPlanCalibration.headline.map((line) => (
+              <li key={line} className="flex gap-2">
+                <span aria-hidden className="shrink-0 text-primary">
+                  ·
+                </span>
+                <span>{line}</span>
+              </li>
+            ))}
+          </ul>
           <div className="grid gap-3 lg:grid-cols-2">
             <div className="overflow-x-auto rounded-2xl border border-border/60 bg-card">
               <table className="w-full text-sm">
@@ -82,7 +89,7 @@ function PracticePlan() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border/60">
-                  {practicePlanCalibration.windows.map((w) => (
+                  {trainingPlanCalibration.windows.map((w) => (
                     <tr key={w.label}>
                       <td className="px-4 py-2.5">{w.label}</td>
                       <td className="px-4 py-2.5 text-right tabular-nums">
@@ -113,7 +120,7 @@ function PracticePlan() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border/60">
-                  {practicePlanCalibration.byYear.map((y) => (
+                  {trainingPlanCalibration.byYear.map((y) => (
                     <tr key={y.year}>
                       <td className="px-4 py-2.5 tabular-nums">{y.year}</td>
                       <td className="px-4 py-2.5 text-right tabular-nums">
@@ -126,7 +133,7 @@ function PracticePlan() {
             </div>
           </div>
           <p className="text-xs leading-relaxed text-muted-foreground">
-            {`統計於 ${practicePlanCalibration.updatedAt}。${practicePlanCalibration.method}難度逐年漂移，數字過期時重跑一次並更新 practicePlan.ts 的校準區塊。`}
+            {`統計於 ${trainingPlanCalibration.updatedAt}。${trainingPlanCalibration.method}難度逐年漂移，數字過期時重跑一次並更新 trainingPlan.ts 的校準區塊。`}
           </p>
         </section>
 
@@ -135,7 +142,7 @@ function PracticePlan() {
         <section className="space-y-3">
           <p className="text-sm leading-relaxed text-muted-foreground">
             {
-              "每週固定同一套節奏，只換主題。不要把新題擠到週末——新題要在腦子清醒的固定時段做，週末留給限時模擬與複習，這是三個月能撐完的關鍵。"
+              "每週固定同一套節奏，只換主題。新題排在平日的固定時段，週末留給限時模擬與複習。"
             }
           </p>
           <div className="overflow-x-auto rounded-2xl border border-border/60 bg-card">
@@ -148,7 +155,7 @@ function PracticePlan() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border/60">
-                {practicePlanRhythm.map((row) => (
+                {trainingPlanRhythm.map((row) => (
                   <tr key={row.when}>
                     <td className="whitespace-nowrap px-4 py-2.5 font-medium">
                       {row.when}
@@ -167,7 +174,7 @@ function PracticePlan() {
           <p className="text-sm leading-relaxed text-muted-foreground">
             <span className="font-medium text-foreground">複習排程：</span>
             {
-              "看過題解、或寫超過 40 分鐘的題，在第 2 天、第 7 天、第 21 天各重寫一次，三次都一次過才把狀態從「需要複習」降為「已解題」。看過題解的當次不算已解題。"
+              "看過題解、或寫超過 40 分鐘的題，在第 2、7、21 天各重寫一次；三次都一次過，才把狀態從「需要複習」改成「已解題」。"
             }
           </p>
         </section>
@@ -177,11 +184,11 @@ function PracticePlan() {
         <section className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
           <div className="rounded-2xl border-l-4 border-primary bg-accent/60 px-4 py-3">
             <p className="text-sm leading-relaxed">
-              {practicePlanOverload.principle}
+              {trainingPlanOverload.principle}
             </p>
           </div>
           <ol className="space-y-1.5 rounded-2xl border border-border/60 bg-card p-4 text-sm text-muted-foreground">
-            {practicePlanOverload.rules.map((rule, i) => (
+            {trainingPlanOverload.rules.map((rule, i) => (
               <li key={rule} className="flex gap-2.5">
                 <span className="shrink-0 font-mono text-xs tabular-nums text-primary">
                   {String(i + 1).padStart(2, "0")}
@@ -193,7 +200,7 @@ function PracticePlan() {
         </section>
 
         {/* 三個階段 */}
-        {practicePlanPhases.map((phase) => (
+        {trainingPlanPhases.map((phase) => (
           <section key={phase.id}>
             <SectionDivider
               label={`${phase.label} · 第 ${phase.weeks[0]}–${phase.weeks[phase.weeks.length - 1]} 週`}
@@ -236,7 +243,7 @@ function PracticePlan() {
         {/* 運行規則 */}
         <SectionDivider label="運行規則" />
         <section className="grid gap-3 sm:grid-cols-2">
-          {practicePlanRules.map((rule) => (
+          {trainingPlanRules.map((rule) => (
             <div
               key={rule.title}
               className="rounded-2xl border border-border/60 bg-card p-4"
@@ -252,7 +259,7 @@ function PracticePlan() {
         {/* 衡量 */}
         <SectionDivider label="只看三個數字" />
         <section className="grid gap-3 sm:grid-cols-3">
-          {practicePlanMetrics.map((metric) => (
+          {trainingPlanMetrics.map((metric) => (
             <div key={metric.title} className="stat-card">
               <p className="font-mono text-2xl font-semibold tabular-nums text-primary">
                 {metric.figure}
@@ -265,7 +272,7 @@ function PracticePlan() {
           ))}
         </section>
         <p className="mt-3 text-sm text-muted-foreground">
-          {`總題數不是指標。三個月 ${stats.main + stats.bonus} 題，比隨機刷 300 題有效的原因就在這三個數字上。`}
+          {`三個月共 ${stats.main + stats.bonus} 題。總題數不是指標，上面三個數字才是。`}
         </p>
 
         {/* 站內怎麼記 */}
@@ -274,7 +281,7 @@ function PracticePlan() {
           <div className="rounded-2xl border border-border/60 bg-card p-4">
             <h3 className="font-medium">進度狀態的約定</h3>
             <dl className="mt-2 space-y-1.5 text-sm">
-              {practicePlanProgressConvention.map((item) => (
+              {trainingPlanProgressConvention.map((item) => (
                 <div key={item.status} className="flex gap-2">
                   <dt className="shrink-0 font-medium">{item.status}</dt>
                   <dd className="text-muted-foreground">{item.meaning}</dd>
@@ -285,17 +292,17 @@ function PracticePlan() {
           <div className="rounded-2xl border border-border/60 bg-card p-4">
             <h3 className="font-medium">每題筆記只寫四行</h3>
             <p className="mt-1 text-sm text-muted-foreground">
-              寫超過就是在抄題解。點每列右邊的筆記鈕即可寫入。
+              點每列右邊的筆記鈕寫入。寫超過四行就是在抄題解。
             </p>
             <pre className="mt-2 overflow-x-auto rounded-xl bg-muted/60 p-3 text-xs leading-relaxed text-muted-foreground">
-              {practicePlanNoteTemplate}
+              {trainingPlanNoteTemplate}
             </pre>
           </div>
         </section>
 
         <p className="mt-6 text-xs leading-relaxed text-muted-foreground">
           {
-            "題目與評分取自站內題單與 zerotrac 評分資料。每題右側的進度與筆記與題單、題庫共用同一份紀錄，在課表上標記會同步到其他頁面。"
+            "題目與評分取自站內題單與 zerotrac 評分資料。每題右側的進度與筆記，與題單、題庫共用同一份紀錄，在這裡標記會同步到其他頁面。"
           }
         </p>
       </div>
@@ -303,4 +310,4 @@ function PracticePlan() {
   );
 }
 
-export default PracticePlan;
+export default TrainingPlan;

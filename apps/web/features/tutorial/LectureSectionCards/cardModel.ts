@@ -33,7 +33,7 @@ export interface CardProgressState {
 
 export function getSummaryPreview(summary?: string) {
   if (!summary)
-    return "進入此單元後，可依下一層子單元繼續閱讀，或直接開啟完整講義與搭配練習。";
+    return "可往下一層子單元繼續閱讀，或直接開啟完整講義與搭配練習。";
 
   return (
     stripExampleContainerMarkers(summary)

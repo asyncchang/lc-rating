@@ -17,9 +17,7 @@ export default function ProgressOverview() {
 
   return (
     <div className="space-y-4">
-      <p className="text-sm text-muted-foreground">
-        這裡會即時顯示你目前的刷題進度。
-      </p>
+      <p className="text-sm text-muted-foreground">即時顯示目前的刷題進度。</p>
 
       <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <div className="rounded-lg border bg-card p-3">
@@ -62,7 +60,7 @@ export default function ProgressOverview() {
 
         {tracked === 0 ? (
           <p className="text-sm text-muted-foreground">
-            目前還沒有任何已標記題目，先去題庫設定一題進度吧。
+            還沒有已標記的題目。到題庫設定第一題的進度。
           </p>
         ) : (
           <div className="grid gap-2 sm:grid-cols-2">
