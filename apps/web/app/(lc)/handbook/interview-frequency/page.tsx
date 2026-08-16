@@ -15,7 +15,7 @@ import { INTERVIEW_FREQUENCY_RANKING } from "@/features/handbook/content/intervi
 import type { InterviewFrequency } from "@/features/handbook/model";
 
 export const metadata: Metadata = {
-  title: "依訪談頻率劃分的章節 — LeetCode 模式手冊",
+  title: "依面試頻率排列的章節 — LeetCode 模式手冊",
   description:
     "依模式在真實軟體工程面試中的出現頻率排列手冊章節，綜合 LeetCode 公司標籤、競賽出現比例與學習指南能見度。",
 };
@@ -45,17 +45,17 @@ const SCORING = [
   {
     weight: "40%",
     label: "公司頻率標籤",
-    desc: "本章的問題被標記為頂級公司（FAANG、微軟等）提出的問題的頻率。",
+    desc: "本章題目被標記為頂尖公司（FAANG、微軟等）面試題的頻率。",
   },
   {
     weight: "30%",
-    label: "大賽亮相",
-    desc: "本章問題的評分範圍為 1700-2000 分。",
+    label: "競賽出現比例",
+    desc: "本章題目的評分落在 1700–2000 分的比例。",
   },
   {
     weight: "30%",
-    label: "學習指南的突出地位",
-    desc: "涵蓋 NeetCode 路線圖、Grind 75/150、Blind 75 和 Sean Prashad 的清單。",
+    label: "學習指南能見度",
+    desc: "涵蓋 NeetCode 路線圖、Grind 75/150、Blind 75 與 Sean Prashad 清單。",
   },
 ];
 

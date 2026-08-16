@@ -103,7 +103,7 @@ export default function SyncStorage() {
   return (
     <div className="space-y-4">
       <p className="text-sm text-muted-foreground">
-        登入後，你可以手動將刷題進度、筆記與題解上傳到雲端，或從雲端下載到目前的裝置。
+        登入後可手動把刷題進度、筆記與題解上傳到雲端，或從雲端下載到這台裝置。
       </p>
 
       <section className="space-y-3 rounded-lg border bg-card p-4">
@@ -185,7 +185,7 @@ export default function SyncStorage() {
             <div>
               <h3 className="text-sm font-semibold">同步未啟用</h3>
               <p className="mt-1 text-xs text-muted-foreground">
-                目前無法使用同步，你的進度仍會安全地保存在這台裝置上。
+                目前無法使用同步；進度仍保存在這台裝置上。
               </p>
             </div>
           </div>
