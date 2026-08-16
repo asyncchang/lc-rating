@@ -37,7 +37,7 @@ function PracticePlan() {
 
   return (
     <div className="min-h-screen bg-background font-han">
-      <div className="mx-auto max-w-5xl px-3 py-4 sm:px-4 sm:py-6 md:px-6">
+      <div className="mx-auto w-full max-w-[var(--lecture-reading-width)] px-3 py-4 sm:px-4 sm:py-6 md:px-6 xl:px-8">
         {/* Hero */}
         <section className="brand-glow motion-rise relative overflow-hidden rounded-3xl border border-border/60 bg-background/80 shadow-sm">
           <div className="flex flex-col gap-5 p-4 sm:p-6">
@@ -133,7 +133,7 @@ function PracticePlan() {
         {/* 每週節奏 */}
         <SectionDivider label="每週節奏" />
         <section className="space-y-3">
-          <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
+          <p className="text-sm leading-relaxed text-muted-foreground">
             {
               "每週固定同一套節奏，只換主題。不要把新題擠到週末——新題要在腦子清醒的固定時段做，週末留給限時模擬與複習，這是三個月能撐完的關鍵。"
             }
@@ -164,7 +164,7 @@ function PracticePlan() {
               </tbody>
             </table>
           </div>
-          <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
+          <p className="text-sm leading-relaxed text-muted-foreground">
             <span className="font-medium text-foreground">複習排程：</span>
             {
               "看過題解、或寫超過 40 分鐘的題，在第 2 天、第 7 天、第 21 天各重寫一次，三次都一次過才把狀態從「需要複習」降為「已解題」。看過題解的當次不算已解題。"
