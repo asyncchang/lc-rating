@@ -18,7 +18,7 @@ export function ProblemSetHeader({ stats, isPending }: ProblemSetHeaderProps) {
     <div className="brand-glow motion-rise relative overflow-hidden rounded-3xl border border-border/60 bg-background/80 shadow-sm">
       <div className="flex flex-col gap-6 p-5 sm:p-6">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-          <div className="max-w-2xl space-y-2">
+          <div className="space-y-2">
             <h1 className="page-title">題庫</h1>
             <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
               完整的 LeetCode 題庫，可依題號、題名、競賽、難度、標籤與進度篩選。

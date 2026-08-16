@@ -65,7 +65,7 @@ function FullLectureLinks() {
 
   return (
     <div className="min-h-screen bg-background font-han">
-      <div className="mx-auto w-full px-3 py-4 sm:px-4 sm:py-6 md:px-6 xl:px-8 2xl:px-12">
+      <div className="page-shell px-3 py-4 sm:px-4 sm:py-6 md:px-6 xl:px-8 2xl:px-12">
         <section className="brand-glow motion-rise relative overflow-hidden rounded-3xl border border-border/60 bg-background/80 shadow-sm">
           <div className="flex flex-col gap-5 p-4 sm:p-6 xl:p-8">
             <nav className="flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground">
@@ -80,7 +80,7 @@ function FullLectureLinks() {
             </nav>
 
             <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-              <div className="max-w-3xl space-y-2">
+              <div className="space-y-2">
                 <div className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background px-3 py-1 text-xs font-medium text-muted-foreground">
                   <BookOpen className="h-3.5 w-3.5" />
                   完整講義
@@ -149,7 +149,7 @@ function FullLectureLinks() {
         </section>
       </div>
 
-      <div className="mx-auto w-full px-3 pb-8 sm:px-4 md:px-6 md:pb-10 xl:px-8 2xl:px-12">
+      <div className="page-shell px-3 pb-8 sm:px-4 md:px-6 md:pb-10 xl:px-8 2xl:px-12">
         {filteredGroups.length === 0 ? (
           <div className="empty-state">
             <span className="empty-state-icon">

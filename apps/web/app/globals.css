@@ -330,6 +330,14 @@ html[data-reading-width="full"] {
     @apply bg-primary/15;
   }
 
+  /* 全站頁面欄寬。每個頁面的最外層容器都套這個 class，欄寬上限一律交給
+     `--lecture-reading-width`，「閱讀寬度」設定才會對所有頁面生效；內文段落
+     不要再自己加 max-w-*，否則會在寬螢幕上被截成一條窄柱。 */
+  .page-shell {
+    @apply mx-auto w-full;
+    max-width: var(--lecture-reading-width);
+  }
+
   .page-title {
     @apply flex items-center gap-3 font-serif text-3xl font-semibold tracking-tight text-foreground sm:text-4xl;
   }

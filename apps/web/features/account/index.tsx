@@ -13,7 +13,7 @@ const sections = [
 export default function Account() {
   return (
     <div className="min-h-screen bg-background font-han">
-      <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 md:py-10 xl:px-8">
+      <div className="page-shell px-4 py-8 sm:px-6 md:py-10 xl:px-8">
         <h1 className="page-title mb-8">帳號與進度</h1>
         <div className="space-y-10">
           {sections.map((section) => (

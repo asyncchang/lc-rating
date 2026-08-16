@@ -37,11 +37,11 @@ function PracticePlan() {
 
   return (
     <div className="min-h-screen bg-background font-han">
-      <div className="mx-auto w-full max-w-[var(--lecture-reading-width)] px-3 py-4 sm:px-4 sm:py-6 md:px-6 xl:px-8">
+      <div className="page-shell px-3 py-4 sm:px-4 sm:py-6 md:px-6 xl:px-8">
         {/* Hero */}
         <section className="brand-glow motion-rise relative overflow-hidden rounded-3xl border border-border/60 bg-background/80 shadow-sm">
           <div className="flex flex-col gap-5 p-4 sm:p-6">
-            <div className="max-w-2xl space-y-2">
+            <div className="space-y-2">
               <h1 className="page-title">訓練課表</h1>
               <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
                 {`十二週競賽訓練計畫：每週一個 pattern，題目取自站內題單並依評分排成由易到難。${practicePlanProfile.audience}`}
@@ -64,7 +64,7 @@ function PracticePlan() {
         {/* 難度校準 */}
         <SectionDivider label="難度校準" />
         <section className="space-y-3">
-          <p className="max-w-3xl text-sm leading-relaxed text-muted-foreground">
+          <p className="text-sm leading-relaxed text-muted-foreground">
             {practicePlanCalibration.headline}
           </p>
           <div className="grid gap-3 lg:grid-cols-2">
@@ -125,7 +125,7 @@ function PracticePlan() {
               </table>
             </div>
           </div>
-          <p className="max-w-3xl text-xs leading-relaxed text-muted-foreground">
+          <p className="text-xs leading-relaxed text-muted-foreground">
             {`統計於 ${practicePlanCalibration.updatedAt}。${practicePlanCalibration.method}難度逐年漂移，數字過期時重跑一次並更新 practicePlan.ts 的校準區塊。`}
           </p>
         </section>

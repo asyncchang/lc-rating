@@ -68,7 +68,7 @@ export default function Page() {
 
   return (
     <div className="min-h-screen bg-background font-han">
-      <div className="mx-auto max-w-5xl px-3 py-4 sm:px-4 sm:py-6 md:px-6 xl:px-8">
+      <div className="page-shell px-3 py-4 sm:px-4 sm:py-6 md:px-6 xl:px-8">
         {/* Breadcrumb */}
         <nav className="mb-4 flex items-center gap-1.5 text-xs text-muted-foreground">
           <Link href="/handbook" className="hover:text-foreground">
@@ -83,7 +83,7 @@ export default function Page() {
           <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
             依面試頻率排列章節
           </h1>
-          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground sm:text-base">
             依每個模式在真實軟體工程面試中的常見程度排序，分數來自三個加權來源。
           </p>
         </header>

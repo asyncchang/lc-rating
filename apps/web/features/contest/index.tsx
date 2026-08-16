@@ -166,7 +166,7 @@ function ContestPage() {
       <section className="brand-glow motion-rise relative overflow-hidden rounded-3xl border border-border/60 bg-background/80 shadow-sm">
         <div className="flex flex-col gap-6 p-5 sm:p-6">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-            <div className="max-w-2xl space-y-2">
+            <div className="space-y-2">
               <h1 className="page-title">競賽</h1>
               <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
                 歷屆週賽與雙週賽題目，依場次顯示每題的難度分級。

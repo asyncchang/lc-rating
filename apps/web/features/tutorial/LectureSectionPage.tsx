@@ -45,7 +45,7 @@ export function LectureSectionPage({ section }: LectureSectionPageProps) {
   return (
     <div className="flex min-h-screen w-full flex-col bg-background font-han">
       <div className="border-b border-border/60 bg-muted/20">
-        <div className="mx-auto flex w-full max-w-[96rem] flex-col gap-5 px-4 py-6 sm:px-6 md:py-8 xl:px-8">
+        <div className="page-shell flex flex-col gap-5 px-4 py-6 sm:px-6 md:py-8 xl:px-8">
           <nav className="flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground">
             <Link
               href="/lecture"
@@ -64,7 +64,7 @@ export function LectureSectionPage({ section }: LectureSectionPageProps) {
             <span className="font-medium text-foreground">{section.title}</span>
           </nav>
 
-          <div className="max-w-3xl">
+          <div>
             <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl">
               {section.title}
             </h1>
@@ -89,7 +89,7 @@ export function LectureSectionPage({ section }: LectureSectionPageProps) {
       </div>
 
       {hasChildren ? (
-        <main className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-6 pb-24 sm:px-6 md:py-8 xl:max-w-[88rem] xl:px-8">
+        <main className="page-shell flex flex-col gap-6 px-4 py-6 pb-24 sm:px-6 md:py-8 xl:px-8">
           {/* A parent unit still carries authored prose — the orientation that
               says what its sub-units are for. Show it before the card grid. */}
           {section.content && (
@@ -104,8 +104,8 @@ export function LectureSectionPage({ section }: LectureSectionPageProps) {
           <LectureSectionCards title="子單元" items={childItems} />
         </main>
       ) : (
-        <main className="mx-auto flex w-full max-w-[96rem] flex-col gap-6 px-4 py-6 pb-24 sm:px-6 md:py-8 xl:px-8">
-          <article className="mx-auto w-full min-w-0 overflow-hidden rounded-2xl border border-border/60 bg-card shadow-sm lg:max-w-[var(--lecture-reading-width)]">
+        <main className="page-shell flex flex-col gap-6 px-4 py-6 pb-24 sm:px-6 md:py-8 xl:px-8">
+          <article className="w-full min-w-0 overflow-hidden rounded-2xl border border-border/60 bg-card shadow-sm">
             <div className="px-4 py-5 sm:px-6 md:py-7">
               <HandbookSectionBody
                 body={section.content}
