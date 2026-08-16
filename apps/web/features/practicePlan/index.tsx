@@ -37,7 +37,7 @@ function PracticePlan() {
 
   return (
     <div className="min-h-screen bg-background font-han">
-      <div className="mx-auto w-full max-w-[var(--lecture-reading-width)] px-3 py-4 sm:px-4 sm:py-6 md:px-6 xl:px-8">
+      <div className="page-shell px-3 py-4 sm:px-4 sm:py-6 md:px-6 xl:px-8">
         {/* Hero */}
         <section className="brand-glow motion-rise relative overflow-hidden rounded-3xl border border-border/60 bg-background/80 shadow-sm">
           <div className="flex flex-col gap-5 p-4 sm:p-6">

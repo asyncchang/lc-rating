@@ -48,7 +48,7 @@ function Tutorial({ plan }: TutorialProps) {
   return (
     <div className="flex min-h-screen w-full flex-col bg-background font-han">
       {tutorial && (
-        <div className="mx-auto w-full max-w-7xl px-3 pt-4 sm:px-4 sm:pt-6 md:px-6 md:pt-8 xl:max-w-[88rem] xl:px-8 2xl:max-w-[96rem]">
+        <div className="page-shell px-3 pt-4 sm:px-4 sm:pt-6 md:px-6 md:pt-8 xl:px-8">
           <div
             className="motion-rise relative overflow-hidden rounded-[1.75rem] shadow-[0_30px_70px_-40px_rgba(0,0,0,0.35)] sm:rounded-[2rem]"
             style={{ background: theme.gradient }}
@@ -80,7 +80,7 @@ function Tutorial({ plan }: TutorialProps) {
                         {tutorial.title}
                       </h1>
                       {tutorial.description && (
-                        <p className="mt-2 max-w-3xl text-sm leading-6 text-white/80 sm:text-base">
+                        <p className="mt-2 text-sm leading-6 text-white/80 sm:text-base">
                           {tutorial.description}
                         </p>
                       )}
@@ -142,7 +142,7 @@ function Tutorial({ plan }: TutorialProps) {
         </div>
       )}
 
-      <div className="mx-auto w-full max-w-7xl px-3 py-5 pb-24 sm:px-4 sm:py-6 md:px-6 md:py-8 md:pb-20 xl:max-w-[88rem] xl:px-8 2xl:max-w-[96rem]">
+      <div className="page-shell px-3 py-5 pb-24 sm:px-4 sm:py-6 md:px-6 md:py-8 md:pb-20 xl:px-8">
         <div className="flex flex-col gap-8">
           {tutorial?.summary && (
             <TutorialMarkdownPanel

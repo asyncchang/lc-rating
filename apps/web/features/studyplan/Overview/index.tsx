@@ -111,11 +111,11 @@ function StudyPlanOverview() {
 
   return (
     <div className="min-h-screen bg-background font-han">
-      <div className="mx-auto max-w-7xl px-3 py-4 sm:px-4 sm:py-6 md:px-6 xl:max-w-[88rem] xl:px-8 2xl:max-w-[96rem]">
+      <div className="page-shell px-3 py-4 sm:px-4 sm:py-6 md:px-6 xl:px-8">
         <section className="brand-glow motion-rise relative overflow-hidden rounded-3xl border border-border/60 bg-background/80 shadow-sm">
           <div className="flex flex-col gap-5 p-4 sm:p-6 xl:gap-6 xl:p-8">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-              <div className="max-w-2xl space-y-2">
+              <div className="space-y-2">
                 <h1 className="page-title">題單</h1>
                 <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
                   由靈茶山艾府（0x3F）整理的演算法主題題單，按知識點分層規劃。
@@ -196,7 +196,7 @@ function StudyPlanOverview() {
       </div>
 
       {/* Card Grid */}
-      <div className="mx-auto max-w-7xl px-3 pb-8 sm:px-4 md:px-6 md:pb-10 xl:max-w-[88rem] xl:px-8 2xl:max-w-[96rem]">
+      <div className="page-shell px-3 pb-8 sm:px-4 md:px-6 md:pb-10 xl:px-8">
         {filteredPlans.length === 0 ? (
           <div className="empty-state">
             <span className="empty-state-icon">

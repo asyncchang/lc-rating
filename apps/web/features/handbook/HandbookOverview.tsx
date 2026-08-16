@@ -91,12 +91,12 @@ export default function HandbookOverview() {
 
   return (
     <div className="min-h-screen bg-background font-han">
-      <div className="mx-auto max-w-7xl px-3 py-4 sm:px-4 sm:py-6 md:px-6 xl:px-8">
+      <div className="page-shell px-3 py-4 sm:px-4 sm:py-6 md:px-6 xl:px-8">
         {/* Hero */}
         <section className="relative overflow-hidden rounded-3xl border border-border/60 bg-background/80 shadow-sm">
           <div className="flex flex-col gap-5 p-5 sm:p-7 xl:p-8">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-              <div className="max-w-2xl space-y-2">
+              <div className="space-y-2">
                 <h1 className="page-title">LeetCode 模式手冊</h1>
                 <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
                   給 Rating 1700+ 的進階整理：限制判讀、不變式、證明直覺、C++17
