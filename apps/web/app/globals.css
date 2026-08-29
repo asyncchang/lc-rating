@@ -183,6 +183,204 @@
   --sidebar-ring: #8ab4ff;
 }
 
+/* 主題色彩：使用者可在「站點設定 → 主題色彩」換掉全站主色，選擇會被寫進
+   `<html data-theme-color>`（見 `components/common/TextSizeEffect.tsx`）。預設
+   的 teal 就是上面 `:root` / `.dark` 的色票，所以不需要自己的區塊；其餘色票
+   只覆寫與品牌色相關的變數，中性底色、語意色（success／warning／danger）與圓
+   角一律沿用。深色區塊用 `html.dark[...]`，特異度高於淺色區塊，順序無關。
+   焦點環 `--ring` 刻意與主色分屬不同色相，鍵盤外框才不會糊進主色裡。
+   色票的 hex 與 `config/themeColors.ts` 的預覽色必須一起改。 */
+
+/* 靛藍 */
+html[data-theme-color="indigo"] {
+  --primary: #3f4dae;
+  --accent: #e6e8fa;
+  --accent-foreground: #2a3480;
+  --accent-strong: #2a3480;
+  --accent-soft: #e6e8fa;
+  --brand-start: #6470d8;
+  --brand-mid: #3f4dae;
+  --brand-end: #2a3480;
+  --ring: #b45309;
+  --chart-1: #3f4dae;
+  --sidebar-primary: #3f4dae;
+  --sidebar-accent: #e6e8fa;
+  --sidebar-accent-foreground: #2a3480;
+  --sidebar-ring: #b45309;
+}
+
+/* 紫羅蘭 */
+html[data-theme-color="violet"] {
+  --primary: #7040b0;
+  --accent: #f1e8fb;
+  --accent-foreground: #55308a;
+  --accent-strong: #55308a;
+  --accent-soft: #f1e8fb;
+  --brand-start: #9b6fd4;
+  --brand-mid: #7040b0;
+  --brand-end: #55308a;
+  --ring: #b45309;
+  --chart-1: #7040b0;
+  --sidebar-primary: #7040b0;
+  --sidebar-accent: #f1e8fb;
+  --sidebar-accent-foreground: #55308a;
+  --sidebar-ring: #b45309;
+}
+
+/* 玫瑰 */
+html[data-theme-color="rose"] {
+  --primary: #b23350;
+  --accent: #fde7ec;
+  --accent-foreground: #8a2440;
+  --accent-strong: #8a2440;
+  --accent-soft: #fde7ec;
+  --brand-start: #dd6079;
+  --brand-mid: #b23350;
+  --brand-end: #8a2440;
+  --ring: #3d7eff;
+  --chart-1: #b23350;
+  --sidebar-primary: #b23350;
+  --sidebar-accent: #fde7ec;
+  --sidebar-accent-foreground: #8a2440;
+  --sidebar-ring: #3d7eff;
+}
+
+/* 琥珀 */
+html[data-theme-color="amber"] {
+  --primary: #96610f;
+  --accent: #fbf0da;
+  --accent-foreground: #74490a;
+  --accent-strong: #74490a;
+  --accent-soft: #fbf0da;
+  --brand-start: #c98a24;
+  --brand-mid: #96610f;
+  --brand-end: #74490a;
+  --ring: #3d7eff;
+  --chart-1: #96610f;
+  --sidebar-primary: #96610f;
+  --sidebar-accent: #fbf0da;
+  --sidebar-accent-foreground: #74490a;
+  --sidebar-ring: #3d7eff;
+}
+
+/* 森綠 */
+html[data-theme-color="forest"] {
+  --primary: #10714b;
+  --accent: #e0f3e8;
+  --accent-foreground: #0b5236;
+  --accent-strong: #0b5236;
+  --accent-soft: #e0f3e8;
+  --brand-start: #2f9c6d;
+  --brand-mid: #10714b;
+  --brand-end: #0b5236;
+  --ring: #3d7eff;
+  --chart-1: #10714b;
+  --sidebar-primary: #10714b;
+  --sidebar-accent: #e0f3e8;
+  --sidebar-accent-foreground: #0b5236;
+  --sidebar-ring: #3d7eff;
+}
+
+/* 靛藍（深色） */
+html.dark[data-theme-color="indigo"] {
+  --primary: #9aa7f0;
+  --primary-foreground: #101426;
+  --accent: #262f63;
+  --accent-foreground: #b9c2ff;
+  --accent-strong: #b9c2ff;
+  --accent-soft: #262f63;
+  --brand-start: #b9c2ff;
+  --brand-mid: #9aa7f0;
+  --brand-end: #262f63;
+  --ring: #f2b06a;
+  --chart-1: #9aa7f0;
+  --sidebar-primary: #9aa7f0;
+  --sidebar-primary-foreground: #101426;
+  --sidebar-accent: #262f63;
+  --sidebar-accent-foreground: #b9c2ff;
+  --sidebar-ring: #f2b06a;
+}
+
+/* 紫羅蘭（深色） */
+html.dark[data-theme-color="violet"] {
+  --primary: #c4a3f0;
+  --primary-foreground: #160f24;
+  --accent: #35245c;
+  --accent-foreground: #dbc4ff;
+  --accent-strong: #dbc4ff;
+  --accent-soft: #35245c;
+  --brand-start: #dbc4ff;
+  --brand-mid: #c4a3f0;
+  --brand-end: #35245c;
+  --ring: #f2b06a;
+  --chart-1: #c4a3f0;
+  --sidebar-primary: #c4a3f0;
+  --sidebar-primary-foreground: #160f24;
+  --sidebar-accent: #35245c;
+  --sidebar-accent-foreground: #dbc4ff;
+  --sidebar-ring: #f2b06a;
+}
+
+/* 玫瑰（深色） */
+html.dark[data-theme-color="rose"] {
+  --primary: #f2a1b4;
+  --primary-foreground: #25101a;
+  --accent: #4b1e2c;
+  --accent-foreground: #ffc4d0;
+  --accent-strong: #ffc4d0;
+  --accent-soft: #4b1e2c;
+  --brand-start: #ffc4d0;
+  --brand-mid: #f2a1b4;
+  --brand-end: #4b1e2c;
+  --ring: #8ab4ff;
+  --chart-1: #f2a1b4;
+  --sidebar-primary: #f2a1b4;
+  --sidebar-primary-foreground: #25101a;
+  --sidebar-accent: #4b1e2c;
+  --sidebar-accent-foreground: #ffc4d0;
+  --sidebar-ring: #8ab4ff;
+}
+
+/* 琥珀（深色） */
+html.dark[data-theme-color="amber"] {
+  --primary: #f0bf6b;
+  --primary-foreground: #1f1705;
+  --accent: #43310f;
+  --accent-foreground: #ffd89a;
+  --accent-strong: #ffd89a;
+  --accent-soft: #43310f;
+  --brand-start: #ffd89a;
+  --brand-mid: #f0bf6b;
+  --brand-end: #43310f;
+  --ring: #8ab4ff;
+  --chart-1: #f0bf6b;
+  --sidebar-primary: #f0bf6b;
+  --sidebar-primary-foreground: #1f1705;
+  --sidebar-accent: #43310f;
+  --sidebar-accent-foreground: #ffd89a;
+  --sidebar-ring: #8ab4ff;
+}
+
+/* 森綠（深色） */
+html.dark[data-theme-color="forest"] {
+  --primary: #6ed3a1;
+  --primary-foreground: #08160f;
+  --accent: #133a2a;
+  --accent-foreground: #a2e8c4;
+  --accent-strong: #a2e8c4;
+  --accent-soft: #133a2a;
+  --brand-start: #a2e8c4;
+  --brand-mid: #6ed3a1;
+  --brand-end: #133a2a;
+  --ring: #8ab4ff;
+  --chart-1: #6ed3a1;
+  --sidebar-primary: #6ed3a1;
+  --sidebar-primary-foreground: #08160f;
+  --sidebar-accent: #133a2a;
+  --sidebar-accent-foreground: #a2e8c4;
+  --sidebar-ring: #8ab4ff;
+}
+
 /* 全站文字大小設定，與 cp-handbook 相同的縮放比例 */
 html[data-text-size="small"] {
   font-size: 93.75%;
@@ -222,12 +420,12 @@ html[data-reading-width="full"] {
     background:
       radial-gradient(
         60rem 32rem at 110% -8%,
-        rgba(12, 113, 131, 0.08),
+        color-mix(in oklab, var(--brand-mid) 8%, transparent),
         transparent 70%
       ),
       radial-gradient(
         52rem 30rem at -10% 0%,
-        rgba(7, 87, 102, 0.09),
+        color-mix(in oklab, var(--brand-end) 9%, transparent),
         transparent 70%
       );
   }
@@ -236,18 +434,18 @@ html[data-reading-width="full"] {
     background:
       radial-gradient(
         60rem 32rem at 110% -8%,
-        rgba(96, 198, 213, 0.07),
+        color-mix(in oklab, var(--brand-mid) 7%, transparent),
         transparent 70%
       ),
       radial-gradient(
         52rem 30rem at -10% 0%,
-        rgba(23, 60, 67, 0.5),
+        color-mix(in oklab, var(--brand-end) 50%, transparent),
         transparent 70%
       );
   }
 
   ::selection {
-    background: rgba(12, 113, 131, 0.28);
+    background: color-mix(in oklab, var(--primary) 28%, transparent);
   }
 
   /* handbook 用一條與主色分離的藍色粗外框當焦點環，鍵盤操作時明顯可見。 */
@@ -279,7 +477,11 @@ html[data-reading-width="full"] {
 
 @layer utilities {
   .brand-text-gradient {
-    background-image: linear-gradient(120deg, var(--accent-strong) 0%, var(--brand-start) 100%);
+    background-image: linear-gradient(
+      120deg,
+      var(--accent-strong) 0%,
+      var(--brand-start) 100%
+    );
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -536,10 +738,10 @@ html[data-reading-width="full"] {
 /* Search-result row highlight (plays once then stops) */
 @keyframes search-highlight-row {
   0% {
-    background-color: rgba(12, 113, 131, 0.2);
+    background-color: color-mix(in oklab, var(--primary) 20%, transparent);
   }
   70% {
-    background-color: rgba(12, 113, 131, 0.09);
+    background-color: color-mix(in oklab, var(--primary) 9%, transparent);
   }
   100% {
     background-color: transparent;

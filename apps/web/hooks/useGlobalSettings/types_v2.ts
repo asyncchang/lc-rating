@@ -12,12 +12,28 @@ export type ReadingWidth = "standard" | "wide" | "full";
 export const isReadingWidth = (value: string): value is ReadingWidth =>
   value === "standard" || value === "wide" || value === "full";
 
+/** 全站主色；對應 globals.css 對 `html[data-theme-color]` 的色票覆寫。 */
+export const THEME_COLORS = [
+  "teal",
+  "indigo",
+  "violet",
+  "rose",
+  "amber",
+  "forest",
+] as const;
+
+export type ThemeColor = (typeof THEME_COLORS)[number];
+
+export const isThemeColor = (value: string): value is ThemeColor =>
+  (THEME_COLORS as readonly string[]).includes(value);
+
 export interface GlobalSettingsStoreState {
   tagLanguage: Language;
   linkLanguage: Language;
   premium: boolean;
   textSize: TextSize;
   readingWidth: ReadingWidth;
+  themeColor: ThemeColor;
 }
 
 interface GlobalSettingsStoreActions {
@@ -29,6 +45,7 @@ interface GlobalSettingsStoreActions {
   setPremium: (premium: boolean) => void;
   setTextSize: (size: TextSize) => void;
   setReadingWidth: (width: ReadingWidth) => void;
+  setThemeColor: (color: ThemeColor) => void;
 }
 
 export type GlobalSettingsStore = GlobalSettingsStoreState &

@@ -1,6 +1,7 @@
-import { Languages, List, Wrench } from "lucide-react";
+import { Languages, List, Palette, Wrench } from "lucide-react";
 import CustomizeOptions from "./settingPages/CustomizeOption";
 import LanguagePreference from "./settingPages/LanguagePreference";
+import ThemeColorPreference from "./settingPages/ThemeColorPreference";
 import { lazy } from "react";
 
 const Troubleshooting = lazy(() => import("./settingPages/Troubleshooting"));
@@ -24,6 +25,12 @@ export const settingTabs: SettingTabType[] = [
     title: "語言設定",
     icon: <Languages />,
     component: <LanguagePreference />,
+  },
+  {
+    key: "ThemeColorPreference",
+    title: "主題色彩",
+    icon: <Palette />,
+    component: <ThemeColorPreference />,
   },
   {
     key: "Troubleshooting",
