@@ -20,6 +20,7 @@ export const THEME_COLORS = [
   "rose",
   "amber",
   "forest",
+  "lime",
 ] as const;
 
 export type ThemeColor = (typeof THEME_COLORS)[number];

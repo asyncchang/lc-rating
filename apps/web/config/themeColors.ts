@@ -48,4 +48,9 @@ export const themeColorMeta: Record<ThemeColor, ThemeColorMeta> = {
     description: "沉穩的墨綠色",
     preview: { light: "#10714b", dark: "#6ed3a1" },
   },
+  lime: {
+    label: "青檸綠",
+    description: "偏黃的亮綠，深色模式直接用原色",
+    preview: { light: "#4a7500", dark: "#76b900" },
+  },
 };

@@ -281,6 +281,25 @@ html[data-theme-color="forest"] {
   --sidebar-ring: #3d7eff;
 }
 
+/* 青檸綠：#76b900 在白底上只有 2.4:1，撐不起按鈕文字，所以淺色模式把主色壓深
+   一階，亮綠留給 --brand-start（漸層與標題色條）。 */
+html[data-theme-color="lime"] {
+  --primary: #4a7500;
+  --accent: #eef7dd;
+  --accent-foreground: #385a00;
+  --accent-strong: #385a00;
+  --accent-soft: #eef7dd;
+  --brand-start: #76b900;
+  --brand-mid: #4a7500;
+  --brand-end: #385a00;
+  --ring: #3d7eff;
+  --chart-1: #4a7500;
+  --sidebar-primary: #4a7500;
+  --sidebar-accent: #eef7dd;
+  --sidebar-accent-foreground: #385a00;
+  --sidebar-ring: #3d7eff;
+}
+
 /* 靛藍（深色） */
 html.dark[data-theme-color="indigo"] {
   --primary: #9aa7f0;
@@ -378,6 +397,26 @@ html.dark[data-theme-color="forest"] {
   --sidebar-primary-foreground: #08160f;
   --sidebar-accent: #133a2a;
   --sidebar-accent-foreground: #a2e8c4;
+  --sidebar-ring: #8ab4ff;
+}
+
+/* 青檸綠（深色）：深底上亮綠有 7.7:1，直接用原色。 */
+html.dark[data-theme-color="lime"] {
+  --primary: #76b900;
+  --primary-foreground: #0b1400;
+  --accent: #1c3300;
+  --accent-foreground: #b4e86a;
+  --accent-strong: #b4e86a;
+  --accent-soft: #1c3300;
+  --brand-start: #b4e86a;
+  --brand-mid: #76b900;
+  --brand-end: #1c3300;
+  --ring: #8ab4ff;
+  --chart-1: #76b900;
+  --sidebar-primary: #76b900;
+  --sidebar-primary-foreground: #0b1400;
+  --sidebar-accent: #1c3300;
+  --sidebar-accent-foreground: #b4e86a;
   --sidebar-ring: #8ab4ff;
 }
 
