@@ -11,10 +11,13 @@ import {
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import {
+  THEME_COLORS,
   useGlobalSettingsStore,
   type ReadingWidth,
   type TextSize,
+  type ThemeColor,
 } from "@/hooks/useGlobalSettings";
+import { themeColorMeta } from "@/config/themeColors";
 import { isThemePreference, type ThemePreference } from "@/types/siteStorage";
 
 const themeOptions: { value: ThemePreference; label: string }[] = [
@@ -34,6 +37,48 @@ const readingWidthOptions: { value: ReadingWidth; label: string }[] = [
   { value: "wide", label: "寬" },
   { value: "full", label: "全寬" },
 ];
+
+interface SwatchRowProps {
+  label: string;
+  value: ThemeColor | undefined;
+  isDark: boolean;
+  onChange: (value: ThemeColor) => void;
+}
+
+/** 主色色票列；完整說明與名稱在「站點設定 → 主題色彩」。 */
+function SwatchRow({ label, value, isDark, onChange }: SwatchRowProps) {
+  return (
+    <div className="space-y-1.5">
+      <span className="text-xs font-medium text-muted-foreground">{label}</span>
+      <div role="radiogroup" aria-label={label} className="flex gap-1.5">
+        {THEME_COLORS.map((color) => {
+          const meta = themeColorMeta[color];
+          const active = color === value;
+          return (
+            <button
+              key={color}
+              type="button"
+              role="radio"
+              aria-checked={active}
+              aria-label={meta.label}
+              title={meta.label}
+              onClick={() => onChange(color)}
+              className={cn(
+                "h-6 w-6 cursor-pointer rounded-full border-2 transition-colors",
+                active ? "border-foreground" : "border-transparent",
+              )}
+              style={{
+                backgroundColor: isDark
+                  ? meta.preview.dark
+                  : meta.preview.light,
+              }}
+            />
+          );
+        })}
+      </div>
+    </div>
+  );
+}
 
 interface SegmentedRowProps<T extends string> {
   label: string;
@@ -78,9 +123,15 @@ function SegmentedRow<T extends string>({
 
 export function AppearanceMenu() {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
-  const { textSize, setTextSize, readingWidth, setReadingWidth } =
-    useGlobalSettingsStore();
+  const { theme, resolvedTheme, setTheme } = useTheme();
+  const {
+    textSize,
+    setTextSize,
+    readingWidth,
+    setReadingWidth,
+    themeColor,
+    setThemeColor,
+  } = useGlobalSettingsStore();
 
   useEffect(() => {
     setMounted(true);
@@ -117,6 +168,12 @@ export function AppearanceMenu() {
           value={mounted ? readingWidth : undefined}
           options={readingWidthOptions}
           onChange={setReadingWidth}
+        />
+        <SwatchRow
+          label="主色"
+          value={mounted ? themeColor : undefined}
+          isDark={mounted && resolvedTheme === "dark"}
+          onChange={setThemeColor}
         />
       </PopoverContent>
     </Popover>

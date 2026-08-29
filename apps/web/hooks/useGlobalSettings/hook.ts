@@ -14,6 +14,7 @@ const initialState: GlobalSettingsStoreState = {
   premium: true,
   textSize: "standard",
   readingWidth: "standard",
+  themeColor: "teal",
 };
 
 const persistOption: PersistOptions<
@@ -50,6 +51,8 @@ export const useGlobalSettingsStore = create<GlobalSettingsStore>()(
         setTextSize: (size) => set({ textSize: size }),
 
         setReadingWidth: (width) => set({ readingWidth: width }),
+
+        setThemeColor: (color) => set({ themeColor: color }),
       }),
       persistOption,
     ),
