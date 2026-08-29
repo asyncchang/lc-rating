@@ -1,6 +1,8 @@
 import { Badge } from "@/components/ui/badge";
 import { useProgressStats } from "@/features/userData";
 
+import ProgressAnalysis from "./ProgressAnalysis";
+
 const numberFormatter = new Intl.NumberFormat("zh-TW");
 
 function formatCount(value: number) {
@@ -84,6 +86,8 @@ export default function ProgressOverview() {
           </div>
         )}
       </section>
+
+      <ProgressAnalysis />
     </div>
   );
 }
