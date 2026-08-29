@@ -168,3 +168,142 @@ export function useTrackedCount() {
 export function useClearProgress() {
   return useProgressStore((state) => state.clearAllProgress);
 }
+
+const RATING_BANDS = [
+  { key: "unknown", label: "未知", max: 1000, color: "#8E8E93" },
+  { key: "1000", label: "[1000, 1200)", max: 1200, color: "#C0C0C0" },
+  { key: "1200", label: "[1200, 1400)", max: 1400, color: "#A0BA87" },
+  { key: "1400", label: "[1400, 1600)", max: 1600, color: "#80B44E" },
+  { key: "1600", label: "[1600, 1900)", max: 1900, color: "#FFB800" },
+  { key: "1900", label: "[1900, 2100)", max: 2100, color: "#FF9616" },
+  { key: "2100", label: "[2100, 2400)", max: 2400, color: "#FF732B" },
+  { key: "2400", label: "[2400, 3000)", max: 3000, color: "#FF2D55" },
+  { key: "3000", label: ">= 3000", max: Infinity, color: "#663399" },
+] as const;
+
+/** Which problems the analysis covers. */
+export type ProgressAnalysisScope = "solved" | "tracked";
+
+export interface ProgressTagBreakdown {
+  id: string;
+  zh: string;
+  en: string;
+  count: number;
+  /** Share of analysed problems carrying this tag, in percent. */
+  rate: number;
+}
+
+export interface ProgressRatingBreakdown {
+  key: string;
+  label: string;
+  color: string;
+  count: number;
+  /** Share of analysed problems in this band, in percent. */
+  rate: number;
+}
+
+export interface ProgressAnalysis {
+  /** How many problems the scope selects. */
+  total: number;
+  /** How many of those were found in the problem library. */
+  resolved: number;
+  /** How many resolved problems carry a known (non-zero) rating. */
+  ratedCount: number;
+  /** Mean rating over rated problems (0 when there are none). */
+  averageRating: number;
+  /** Median rating over rated problems (0 when there are none). */
+  medianRating: number;
+  /** Topic tags, most-practised first. */
+  byTag: ProgressTagBreakdown[];
+  /** Rating bands that have at least one problem, easiest first. */
+  byRating: ProgressRatingBreakdown[];
+  /** True while the problem library or tag list is still loading. */
+  isLoading: boolean;
+}
+
+/**
+ * Breaks the user's finished problems down by topic tag and rating band, so
+ * the UI can answer "which kinds of problems have I actually practised?".
+ * `scope` picks between AC-only ("solved") and everything the user has
+ * marked ("tracked").
+ */
+export function useProgressAnalysis(
+  scope: ProgressAnalysisScope = "solved",
+): ProgressAnalysis {
+  const { problemMap, isPending: problemsPending } = useProblems();
+  const { tagMap, isPending: tagsPending } = useTags();
+  const progress = useProgressStore((state) => state.progress);
+
+  return useMemo(() => {
+    const ids = Object.entries(progress)
+      .filter(([, status]) => (scope === "solved" ? status === "SOLVED" : true))
+      .map(([id]) => id);
+
+    const problems = ids.map((id) => problemMap?.[id]).filter(isTruthy);
+
+    const tagCounts = new Map<string, number>();
+    const ratingCounts = new Map<string, number>();
+    const ratings: number[] = [];
+
+    for (const problem of problems) {
+      for (const tagId of problem.tagIds) {
+        tagCounts.set(tagId, (tagCounts.get(tagId) ?? 0) + 1);
+      }
+
+      const rating = problem.rating ?? 0;
+      const band =
+        RATING_BANDS.find((item) => rating < item.max) ??
+        RATING_BANDS[RATING_BANDS.length - 1]!;
+      ratingCounts.set(band.key, (ratingCounts.get(band.key) ?? 0) + 1);
+
+      if (rating > 0) ratings.push(rating);
+    }
+
+    const resolved = problems.length;
+
+    const byTag: ProgressTagBreakdown[] = [...tagCounts.entries()]
+      .map(([tagId, count]) => {
+        const tag = tagMap?.[tagId];
+        return {
+          id: tagId,
+          zh: tag?.zh ?? tagId,
+          en: tag?.en ?? tagId,
+          count,
+          rate: resolved > 0 ? (count / resolved) * 100 : 0,
+        };
+      })
+      .sort((a, b) => b.count - a.count || a.en.localeCompare(b.en));
+
+    const byRating: ProgressRatingBreakdown[] = RATING_BANDS.map((band) => ({
+      key: band.key,
+      label: band.label,
+      color: band.color,
+      count: ratingCounts.get(band.key) ?? 0,
+      rate:
+        resolved > 0 ? ((ratingCounts.get(band.key) ?? 0) / resolved) * 100 : 0,
+    })).filter((band) => band.count > 0);
+
+    ratings.sort((a, b) => a - b);
+    const ratedCount = ratings.length;
+    const averageRating =
+      ratedCount > 0 ? ratings.reduce((sum, x) => sum + x, 0) / ratedCount : 0;
+    const middle = Math.floor(ratedCount / 2);
+    const medianRating =
+      ratedCount === 0
+        ? 0
+        : ratedCount % 2 === 1
+          ? ratings[middle]!
+          : (ratings[middle - 1]! + ratings[middle]!) / 2;
+
+    return {
+      total: ids.length,
+      resolved,
+      ratedCount,
+      averageRating,
+      medianRating,
+      byTag,
+      byRating,
+      isLoading: problemsPending || tagsPending,
+    };
+  }, [problemMap, tagMap, progress, scope, problemsPending, tagsPending]);
+}

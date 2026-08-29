@@ -13,11 +13,16 @@ export {
 
 export {
   useProgressStats,
+  useProgressAnalysis,
   useRecentProgress,
   useProgressMap,
   useProblemProgress,
   useTrackedCount,
   useClearProgress,
+  type ProgressAnalysis,
+  type ProgressAnalysisScope,
+  type ProgressRatingBreakdown,
+  type ProgressTagBreakdown,
 } from "./progress";
 
 export { useProblemSolutions, type ProblemSolution } from "./solutions";
