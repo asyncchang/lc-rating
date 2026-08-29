@@ -193,6 +193,18 @@ export interface ProgressTagBreakdown {
   rate: number;
 }
 
+export interface ProgressTagCoverage {
+  id: string;
+  zh: string;
+  en: string;
+  /** Problems with this tag inside the analysed scope. */
+  count: number;
+  /** Problems with this tag in the whole library. */
+  libraryCount: number;
+  /** count / libraryCount, in percent. */
+  rate: number;
+}
+
 export interface ProgressRatingBreakdown {
   key: string;
   label: string;
@@ -217,6 +229,17 @@ export interface ProgressAnalysis {
   byTag: ProgressTagBreakdown[];
   /** Rating bands that have at least one problem, easiest first. */
   byRating: ProgressRatingBreakdown[];
+  /**
+   * Every topic tag in the library measured against how much of it the user
+   * has finished, least-covered first. Answers "what should I practise next?".
+   */
+  byTagCoverage: ProgressTagCoverage[];
+  /** Tags that exist in the library (tags with no problems are ignored). */
+  libraryTagCount: number;
+  /** Library tags with at least one problem inside the analysed scope. */
+  touchedTagCount: number;
+  /** Library tags with nothing done at all. */
+  untouchedTagCount: number;
   /** True while the problem library or tag list is still loading. */
   isLoading: boolean;
 }
@@ -233,6 +256,18 @@ export function useProgressAnalysis(
   const { problemMap, isPending: problemsPending } = useProblems();
   const { tagMap, isPending: tagsPending } = useTags();
   const progress = useProgressStore((state) => state.progress);
+
+  // How many problems each tag has in the whole library. Kept separate so
+  // marking a problem doesn't re-scan the entire library.
+  const libraryTagCounts = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const problem of Object.values(problemMap ?? {})) {
+      for (const tagId of problem.tagIds) {
+        counts.set(tagId, (counts.get(tagId) ?? 0) + 1);
+      }
+    }
+    return counts;
+  }, [problemMap]);
 
   return useMemo(() => {
     const ids = Object.entries(progress)
@@ -261,17 +296,18 @@ export function useProgressAnalysis(
 
     const resolved = problems.length;
 
+    const resolveTag = (tagId: string) => {
+      const tag = tagMap?.[tagId];
+      return { zh: tag?.zh ?? tagId, en: tag?.en ?? tagId };
+    };
+
     const byTag: ProgressTagBreakdown[] = [...tagCounts.entries()]
-      .map(([tagId, count]) => {
-        const tag = tagMap?.[tagId];
-        return {
-          id: tagId,
-          zh: tag?.zh ?? tagId,
-          en: tag?.en ?? tagId,
-          count,
-          rate: resolved > 0 ? (count / resolved) * 100 : 0,
-        };
-      })
+      .map(([tagId, count]) => ({
+        id: tagId,
+        ...resolveTag(tagId),
+        count,
+        rate: resolved > 0 ? (count / resolved) * 100 : 0,
+      }))
       .sort((a, b) => b.count - a.count || a.en.localeCompare(b.en));
 
     const byRating: ProgressRatingBreakdown[] = RATING_BANDS.map((band) => ({
@@ -282,6 +318,28 @@ export function useProgressAnalysis(
       rate:
         resolved > 0 ? ((ratingCounts.get(band.key) ?? 0) / resolved) * 100 : 0,
     })).filter((band) => band.count > 0);
+
+    const byTagCoverage: ProgressTagCoverage[] = [...libraryTagCounts.entries()]
+      .map(([tagId, libraryCount]) => {
+        const count = tagCounts.get(tagId) ?? 0;
+        return {
+          id: tagId,
+          ...resolveTag(tagId),
+          count,
+          libraryCount,
+          rate: libraryCount > 0 ? (count / libraryCount) * 100 : 0,
+        };
+      })
+      // Least-covered first; among equally-covered tags, the one with more
+      // problems in the library is the bigger gap.
+      .sort(
+        (a, b) =>
+          a.rate - b.rate ||
+          b.libraryCount - a.libraryCount ||
+          a.en.localeCompare(b.en),
+      );
+
+    const touchedTagCount = byTagCoverage.filter((tag) => tag.count > 0).length;
 
     ratings.sort((a, b) => a - b);
     const ratedCount = ratings.length;
@@ -303,7 +361,19 @@ export function useProgressAnalysis(
       medianRating,
       byTag,
       byRating,
+      byTagCoverage,
+      libraryTagCount: byTagCoverage.length,
+      touchedTagCount,
+      untouchedTagCount: byTagCoverage.length - touchedTagCount,
       isLoading: problemsPending || tagsPending,
     };
-  }, [problemMap, tagMap, progress, scope, problemsPending, tagsPending]);
+  }, [
+    problemMap,
+    tagMap,
+    libraryTagCounts,
+    progress,
+    scope,
+    problemsPending,
+    tagsPending,
+  ]);
 }

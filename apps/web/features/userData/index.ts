@@ -23,6 +23,7 @@ export {
   type ProgressAnalysisScope,
   type ProgressRatingBreakdown,
   type ProgressTagBreakdown,
+  type ProgressTagCoverage,
 } from "./progress";
 
 export { useProblemSolutions, type ProblemSolution } from "./solutions";

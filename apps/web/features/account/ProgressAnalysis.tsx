@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -10,6 +10,12 @@ import {
 import { useGlobalSettingsStore } from "@/hooks/useGlobalSettings";
 
 const TAG_PREVIEW_LIMIT = 10;
+const GAP_PREVIEW_LIMIT = 10;
+/**
+ * Tags with only a handful of problems in the whole library make for noisy
+ * completion rates, so they stay hidden until the user asks for them.
+ */
+const NICHE_TAG_LIBRARY_SIZE = 10;
 
 const numberFormatter = new Intl.NumberFormat("zh-TW");
 
@@ -33,25 +39,35 @@ function formatRating(value: number) {
 interface DistributionBarProps {
   label: string;
   count: number;
+  /** Denominator to show next to `count`, when the row is a ratio. */
+  total?: number;
   rate: number;
-  /** Bar width relative to the largest row, so small shares stay readable. */
+  /** Bar width in percent; rows with nothing done stay empty. */
   fill: number;
   color: string;
+  /** Optional marker shown after the label, e.g. "沒碰過". */
+  badge?: ReactNode;
 }
 
 function DistributionBar({
   label,
   count,
+  total,
   rate,
   fill,
   color,
+  badge,
 }: DistributionBarProps) {
   return (
     <div className="space-y-1">
       <div className="flex items-baseline justify-between gap-2 text-sm">
-        <span className="truncate">{label}</span>
+        <span className="flex min-w-0 items-baseline gap-1.5">
+          <span className="truncate">{label}</span>
+          {badge}
+        </span>
         <span className="shrink-0 tabular-nums text-muted-foreground">
           {formatCount(count)}
+          {typeof total === "number" && ` / ${formatCount(total)}`}
           <span className="ml-1 text-xs">({formatPercent(rate)})</span>
         </span>
       </div>
@@ -59,7 +75,7 @@ function DistributionBar({
         <div
           className="h-full rounded-full"
           style={{
-            width: `${Math.max(fill, 2)}%`,
+            width: count > 0 ? `${Math.max(fill, 2)}%` : "0%",
             backgroundColor: color,
           }}
         />
@@ -71,6 +87,8 @@ function DistributionBar({
 export default function ProgressAnalysis() {
   const [scope, setScope] = useState<ProgressAnalysisScope>("solved");
   const [showAllTags, setShowAllTags] = useState(false);
+  const [showAllGaps, setShowAllGaps] = useState(false);
+  const [showNicheTags, setShowNicheTags] = useState(false);
   const tagLanguage = useGlobalSettingsStore((state) => state.tagLanguage);
   const isZh = tagLanguage === "zh";
 
@@ -82,6 +100,9 @@ export default function ProgressAnalysis() {
     medianRating,
     byTag,
     byRating,
+    byTagCoverage,
+    libraryTagCount,
+    untouchedTagCount,
     isLoading,
   } = useProgressAnalysis(scope);
 
@@ -89,6 +110,25 @@ export default function ProgressAnalysis() {
     () => (showAllTags ? byTag : byTag.slice(0, TAG_PREVIEW_LIMIT)),
     [byTag, showAllTags],
   );
+
+  const gaps = useMemo(
+    () =>
+      showNicheTags
+        ? byTagCoverage
+        : byTagCoverage.filter(
+            (tag) => tag.libraryCount >= NICHE_TAG_LIBRARY_SIZE,
+          ),
+    [byTagCoverage, showNicheTags],
+  );
+
+  const visibleGaps = useMemo(
+    () => (showAllGaps ? gaps : gaps.slice(0, GAP_PREVIEW_LIMIT)),
+    [gaps, showAllGaps],
+  );
+
+  const nicheTagCount = byTagCoverage.filter(
+    (tag) => tag.libraryCount < NICHE_TAG_LIBRARY_SIZE,
+  ).length;
 
   const maxTagCount = byTag[0]?.count ?? 0;
   const maxRatingCount = byRating.reduce(
@@ -219,6 +259,78 @@ export default function ProgressAnalysis() {
                   />
                 ))}
               </div>
+            </div>
+          </div>
+
+          <div className="space-y-3 border-t pt-4">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <h4 className="text-sm font-medium">分類缺口</h4>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  {scope === "solved" ? "已解題數" : "已標記題數"}
+                  {" ÷ 題庫該分類總題數，完成率低的排在前面。"}
+                </p>
+              </div>
+              <Badge variant="secondary">
+                {formatCount(untouchedTagCount)} /{" "}
+                {formatCount(libraryTagCount)} 種分類沒碰過
+              </Badge>
+            </div>
+
+            <div className="grid gap-x-6 gap-y-2.5 lg:grid-cols-2">
+              {visibleGaps.map((tag) => (
+                <DistributionBar
+                  key={tag.id}
+                  label={isZh ? tag.zh : tag.en}
+                  count={tag.count}
+                  total={tag.libraryCount}
+                  rate={tag.rate}
+                  fill={tag.rate}
+                  color="#28a745"
+                  badge={
+                    tag.count === 0 ? (
+                      <Badge
+                        variant="outline"
+                        className="shrink-0 px-1.5 py-0 text-[11px] font-normal text-muted-foreground"
+                      >
+                        沒碰過
+                      </Badge>
+                    ) : undefined
+                  }
+                />
+              ))}
+            </div>
+
+            {gaps.length === 0 && (
+              <p className="text-sm text-muted-foreground">
+                沒有符合條件的分類。
+              </p>
+            )}
+
+            <div className="flex flex-wrap items-center gap-1">
+              {gaps.length > GAP_PREVIEW_LIMIT && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowAllGaps((value) => !value)}
+                >
+                  {showAllGaps
+                    ? `只顯示缺口最大的 ${GAP_PREVIEW_LIMIT} 種`
+                    : `顯示全部 ${formatCount(gaps.length)} 種分類`}
+                </Button>
+              )}
+
+              {nicheTagCount > 0 && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowNicheTags((value) => !value)}
+                >
+                  {showNicheTags
+                    ? `隱藏冷門分類（${formatCount(nicheTagCount)} 種）`
+                    : `含冷門分類（題庫不到 ${NICHE_TAG_LIBRARY_SIZE} 題，${formatCount(nicheTagCount)} 種）`}
+                </Button>
+              )}
             </div>
           </div>
         </>
