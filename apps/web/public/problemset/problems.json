@@ -28001,6 +28001,94 @@
     "solutionId": "1697966632",
     "tagIds": []
   },
+  "4034": {
+    "id": "4034",
+    "title": "象到達目標格子的最少移動步數",
+    "titleSlug": "minimum-bishop-moves-to-reach-target",
+    "rating": 0,
+    "premium": false,
+    "_hash": "3827557246",
+    "contestId": "1399",
+    "solutionId": "3827557246",
+    "tagIds": []
+  },
+  "4035": {
+    "id": "4035",
+    "title": "最多有效分割位置 I",
+    "titleSlug": "maximum-valid-split-positions-i",
+    "rating": 0,
+    "premium": false,
+    "_hash": "3154982272",
+    "contestId": "1399",
+    "solutionId": "3154982272",
+    "tagIds": []
+  },
+  "4036": {
+    "id": "4036",
+    "title": "字元對轉換後字典序最大的字串",
+    "titleSlug": "lexicographically-largest-string-after-pair-transformations",
+    "rating": 0,
+    "premium": false,
+    "_hash": "1669279249",
+    "contestId": "1399",
+    "solutionId": "1669279249",
+    "tagIds": []
+  },
+  "4037": {
+    "id": "4037",
+    "title": "最多有效分割位置 II",
+    "titleSlug": "maximum-valid-split-positions-ii",
+    "rating": 0,
+    "premium": false,
+    "_hash": "4056669643",
+    "contestId": "1399",
+    "solutionId": "4056669643",
+    "tagIds": []
+  },
+  "4038": {
+    "id": "4038",
+    "title": "統計特殊整數個數",
+    "titleSlug": "count-integers-appearing-in-a-single-block",
+    "rating": 0,
+    "premium": false,
+    "_hash": "1431886903",
+    "contestId": "1403",
+    "solutionId": "1431886903",
+    "tagIds": []
+  },
+  "4039": {
+    "id": "4039",
+    "title": "解碼值之和",
+    "titleSlug": "sum-of-decoded-numbers",
+    "rating": 0,
+    "premium": false,
+    "_hash": "2046211402",
+    "contestId": "1403",
+    "solutionId": "2046211402",
+    "tagIds": []
+  },
+  "4040": {
+    "id": "4040",
+    "title": "構造子集和的最少操作次數 I",
+    "titleSlug": "minimum-operations-to-form-subset-sum-i",
+    "rating": 0,
+    "premium": false,
+    "_hash": "3855942888",
+    "contestId": "1403",
+    "solutionId": "3855942888",
+    "tagIds": []
+  },
+  "4041": {
+    "id": "4041",
+    "title": "構造子集和的最少操作次數 II",
+    "titleSlug": "minimum-operations-to-form-subset-sum-ii",
+    "rating": 0,
+    "premium": false,
+    "_hash": "1331042067",
+    "contestId": "1403",
+    "solutionId": "1331042067",
+    "tagIds": []
+  },
   "828": {
     "id": "828",
     "title": "統計子串中的唯一字元",

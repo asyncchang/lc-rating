@@ -1644,6 +1644,13 @@
     "time": 1730511157402,
     "problemId": "155"
   },
+  "1331042067": {
+    "id": "1331042067",
+    "title": "分組揹包（Python/Java/C++/Go）",
+    "titleSlug": "fen-zu-bei-bao-by-endlesscheng-eaz3",
+    "time": 1788062975334,
+    "problemId": "4041"
+  },
   "1331620430": {
     "id": "1331620430",
     "title": "原地堆化 O(1) 空間（Python/Java/C++/Go/JS/Rust）",
@@ -2000,6 +2007,13 @@
     "titleSlug": "on-yi-ci-bian-li-by-endlesscheng-thmm",
     "time": 1636862746101,
     "problemId": "2073"
+  },
+  "1431886903": {
+    "id": "1431886903",
+    "title": "簡單題，簡單做，O(n) 做法（Python/Java/C++/Go）",
+    "titleSlug": "jian-dan-ti-jian-dan-zuo-on-zuo-fa-pytho-q0ng",
+    "time": 1788063965530,
+    "problemId": "4038"
   },
   "1434911335": {
     "id": "1434911335",
@@ -3128,6 +3142,13 @@
     "time": 1746938359746,
     "problemId": "3546"
   },
+  "1669279249": {
+    "id": "1669279249",
+    "title": "位運算，簡潔寫法（Python/Java/C++/Go）",
+    "titleSlug": "wei-yun-suan-jian-ji-xie-fa-pythonjavacg-iad1",
+    "time": 1788055341796,
+    "problemId": "4036"
+  },
   "1670099365": {
     "id": "1670099365",
     "title": "證明，交換論證法（Python/Java/C++/C/Go/JS/Rust）",
@@ -3249,7 +3270,7 @@
   },
   "1697966632": {
     "id": "1697966632",
-    "title": "異或雜湊 + 離線 + 樹狀陣列（Python/Java/C++/Go）",
+    "title": "異或雜湊 + 滑動視窗 / 樹狀陣列（Python/Java/C++/Go）",
     "titleSlug": "yi-huo-ha-xi-chi-xian-shu-zhuang-shu-zu-pkxwi",
     "time": 1787458187276,
     "problemId": "4033"
@@ -4744,6 +4765,13 @@
     "titleSlug": "0-1-bei-bao-mei-ju-you-hua-pythonjavacgo-6km7",
     "time": 1780200174794,
     "problemId": "3946"
+  },
+  "2046211402": {
+    "id": "2046211402",
+    "title": "不用字串的做法（Python/Java/C++/Go）",
+    "titleSlug": "bu-yong-zi-fu-chuan-de-zuo-fa-pythonjava-kara",
+    "time": 1788063692364,
+    "problemId": "4039"
   },
   "2048723677": {
     "id": "2048723677",
@@ -9778,6 +9806,13 @@
     "time": 1669877291958,
     "problemId": "LCR 141"
   },
+  "3154982272": {
+    "id": "3154982272",
+    "title": "非暴力做法（Python/Java/C++/Go）",
+    "titleSlug": "fei-bao-li-zuo-fa-pythonjavacgo-by-endle-3uir",
+    "time": 1788054048097,
+    "problemId": "4035"
+  },
   "3156996757": {
     "id": "3156996757",
     "title": "O(n) 一次遍歷（Python/Java/C++/Go/JS/Rust）",
@@ -12830,6 +12865,13 @@
     "time": 1739320386809,
     "problemId": "1760"
   },
+  "3827557246": {
+    "id": "3827557246",
+    "title": "O(1) 時間做法（Python/Java/C++/Go）",
+    "titleSlug": "o1-shi-jian-zuo-fa-pythonjavacgo-by-endl-3bzt",
+    "time": 1788056165523,
+    "problemId": "4034"
+  },
   "382811725": {
     "id": "382811725",
     "title": "字首和 + 滑動視窗（Python/Java/C++/Go）",
@@ -12955,6 +12997,13 @@
     "titleSlug": "bian-li-pythonjavacgo-by-endlesscheng-j09e",
     "time": 1758432993664,
     "problemId": "3688"
+  },
+  "3855942888": {
+    "id": "3855942888",
+    "title": "分組揹包（Python/Java/C++/Go）",
+    "titleSlug": "fen-zu-bei-bao-pythonjavacgo-by-endlessc-o7ao",
+    "time": 1788063042867,
+    "problemId": "4040"
   },
   "3856718514": {
     "id": "3856718514",
@@ -13907,6 +13956,13 @@
     "titleSlug": "mei-ju-zhong-jian-qian-hou-zhui-fen-jie-5uad8",
     "time": 1749960427018,
     "problemId": "3583"
+  },
+  "4056669643": {
+    "id": "4056669643",
+    "title": "只需列舉 O(log U) 個刪除位置，然後前字尾分解（Python/Java/C++/Go）",
+    "titleSlug": "zhi-xu-mei-ju-olog-u-ge-shan-chu-wei-zhi-1bc7",
+    "time": 1788053879353,
+    "problemId": "4037"
   },
   "4057490526": {
     "id": "4057490526",
