@@ -1,4 +1,4 @@
-// 十二週競賽集訓計畫，顯示於 /training。
+// Q3 十二週集訓（顯示於 /training）。
 //
 // 選題方式：以 q3_handbook 的 pattern 分組為骨幹，用 zerotrac 評分把每週排成
 // 由易到難；handbook 必修題偏難的主題（例如堆積貪心的必修是 1962 分），另從
@@ -8,47 +8,17 @@
 // 適用對象：週賽 Q1–Q2 穩定、Q3 偶爾（約 1400–1700），每週 4–6 小時，
 // 目標是穩定 AK Q3。
 
-export interface TrainingPlanProblem {
-  /** LeetCode 題號，同時是進度與筆記的 key。 */
-  id: string;
-  title: string;
-  slug: string;
-  /** zerotrac 評分；早期經典題無競賽評分，為 null。 */
-  rating: number | null;
-  /** 這題在集訓裡的角色：練什麼、為什麼排在這個位置。 */
-  role: string;
-  /**
-   * 超載題：刻意高過當週主線 200–300 分的一題，用來把主線難度變成相對輕鬆的
-   * 一檔。做法與主線題不同，見 trainingPlanOverload。
-   */
-  bonus?: boolean;
-}
-
-export interface TrainingPlanWeek {
-  week: number;
-  topic: string;
-  /** 對應的站內講義與題單。 */
-  refs: { label: string; href: string }[];
-  problems: TrainingPlanProblem[];
-  /** 本週要留下的可複用產物——集訓的產出是判準與模板，不是題數。 */
-  deliverable: string;
-  /** 這週週六排第幾場限時模擬；沒排就不填。 */
-  contest?: number;
-}
-
-export interface TrainingPlanCheckpoint {
-  label: string;
-  items: { term: string; detail: string }[];
-}
-
-export interface TrainingPlanPhase {
-  id: number;
-  label: string;
-  title: string;
-  goal: string;
-  weeks: number[];
-  checkpoint: TrainingPlanCheckpoint;
-}
+import type {
+  TrainingPlanCalibration,
+  TrainingPlanMetric,
+  TrainingPlanOverload,
+  TrainingPlanPhase,
+  TrainingPlanProgressStatus,
+  TrainingPlanRhythmRow,
+  TrainingPlanRule,
+  TrainingPlanTrack,
+  TrainingPlanWeek,
+} from "./types";
 
 export const trainingPlanProfile = {
   audience:
@@ -59,7 +29,7 @@ export const trainingPlanProfile = {
 // 集訓終點的依據：近年 Q3 的實際評分分佈，用本站 problemset 的 contests.json
 // （problemIds 依序即 Q1–Q4）與 zerotrac 評分算出。難度會逐年漂移，重算方式見
 // 下方 method，數字過期時直接重跑並更新這裡。
-export const trainingPlanCalibration = {
+export const trainingPlanCalibration: TrainingPlanCalibration = {
   updatedAt: "2026-08",
   method:
     "取 contests.json 內每場的第三題，對照 problems.json 的 zerotrac 評分後統計。",
@@ -68,35 +38,37 @@ export const trainingPlanCalibration = {
     "目標設在 2000，吃下上四分位；主線題因此排到 2050–2085。",
     "超載題再往上加 200–300，第三階段練到 2250–2270。",
   ],
+  byYearLabel: "Q3 中位數",
   byYear: [
-    { year: "2022", q3: 1718 },
-    { year: "2023", q3: 1889 },
-    { year: "2024", q3: 1907 },
-    { year: "2025", q3: 2040 },
-    { year: "2026", q3: 1854 },
+    { year: "2022", median: 1718 },
+    { year: "2023", median: 1889 },
+    { year: "2024", median: 1907 },
+    { year: "2025", median: 2040 },
+    { year: "2026", median: 1854 },
   ],
+  thresholdLabels: ["≥2100", "≥2300"],
   windows: [
     {
       label: "近 12 個月（週賽）",
       median: 1909,
       iqr: "1777–1999",
-      over2100: "12%",
-      over2300: "0%",
+      overLow: "12%",
+      overHigh: "0%",
     },
     {
       label: "近 24 個月（週賽）",
       median: 2011,
       iqr: "1860–2187",
-      over2100: "33%",
-      over2300: "17%",
+      overLow: "33%",
+      overHigh: "17%",
     },
   ],
-} as const;
+};
 
 // 每週一題「超載題」的設計原則與做法。超載題不是加分題——它的分數帶刻意高過
 // 當週主線 200–300，用途是把主線的難度變成「相對輕鬆」的那一檔。因此它的做法
 // 與主線題不同：允許看題解，但一定要自己重寫一遍。
-export const trainingPlanOverload = {
+export const trainingPlanOverload: TrainingPlanOverload = {
   principle:
     "練習的天花板要高過目標 200–300 分，目標分數帶才會變成相對輕鬆的一檔。每週配一題超載題：第一階段 1900–2050，第二階段 2090–2160，第三階段 2250–2270。",
   rules: [
@@ -874,7 +846,7 @@ export const trainingPlanPhases: TrainingPlanPhase[] = [
   },
 ];
 
-export const trainingPlanRhythm = [
+export const trainingPlanRhythm: TrainingPlanRhythmRow[] = [
   {
     when: "週一",
     minutes: "45 分",
@@ -897,7 +869,7 @@ export const trainingPlanRhythm = [
   },
 ];
 
-export const trainingPlanRules = [
+export const trainingPlanRules: TrainingPlanRule[] = [
   {
     title: "一週有 3 題卡超過 45 分鐘",
     detail:
@@ -919,7 +891,7 @@ export const trainingPlanRules = [
   },
 ];
 
-export const trainingPlanMetrics = [
+export const trainingPlanMetrics: TrainingPlanMetric[] = [
   {
     figure: "≥ 60%",
     title: "1900 分帶一次過率",
@@ -946,9 +918,32 @@ export const trainingPlanNoteTemplate = [
   "可複用模板：函式簽名或 3 行骨架",
 ].join("\n");
 
-export const trainingPlanProgressConvention = [
+export const trainingPlanProgressConvention: TrainingPlanProgressStatus[] = [
   { status: "進行中", meaning: "本週要做的 5 題" },
   { status: "需要複習", meaning: "看過題解、或超過 40 分鐘才寫出來的" },
   { status: "已解題", meaning: "獨立解出，且三次複習都一次過" },
   { status: "暫時跳過", meaning: "評分高於本階段上限，留給第三個月之後" },
 ];
+
+export const trainingPlanQ3: TrainingPlanTrack = {
+  id: "q3",
+  navLabel: "Q3 集訓",
+  href: "/training",
+  title: "十二週集訓：穩定 AK Q3",
+  lead: "每週一個 pattern，題目取自站內題單並依評分排成由易到難。",
+  prerequisite: "先修：Q1–Q2 已經穩定。做完這條路線再接 Q4 集訓，不要跳過。",
+  profile: trainingPlanProfile,
+  calibration: trainingPlanCalibration,
+  overload: trainingPlanOverload,
+  weeks: trainingPlanWeeks,
+  phases: trainingPlanPhases,
+  rhythm: trainingPlanRhythm,
+  reviewSchedule:
+    "看過題解、或寫超過 40 分鐘的題，在第 2、7、21 天各重寫一次；三次都一次過，才把狀態從「需要複習」改成「已解題」。",
+  rules: trainingPlanRules,
+  metrics: trainingPlanMetrics,
+  noteTemplate: trainingPlanNoteTemplate,
+  progressConvention: trainingPlanProgressConvention,
+  totalNote: (total) =>
+    `三個月共 ${total} 題。總題數不是指標，上面三個數字才是。`,
+};
